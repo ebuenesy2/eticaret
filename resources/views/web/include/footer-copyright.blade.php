@@ -1,0 +1,1 @@
+<p class="footer-copyright font-weight-light text-light">Copyright © 2024 Yıldırımdev Tarafından Yapılmıştır. </p>
