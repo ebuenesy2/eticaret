@@ -81,7 +81,6 @@ class Web extends Controller
 
     //************* Web ***************** */
 
-
     //! Index
     public function Index($site_lang="tr")
     {
@@ -110,5 +109,37 @@ class Web extends Controller
         } catch (\Throwable $th) {  throw $th; }
 
     } //! Index Son
+
+    
+    //************* Web ***************** */
+
+    //! Category
+    public function Category($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/product/category',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Category Son
    
 }

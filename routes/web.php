@@ -18,6 +18,10 @@ Route::get('/{lang}/fixed', [Web::class,'Fixed']) -> name("web.fixed.page");  //
 Route::get('/', [Web::class,'Index']) -> name("web.index"); //! Web Anasayfa
 Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasayfa
 
+//************* Web - Ürün ***************** */
+
+Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
+
 
 //************* Admin Test  ***************** */
 
