@@ -22,6 +22,10 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 
 Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
 
+//************* Web - Blog ***************** */
+
+Route::get('/{lang}/blog', [Web::class,'Blog']) -> name("web.blog"); //! Web - Blog
+
 
 //************* Admin Test  ***************** */
 
