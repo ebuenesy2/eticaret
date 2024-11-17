@@ -27,6 +27,11 @@ Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category");
 Route::get('/{lang}/blog', [Web::class,'Blog']) -> name("web.blog"); //! Web - Blog
 
 
+//************* Web - Sayfalar ***************** */
+
+Route::get('/{lang}/faq', [Web::class,'Faq']) -> name("web.faq"); //! Web - Faq
+
+
 //************* Admin Test  ***************** */
 
 //! Test

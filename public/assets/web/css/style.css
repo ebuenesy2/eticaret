@@ -6627,10 +6627,9 @@ a:focus {
     padding-left: 1rem; }
     .breadcrumb-item + .breadcrumb-item:before {
       color: #999999;
-      content: '\f112';
-      font-family: "Yıldırımdev";
+      content: '>';
       padding-right: .7rem;
-      font-size: 1.1rem;
+      font-size: 15px;
       vertical-align: middle;
       margin-top: -.1rem; }
 

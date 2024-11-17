@@ -29,7 +29,7 @@
                 <ul>
                     <li><a href="{{asset('/assets')}}/web/#" class="ff"><i class="fa fa-phone"></i>Ara: +90 551 032 05 01</a></li>
                     <li><a href="{{asset('/assets')}}/web/#">Sipariş Takip</a></li>
-                    <li><a href="{{asset('/assets')}}/web/faq.html">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
                     <li><a href="{{asset('/assets')}}/web/contact.html">İletişim</a></li>
                     <li><a href="{{asset('/assets')}}/web/about.html">Hakkımızda</a></li>
                     <li><a href="{{asset('/assets')}}/web/login.html"><i class="fa fa-user"></i>Giriş Yap</a></li>
