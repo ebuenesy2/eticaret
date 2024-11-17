@@ -10,95 +10,14 @@ use App\Http\Controllers\Web; //! Web Control
 Route::get('/{lang}/test', [Web::class,'Test']) -> name("web.test"); //! Web Test
 Route::get('/{lang}/test/view', [Web::class,'TestView']) -> name("web.test.view"); //! Web Test View
 
+Route::get('/{lang}/fixed', [Web::class,'Fixed']) -> name("web.fixed.page");  //! Web Sabit
+
 //************* Web  ***************** */
 
 //! Web - Anasayfa
 Route::get('/', [Web::class,'Index']) -> name("web.index"); //! Web Anasayfa
 Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasayfa
 
-//************* Web Sayfaları  ***************** */
-
-//! Web - Sabit
-Route::get('/{lang}/fixed', [Web::class,'Fixed']) -> name("web.fixed.page");  //! Web Sabit
-Route::post('/contact/message/add/post', [Web::class,'ContactMessage']) -> name("web.contact.message.add.post"); //! Web - İletişim Mesaj Yaz - Post
-Route::post('/subscribe/add/post', [Web::class,'Subscribe']) -> name("web.subscribe.add.post"); //! Web - Abone Ol - Post
-
-//! Web -Slider
-Route::get('/{lang}/slider', [Web::class,'Slider']) -> name("web.slider");  //! Web Slider
-
-//! Web -İletişim
-Route::get('/{lang}/contact', [Web::class,'Contact']) -> name("web.contact");  //! Web İletişim
-
-//! Web - Kurumsal
-Route::get('/{lang}/about', [Web::class,'About']) -> name("web.about"); //! Hakkımızda
-Route::get('/{lang}/cookie-policy', [Web::class,'CookiePolicy']) -> name("web.cookie.policy"); //! Çerez Politikası
-Route::get('/{lang}/terms-of-use', [Web::class,'TermsOfUse']) -> name("web.terms.of.use"); //! Kullanım Koşulları
-Route::get('/{lang}/terms-of-conditions', [Web::class,'TermsOfConditions']) -> name("web.terms.of.conditions"); //! Kullanım Şartları
-Route::get('/{lang}/privacy-policy', [Web::class,'PrivacyPolicy']) -> name("web.privacy.policy"); //! Gizlilik Politikası
-Route::get('/{lang}/personal-data-protection-law', [Web::class,'PersonalDataProtectionLaw']) -> name("web.personal.data.protection.law"); //! Kişisel Verilerin Korunması Kanunu
-
-//! Web - Sık Sorulan Sorular
-Route::get('/{lang}/faq', [Web::class,'FaqList']) -> name("web.faq"); //! Web - Sıksa Sorulan Sorular
-
-//! Web - Yorumlar
-Route::get('/{lang}/comments', [Web::class,'CommentList']) -> name("web.comment"); //! Web - Yorumlar
-
-//! Web - Ekibimiz
-Route::get('/{lang}/ourteam', [Web::class,'OurTeamList']) -> name("web.our.team"); //! Web - Ekibimiz
-
-//************* Web - Blog  ***************** */
-
-//! Web - Blog
-Route::get('/{lang}/blog/category', [Web::class,'BlogCategoryList']) -> name("web.blog.category"); //! Web - Blog - Kategori
-
-//! Blog Listesi
-Route::get('/{lang}/blog/list', [Web::class,'BlogList']) -> name("web.blog.list"); //! Blog - Listesi
-Route::get('/{lang}/blog/view/{uid}', [Web::class,'BlogView']) -> name("web.blog.view"); //! Blog Detay
-Route::get('/{lang}/blog/view/seo/{seo_url}', [Web::class,'BlogViewSeo']) -> name("web.blog.view.seo"); //! Blog Detay - Seo
-
-//! Blog Yorum
-Route::post('/blog/comment/add/post', [Web::class,'BlogCommentAddPost']) -> name("web.blog.add.post"); //! Blog Yorum Yap - Post
-Route::post('/blog/comment/delete/post', [Web::class,'BlogCommentDeletePost']) -> name("web.blog.delete.post"); //! Blog Yorum Sil - Post
-
-//************* Web - Product  ***************** */
-
-//! Web - Product
-Route::get('/{lang}/product/category', [Web::class,'ProductCategoryList']) -> name("web.product.category"); //! Web - Product - Kategori
-
-//! Product Listesi
-Route::get('/{lang}/product/list', [Web::class,'ProductList']) -> name("web.product.list"); //! Product - Listesi
-Route::get('/{lang}/product/view/{uid}', [Web::class,'ProductView']) -> name("web.product.view"); //! Product Detay
-Route::get('/{lang}/product/view/seo/{seo_url}', [Web::class,'ProductViewSeo']) -> name("web.product.view.seo"); //! Product Detay - Seo
-
-//! Product Yorum
-Route::post('/product/comment/add/post', [Web::class,'ProductCommentAddPost']) -> name("web.product.add.post"); //! Product Yorum Yap - Post
-Route::post('/product/comment/delete/post', [Web::class,'ProductCommentDeletePost']) -> name("web.product.delete.post"); //! Product Yorum Sil - Post
-
-//************* Web - Hizmetler  ***************** */
-
-//! Web - Hizmetler
-Route::get('/{lang}/service/category', [Web::class,'ServiceCategoryList']) -> name("web.service.category"); //! Web - Servis - Hizmet - Kategori
-
-//! Hizmetler Listesi
-Route::get('/{lang}/service/list', [Web::class,'ServiceList']) -> name("web.service.list"); //! Servis - Listesi
-Route::get('/{lang}/service/view/{uid}', [Web::class,'ServiceView']) -> name("web.service.view"); //! Servis Detay
-Route::get('/{lang}/service/view/seo/{seo_url}', [Web::class,'ServiceViewSeo']) -> name("web.service.view.seo"); //! Servis Detay - Seo
-
-//************* Kullanıcı  ***************** */
-
-//! Kayıt
-Route::get('/{lang}/user/register', [Web::class,'UserRegister']) -> name("web.user.register"); //! Web - Kullanıcı - Kayıt
-Route::post('/user/register/post', [Web::class,'UserRegisterPost']) -> name("web.register.post"); //! Web Kullanıcı Kayıt - Post
-
-//! Giriş
-Route::get('/{lang}/user/login', [Web::class,'UserLogin']) -> name("web.user.login"); //! Web - Kullanıcı - Giriş
-Route::post('/user/login/post', [Web::class,'UserLoginPost']) -> name("web.user.login.post"); //! Web Kullanıcı Giriş - Post
-Route::get('/{lang}/user/logout', [Web::class,'UserLogout']) -> name("web.user.logout"); //! Web - Kullanıcı - Çıkış
-
-//! Profil
-Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.profile"); //! Web - Kullanıcı - Profil
-Route::post('/user/profile/edit', [Web::class,'UserProfileEdit']) -> name("web.user.profile.edit"); //! Web - Kullanıcı - Profil - Güncelleme
-Route::post('/user/settings/password/edit', [Web::class,'UserSettingsPasswordEdit']) -> name("web.user.settings.password.edit"); //! Web - Kullanıcı - Şifre - Güncelleme
 
 //************* Admin Test  ***************** */
 
