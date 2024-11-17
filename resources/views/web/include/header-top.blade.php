@@ -32,7 +32,7 @@
                     <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
                     <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
                     <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>
-                    <li><a href="/@lang('admin.lang')/login"><i class="fa fa-user"></i>Giriş Yap</a></li>
+                    <li><a href="/@lang('admin.lang')/user/login"><i class="fa fa-user"></i>Giriş Yap</a></li>
                     <li>
                         <a href="/@lang('admin.lang')/wishlist" class="wishlist-link">
                             <div class="icon position-relative">

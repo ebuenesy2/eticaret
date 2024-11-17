@@ -142,6 +142,35 @@ class Web extends Controller
 
     } //! Category Son
 
+    //! Product
+    public function Product($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/product/product',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Product Son
+
     //************* Web - Blog ***************** */
 
     //! Blog
@@ -172,7 +201,35 @@ class Web extends Controller
         } catch (\Throwable $th) {  throw $th; }
 
     } //! Blog Son
+    
+    //! Blog - Detay
+    public function BlogSingle($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
 
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/blog/blog-single',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! BlogSingle Son
     
     //************* Web - Sayfalar ***************** */
 
@@ -262,5 +319,210 @@ class Web extends Controller
         } catch (\Throwable $th) {  throw $th; }
 
     } //! About Son
+        
+    //! Error404
+    public function Error404($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/error404',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Error404 Son
+            
+    //! ComingSoon
+    public function ComingSoon($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/comingSoon',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! ComingSoon Son
+
+    //************* Web - Kullanıcı ***************** */
+
+    //! UserLogin
+    public function UserLogin($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/user/login',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! UserLogin Son
+    
+    //! UserCart
+    public function UserCart($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/user/cart',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! UserCart Son
+        
+    //! UserCheckout
+    public function UserCheckout($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/user/checkout',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! UserCheckout Son
+            
+    //! UserWishlist
+    public function UserWishlist($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/user/wishlist',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! UserWishlist Son
+                
+    //! UserDashboard
+    public function UserDashboard($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+               //! Site Bilgileri
+               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+               $seo_keywords =  $DB_HomeSettings->seo_keywords;
+               //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+               $DB["seo_keywords"] =  $seo_keywords;
+               //! Site Bilgileri Son
+
+                return view('web/user/dashboard',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! UserDashboard Son
    
 }

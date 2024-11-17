@@ -15,14 +15,14 @@
                 <li class="megamenu-list">
                     <a href="{{asset('/assets')}}/web/#" class="sf-with-ul">Sayfalar</a>
                     <ul>
-                        <li><a href="{{asset('/assets')}}/web/404.html">Hata 404</a></li>
-                        <li><a href="{{asset('/assets')}}/web/coming-soon.html">Yakında</a></li>
-                        <li><a href="{{asset('/assets')}}/web/cart.html">Cart</a></li>
-                        <li><a href="{{asset('/assets')}}/web/checkout.html">Checkout</a></li>
-                        <li><a href="{{asset('/assets')}}/web/wishlist.html">Wishlist</a></li>
-                        <li><a href="{{asset('/assets')}}/web/dashboard.html">My Account</a></li>
-                        <li><a href="{{asset('/assets')}}/web/product.html">Ürün</a></li>
-                        <li><a href="{{asset('/assets')}}/web/blog-single">Blog Detay</a></li>
+                        <li><a href="/@lang('admin.lang')/error404">Hata 404</a></li>
+                        <li><a href="/@lang('admin.lang')/coming-soon">Yakında</a></li>
+                        <li><a href="/@lang('admin.lang')/user/cart">Cart</a></li>
+                        <li><a href="/@lang('admin.lang')/user/checkout">Checkout</a></li>
+                        <li><a href="/@lang('admin.lang')/user/wishlist">Wishlist</a></li>
+                        <li><a href="/@lang('admin.lang')/user/dashboard">My Account</a></li>
+                        <li><a href="/@lang('admin.lang')/product">Ürün</a></li>
+                        <li><a href="/@lang('admin.lang')/blog-single">Blog Detay</a></li>
                     </ul>
                 </li>
             </ul>

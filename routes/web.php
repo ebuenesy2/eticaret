@@ -21,10 +21,12 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 //************* Web - Ürün ***************** */
 
 Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
+Route::get('/{lang}/product', [Web::class,'Product']) -> name("web.product"); //! Web - Ürün
 
 //************* Web - Blog ***************** */
 
 Route::get('/{lang}/blog', [Web::class,'Blog']) -> name("web.blog"); //! Web - Blog
+Route::get('/{lang}/blog-single', [Web::class,'BlogSingle']) -> name("web.single"); //! Web - Blog Single
 
 
 //************* Web - Sayfalar ***************** */
@@ -33,6 +35,15 @@ Route::get('/{lang}/faq', [Web::class,'Faq']) -> name("web.faq"); //! Web - Faq
 Route::get('/{lang}/contact', [Web::class,'Contact']) -> name("web.contact"); //! Web - İletişim
 Route::get('/{lang}/about', [Web::class,'About']) -> name("web.about"); //! Web - Hakkımızda
 
+Route::get('/{lang}/error404', [Web::class,'Error404']) -> name("web.error.404"); //! Web - Hata 404
+Route::get('/{lang}/coming-soon', [Web::class,'ComingSoon']) -> name("web.coming-soon"); //! Web - Yakında
+
+//************* Web - Kullanıcı ***************** */
+Route::get('/{lang}/user/login', [Web::class,'UserLogin']) -> name("web.user.login"); //! Web - Kullanıcı Giriş
+Route::get('/{lang}/user/cart', [Web::class,'UserCart']) -> name("web.user.cart"); //! Web - Kullanıcı Kart
+Route::get('/{lang}/user/checkout', [Web::class,'UserCheckout']) -> name("web.user.checkout"); //! Web - Kullanıcı - Checkout
+Route::get('/{lang}/user/wishlist', [Web::class,'UserWishlist']) -> name("web.user.wishlist"); //! Web - Kullanıcı - Wishlist
+Route::get('/{lang}/user/dashboard', [Web::class,'UserDashboard']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Dashboard
 
 //************* Admin Test  ***************** */
 
