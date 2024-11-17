@@ -656,7 +656,7 @@ a .icon-flip-vertical:before {
 .icon-arrow-right:before {
   content: "\f061";
 }
-.icon-arrow-up:before {
+.fa fa-arrow-up:before {
   content: "\f062";
 }
 .icon-arrow-down:before {

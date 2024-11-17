@@ -30,6 +30,8 @@ Route::get('/{lang}/blog', [Web::class,'Blog']) -> name("web.blog"); //! Web - B
 //************* Web - Sayfalar ***************** */
 
 Route::get('/{lang}/faq', [Web::class,'Faq']) -> name("web.faq"); //! Web - Faq
+Route::get('/{lang}/contact', [Web::class,'Contact']) -> name("web.contact"); //! Web - İletişim
+Route::get('/{lang}/about', [Web::class,'About']) -> name("web.about"); //! Web - Hakkımızda
 
 
 //************* Admin Test  ***************** */

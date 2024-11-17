@@ -132,7 +132,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-ban-circle:before{content:"\f05e";}
 .icon-arrow-left:before{content:"\f060";}
 .icon-arrow-right:before{content:"\f061";}
-.icon-arrow-up:before{content:"\f062";}
+.fa fa-arrow-up:before{content:"\f062";}
 .icon-arrow-down:before{content:"\f063";}
 .icon-mail-forward:before,.icon-share-alt:before{content:"\f064";}
 .icon-resize-full:before{content:"\f065";}

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="@lang('admin.lang')" >
 <head>
     
     <title> Product - Kategori | {{ $DB_HomeSettings->title }} </title>

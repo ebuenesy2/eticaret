@@ -1,4 +1,4 @@
-<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<button id="scroll-top" title="Back to Top"><i class="fa fa-arrow-up"></i></button>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->

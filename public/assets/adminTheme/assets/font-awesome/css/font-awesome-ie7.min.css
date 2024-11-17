@@ -99,7 +99,7 @@ a [class^="icon-"],a [class*=" icon-"]{cursor:pointer;}
 .icon-ban-circle{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf05e;');}
 .icon-arrow-left{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf060;');}
 .icon-arrow-right{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf061;');}
-.icon-arrow-up{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf062;');}
+.fa fa-arrow-up{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf062;');}
 .icon-arrow-down{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf063;');}
 .icon-share-alt{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf064;');}
 .icon-mail-forward{*zoom:expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf064;');}

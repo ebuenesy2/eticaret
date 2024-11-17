@@ -30,11 +30,11 @@
                     <li><a href="{{asset('/assets')}}/web/#" class="ff"><i class="fa fa-phone"></i>Ara: +90 551 032 05 01</a></li>
                     <li><a href="{{asset('/assets')}}/web/#">Sipariş Takip</a></li>
                     <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
-                    <li><a href="{{asset('/assets')}}/web/contact.html">İletişim</a></li>
-                    <li><a href="{{asset('/assets')}}/web/about.html">Hakkımızda</a></li>
-                    <li><a href="{{asset('/assets')}}/web/login.html"><i class="fa fa-user"></i>Giriş Yap</a></li>
+                    <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
+                    <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>
+                    <li><a href="/@lang('admin.lang')/login"><i class="fa fa-user"></i>Giriş Yap</a></li>
                     <li>
-                        <a href="{{asset('/assets')}}/web/wishlist.html" class="wishlist-link">
+                        <a href="/@lang('admin.lang')/wishlist" class="wishlist-link">
                             <div class="icon position-relative">
                                 <i class="fa fa-heart-o" style="font-size: 15px;" ></i>
                                 <span class="wishlist-count">3</span>
