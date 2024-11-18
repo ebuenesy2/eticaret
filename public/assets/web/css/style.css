@@ -7936,7 +7936,7 @@ a:focus {
   margin-top: 1rem; }
 
 .btn-cart:before {
-  content: '\e812'; }
+  content: '+'; }
 
 .btn-wishlist {
   font-size: 1.6rem; }
@@ -14805,7 +14805,7 @@ button:focus {
 
 /* '' */
 .icon-cart-plus:before {
-  content: '\e812'; }
+  content: '+'; }
 
 /* '' */
 .icon-refresh:before {

@@ -13,8 +13,8 @@
     <meta name="author" content="p-themes">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/assets')}}/web/images/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/assets')}}/web/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/assets')}}/web/images/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/assets')}}/web/images/icons/favfa fa-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/assets')}}/web/images/icons/favfa fa-16x16.png">
     <link rel="manifest" href="{{asset('/assets')}}/web/images/icons/site.html">
     <link rel="mask-icon" href="{{asset('/assets')}}/web/images/icons/safari-pinned-tab.svg" color="#666666">
     <link rel="shortcut icon" href="{{asset('/assets')}}/web/images/icons/favicon.ico">
@@ -37,7 +37,7 @@
                 <div class="col-md-9 col-lg-8">
                     <div class="soon-content text-center">
                         <div class="soon-content-wrapper">
-                            <img src="{{asset('/assets')}}/web/images/logo-icon.png" alt="Logo" class="soon-logo mx-auto">
+                            <img src="{{asset('/assets')}}/web/images/logo-icon.png" alt="Logo" class="soon-logo mx-auto" style="width: 30%;max-width: 244px;" >
                             <h1 class="soon-title">Coming Soon</h1><!-- End .soon-title -->
                             <div class="coming-countdown countdown-separator"></div><!-- End .coming-countdown -->
                             <hr class="mt-2 mb-3 mt-md-3">
@@ -49,17 +49,17 @@
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary-2" type="submit">
                                             <span>SUBSCRIBE</span>
-                                            <i class="icon-long-arrow-right"></i>
+                                            <i class="fa fa-long-arrow-right"></i>
                                         </button>
                                     </div>
                                 </div>
                             </form>
                             <div class="social-icons justify-content-center mb-0">
-                                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="fa fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="fa fa-youtube"></i></a>
+                                <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a>
                             </div><!-- End .soial-icons -->
                         </div><!-- End .soon-content-wrapper -->
                     </div><!-- End .soon-content -->

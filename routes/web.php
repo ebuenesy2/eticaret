@@ -21,6 +21,7 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 //************* Web - Ürün ***************** */
 
 Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
+Route::get('/{lang}/product/list', [Web::class,'ProductList']) -> name("web.product"); //! Web - Ürün Listesi
 Route::get('/{lang}/product', [Web::class,'Product']) -> name("web.product"); //! Web - Ürün
 
 //************* Web - Blog ***************** */
