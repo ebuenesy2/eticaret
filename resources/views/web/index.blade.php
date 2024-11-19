@@ -92,58 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="banner-group-1 mt-1 mb-1">
-                    <div class="container">
-                        <div class="owl-carousel owl-simple rows cols-1 cols-sm-2 cols-lg-3" data-toggle="owl" data-owl-options='{
-                            "nav": false, 
-                            "dots": true,
-                            "margin": 10,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "576": {
-                                    "items":2
-                                },
-                                "992": {
-                                    "items":3
-                                }
-                            }
-                        }'>
-                            <div class="banner mb-0">
-                                <a href="{{asset('/assets')}}/web/#">
-                                    <img src="{{asset('/assets')}}/web/images/demos/demo-28/banners/banner-1.jpg" width="460" height="210">
-                                </a>
-                                <div class="banner-content p-3">
-                                    <h5 class="banner-subtitle font-weight-normal text-light mb-1">Fresh Fruit</h5>
-                                    <h3 class="banner-title font-weight-bold">Organic Fresh Fruits<br>Get 25% Off</h3>
-                                    <a href="{{asset('/assets')}}/web/#" class="banner-link text-decoration-none">Shop Now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="banner mb-0">
-                                <a href="{{asset('/assets')}}/web/#">
-                                    <img src="{{asset('/assets')}}/web/images/demos/demo-28/banners/banner-2.jpg" width="460" height="210">
-                                </a>
-                                <div class="banner-content p-3">
-                                    <h5 class="banner-subtitle font-weight-normal text-light mb-1">Our Standards</h5>
-                                    <h3 class="banner-title font-weight-bold">Super Food Bundle<br>From $45.99</h3>
-                                    <a href="{{asset('/assets')}}/web/#" class="banner-link text-decoration-none">Shop Now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="banner mb-0">
-                                <a href="{{asset('/assets')}}/web/#">
-                                    <img src="{{asset('/assets')}}/web/images/demos/demo-28/banners/banner-3.jpg" width="460" height="210">
-                                </a>
-                                <div class="banner-content p-3">
-                                    <h5 class="banner-subtitle font-weight-normal text-light mb-1">Diet Products</h5>
-                                    <h3 class="banner-title font-weight-bold">Save Now<br>Detox &amp; Diuretics</h3>
-                                    <a href="{{asset('/assets')}}/web/#" class="banner-link text-decoration-none">Shop Now<i class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             
                 <div class="container">
                     <hr class="m-0">
                     <div class="cat-section mt-4 mb-3">
@@ -155,7 +104,6 @@
                                     </div>
                                     <div class="cat-content text-center">
                                         <a href="{{asset('/assets')}}/web/#" class="cat-title">Meat</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">1 Product</h4>
                                     </div>
                                 </div>
                             </div>
