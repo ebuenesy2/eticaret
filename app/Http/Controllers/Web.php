@@ -94,14 +94,23 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
 
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                //! Slider
+                $DB_Slider= DB::table('sliders')->where('sliders.lang','=',__('admin.lang'))->where('isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_Slider); die();
+
+                //! Return
+                $DB["DB_Slider"] =  $DB_Slider;
+                //! Slider Son
+
 
                 return view('web/index',$DB);
             } //! Web

@@ -73,22 +73,22 @@
                 <div class="intro-section bg-image" style="background-image: url({{asset('/assets')}}/web/images/demos/demo-28/background.jpg);">
                     <div class="container">
                         <div class="owl-carousel inner-carousel owl-simple rows cols-1" data-toggle="owl" data-owl-options='{"nav": false, "dots": true, "loop": true}'>
-                            <div class="intro-slide" style="background-image: url({{asset('/assets')}}/web/images/demos/demo-28/intro-slider/1.jpg); background-color: #2a323e;">
+                            
+                            @for ($i = 0; $i < count($DB_Slider); $i++)
+                            <div class="intro-slide" style="background-image: url({{$DB_Slider[$i]->img_url}}); background-color: #2a323e; background-size: cover; ">
                                 <div class="intro-content intro-content-left">
-                                    <h6 class="font-weight-normal text-primary my-2 mt-0">Clearout Sale</h6>
-                                    <h3 class="intro-title font-weight-bold text-white mb-0">Only Organic<br>Large Box</h3>
-                                    <h3 class="intro-desc mb-2 font-weight-light text-secondary">Sale 30% off</h3>
-                                    <a href="{{asset('/assets')}}/web/#" class="btn btn-primary text-uppercase">Shop now</a>
+                                    <h6 class="font-weight-normal text-primary my-2 mt-0">{{$DB_Slider[$i]->title}}</h6>
+                                    <h3 class="intro-title font-weight-bold text-white mb-0">{{$DB_Slider[$i]->title2}}</h3>
+                                    <h3 class="intro-desc mb-2 font-weight-light text-secondary">{!!$DB_Slider[$i]->description!!}</h3>
+                                    
+                                    @if($DB_Slider[$i]->url !="" )
+                                    <a href="{{asset('/assets')}}/web/#" class="btn btn-primary text-uppercase">{{$DB_Slider[$i]->url}}
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="intro-slide" style="background-image: url({{asset('/assets')}}/web/images/demos/demo-28/intro-slider/2.jpg); background-color: #dd6584;">
-                                <div class="intro-content intro-content-right">
-                                    <h6 class="font-weight-normal text-white my-2 mt-0">100% Recyclable Packaging</h6>
-                                    <h3 class="intro-title font-weight-bold text-white mb-0">Good For You<br>And The Planet</h3>
-                                    <h3 class="intro-desc mb-2 font-weight-light text-secondary">Fast Shipping</h3>
-                                    <a href="{{asset('/assets')}}/web/#" class="btn btn-primary text-uppercase">Shop now</a>
-                                </div>
-                            </div>
+                            @endfor
+
                         </div>
                     </div>
                 </div>
