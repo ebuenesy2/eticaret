@@ -111,6 +111,17 @@ class Web extends Controller
                 $DB["DB_Slider"] =  $DB_Slider;
                 //! Slider Son
 
+               //! Product Category
+               $DB_product_categories= DB::table('product_categories')
+               ->orderBy('product_categories.id','desc')
+               ->where('product_categories.lang','=',__('admin.lang'))
+               ->where('product_categories.isActive','=',1)->get();
+               //echo "<pre>"; print_r($DB_product_categories); die();
+
+               //! Return
+               $DB["DB_product_categories"] =  $DB_product_categories;
+               //! Product Category Son
+
 
                 return view('web/index',$DB);
             } //! Web

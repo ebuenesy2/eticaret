@@ -97,93 +97,20 @@
                     <hr class="m-0">
                     <div class="cat-section mt-4 mb-3">
                         <div class="row">
+
+                            @for ($i = 0; $i < count($DB_product_categories); $i++)
                             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
                                 <div class="cat bg-white pt-1 mb-2">
                                     <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/1.jpg" width="137" height="137"></a>
+                                        <a href="{{asset('/assets')}}/web/#"><img src="{{$DB_product_categories[$i]->img_url}}" width="137" height="137"></a>
                                     </div>
                                     <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Meat</a>
+                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/2.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Fruits</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">1 Product</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/3.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Bakery</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">2 Products</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/4.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Vegetable</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">5 Products</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/5.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Seafood</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">3 Products</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/6.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Drinks</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">1 Product</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/7.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Dairy &amp; Cheese</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">1 Product</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
-                                <div class="cat bg-white pt-1 mb-2">
-                                    <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/categories/8.jpg" width="137" height="137"></a>
-                                    </div>
-                                    <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">Wine</a>
-                                        <h4 class="cat-count letter-spacing-normal d-block font-weight-light">1 Product</h4>
-                                    </div>
-                                </div>
-                            </div>
+                            @endfor
+                           
                         </div>
                     </div>
                 </div>
