@@ -374,6 +374,8 @@ document.querySelectorAll("#editItem").forEach((Item) => {
                         else if(element.lang == "en") { $('#titleEdit_EN').val(element.title); }
                         else if(element.lang == "de") { $('#titleEdit_DE').val(element.title); }
 
+                        $('#fileUploadImageEdit').attr('src',element.img_url);
+
                     } //! Veriler Son
 
                     //! Loading - Veri Yüklendi
@@ -876,8 +878,7 @@ $('input[focustype="true"]').keydown(function(event) {
 });
 //! ************ Enter Focus Son ***************
 
-
-//! ************ Resmi Güncelle  ***************
+//! ************ Resmi Ekle  ***************
 //! Dosya Yükleme
 $("#fileUploadClick").click(function (e) {
     e.preventDefault();
@@ -967,6 +968,104 @@ $("#fileUploadClick").click(function (e) {
             //! Upload Url
             $('#filePathUrl').html(resp.file_url);
             $('#fileUploadImage').attr('src',"/"+resp.file_url);
+
+        }
+    }); //! Ajax
+
+});
+//! Dosya Yükleme Son
+//! ************ Resmi Ekle Son ***************
+
+//! ************ Resmi Güncelle  ***************
+//! Dosya Yükleme
+$("#fileUploadClickEdit").click(function (e) {
+    e.preventDefault();
+    //alert("fileUploadClick");
+
+    var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+    //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+    //! Dosya Yükleme
+    const fileInput = document.querySelector("#fileInput");
+    const fileInputFiles = fileInput.files;
+    //console.log("fileInputFiles:",fileInputFiles);
+
+    //! Yeni Form Veriler
+    var formData = new FormData();
+    formData.append("file", fileInputFiles[0]);
+    formData.append("fileDbSave", $('#fileDbSaveEdit').val());
+    formData.append("fileWhere", $('#fileWhereEdit').val());
+
+    $.ajax({
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = ((evt.loaded / evt.total) * 100);
+                    console.log("Dosya Yükleme Durumu: %", percentComplete);
+
+                    $("#progressBarFileUploadEdit").width(percentComplete + '%');
+                    $("#progressBarFileUploadEdit").html(percentComplete+'%');
+                    
+                }
+            }, false);
+            return xhr;
+        },
+        url: "/file/upload/control",
+        type: "post",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData:false,
+        beforeSend: function () {
+            console.log("Dosya yükleme başladı");
+
+            //! ProgressBar
+            $("#progressBarFileUploadEdit").width('0%');
+
+            //! Upload Durum
+            $('#LoadingFileUploadEdit').toggle();
+            $('#uploadStatusEdit').hide();
+
+            //! Upload Url
+            $('#filePathUrlEdit').html("");
+        },
+        error: function (error) {
+            alert("başarısız");
+            console.log("Hata oluştu error:", error);
+
+            //! Upload Durum
+            $('#LoadingFileUploadEdit').hide();
+            $('#uploadStatusEdit').html('<p style="color:#EA4335;">File upload failed, please try again.</p>');
+
+            //! Upload Url
+            $('#filePathUrlEdit').html("");
+
+            //! Alert
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                showConfirmButton: false,
+                timer: 2000,
+            });  //! Alert Son
+
+        },
+        success: function (resp) {
+            //alert("Başarılı");
+            console.log("file resp:", resp);
+
+            //! ProgressBar
+            $("#progressBarFileUploadEdit").width('100%');
+
+            //! Upload Durum
+            $('#LoadingFileUploadEdit').hide();
+            $('#uploadStatusEdit').hide();
+
+            //! Upload Url
+            $('#filePathUrlEdit').html(resp.file_url);
+            $('#fileUploadImageEdit').attr('src',"/"+resp.file_url);
 
         }
     }); //! Ajax

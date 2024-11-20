@@ -249,7 +249,7 @@
       </div>
   </div>
   <!----  Modal IMG Son -->
-  
+
   <!----  Modal Ekleme -->
   <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
       <div class="modal-header">
@@ -361,7 +361,64 @@
       </div>
       <div class="modal-body">
         <div class="row-fluid">
-          <div class="span12">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Kapak Resmi</label>
+                    <div class="controls controls-row">
+
+                        <!-- Dosya Yükleme Kutusu ----->
+                        <div style="border: 2px solid;padding: 10px;">
+
+                            <!-- Dosya Yükleme ----->
+                            <form method="POST" id="uploadForm2" enctype="multipart/form-data">
+                                <div style="display: flex;flex-direction: column; gap: 15px;">
+
+                                    <!-- Dosya Yükleme Bilgileri ----->
+                                    <input type="hidden" name="fileDbSaveEdit" id="fileDbSaveEdit" value="true" >
+                                    <input type="hidden" name="fileWhereEdit" id="fileWhereEdit" value="Sabit" >
+
+                                    <!---  Loading --->
+                                    <div id="LoadingFileUploadEdit" style="display:none;" ><span class="d-flex align-items-center">
+                                        <span class="spinner-border flex-shrink-0" role="status"></span>
+                                        <span class="flex-grow-1 ms-2">@lang('admin.loading') </span>
+                                    </span> </div>
+                                    <div id="uploadStatusEdit"></div>
+                                    <!--- End Loading --->
+
+                                    <input type="file" name="fileEdit" id="fileInput" style="display: flex; color: steelblue; margin-left: 10px; ">
+                                    <div style="display: flex; gap: 10px; margin-bottom: -25px;" ><p>@lang('admin.fileUrl'):</p><p id="filePathUrlEdit"></p></div>
+                                    <button type="button" id="fileUploadClickEdit" class="btn btn-success" style="cursor:pointer; background-image: linear-gradient(#04519b, #033c73 60%, #02325f);color: #ffffff;border-bottom: 1px solid #022241;padding: 12px;border-radius: 6px;display: flex; gap:10px; justify-content: center;align-items: center;">
+                                        <i class="ri-folder-upload-line" style="margin-top: -8px;  margin-bottom: -8px; font-size: 24px;"></i> 
+                                        <p style=" color: blanchedalmond; font-size: 14px; font-weight: bold; " > @lang('admin.fileUpload') </p>
+                                    </button>
+                                    
+                                    <!-- ProgressBar ---->
+                                    <div class="progress" style="margin-top: 14px;height: auto;">
+                                        <div class="progress-bar" id="progressBarFileUploadEdit" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: teal;color: rgb(255, 255, 255);border-radius: 6px;display: flex;justify-content: center;"></div>
+                                    </div>
+                                    <!-- ProgressBar Son ---->
+                                    
+                                </div>
+                            </form>
+                            <!-- Dosya Yükleme Son ---->
+
+                        </div>
+                        <!-- Dosya Yükleme Kutusu Son ----->
+
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">@lang('admin.image')</label>
+                    <div class="controls controls-row">
+                        <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImageEdit" style="width: 100%;height: 230px;object-fit: cover;" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') TR</label>
                 <div class="controls controls-row">
@@ -369,9 +426,7 @@
                 </div>
               </div>
           </div>
-        </div>
-        <div class="row-fluid">
-          <div class="span12">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') EN</label>
                 <div class="controls controls-row">
