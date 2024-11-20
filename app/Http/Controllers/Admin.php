@@ -8210,6 +8210,7 @@ class Admin extends Controller
                         DB::table($table)->insert([
                             'lang' => $lang,
                             'uid' => $request->uid,
+                            'img_url' => $request->img_url,
                             'title' => $title,
                             'created_byId'=>$request->created_byId,
                         ]); //! Veri Ekleme Son

@@ -385,7 +385,7 @@
                                     <div id="uploadStatusEdit"></div>
                                     <!--- End Loading --->
 
-                                    <input type="file" name="fileEdit" id="fileInput" style="display: flex; color: steelblue; margin-left: 10px; ">
+                                    <input type="file" name="fileEdit" id="fileInputEdit" style="display: flex; color: steelblue; margin-left: 10px; ">
                                     <div style="display: flex; gap: 10px; margin-bottom: -25px;" ><p>@lang('admin.fileUrl'):</p><p id="filePathUrlEdit"></p></div>
                                     <button type="button" id="fileUploadClickEdit" class="btn btn-success" style="cursor:pointer; background-image: linear-gradient(#04519b, #033c73 60%, #02325f);color: #ffffff;border-bottom: 1px solid #022241;padding: 12px;border-radius: 6px;display: flex; gap:10px; justify-content: center;align-items: center;">
                                         <i class="ri-folder-upload-line" style="margin-top: -8px;  margin-bottom: -8px; font-size: 24px;"></i> 

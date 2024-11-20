@@ -448,6 +448,7 @@ $("#edit_item").click(function (e) {
             data: {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
                 uid:Number(data_id),
+                img_url:$('#fileUploadImageEdit').attr('src'),
                 title_tr: $('#titleEdit_TR').val(),
                 title_en: $('#titleEdit_EN').val(),
                 title_de: $('#titleEdit_DE').val(),
@@ -980,13 +981,13 @@ $("#fileUploadClick").click(function (e) {
 //! Dosya Yükleme
 $("#fileUploadClickEdit").click(function (e) {
     e.preventDefault();
-    //alert("fileUploadClick");
+    //alert("fileUploadClickEdit");
 
     var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
     //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
 
     //! Dosya Yükleme
-    const fileInput = document.querySelector("#fileInput");
+    const fileInput = document.querySelector("#fileInputEdit");
     const fileInputFiles = fileInput.files;
     //console.log("fileInputFiles:",fileInputFiles);
 
