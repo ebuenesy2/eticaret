@@ -123,7 +123,7 @@
                             <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
-                                "loop": true,
+                                "loop": false   ,
                                 "margin": 0,
                                 "responsive": {
                                     "0": {
@@ -140,69 +140,14 @@
                                     }
                                 }
                             }'>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/1.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Vegetables</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Broccoli (Each)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$1.59</div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 50%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 54</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 40%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(5 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/2.jpg" width="192" height="192"></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Bakery x</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Rye Bread (800g)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$3.99</div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 55%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 31</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 40%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(10 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                @for ($i = 0; $i < count($DB_Products); $i++)
                                 <div class="product mb-0 rounded-0 w-100">
                                     <figure class="product-media bg-white ">
                                         <a href="{{asset('/assets')}}/web/#">
                                             <span class="product-label label-top">Top</span>
                                             <span class="product-label label-sale">Save: 30%</span>
-                                            <img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/3.jpg" width="192" height="192">
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 370px;height: 240px;object-fit: cover;">
                                         </a>
                                         <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
                                         <div class="product-labels">
@@ -210,11 +155,11 @@
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Seafood</a>
+                                            <a href="{{asset('/assets')}}/web/#">{{$DB_Products[$i]->CategoryTitle}}</a>
                                         </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Shrimp - Jumbo (5 lb)</h3></a>
+                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            <h4 class="new-price font-weight-bold mb-0">$35.80</h4>
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >$35.80</h4>
                                             <h4 class="old-price font-weight-normal mb-0">$42.90</h4>
                                         </div>
                                         <div class="product-sold position-absolute">
@@ -235,126 +180,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/4.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Vegetables</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Tomato (Each)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$0.59</div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 75%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 52</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 20%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/5.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                        <div class="product-label label-sale">Save: 30%</div>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Vegetables</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Coconut ripe and tasty (Each)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            <h4 class="new-price font-weight-bold mb-0">$3.59</h4>
-                                            <h4 class="old-price font-weight-normal mb-0">$42.90</h4>
-                                        </div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 55%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 31</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 20%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/6.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Vegetables</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Almonds (240g)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$8.59</div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 45%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 24</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 20%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product mb-0 rounded-0 w-100">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/6.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Vegetables</a>
-                                        </div>
-                                        <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">Almonds (240g)</h3></a>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$8.59</div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 45%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 24</span>
-                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                            <div class="ratings-container text-truncate">
-                                                <div class="ratings">
-                                                    <div class="ratings-val" style="width: 20%;"></div>
-                                                    <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                                <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
+
                             </div>
                         </div>
                     </div>

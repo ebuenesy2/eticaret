@@ -111,16 +111,31 @@ class Web extends Controller
                 $DB["DB_Slider"] =  $DB_Slider;
                 //! Slider Son
 
-               //! Product Category
-               $DB_product_categories= DB::table('product_categories')
-               ->orderBy('product_categories.id','desc')
-               ->where('product_categories.lang','=',__('admin.lang'))
-               ->where('product_categories.isActive','=',1)->get();
-               //echo "<pre>"; print_r($DB_product_categories); die();
+                //! Product Category
+                $DB_product_categories= DB::table('product_categories')
+                ->orderBy('product_categories.id','desc')
+                ->where('product_categories.lang','=',__('admin.lang'))
+                ->where('product_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_product_categories); die();
 
-               //! Return
-               $DB["DB_product_categories"] =  $DB_product_categories;
-               //! Product Category Son
+                //! Return
+                $DB["DB_product_categories"] =  $DB_product_categories;
+                //! Product Category Son
+
+                //! Product
+                $DB_Products= DB::table('products')
+                ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->where('products.lang','=',__('admin.lang'))
+                ->where('products.isActive','=',1)
+                ->skip(0)->take(20)
+                ->orderBy('products.uid','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_Products); die();
+
+                //! Return
+                $DB["DB_Products"] =  $DB_Products;
+                //! Product Son
 
 
                 return view('web/index',$DB);
