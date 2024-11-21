@@ -704,7 +704,7 @@ function resutAdd(){
 document.querySelector('#salePriceEdit').addEventListener('keyup', e => { resutEdit(); }); 
 document.querySelector('#discountedPricePercentEdit').addEventListener('keyup', e => { resutEdit(); }); 
 
-function resutEdit(){
+function resutEdit(){ alert("sa");
     var salePrice = $('#salePriceEdit').val(); //! Satış Fiyat
     salePrice = Number(salePrice.replace(',','.')).toFixed(2); //! Sayı Dönüştür
 

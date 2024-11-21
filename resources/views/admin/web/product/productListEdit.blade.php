@@ -251,11 +251,23 @@
                                         <div class="controls controls-row">
                                            
                                             <div style="display: flex;gap: 10px;" >
-                                                <input type="checkbox" name="new_product" id="new_product" style="margin-top: auto;margin-bottom: auto;" > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                                @if($DB_Find_en) 
+                                                <input type="checkbox" name="new_product" id="new_product" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_en->new_product ? 'checked' : ''}} > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                                @elseif($DB_Find_de) 
+                                                <input type="checkbox" name="new_product" id="new_product" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_de->new_product ? 'checked' : ''}} > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                                @else
+                                                <input type="checkbox" name="new_product" id="new_product" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_tr->new_product ? 'checked' : ''}} > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                                @endif
                                             </div>
 
                                             <div style="display: flex;gap: 10px;" >
-                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                                @if($DB_Find_en) 
+                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_en->bestseller ? 'checked' : ''}} > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                                @elseif($DB_Find_de) 
+                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_de->bestseller ? 'checked' : ''}} > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                                @else
+                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_tr->bestseller ? 'checked' : ''}} > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                                @endif
                                             </div>
                                             
                                         </div>
@@ -265,9 +277,15 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.collection')</label>
                                         <div class="controls controls-row">
-                                          
+
                                             <div style="display: flex;gap: 10px;" >
-                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                                @if($DB_Find_en) 
+                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_en->editor_suggestion ? 'checked' : ''}} > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                                @elseif($DB_Find_de) 
+                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_de->editor_suggestion ? 'checked' : ''}} > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                                @else
+                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" {{$DB_Find_tr->editor_suggestion ? 'checked' : ''}} > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                                @endif
                                             </div>
                                           
                                         </div>

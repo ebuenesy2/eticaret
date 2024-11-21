@@ -143,30 +143,30 @@
                                 }
                             }'>
 
-                                @for ($i = 0; $i < count($DB_Products); $i++)
+                                @for ($i = 0; $i < count($DB_Products_Editor_Suggestion); $i++)
                                 <div class="product mb-0 rounded-0 w-100">
                                     <figure class="product-media bg-white ">
-                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
-                                            @if($DB_Products[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}">
+                                            @if($DB_Products_Editor_Suggestion[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_Editor_Suggestion[$i]->discounted_price_percent}}%</span> @endif
+                                            <img src="{{$DB_Products_Editor_Suggestion[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}">{{$DB_Products_Editor_Suggestion[$i]->CategoryTitle}}</a>
                                         </div>
-                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products_Editor_Suggestion[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            @if($DB_Products[$i]->discounted_price_percent !="0")
-                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
-                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
-                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @if($DB_Products_Editor_Suggestion[$i]->discounted_price_percent !="0")
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products_Editor_Suggestion[$i]->discounted_price}} {{$DB_Products_Editor_Suggestion[$i]->currency}}</h4>
+                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products_Editor_Suggestion[$i]->sale_price}} {{$DB_Products_Editor_Suggestion[$i]->currency}}</h4>
+                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products_Editor_Suggestion[$i]->sale_price}} {{$DB_Products_Editor_Suggestion[$i]->currency}}</h4>
                                             @endif
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -209,30 +209,30 @@
                                 }
                             }'>
 
-                                @for ($i = 0; $i < count($DB_Products); $i++)
+                                @for ($i = 0; $i < count($DB_Products_bestseller); $i++)
                                 <div class="product mb-0 rounded-0 w-100">
                                     <figure class="product-media bg-white ">
-                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
-                                            @if($DB_Products[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}">
+                                            @if($DB_Products_bestseller[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_bestseller[$i]->discounted_price_percent}}%</span> @endif
+                                            <img src="{{$DB_Products_bestseller[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}">{{$DB_Products_bestseller[$i]->CategoryTitle}}</a>
                                         </div>
-                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products_bestseller[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            @if($DB_Products[$i]->discounted_price_percent !="0")
-                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
-                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
-                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @if($DB_Products_bestseller[$i]->discounted_price_percent !="0")
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products_bestseller[$i]->discounted_price}} {{$DB_Products_bestseller[$i]->currency}}</h4>
+                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products_bestseller[$i]->sale_price}} {{$DB_Products_bestseller[$i]->currency}}</h4>
+                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products_bestseller[$i]->sale_price}} {{$DB_Products_bestseller[$i]->currency}}</h4>
                                             @endif
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                             </div>
                                         </div>
                                     </div>

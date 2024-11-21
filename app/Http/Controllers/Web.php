@@ -111,7 +111,7 @@ class Web extends Controller
                 $DB["DB_Slider"] =  $DB_Slider;
                 //! Slider Son
 
-                //! Product Category
+                //! Ürün Kategorisi
                 $DB_product_categories= DB::table('product_categories')
                 ->orderBy('product_categories.id','desc')
                 ->where('product_categories.lang','=',__('admin.lang'))
@@ -120,13 +120,46 @@ class Web extends Controller
 
                 //! Return
                 $DB["DB_product_categories"] =  $DB_product_categories;
-                //! Product Category Son
+                //! Ürün Kategorisi Son
 
-                //! Product
+                //! Ürünler - Editörün Önerisi
+                $DB_Products_Editor_Suggestion= DB::table('products')
+                ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->where('products.lang','=',__('admin.lang'))
+                ->where('products.editor_suggestion','=',1)
+                ->where('products.isActive','=',1)
+                ->skip(0)->take(20)
+                ->orderBy('products.uid','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_Products_Editor_Suggestion); die();
+
+                //! Return
+                $DB["DB_Products_Editor_Suggestion"] =  $DB_Products_Editor_Suggestion;
+                //! Ürünler - Editörün Önerisi Son
+
+                //! Ürünler - Çok Satanlar
+                $DB_Products_bestseller= DB::table('products')
+                ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->where('products.lang','=',__('admin.lang'))
+                ->where('products.bestseller','=',1)
+                ->where('products.isActive','=',1)
+                ->skip(0)->take(20)
+                ->orderBy('products.uid','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_Products_bestseller); die();
+
+                //! Return
+                $DB["DB_Products_bestseller"] =  $DB_Products_bestseller;
+                //! Ürünler - Çok Satanlar Son
+
+                //! Ürünler - Yeni Ürünler
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->select('products.*', 'product_categories.title as CategoryTitle')
                 ->where('products.lang','=',__('admin.lang'))
+                ->where('products.new_product','=',1)
                 ->where('products.isActive','=',1)
                 ->skip(0)->take(20)
                 ->orderBy('products.uid','desc')
@@ -135,7 +168,7 @@ class Web extends Controller
 
                 //! Return
                 $DB["DB_Products"] =  $DB_Products;
-                //! Product Son
+                //! Ürünler - Yeni Ürünler Son
 
                 //! Blog 
                 $DB_Blogs= DB::table('blogs')
