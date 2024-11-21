@@ -331,7 +331,7 @@
                 <div class="bg-lighter blog-section pt-6 pb-5">
                     <div class="container">
                         <div class="heading py-2 pb-0">
-                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">From Our Blog</h2>
+                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Blog Yazılarımız</h2>
                         </div>
                         <div class="owl-carousel owl-simple shadow-carousel rows cols-1 cols-sm-2 cols-lg-3 cols-xl-4" data-toggle="owl" data-owl-options='{
                             "nav": false, 
@@ -353,106 +353,33 @@
                                     "items":4
                                 }
                             }
-                        }'>  
+                        }'> 
+
+                            @for ($i = 0; $i < count($DB_Blogs); $i++)
                             <article class="entry">
                                 <figure class="entry-media mb-0">
                                     <a href="{{asset('/assets')}}/web/single.html">
-                                        <img src="{{asset('/assets')}}/web/images/demos/demo-28/blog/1.jpg" alt="image desc" width="334" height="200">
+                                        <img src="{{$DB_Blogs[$i]->img_url}}" alt="image desc" style="width: 100%;height: 200px;object-fit: contain;" >
                                     </a>
                                 </figure> 
 
                                 <div class="entry-body text-left">
                                     <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>&nbsp;/&nbsp;<a href="{{asset('/assets')}}/web/#">0 Comments</a>
+                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>
                                     </div> 
 
                                     <h3 class="entry-title text-dark">
-                                        <a href="{{asset('/assets')}}/web/single.html">Aenean dignissim felis.</a>
+                                        <a href="{{asset('/assets')}}/web/single.html">{{$DB_Blogs[$i]->title}}</a>
                                     </h3> 
 
                                     <div class="entry-content">
-                                        <p class="font-weight-light text-light">Morbi in sem quis dui placerat ornare. Pelle
-                                            ntesque odio nisi, euismod in, pharetra ultricies in, diam. Sed arcu. </p>
-                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Read More</a>
+                                        {!! strlen($DB_Blogs[$i]->description) > 150 ? substr($DB_Blogs[$i]->description,0,80).'...' : $DB_Blogs[$i]->description !!} 
+                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Daha Fazla Oku</a>
                                     </div> 
                                 </div> 
                             </article> 
-                        
-                            <article class="entry">
-                                <figure class="entry-media mb-0">
-                                    <a href="{{asset('/assets')}}/web/single.html">
-                                        <img src="{{asset('/assets')}}/web/images/demos/demo-28/blog/2.jpg" alt="image desc" width="334" height="200">
-                                    </a>
-                                </figure> 
+                            @endfor
 
-                                <div class="entry-body text-left">
-                                    <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>&nbsp;/&nbsp;<a href="{{asset('/assets')}}/web/#">2 Comments</a>
-                                    </div> 
-
-                                    <h3 class="entry-title text-dark">
-                                        <a href="{{asset('/assets')}}/web/single.html">Fusce pellentesque.</a>
-                                    </h3> 
-
-                                    <div class="entry-content">
-                                        <p class="font-weight-light text-light">
-                                            Lorem ipsum dolor sit amet, consectetuer 
-                                            adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna.
-                                        </p>
-                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Read More</a>
-                                    </div> 
-                                </div> 
-                            </article> 
-
-                            <article class="entry">
-                                <figure class="entry-media mb-0">
-                                    <a href="{{asset('/assets')}}/web/single.html">
-                                        <img src="{{asset('/assets')}}/web/images/demos/demo-28/blog/3.jpg" alt="image desc" width="334" height="200">
-                                    </a>
-                                </figure> 
-
-                                <div class="entry-body text-left">
-                                    <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>&nbsp;/&nbsp;<a href="{{asset('/assets')}}/web/#">4 Comments</a>
-                                    </div> 
-
-                                    <h3 class="entry-title text-dark">
-                                        <a href="{{asset('/assets')}}/web/single.html">Quisque a lectus.</a>
-                                    </h3> 
-
-                                    <div class="entry-content">
-                                        <p class="font-weight-light text-light">
-                                            Phasellus hendrerit. Pellentesque aliqunibh  nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium ligula ...
-                                        </p>
-                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Read More</a>
-                                    </div> 
-                                </div> 
-                            </article> 
-
-                            <article class="entry">
-                                <figure class="entry-media mb-0">
-                                    <a href="{{asset('/assets')}}/web/single.html">
-                                        <img src="{{asset('/assets')}}/web/images/demos/demo-28/blog/4.jpg" alt="image desc" width="334" height="200">
-                                    </a>
-                                </figure> 
-
-                                <div class="entry-body text-left">
-                                    <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>&nbsp;/&nbsp;<a href="{{asset('/assets')}}/web/#">0 Comments</a>
-                                    </div> 
-
-                                    <h3 class="entry-title text-dark">
-                                        <a href="{{asset('/assets')}}/web/single.html">Morbi in sem quis duiplacerat.</a>
-                                    </h3> 
-
-                                    <div class="entry-content">
-                                        <p class="font-weight-light text-light">
-                                            Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero ...
-                                        </p>
-                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Read More</a>
-                                    </div> 
-                                </div> 
-                            </article> 
                         </div>
 
                     </div>

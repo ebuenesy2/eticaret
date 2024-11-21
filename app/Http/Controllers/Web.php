@@ -137,6 +137,18 @@ class Web extends Controller
                 $DB["DB_Products"] =  $DB_Products;
                 //! Product Son
 
+                //! Blog 
+                $DB_Blogs= DB::table('blogs')
+                ->skip(0)->take(3)
+                ->orderBy('blogs.uid','desc')
+                ->where('blogs.lang','=',__('admin.lang'))
+                ->where('blogs.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_Blogs); die();
+
+                //! Return
+                $DB["DB_Blogs"] =  $DB_Blogs;
+                //! Blog Son
+
 
                 return view('web/index',$DB);
             } //! Web
