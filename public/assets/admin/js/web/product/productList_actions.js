@@ -168,7 +168,7 @@ document.querySelectorAll('#new_add').forEach(function (i) {
             Swal.fire({
                 position: "center",
                 icon: "error",
-                title: "Cevap Yazılmadı",
+                title: "Açıklama Yazılmadı",
                 showConfirmButton: false,
                 timer: 2000,
             });

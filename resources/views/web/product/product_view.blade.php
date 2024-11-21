@@ -64,7 +64,7 @@
 
                                     <div class="product-details-action" style="display: flex;gap: 9px;" >
                                         <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a> <br>
-                                        <a href="#" class="btn-product btn-cart"><span>İstek Listesine Ekle</span></a>
+                                        <a href="#" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" ><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                     </div><!-- End .product-details-action -->
 
                                    

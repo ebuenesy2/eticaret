@@ -115,7 +115,139 @@
                     </div>
                 </div>
 
-                <!--- Urunler -->
+                <!--- EDİTÖRÜN ÖNERİSİ -->
+                <div class="flash-section bg-lighter">
+                    <div class="container">
+                        <div class="heading d-flex flex-column flex-md-row">
+                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">EDİTÖRÜN ÖNERİSİ</h2>
+                        </div>
+                        <div class="flash-content mt-2 py-2 pb-7">
+                            <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                                "nav": true,
+                                "dots": true,
+                                "loop": false   ,
+                                "margin": 0,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":6
+                                    }
+                                }
+                            }'>
+
+                                @for ($i = 0; $i < count($DB_Products); $i++)
+                                <div class="product mb-0 rounded-0 w-100">
+                                    <figure class="product-media bg-white ">
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
+                                            @if($DB_Products[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                        </a>
+                                    </figure>
+                                    <div class="product-body position-static bg-transparent">
+                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
+                                        </div>
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
+                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">
+                                            @if($DB_Products[$i]->discounted_price_percent !="0")
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @endif
+                                        </div>
+                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
+                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--- EDİTÖRÜN ÖNERİSİ Son -->
+                
+                <hr>
+                
+                <!--- ÇOK SATANLAR -->
+                <div class="flash-section bg-lighter">
+                    <div class="container">
+                        <div class="heading d-flex flex-column flex-md-row">
+                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">ÇOK SATANLAR</h2>
+                        </div>
+                        <div class="flash-content mt-2 py-2 pb-7">
+                            <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                                "nav": true,
+                                "dots": true,
+                                "loop": false   ,
+                                "margin": 0,
+                                "responsive": {
+                                    "0": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":6
+                                    }
+                                }
+                            }'>
+
+                                @for ($i = 0; $i < count($DB_Products); $i++)
+                                <div class="product mb-0 rounded-0 w-100">
+                                    <figure class="product-media bg-white ">
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
+                                            @if($DB_Products[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                        </a>
+                                    </figure>
+                                    <div class="product-body position-static bg-transparent">
+                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
+                                        </div>
+                                        <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
+                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">
+                                            @if($DB_Products[$i]->discounted_price_percent !="0")
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @endif
+                                        </div>
+                                        <div class="product-footer bg-white rounded-0 d-block position-absolute">
+                                            <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--- ÇOK SATANLAR Son -->
+
+                <hr>
+                
+                <!--- YENİ ÇIKANLAR -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
                         <div class="heading d-flex flex-column flex-md-row">
@@ -177,7 +309,7 @@
                         </div>
                     </div>
                 </div>
-                <!--- Urunler Son -->
+                <!--- YENİ ÇIKANLAR Son -->
                 
                 <div class="bg-lighter blog-section pt-6 pb-5">
                     <div class="container">
