@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Hakkımızda | {{ $DB_HomeSettings->title }} </title>
+    <title> Urun - {{$seoTitle}}  | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -19,22 +19,10 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="index.html">@lang('admin.home')</a></li>
                         <li class="breadcrumb-item"><a href="#">Products</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Default</li>
                     </ol>
-
-                    <nav class="product-pager ml-auto" aria-label="Product">
-                        <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
-                            <i class="icon-angle-left"></i>
-                            <span>Prev</span>
-                        </a>
-
-                        <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
-                            <span>Next</span>
-                            <i class="icon-angle-right"></i>
-                        </a>
-                    </nav><!-- End .pager-nav -->
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
 
@@ -46,16 +34,12 @@
                                 <div class="product-gallery product-gallery-vertical">
                                     <div class="row">
                                         <figure class="product-main-image">
-                                            <img id="product-zoom" src="{{asset('/assets')}}/web/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">
-
-                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                                <i class="icon-arrows"></i>
-                                            </a>
+                                            <img id="product-zoom" src="{{$DB_Find->img_url}}" data-zoom-image="{{$DB_Find->img_url}}" alt="product image">
                                         </figure><!-- End .product-main-image -->
 
                                         <div id="product-zoom-gallery" class="product-image-gallery">
-                                            <a class="product-gallery-item active" href="#" data-image="assets/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg">
-                                                <img src="{{asset('/assets')}}/web/images/products/single/1-small.jpg" alt="product side">
+                                            <a class="product-gallery-item active" href="#" data-image="{{$DB_Find->img_url}}" data-zoom-image="{{$DB_Find->img_url}}">
+                                                <img src="{{$DB_Find->img_url}}" alt="product side">
                                             </a>
 
                                             <a class="product-gallery-item" href="#" data-image="assets/images/products/single/2.jpg" data-zoom-image="assets/images/products/single/2-big.jpg">
@@ -76,22 +60,17 @@
 
                             <div class="col-md-6">
                                 <div class="product-details">
-                                    <h1 class="product-title">Dark yellow lace cut out swing dress</h1><!-- End .product-title -->
+                                    <h1 class="product-title">{{$DB_Find->title}}</h1><!-- End .product-title -->
 
-                                    <div class="ratings-container">
-                                        <div class="ratings">
-                                            <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                        </div><!-- End .ratings -->
-                                        <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
-                                    </div><!-- End .rating-container -->
+                                    <div class="product-price font-weight-bold align-items-center d-flex mb-0">
+                                        @if($DB_Find->discounted_price_percent !="0")
+                                        <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Find->discounted_price}} {{$DB_Find->currency}}</h4>
+                                        <h4 class="old-price font-weight-normal mb-0">{{$DB_Find->sale_price}} {{$DB_Find->currency}}</h4>
+                                        @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Find->sale_price}} {{$DB_Find->currency}}</h4>
+                                        @endif
+                                    </div>
 
-                                    <div class="product-price">
-                                        $84.00
-                                    </div><!-- End .product-price -->
-
-                                    <div class="product-content">
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus. </p>
-                                    </div><!-- End .product-content -->
+                                    <div class="product-content">{!!$DB_Find->description!!}</div><!-- End .product-content -->
 
                                     <div class="details-filter-row details-row-size">
                                         <label>Color:</label>

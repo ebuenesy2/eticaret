@@ -21,7 +21,6 @@
                         <li><a href="/@lang('admin.lang')/user/checkout">Checkout</a></li>
                         <li><a href="/@lang('admin.lang')/user/wishlist">Wishlist</a></li>
                         <li><a href="/@lang('admin.lang')/user/dashboard">My Account</a></li>
-                        <li><a href="/@lang('admin.lang')/product">Ürün</a></li>
                         <li><a href="/@lang('admin.lang')/blog-single">Blog Detay</a></li>
                     </ul>
                 </li>

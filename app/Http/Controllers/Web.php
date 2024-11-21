@@ -189,7 +189,7 @@ class Web extends Controller
 
     } //! Category Son
 
-    //! ProductList
+    //! Ürün Listesi
     public function ProductList($site_lang="tr")
     {
         
@@ -216,10 +216,10 @@ class Web extends Controller
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! ProductList Son
+    } //! Ürün Listesi Son
     
-    //! Product
-    public function Product($site_lang="tr")
+    //! Ürün Detay
+    public function ProductView($site_lang="tr",$seo_url)
     {
         
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
@@ -231,21 +231,36 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
 
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
 
-                return view('web/product/product',$DB);
+                //! Product Verileri
+               
+                //! Uid
+                $dizi=explode("-",$seo_url); //! Parçıyor
+                $uid = $dizi[0]; //! uid
+                //echo "uid:"; echo $uid; //! uid
+
+                $DB_Find= DB::table('products')->where('lang','=',__('admin.lang'))->where('uid','=',$uid)->first();
+                //echo "<pre>"; print_r($DB_Find); die();
+            
+                //! Return
+                $DB["DB_Find"] =  $DB_Find;
+                $DB["seoTitle"] =  $DB_Find->seo_url;
+                //! Blog Verileri Son
+
+                return view('web/product/product_view',$DB);
             } //! Web
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! Product Son
+    } //! Ürün Detay Son
 
     //************* Web - Blog ***************** */
 

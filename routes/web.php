@@ -22,7 +22,7 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 
 Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
 Route::get('/{lang}/product/list', [Web::class,'ProductList']) -> name("web.product"); //! Web - Ürün Listesi
-Route::get('/{lang}/product', [Web::class,'Product']) -> name("web.product"); //! Web - Ürün
+Route::get('/{lang}/product/view/{uid}', [Web::class,'ProductView']) -> name("web.product.view"); //! Web - Ürün Listesi
 
 //************* Web - Blog ***************** */
 
