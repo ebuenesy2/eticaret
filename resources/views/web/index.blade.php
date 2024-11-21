@@ -114,6 +114,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!--- Urunler -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
                         <div class="heading d-flex flex-column flex-md-row">
@@ -146,7 +148,7 @@
                                     <figure class="product-media bg-white ">
                                         <a href="{{asset('/assets')}}/web/#">
                                             @if($DB_Products[$i]->discounted_price_percent !="")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 370px;height: 400px;object-fit: cover;">
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
@@ -181,153 +183,8 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="recommend-section py-2 pb-5 border-0">
-                    <div class="container">
-                        <div class="heading">
-                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Tüm Ürün Türleri</h2>
-                        </div>
-                        <div class="products owl-carousel owl-simple owl-nav-inside carousel-equal-height rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
-                                "nav": true,
-                                "dots": true,
-                                "loop": true,
-                                "margin": 0,
-                                "responsive": {
-                                    "0": {
-                                        "items":2
-                                    },
-                                    "768": {
-                                        "items":3
-                                    },
-                                    "992": {
-                                        "items":4
-                                    },
-                                    "1200": {
-                                        "items":6
-                                    }
-                                }
-                            }'>
-                            <div class="product mb-0 rounded-0 w-100">
-                                <div class="product-change">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/7.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                        <div class="deal-container inline-type letter-spacing-normal d-block mr-0">
-                                            <div class="deal-countdown" data-until="+10h"></div>
-                                            <div class="product-label label-sale">Save: 30%</div>
-                                        </div>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Bakery</a>
-                                        </div>
-                                        <h3 class="product-title overflow-hidden letter-spacing-normal">Rye Bread (800g)</h3>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$3.99</div>
-                                    </div>
-                                    <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                        <div class="ratings-container text-truncate">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 40%;"></div>
-                                                <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(5 reviews)</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                            <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                            <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product mb-0 rounded-0 w-100">
-                                <div class="product-change">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/8.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                        <div class="product-label label-top">Top</div>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Seafood</a>
-                                        </div>
-                                        <h3 class="product-title overflow-hidden letter-spacing-normal">Shrimp - Jumbo (5 lb)</h3>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$38.00</div>
-                                    </div>
-                                    <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                        <div class="ratings-container text-truncate">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 40%;"></div>
-                                                <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(10 reviews)</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                            <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                            <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product mb-0 rounded-0 w-100">
-                                <div class="product-change">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/9.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                        <div class="product-label label-sale">Save: 30%</div>
-                                        <div class="product-label label-top">Top</div>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Seafood</a>
-                                        </div>
-                                        <h3 class="product-title overflow-hidden letter-spacing-normal">Fresh Mussel (500g)</h3>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            <h4 class="new-price font-weight-bold mb-0">$12.80</h4>
-                                            <h4 class="old-price font-weight-normal mb-0">$22.90</h4>
-                                        </div>
-                                    </div>
-                                    <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                        <div class="ratings-container text-truncate">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 20%;"></div>
-                                                <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                            <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                            <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product mb-0 rounded-0 w-100">
-                                <div class="product-change">
-                                    <figure class="product-media bg-white ">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{asset('/assets')}}/web/images/demos/demo-28/flash/10.jpg" width="192" height="192"></a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                    </figure>
-                                    <div class="product-body position-static bg-transparent">
-                                        <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="{{asset('/assets')}}/web/#">Drinks</a>
-                                        </div>
-                                        <h3 class="product-title overflow-hidden letter-spacing-normal">Organic Pure Juice Fresh Pressed Orange - 32 fl oz</h3>
-                                        <div class="product-price font-weight-bold align-items-center d-flex mb-0">$4.89</div>
-                                    </div>
-                                    <div class="product-footer bg-white rounded-0 d-block position-absolute">
-                                        <div class="ratings-container text-truncate">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 20%;"></div>
-                                                <a href="{{asset('/assets')}}/web/product.html" class="ratings-text font-weight-normal">(2 reviews)</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                            <a href="{{asset('/assets')}}/web/#" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Add To Cart</span></a>
-                                            <a href="{{asset('/assets')}}/web/#" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>Add to wishlist</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--- Urunler Son -->
+                
                 <div class="bg-lighter blog-section pt-6 pb-5">
                     <div class="container">
                         <div class="heading py-2 pb-0">
