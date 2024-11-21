@@ -280,6 +280,11 @@ document.querySelectorAll('#edit_item_info').forEach(function (i) {
                 uid:data_uid,
                 imgUrl:$('#fileUploadImage').attr('src'),
                 category:Number($('#productCategoryEdit').val()),
+                stock:Number($('#stockEdit').val()),
+                currency:$('#productCurrencyEdit').val(),
+                sale_price:Number($('#salePriceEdit').val().replace(',','.')),
+                discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
+                discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -400,6 +405,11 @@ document.querySelectorAll('#edit_item').forEach(function (i) {
                     title:titleEdit,
                     description: dataEdit,
                     seo_keywords: $('input[id="tagInput"][lang="'+dataLang+'"]').attr('data_value'),
+                    stock:Number($('#stockEdit').val()),
+                    currency:$('#productCurrencyEdit').val(),
+                    sale_price:Number($('#salePriceEdit').val().replace(',','.')),
+                    discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
+                    discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
                     updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Başlangıc"); },
@@ -645,3 +655,25 @@ $('input[focustype="true"]').keydown(function(event) {
     
 });
 //! ************ Enter Focus Son ***************
+
+
+//! ************ Hesaplama ***********************
+//! Düzenleme - Sonuc Hesaplama
+document.querySelector('#salePriceEdit').addEventListener('keyup', e => { resutEdit(); }); 
+document.querySelector('#discountedPricePercentEdit').addEventListener('keyup', e => { resutEdit(); }); 
+
+function resutEdit(){
+    var salePrice = $('#salePriceEdit').val(); //! Satış Fiyat
+    salePrice = Number(salePrice.replace(',','.')).toFixed(2); //! Sayı Dönüştür
+
+    var discountedPricePercent = $('#discountedPricePercentEdit').val(); //! Yüzdelik
+    discountedPricePercent = Number(discountedPricePercent.replace(',','.')).toFixed(2); //! Sayı Dönüştür
+
+    var result = salePrice - ((salePrice*discountedPricePercent)/100); //! Hesaplama
+    result = result.toFixed(2); //! Sayı Dönüştür
+    //console.log("result:",result);
+
+    $('#discountedPriceEdit').val(result);
+    
+}//! Düzenleme - Sonuc Hesaplama
+//! ************ Hesaplama Son *******************

@@ -83,7 +83,7 @@
                         </div>
                         <div class="widget-body">
                             <div class="row-fluid">
-                                <div class="span12">
+                                <div class="span6">
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.category')</label>
                                         <div class="controls controls-row">
@@ -98,6 +98,85 @@
                                                     @endif
                                                 @endfor
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.stock')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="en"  placeholder="@lang('admin.title')" value="{!!$DB_Find_en->stock!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="de"  placeholder="@lang('admin.title')" value="{!!$DB_Find_de->stock!!}" >
+                                            @else
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="tr"  placeholder="@lang('admin.title')" value="{!!$DB_Find_tr->stock!!}" >
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.currency')</label>
+                                        <div class="controls controls-row">
+                                            <select class="span12" style="cursor: pointer;" id="productCurrencyEdit"   >
+                                                <?php $DB_currents = ["TL","EUR","$"]; ?>
+                                                @for ($i = 0; $i < count($DB_currents); $i++)
+                                                    @if($DB_Find_en) 
+                                                    <option value="{{$DB_currents[$i]}}" {{ $DB_Find_en->currency == $DB_currents[$i] ? 'selected' : ''}} >{{$DB_currents[$i]}}</option>
+                                                    @elseif($DB_Find_de) 
+                                                    <option value="{{$DB_currents[$i]}}" {{ $DB_Find_de->currency == $DB_currents[$i] ? 'selected' : ''}} >{{$DB_currents[$i]}}</option>
+                                                    @else
+                                                    <option value="{{$DB_currents[$i]}}" {{ $DB_Find_tr->currency == $DB_currents[$i]? 'selected' : ''}} >{{$DB_currents[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.salePrice')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="en"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_en->sale_price!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="de"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_de->sale_price!!}" >
+                                            @else
+                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="tr"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_tr->sale_price!!}" >
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.discountedPricePercent')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="en"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_en->discounted_price_percent!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="de"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_de->discounted_price_percent!!}" >
+                                            @else
+                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="tr"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_tr->discounted_price_percent!!}" >
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.discountedPrice')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="en"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_en->discounted_price!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="de"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_de->discounted_price!!}" >
+                                            @else
+                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="tr"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_tr->discounted_price!!}" >
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

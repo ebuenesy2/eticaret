@@ -127,6 +127,12 @@
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.image')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.title')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.category')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.category') @lang('admin.title')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.stock')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.currency')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.salePrice')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.discountedPricePercent')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.discountedPrice')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
 
@@ -143,6 +149,12 @@
                                   <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td class="">{{$dbFind[$i]->title}}</td>
                                   <td class="">{{$dbFind[$i]->category}}</td>
+                                  <td class="">{{$dbFind[$i]->productCategoryTitle}}</td>
+                                  <td class="">{{$dbFind[$i]->stock}}</td>
+                                  <td class="">{{$dbFind[$i]->currency}}</td>
+                                  <td class="">{{$dbFind[$i]->sale_price}}</td>
+                                  <td class="">{{$dbFind[$i]->discounted_price_percent}}</td>
+                                  <td class="">{{$dbFind[$i]->discounted_price}}</td>
 
                                   <td style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>

@@ -162,10 +162,6 @@
                                             <h4 class="new-price font-weight-bold mb-0" style="color: green;" >$35.80</h4>
                                             <h4 class="old-price font-weight-normal mb-0">$42.90</h4>
                                         </div>
-                                        <div class="product-sold position-absolute">
-                                            <div class="product-sold-val" style="width: 22%;"></div>
-                                        </div>
-                                        <span class="sold-text font-weight-normal text-light position-absolute">Sold: 10</span>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="ratings-container text-truncate">
                                                 <div class="ratings">

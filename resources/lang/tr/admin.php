@@ -35,6 +35,11 @@
 
     'product' => 'Ürün',
     'productCategory' => 'Ürün Kategorisi',
+    'stock' => 'Stok',
+    'currency' => 'Para Birimi',
+    'salePrice' => 'Satış Fiyat',
+    'discountedPricePercent' => 'İnd. Fiyat Yüzdelik',
+    'discountedPrice' => 'İndirimli Fiyat',
 
     'ourTeam' => 'Ekibimiz',
 

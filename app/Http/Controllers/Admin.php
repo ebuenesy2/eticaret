@@ -8559,9 +8559,17 @@ class Admin extends Controller
                 $table = "products";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
-                $selectData = [];  //! Select
+                
+                //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => "product_categories", "parametre" => "title", "name" => "productCategoryTitle", );
+
                 $selectDataRaw = [];  //! Select - Raw
+
+                //! Join
                 $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "product_categories" , "value" => "uid", "refTable" => $table, "refValue" => "category", ); //! Join Veri Ekleme
 
                 //! Arama
                 $searchData = [];
@@ -8900,6 +8908,11 @@ class Admin extends Controller
                     'seo_url' => SEOLink($request->title),
                     'description' => $request->description,
                     'seo_keywords' => $request->seo_keywords,
+                    'stock' => $request->stock,
+                    'currency' => $request->currency,
+                    'sale_price' => $request->sale_price,
+                    'discounted_price_percent' => $request->discounted_price_percent,
+                    'discounted_price' => $request->discounted_price,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,
@@ -8964,6 +8977,11 @@ class Admin extends Controller
                  $DB_Status = $DB->update([       
                     'img_url' => $request->imgUrl, 
                     'category' => $request->category,
+                    'stock' => $request->stock,
+                    'currency' => $request->currency,
+                    'sale_price' => $request->sale_price,
+                    'discounted_price_percent' => $request->discounted_price_percent,
+                    'discounted_price' => $request->discounted_price,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,

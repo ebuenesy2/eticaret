@@ -35,6 +35,11 @@
 
     'product' => 'Product',
     'productCategory' => 'Product Category',
+    'stock' => 'Stock',
+    'currency' => 'Currency',
+    'salePrice' => 'Sale Price',
+    'discountedPricePercent' => 'Discounted Price Percent',
+    'discountedPrice' => 'Discounted Price',
 
     'ourTeam' => 'Our Team',
 
