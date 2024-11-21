@@ -106,11 +106,11 @@
                                         <label class="control-label">@lang('admin.stock')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="en"  placeholder="@lang('admin.title')" value="{!!$DB_Find_en->stock!!}" >
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="en"  placeholder="0" value="{!!$DB_Find_en->stock!!}" >
                                             @elseif($DB_Find_de)
-                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="de"  placeholder="@lang('admin.title')" value="{!!$DB_Find_de->stock!!}" >
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="de"  placeholder="0" value="{!!$DB_Find_de->stock!!}" >
                                             @else
-                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="tr"  placeholder="@lang('admin.title')" value="{!!$DB_Find_tr->stock!!}" >
+                                            <input type="number" class="input-block-level" name="stockEdit" id="stockEdit"  lang="tr"  placeholder="0" value="{!!$DB_Find_tr->stock!!}" >
                                             @endif
                                         </div>
                                     </div>

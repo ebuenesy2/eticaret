@@ -145,13 +145,9 @@
                                 <div class="product mb-0 rounded-0 w-100">
                                     <figure class="product-media bg-white ">
                                         <a href="{{asset('/assets')}}/web/#">
-                                            <span class="product-label label-top">Top</span>
-                                            <span class="product-label label-sale">Save: 30%</span>
-                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 370px;height: 240px;object-fit: cover;">
+                                            @if($DB_Products[$i]->discounted_price_percent !="")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 370px;height: 400px;object-fit: cover;">
                                         </a>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-product-zoom btn-quickview" data-product-id="260" title="Quick view"><span>Quick view</span></a>
-                                        <div class="product-labels">
-                                        </div>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
@@ -159,8 +155,11 @@
                                         </div>
                                         <a href="{{asset('/assets')}}/web/#"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
-                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >$35.80</h4>
-                                            <h4 class="old-price font-weight-normal mb-0">$42.90</h4>
+                                            @if($DB_Products[$i]->discounted_price_percent !="")
+                                            <h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            <h4 class="old-price font-weight-normal mb-0">{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @else<h4 class="new-price font-weight-bold mb-0" style="color: green;" >{{$DB_Products[$i]->sale_price}} {{$DB_Products[$i]->currency}}</h4>
+                                            @endif
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="ratings-container text-truncate">

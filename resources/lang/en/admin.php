@@ -38,6 +38,7 @@
     'stock' => 'Stock',
     'currency' => 'Currency',
     'salePrice' => 'Sale Price',
+    'discount' => 'Discount',
     'discountedPricePercent' => 'Discounted Price Percent',
     'discountedPrice' => 'Discounted Price',
 

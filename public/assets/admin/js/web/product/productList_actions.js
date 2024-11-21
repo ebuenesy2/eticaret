@@ -193,6 +193,11 @@ document.querySelectorAll('#new_add').forEach(function (i) {
                     title:titleAdd,
                     description: dataAdd,
                     seo_keywords: $('input[id="tagInput"][lang="'+dataLang+'"]').attr('data_value'),
+                    stock:Number($('#stockAdd').val()),
+                    currency:$('#currencyAdd').val(),
+                    sale_price:Number($('#salePriceAdd').val().replace(',','.')),
+                    discounted_price_percent:Number($('#discountedPricePercentAdd').val().replace(',','.')),
+                    discounted_price:Number($('#discountedPriceAdd').val().replace(',','.')),
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Başlangıc"); },

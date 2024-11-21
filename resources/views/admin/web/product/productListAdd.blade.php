@@ -71,7 +71,7 @@
                         </div>
                         <div class="widget-body">
                             <div class="row-fluid">
-                                <div class="span12">
+                                <div class="span6">
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.category')</label>
                                         <div class="controls controls-row">
@@ -80,6 +80,55 @@
                                                 <option value="{{$DB_Find_product_categories[$i]->uid}}" >{{$DB_Find_product_categories[$i]->title}}</option>
                                                 @endfor
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.stock')</label>
+                                        <div class="controls controls-row">
+                                           <input type="number" class="input-block-level" name="stockAdd" id="stockAdd" placeholder="0" value="0" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.currency')</label>
+                                        <div class="controls controls-row">
+                                            <select class="span12" style="cursor: pointer;" id="currencyAdd"   >
+                                                <?php $DB_currents = ["TL","EUR","$"]; ?>
+                                                @for ($i = 0; $i < count($DB_currents); $i++)
+                                                  <option value="{{$DB_currents[$i]}}" >{{$DB_currents[$i]}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.salePrice')</label>
+                                        <div class="controls controls-row">
+                                           <input type="number" class="input-block-level" name="salePriceAdd" id="salePriceAdd" placeholder="0" value="0" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.discountedPricePercent')</label>
+                                        <div class="controls controls-row">
+                                           <input type="number" class="input-block-level" name="discountedPricePercentAdd" id="discountedPricePercentAdd" placeholder="0" value="0" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.discountedPrice')</label>
+                                        <div class="controls controls-row">
+                                           <input type="number" class="input-block-level" name="discountedPriceAdd" id="discountedPriceAdd" placeholder="0" value="0" >
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +185,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
-                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="width: 100%;height: 230px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="height: 230px;object-fit: cover;" >
                                         </div>
                                     </div>
                                 </div>

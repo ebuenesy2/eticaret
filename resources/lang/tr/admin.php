@@ -38,6 +38,7 @@
     'stock' => 'Stok',
     'currency' => 'Para Birimi',
     'salePrice' => 'Satış Fiyat',
+    'discount' => 'İndirim',
     'discountedPricePercent' => 'İnd. Fiyat Yüzdelik',
     'discountedPrice' => 'İndirimli Fiyat',
 
