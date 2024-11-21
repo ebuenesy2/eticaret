@@ -42,6 +42,11 @@
     'discountedPricePercent' => 'İnd. Fiyat Yüzdelik',
     'discountedPrice' => 'İndirimli Fiyat',
 
+    'collection' => 'Koleksiyon',
+    'newProduct' => 'Yeni Ürünler',
+    'editorSuggestion' => 'Editörün Önerisi',
+    'bestseller' => 'Çok Satanlar',
+
     'ourTeam' => 'Ekibimiz',
 
     'currentAccount' => 'Cari Hesap',

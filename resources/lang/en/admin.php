@@ -42,6 +42,11 @@
     'discountedPricePercent' => 'Discounted Price Percent',
     'discountedPrice' => 'Discounted Price',
 
+    'collection' => 'Collection',
+    'newProduct' => 'New Product',
+    'editorSuggestion' => 'Suggestion Of Editor',
+    'bestseller' => 'Bestseller',
+
     'ourTeam' => 'Our Team',
 
     'currentAccount' => 'Current Account',

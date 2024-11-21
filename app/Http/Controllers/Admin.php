@@ -8713,6 +8713,9 @@ class Admin extends Controller
                     'sale_price' => $request->sale_price,
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+                    'new_product' => $request->new_product,
+                    'editor_suggestion' => $request->editor_suggestion,
+                    'bestseller' => $request->bestseller,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->created_byId,
@@ -8735,6 +8738,9 @@ class Admin extends Controller
                     'sale_price' => $request->sale_price,
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+                    'new_product' => $request->new_product,
+                    'editor_suggestion' => $request->editor_suggestion,
+                    'bestseller' => $request->bestseller,
                     'created_byId'=>$request->created_byId,
                 ]); //! Veri Ekleme Son
 
@@ -8923,6 +8929,11 @@ class Admin extends Controller
                     'sale_price' => $request->sale_price,
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+
+                    'new_product' => $request->new_product,
+                    'editor_suggestion' => $request->editor_suggestion,
+                    'bestseller' => $request->bestseller,
+                    
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,
@@ -8997,6 +9008,11 @@ class Admin extends Controller
                     'sale_price' => $request->sale_price,
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+                    
+                    'new_product' => $request->new_product,
+                    'editor_suggestion' => $request->editor_suggestion,
+                    'bestseller' => $request->bestseller,
+
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,

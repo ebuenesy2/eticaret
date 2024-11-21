@@ -198,6 +198,11 @@ document.querySelectorAll('#new_add').forEach(function (i) {
                     sale_price:Number($('#salePriceAdd').val().replace(',','.')),
                     discounted_price_percent:Number($('#discountedPricePercentAdd').val().replace(',','.')),
                     discounted_price:Number($('#discountedPriceAdd').val().replace(',','.')),
+                    
+                    new_product:$('#new_product').is(':checked') ? 1 : 0,
+                    editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
+                    bestseller:$('#bestseller').is(':checked') ? 1 : 0,
+
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Başlangıc"); },
@@ -290,6 +295,11 @@ document.querySelectorAll('#edit_item_info').forEach(function (i) {
                 sale_price:Number($('#salePriceEdit').val().replace(',','.')),
                 discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
                 discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
+                
+                new_product:$('#new_product').is(':checked') ? 1 : 0,
+                editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
+                bestseller:$('#bestseller').is(':checked') ? 1 : 0,
+
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -415,6 +425,11 @@ document.querySelectorAll('#edit_item').forEach(function (i) {
                     sale_price:Number($('#salePriceEdit').val().replace(',','.')),
                     discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
                     discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
+
+                    new_product:$('#new_product').is(':checked') ? 1 : 0,
+                    editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
+                    bestseller:$('#bestseller').is(':checked') ? 1 : 0,
+
                     updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Başlangıc"); },
@@ -662,7 +677,29 @@ $('input[focustype="true"]').keydown(function(event) {
 //! ************ Enter Focus Son ***************
 
 
-//! ************ Hesaplama ***********************
+//! ************ Hesaplama - Ekleme ***********************
+//! Ekleme - Sonuc Hesaplama
+document.querySelector('#salePriceAdd').addEventListener('keyup', e => { resutAdd(); }); 
+document.querySelector('#discountedPricePercentAdd').addEventListener('keyup', e => { resutAdd(); }); 
+
+function resutAdd(){
+    var salePrice = $('#salePriceAdd').val(); //! Satış Fiyat
+    salePrice = Number(salePrice.replace(',','.')).toFixed(2); //! Sayı Dönüştür
+
+    var discountedPricePercent = $('#discountedPricePercentAdd').val(); //! Yüzdelik
+    discountedPricePercent = Number(discountedPricePercent.replace(',','.')).toFixed(2); //! Sayı Dönüştür
+
+    var result = salePrice - ((salePrice*discountedPricePercent)/100); //! Hesaplama
+    result = result.toFixed(2); //! Sayı Dönüştür
+    //console.log("result:",result);
+
+    $('#discountedPriceAdd').val(result);
+    
+}//! Ekleme - Sonuc Hesaplama
+//! ************ Hesaplama - Ekleme Son *******************
+
+
+//! ************ Hesaplama - Düzenleme ***********************
 //! Düzenleme - Sonuc Hesaplama
 document.querySelector('#salePriceEdit').addEventListener('keyup', e => { resutEdit(); }); 
 document.querySelector('#discountedPricePercentEdit').addEventListener('keyup', e => { resutEdit(); }); 
@@ -681,4 +718,4 @@ function resutEdit(){
     $('#discountedPriceEdit').val(result);
     
 }//! Düzenleme - Sonuc Hesaplama
-//! ************ Hesaplama Son *******************
+//! ************ Hesaplama - Düzenleme Son *******************

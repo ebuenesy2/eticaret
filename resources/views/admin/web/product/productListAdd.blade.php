@@ -185,7 +185,37 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
-                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="height: 230px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="width: 100%;height: 200px;object-fit: contain;" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.collection')</label>
+                                        <div class="controls controls-row">
+                                           
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="new_product" id="new_product" checked style="margin-top: auto;margin-bottom: auto;" > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                            </div>
+
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.collection')</label>
+                                        <div class="controls controls-row">
+                                          
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                            </div>
+                                          
                                         </div>
                                     </div>
                                 </div>

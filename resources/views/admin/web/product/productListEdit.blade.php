@@ -234,12 +234,42 @@
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_en->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_en->img_url}}" id="fileUploadImage" style="width: 100%;height: 200px;object-fit: contain;" >
                                             @elseif($DB_Find_de) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_de->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_de->img_url}}" id="fileUploadImage" style="width: 100%;height: 200px;object-fit: contain;" >
                                             @else
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_tr->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_tr->img_url}}" id="fileUploadImage" style="width: 100%;height: 200px;object-fit: contain;" >
                                             @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.collection')</label>
+                                        <div class="controls controls-row">
+                                           
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="new_product" id="new_product" style="margin-top: auto;margin-bottom: auto;" > <label for="new_product" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.newProduct')</label>
+                                            </div>
+
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="bestseller" id="bestseller" style="margin-top: auto;margin-bottom: auto;" > <label for="bestseller" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.bestseller')</label>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.collection')</label>
+                                        <div class="controls controls-row">
+                                          
+                                            <div style="display: flex;gap: 10px;" >
+                                                <input type="checkbox" name="editor_suggestion" id="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" > <label for="editor_suggestion" style="margin-top: auto;margin-bottom: auto;" >@lang('admin.editorSuggestion')</label>
+                                            </div>
+                                          
                                         </div>
                                     </div>
                                 </div>
