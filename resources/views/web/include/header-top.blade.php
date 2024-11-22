@@ -1,23 +1,19 @@
 <div class="container">
     <div class="header-left">
         <div class="header-dropdown">
-            <a href="{{asset('/assets')}}/web/#">TL</a>
+            <a>TL</a>
             <div class="header-menu">
                 <ul>
-                    <li><a href="{{asset('/assets')}}/web/#">TL</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">Eur</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">Usd</a></li>
+                    <li><a href="/@lang('admin.lang')">TL</a></li>
                 </ul>
             </div>
         </div>
         <div class="header-dropdown">
-            <a href="{{asset('/assets')}}/web/#">Türkçe</a>
+            <a>@lang('admin.langTitle')</a>
             <div class="header-menu">
                 <ul>
-                    <li><a href="{{asset('/assets')}}/web/#">Türkçe</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">English</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">French</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">Spanish</a></li>
+                    <li><a href="/tr">Türkçe</a></li>
+                    <li><a href="/en">English</a></li>
                 </ul>
             </div>
         </div>
@@ -25,10 +21,10 @@
     <div class="header-right">
         <ul class="top-menu">
             <li>
-                <a href="{{asset('/assets')}}/web/#" class="link">Links</a>
+                <a class="link">Links</a>
                 <ul>
-                    <li><a href="{{asset('/assets')}}/web/#" class="ff"><i class="fa fa-phone"></i>Ara: +90 551 032 05 01</a></li>
-                    <li><a href="{{asset('/assets')}}/web/#">Sipariş Takip</a></li>
+                    <li><a href="tel:{{ $DB_HomeSettings->phone }}" class="ff"><i class="fa fa-phone"></i>Ara: {{ $DB_HomeSettings->phone }}</a></li>
+                    <li><a href="#">Sipariş Takip</a></li>
                     <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
                     <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
                     <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>

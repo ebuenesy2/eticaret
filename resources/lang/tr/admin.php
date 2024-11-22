@@ -2,6 +2,7 @@
 
   return [
     'lang'=> 'tr',
+    'langTitle'=> 'Türkçe',
     'const'=> 'Sabit',
     'language' => 'Dil',
     'selectLanguage' => 'Dil Seçiniz',

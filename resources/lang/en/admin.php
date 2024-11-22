@@ -2,6 +2,7 @@
 
   return [
     'lang'=> 'en',
+    'langTitle'=> 'English',
     'const'=> 'Const',
     'language' => 'Language',
     'selectLanguage' => 'Select Language',
