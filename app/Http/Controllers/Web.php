@@ -248,8 +248,10 @@ class Web extends Controller
                 // ?page=10&rowcount=10&order=desc
 
                 $page = request('page'); //! Sayfa Numarası
-                $rowcount = request('rowcount') ? request('rowcount') : 2; //! Sayfada Gösterecek Veri Sayısı
+                $rowcount = request('rowcount') ? request('rowcount') : 20; //! Sayfada Gösterecek Veri Sayısı
+                $orderBy = request('orderBy') ? request('orderBy') : "products.uid";  //! Sıralama Türü
                 $order = request('order') ? request('order') : "desc";  //! Sıralama [asc = Küçükten -> Büyüğe] [ desc = Büyükten -> Küçüğe ]
+                //echo "orderBy: "; echo $orderBy; die();
 
                 //! Sayfada veri gösterme sayısı hesaplama
                 if($page) {
@@ -258,7 +260,7 @@ class Web extends Controller
                 } else { $page = 0; }
 
                  
-                //! Ürünler - Yeni Ürünler
+                //! Ürünler Listesi Kontrol
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->select('products.*', 'product_categories.title as CategoryTitle')
@@ -272,14 +274,26 @@ class Web extends Controller
                 $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
                 //echo "pageTop: "; echo $pageTop; die();
                 
-                $DB_Products_List = $DB_Products->skip(0)->take(20)
-                ->orderBy('products.uid','desc')
+                //! Ürün Listesi
+                $DB_Products_List = $DB_Products
+                ->skip($page)->take($rowcount)
+                ->orderBy($orderBy,$order)
                 ->get();
                 //echo "<pre>"; print_r($DB_Products_List); die();
 
                 //! Return
-                $DB["DB_Products"] =  $DB_Products_List;
-                //! Ürünler - Yeni Ürünler Son
+                $DB["page"] =  $page; //! Params Sayfa Sayısı
+                $DB["rowcount"] =  $rowcount; //! Params Sayfada Gösterilecek Veri Sayısı
+                $DB["orderBy"] =  $orderBy; //! Params Sıralama Türü
+                $DB["order"] =  $order; //! Params Sıralama
+                
+                $DB["pageNow"] =  $pageNow; //! Şimdiki Sayfa
+                $DB["pageTop"] =  $pageTop; //! Toplam Sayfa
+                $DB["DB_Count"] =  $DB_Count; //! Toplam Ürün Sayısı
+
+                $DB["DB_Products"] =  $DB_Products_List; //! Toplam Ürün Listesi
+                $DB["DB_Products_Count"] =  count($DB_Products_List); //! Gösterilen Ürün Sayısı
+                //! Ürünler Listesi Kontrol - Son
 
                 return view('web/product/productList',$DB);
             } //! Web

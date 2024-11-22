@@ -38,7 +38,7 @@
                 			<div class="toolbox">
                 				<div class="toolbox-left">
                 					<div class="toolbox-info">
-                						Showing <span>9 of 56</span> Products
+                						Gösterilen <span>{{$DB_Products_Count}}/{{$DB_Count}}</span> Ürün
                 					</div><!-- End .toolbox-info -->
                 				</div><!-- End .toolbox-left -->
 
@@ -46,11 +46,21 @@
                 					<div class="toolbox-sort">
                 						<label for="sortby">Sıralama:</label>
                 						<div class="select-custom">
-											<select name="sortby" id="sortby" class="form-control">
-												<option value="popularity" selected="selected">Most Popular</option>
-												<option value="rating">Most Rated</option>
-												<option value="date">Date</option>
+
+                                            <!-- Sıralama -->
+											<select name="sortby" id="sortby" class="form-control" onchange="javascript:orderByData(this)">
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=desc" {{$orderBy == 'products.uid' && $order == 'desc' ? 'selected' : ''}} >En Yeniler</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=asc" {{$orderBy == 'products.uid' && $order == 'asc' ? 'selected' : ''}}>En Eskiler</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=asc" {{$orderBy == 'products.sale_price' && $order == 'asc' ? 'selected' : ''}} >Artan Fiyat</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=desc" {{$orderBy == 'products.sale_price' && $order == 'desc' ? 'selected' : ''}} >Azalan Fiyat</option>
 											</select>
+                                            
+                                            <script type="text/javascript">
+                                                function orderByData(elm) { window.location = elm.value; }
+                                            </script>
+                                            <!-- Sıralama Son -->
+
+                                            
 										</div>
                 					</div><!-- End .toolbox-sort -->
                 				</div><!-- End .toolbox-right -->
@@ -58,27 +68,26 @@
 
                             <div class="products mb-3">
                                 <div class="row justify-content-center">
-
                                      
                                     <!--- Ürünler -->
                                     @for ($i = 0; $i < count($DB_Products); $i++)
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
-                                                <a href="{{asset('/assets')}}/web/product.html">
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
                                                     <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: contain;">
                                                 </a>
 
                                                 <div class="product-action">
-                                                    <a href="{{asset('/assets')}}/web/#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 
                                             <div class="product-body">
                                                 <div class="product-cat">
-                                                    <a href="{{asset('/assets')}}/web/#">{{$DB_Products[$i]->CategoryTitle}}</a>
+                                                    <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
                                                 </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="{{asset('/assets')}}/web/product.html">{{$DB_Products[$i]->title}}</a></h3><!-- End .product-title -->
+                                                <h3 class="product-title"><a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->title}}</a></h3><!-- End .product-title -->
                                                 <div style="display: flex;justify-content: center;" >
                                                     @if($DB_Products[$i]->discounted_price_percent !="0")
                                                     <h4 class="new-price" style="color: green;font-size: 20px;font-weight: bold;" >{{$DB_Products[$i]->discounted_price}} {{$DB_Products[$i]->currency}}</h4>
@@ -99,24 +108,31 @@
                             </div><!-- End .products -->
 
 
-                			<nav aria-label="Page navigation">
-							    <ul class="pagination justify-content-center">
-							        <li class="page-item disabled">
-							            <a class="page-link page-link-prev" href="{{asset('/assets')}}/web/#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-							                <span aria-hidden="true"><i class="fa fa-long-arrow-left"></i></span>Prev
+                            <!------  Pagination  -->
+                			<nav aria-label="Page navigation" style="{{$pageTop > 0 ? '' : 'display:none;'}}" >
+							    <ul class="pagination justify-content-center" >
+                                    
+							        <li class="page-item" style="{{$pageTop > 1 && $pageNow != 1 ? '' : 'display:none;'}}">
+							            <a class="page-link page-link-prev" href="?page={{$pageNow-1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}" aria-label="Öncesi" tabindex="-1" aria-disabled="true">
+							                <span aria-hidden="true"><i class="fa fa-long-arrow-left"></i></span>Öncesi
 							            </a>
 							        </li>
-							        <li class="page-item active" aria-current="page"><a class="page-link" href="{{asset('/assets')}}/web/#">1</a></li>
-							        <li class="page-item"><a class="page-link" href="{{asset('/assets')}}/web/#">2</a></li>
-							        <li class="page-item"><a class="page-link" href="{{asset('/assets')}}/web/#">3</a></li>
-							        <li class="page-item-total">of 6</li>
-							        <li class="page-item">
-							            <a class="page-link page-link-next" href="{{asset('/assets')}}/web/#" aria-label="Next">
-							                Next <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
+                                    
+                                    @for ($i = 1; $i < $pageTop+1; $i++)
+							        <li class="page-item {{$i==$pageNow ? 'active': ''}} "><a class="page-link" href="?page={{$i}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}">{{$i}}</a></li>
+                                    @endfor
+							       
+							        <li class="page-item"  style="{{$pageTop > 1 && $pageTop != $pageNow ? '' : 'display:none;'}}" >
+							            <a class="page-link page-link-next" href="?page={{$pageNow+1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}" aria-label="Sonrası">
+							                Sonrası <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
 							            </a>
 							        </li>
+
 							    </ul>
 							</nav>
+                            <!------  Pagination Son -->
+
+
                 		</div><!-- End .col-lg-9 -->
                 		<aside class="col-lg-3 order-lg-first">
                 			<div class="sidebar sidebar-shop">

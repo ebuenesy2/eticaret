@@ -1235,7 +1235,7 @@ blockquote {
         padding-left: 0;
         padding-right: 0; }
       .top-menu:not(.top-link-menu) > li::after {
-        font-family: "Yıldırımdev";
+        font-family: "arial";
         content: '\f110';
         position: absolute;
         right: 0;
@@ -1667,7 +1667,7 @@ blockquote {
     transition: background .4s,  color .1s; }
     .category-dropdown .dropdown-toggle:after {
       content: '\f131';
-      font-family: 'Yıldırımdev';
+      font-family: "arial";
       border: none;
       font-size: 2.3rem;
       line-height: 1;
@@ -1812,7 +1812,7 @@ blockquote {
     position: relative; }
     .menu-vertical.sf-arrows .sf-with-ul::after {
       display: block;
-      font-family: 'Yıldırımdev';
+      font-family: "arial";
       content: '\f112';
       position: absolute;
       right: 1.8rem;
@@ -2068,7 +2068,7 @@ blockquote {
   outline: none;
   transition: color 0.35s; }
   .mmenu-btn::after {
-    font-family: "Yıldırımdev";
+    font-family: "arial";
     content: '\f110';
     display: inline-block; }
   .mmenu-btn:hover, .mmenu-btn:focus {
@@ -3246,7 +3246,7 @@ p {
     display: block;
     height: auto;
     content: '';
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     content: '\f110';
     position: absolute;
     left: auto;
@@ -6867,7 +6867,7 @@ a:focus {
       right: 1.2rem;
       top: 50%;
       color: #c96;
-      font-family: "Yıldırımdev";
+      font-family: "arial";
       line-height: 1;
       transform: translateY(-50%);
       -ms-transform: translateY(-50%);
@@ -7797,7 +7797,7 @@ a:focus {
   font-size: 1.4rem;
   letter-spacing: 0.1em;
   line-height: 1;
-  font-family: "Yıldırımdev"; }
+  font-family: "arial"; }
   .ratings:before,
   .ratings-val:before {
     content: "\f318" "\f318" "\f318" "\f318" "\f318"; }
@@ -7870,7 +7870,7 @@ a:focus {
   .btn-product + .btn-product {
     border-left: .1rem dotted #e5e5e5; }
   .btn-product:before {
-    font-family: "Yıldırımdev";
+    font-family: "arial";
     margin-right: .9rem; }
   .btn-product span {
     color: #666666;
@@ -7925,7 +7925,7 @@ a:focus {
   color: #c96;
   background-color: #fff; }
   .btn-product-icon:before {
-    font-family: "Yıldırımdev"; }
+    font-family: "arial"; }
   .btn-product-icon span {
     display: none; }
   .btn-product-icon:hover, .btn-product-icon:focus {
@@ -9263,7 +9263,7 @@ a:focus {
 /*--------------------- 4.13.Testimonials -------------------- */
 /* Testimonials */
 .testimonial-icon:before {
-  font-family: 'Yıldırımdev';
+  font-family: "arial";
   content: '\f10d';
   display: inline-block;
   font-style: normal;
@@ -9382,14 +9382,14 @@ small.form-text {
     -webkit-appearance: none;
     appearance: none; }
   .select-custom::after {
-    font-family: "Yıldırımdev";
-    content: '\f110';
+    font-family: "arial";
+    content: '>';
     position: absolute;
     display: inline-block;
     right: 1.9rem;
     top: 50%;
     font-size: 1.5rem;
-    transform: translateY(-51%);
+    transform: translateY(-51%) rotate(90deg);
     color: #333333; }
   .select-custom .form-control,
   .select-custom .form-control-sm {
@@ -9449,7 +9449,7 @@ small.form-text {
   color: #fff;
   background-image: none;
   font-size: 1rem;
-  font-family: 'Yıldırımdev';
+  font-family: "arial";
   content: '\ec2d';
   line-height: 1;
   text-align: center;
@@ -10119,7 +10119,7 @@ small.form-text {
     height: 5rem;
     margin-top: -2.5rem;
     margin-left: -2.5rem;
-    font-family: "Yıldırımdev";
+    font-family: "arial";
     position: absolute;
     left: 50%;
     top: 50%;
@@ -10849,7 +10849,7 @@ button:focus {
     color: #333333;
     content: '\f110';
     display: block;
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     font-size: 1.4rem;
     line-height: 1;
     position: absolute;
@@ -10923,7 +10923,7 @@ button:focus {
     transition: box-shadow .35s ease; }
     .filter-colors a:after {
       color: #fff;
-      font-family: 'Yıldırımdev';
+      font-family: "arial";
       content: '\ec2d';
       font-size: 1rem;
       line-height: 1;
@@ -11751,7 +11751,7 @@ button:focus {
 
 .entry-video a:after {
   content: '\ec2c';
-  font-family: "Yıldırımdev";
+  font-family: "arial";
   display: -ms-inline-flexbox;
   display: inline-flex;
   align-items: center;
@@ -11832,7 +11832,7 @@ button:focus {
   padding-bottom: .1rem;
   transition: all .3s ease; }
   .read-more:after {
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     content: '\f274';
     font-size: 1.5rem;
     line-height: 1;
@@ -11951,7 +11951,7 @@ button:focus {
   color: #fff;
   position: absolute;
   content: '\f24d';
-  font-family: "Yıldırımdev";
+  font-family: "arial";
   top: 2.6rem; }
 .entry-mask .entry-body {
   position: absolute;
@@ -12231,7 +12231,7 @@ button:focus {
     font-weight: normal;
     font-size: 3rem;
     line-height: 1;
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     position: absolute;
     left: 3rem;
     top: 4rem;
@@ -12354,7 +12354,7 @@ button:focus {
   .pager-link:after {
     color: #333;
     display: block;
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     font-size: 1.5rem;
     line-height: 1;
     position: absolute;
@@ -12465,7 +12465,7 @@ button:focus {
   padding-bottom: .4rem;
   transition: all .35s ease; }
   .comment-reply:after {
-    font-family: 'Yıldırımdev';
+    font-family: "arial";
     content: '\f279';
     font-size: 1.5rem;
     margin-left: .7rem; }
@@ -13775,7 +13775,7 @@ button:focus {
     color: #333333;
     border-bottom: .1rem solid #ebebeb; }
     .nav-dashboard .nav-link:before {
-      font-family: "Yıldırımdev";
+      font-family: "arial";
       content: '\f274';
       display: block;
       font-size: 1.5rem;
@@ -14712,14 +14712,14 @@ button:focus {
 /*--------------------- 7.Font Icons -------------------- */
 /* Font Icons */
 @font-face {
-  font-family: 'Yıldırımdev';
+  font-family: "arial";
   src: url("../fonts/Yıldırımdev0ab2.eot?74273691");
   src: url("../fonts/Yıldırımdev0ab2.eot?74273691#iefix") format("embedded-opentype"), url("../fonts/Yıldırımdev0ab2.woff2?74273691") format("woff2"), url("../fonts/Yıldırımdev0ab2.woff?74273691") format("woff"), url("../fonts/Yıldırımdev0ab2.ttf?74273691") format("truetype"), url("../fonts/Yıldırımdev0ab2.svg?74273691#Yıldırımdev") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "Yıldırımdev";
+  font-family: "arial";
   font-style: normal;
   font-weight: normal;
   speak: none;
