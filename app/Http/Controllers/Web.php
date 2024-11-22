@@ -244,21 +244,42 @@ class Web extends Controller
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
 
+                //! Params - Url Veri Alma
+                // ?page=10&rowcount=10&order=desc
+
+                $page = request('page'); //! Sayfa Numarası
+                $rowcount = request('rowcount') ? request('rowcount') : 2; //! Sayfada Gösterecek Veri Sayısı
+                $order = request('order') ? request('order') : "desc";  //! Sıralama [asc = Küçükten -> Büyüğe] [ desc = Büyükten -> Küçüğe ]
+
+                //! Sayfada veri gösterme sayısı hesaplama
+                if($page) {
+                    $page = $page - 1; //! Sayfa Numarası
+                    if($page <= 0) { $page = 0; }
+                } else { $page = 0; }
+
+                 
                 //! Ürünler - Yeni Ürünler
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->select('products.*', 'product_categories.title as CategoryTitle')
                 ->where('products.lang','=',__('admin.lang'))
                 ->where('products.new_product','=',1)
-                ->where('products.isActive','=',1)
-                ->skip(0)->take(20)
-                ->orderBy('products.uid','desc')
-                ->get();
-                //echo "<pre>"; print_r($DB_Products); die();
+                ->where('products.isActive','=',1);
 
-                //! Return
-                $DB["DB_Products"] =  $DB_Products;
-                //! Ürünler - Yeni Ürünler Son
+                //! Sayfa Sayısı Hesaplama
+                $DB_Count = $DB_Products->count(); //! Veri Sayısı
+                $pageNow = $page+1; //! Bulunduğu Sayfa
+                $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
+                //echo "pageTop: "; echo $pageTop; die();
+                
+                // ->skip(0)->take(20)
+                // ->orderBy('products.uid','desc')
+                // ->get();
+                echo "<pre>"; print_r($DB_Products); die();
+
+                // //! Return
+                // $DB["DB_Products"] =  $DB_Products;
+                // //! Ürünler - Yeni Ürünler Son
 
                 return view('web/product/productList',$DB);
             } //! Web
