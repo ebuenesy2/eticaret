@@ -141,11 +141,11 @@
                                         <label class="control-label">@lang('admin.salePrice')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="en"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_en->sale_price!!}" >
+                                            <input type="text" class="input-block-level" name="salePrice" id="salePrice"  lang="en"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_en->sale_price!!}" >
                                             @elseif($DB_Find_de)
-                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="de"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_de->sale_price!!}" >
+                                            <input type="text" class="input-block-level" name="salePrice" id="salePrice"  lang="de"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_de->sale_price!!}" >
                                             @else
-                                            <input type="text" class="input-block-level" name="salePriceEdit" id="salePriceEdit"  lang="tr"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_tr->sale_price!!}" >
+                                            <input type="text" class="input-block-level" name="salePrice" id="salePrice"  lang="tr"  placeholder="@lang('admin.salePrice')" value="{!!$DB_Find_tr->sale_price!!}" >
                                             @endif
                                         </div>
                                     </div>
@@ -157,11 +157,11 @@
                                         <label class="control-label">@lang('admin.discountedPricePercent')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="en"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_en->discounted_price_percent!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPricePercent" id="discountedPricePercent"  lang="en"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_en->discounted_price_percent!!}" >
                                             @elseif($DB_Find_de)
-                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="de"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_de->discounted_price_percent!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPricePercent" id="discountedPricePercent"  lang="de"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_de->discounted_price_percent!!}" >
                                             @else
-                                            <input type="text" class="input-block-level" name="discountedPricePercentEdit" id="discountedPricePercentEdit"  lang="tr"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_tr->discounted_price_percent!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPricePercent" id="discountedPricePercent"  lang="tr"  placeholder="@lang('admin.discountedPricePercent')" value="{!!$DB_Find_tr->discounted_price_percent!!}" >
                                             @endif
                                         </div>
                                     </div>
@@ -171,11 +171,11 @@
                                         <label class="control-label">@lang('admin.discountedPrice')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="en"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_en->discounted_price!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPrice" id="discountedPrice"  lang="en"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_en->discounted_price!!}" >
                                             @elseif($DB_Find_de)
-                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="de"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_de->discounted_price!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPrice" id="discountedPrice"  lang="de"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_de->discounted_price!!}" >
                                             @else
-                                            <input type="text" class="input-block-level" name="discountedPriceEdit" id="discountedPriceEdit"  lang="tr"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_tr->discounted_price!!}" >
+                                            <input type="text" class="input-block-level" name="discountedPrice" id="discountedPrice"  lang="tr"  placeholder="@lang('admin.discountedPrice')" value="{!!$DB_Find_tr->discounted_price!!}" >
                                             @endif
                                         </div>
                                     </div>

@@ -110,7 +110,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.salePrice')</label>
                                         <div class="controls controls-row">
-                                           <input type="number" class="input-block-level" name="salePriceAdd" id="salePriceAdd" placeholder="0" value="0" >
+                                           <input type="number" class="input-block-level" name="salePrice" id="salePrice" placeholder="0" value="0" >
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.discountedPricePercent')</label>
                                         <div class="controls controls-row">
-                                           <input type="number" class="input-block-level" name="discountedPricePercentAdd" id="discountedPricePercentAdd" placeholder="0" value="0" >
+                                           <input type="number" class="input-block-level" name="discountedPricePercent" id="discountedPricePercent" placeholder="0" value="0" >
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.discountedPrice')</label>
                                         <div class="controls controls-row">
-                                           <input type="number" class="input-block-level" name="discountedPriceAdd" id="discountedPriceAdd" placeholder="0" value="0" >
+                                           <input type="number" class="input-block-level" name="discountedPrice" id="discountedPrice" placeholder="0" value="0" >
                                         </div>
                                     </div>
                                 </div>

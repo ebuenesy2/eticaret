@@ -195,9 +195,9 @@ document.querySelectorAll('#new_add').forEach(function (i) {
                     seo_keywords: $('input[id="tagInput"][lang="'+dataLang+'"]').attr('data_value'),
                     stock:Number($('#stockAdd').val()),
                     currency:$('#currencyAdd').val(),
-                    sale_price:Number($('#salePriceAdd').val().replace(',','.')),
-                    discounted_price_percent:Number($('#discountedPricePercentAdd').val().replace(',','.')),
-                    discounted_price:Number($('#discountedPriceAdd').val().replace(',','.')),
+                    sale_price:Number($('#salePrice').val().replace(',','.')),
+                    discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
+                    discounted_price:Number($('#discountedPrice').val().replace(',','.')),
                     
                     new_product:$('#new_product').is(':checked') ? 1 : 0,
                     editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
@@ -292,9 +292,9 @@ document.querySelectorAll('#edit_item_info').forEach(function (i) {
                 category:Number($('#productCategoryEdit').val()),
                 stock:Number($('#stockEdit').val()),
                 currency:$('#productCurrencyEdit').val(),
-                sale_price:Number($('#salePriceEdit').val().replace(',','.')),
-                discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
-                discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
+                sale_price:Number($('#salePrice').val().replace(',','.')),
+                discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
+                discounted_price:Number($('#discountedPrice').val().replace(',','.')),
                 
                 new_product:$('#new_product').is(':checked') ? 1 : 0,
                 editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
@@ -422,9 +422,9 @@ document.querySelectorAll('#edit_item').forEach(function (i) {
                     seo_keywords: $('input[id="tagInput"][lang="'+dataLang+'"]').attr('data_value'),
                     stock:Number($('#stockEdit').val()),
                     currency:$('#productCurrencyEdit').val(),
-                    sale_price:Number($('#salePriceEdit').val().replace(',','.')),
-                    discounted_price_percent:Number($('#discountedPricePercentEdit').val().replace(',','.')),
-                    discounted_price:Number($('#discountedPriceEdit').val().replace(',','.')),
+                    sale_price:Number($('#salePrice').val().replace(',','.')),
+                    discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
+                    discounted_price:Number($('#discountedPrice').val().replace(',','.')),
 
                     new_product:$('#new_product').is(':checked') ? 1 : 0,
                     editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
@@ -677,45 +677,25 @@ $('input[focustype="true"]').keydown(function(event) {
 //! ************ Enter Focus Son ***************
 
 
-//! ************ Hesaplama - Ekleme ***********************
+//! ************ Hesaplama ***********************
 //! Ekleme - Sonuc Hesaplama
-document.querySelector('#salePriceAdd').addEventListener('keyup', e => { resutAdd(); }); 
-document.querySelector('#discountedPricePercentAdd').addEventListener('keyup', e => { resutAdd(); }); 
+document.querySelector('#salePrice').addEventListener('keyup', e => { resutVal(); }); 
+document.querySelector('#discountedPricePercent').addEventListener('keyup', e => { resutVal(); }); 
 
-function resutAdd(){
-    var salePrice = $('#salePriceAdd').val(); //! Satış Fiyat
+function resutVal(){ 
+    var salePrice = $('#salePrice').val(); //! Satış Fiyat
     salePrice = Number(salePrice.replace(',','.')).toFixed(2); //! Sayı Dönüştür
 
-    var discountedPricePercent = $('#discountedPricePercentAdd').val(); //! Yüzdelik
+    var discountedPricePercent = $('#discountedPricePercent').val(); //! Yüzdelik
     discountedPricePercent = Number(discountedPricePercent.replace(',','.')).toFixed(2); //! Sayı Dönüştür
 
     var result = salePrice - ((salePrice*discountedPricePercent)/100); //! Hesaplama
     result = result.toFixed(2); //! Sayı Dönüştür
     //console.log("result:",result);
 
-    $('#discountedPriceAdd').val(result);
+    $('#discountedPrice').val(result);
     
 }//! Ekleme - Sonuc Hesaplama
-//! ************ Hesaplama - Ekleme Son *******************
+//! ************ Hesaplama  Son *******************
 
 
-//! ************ Hesaplama - Düzenleme ***********************
-//! Düzenleme - Sonuc Hesaplama
-document.querySelector('#salePriceEdit').addEventListener('keyup', e => { resutEdit(); }); 
-document.querySelector('#discountedPricePercentEdit').addEventListener('keyup', e => { resutEdit(); }); 
-
-function resutEdit(){ alert("sa");
-    var salePrice = $('#salePriceEdit').val(); //! Satış Fiyat
-    salePrice = Number(salePrice.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var discountedPricePercent = $('#discountedPricePercentEdit').val(); //! Yüzdelik
-    discountedPricePercent = Number(discountedPricePercent.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var result = salePrice - ((salePrice*discountedPricePercent)/100); //! Hesaplama
-    result = result.toFixed(2); //! Sayı Dönüştür
-    //console.log("result:",result);
-
-    $('#discountedPriceEdit').val(result);
-    
-}//! Düzenleme - Sonuc Hesaplama
-//! ************ Hesaplama - Düzenleme Son *******************

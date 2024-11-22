@@ -272,14 +272,14 @@ class Web extends Controller
                 $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
                 //echo "pageTop: "; echo $pageTop; die();
                 
-                // ->skip(0)->take(20)
-                // ->orderBy('products.uid','desc')
-                // ->get();
-                echo "<pre>"; print_r($DB_Products); die();
+                $DB_Products_List = $DB_Products->skip(0)->take(20)
+                ->orderBy('products.uid','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_Products_List); die();
 
-                // //! Return
-                // $DB["DB_Products"] =  $DB_Products;
-                // //! Ürünler - Yeni Ürünler Son
+                //! Return
+                $DB["DB_Products"] =  $DB_Products_List;
+                //! Ürünler - Yeni Ürünler Son
 
                 return view('web/product/productList',$DB);
             } //! Web
