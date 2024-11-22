@@ -116,11 +116,11 @@
                                         <div class="controls controls-row">
                                             <?php $institutional_imgUrl = $institutional_name.'_img_url'; ?>
                                             @if($DB_en) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_en->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_en->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @elseif($DB_de) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_de->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_de->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @else
-                                            <img class="img-circle img-thumbnail" src="{{$DB_tr->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_tr->$institutional_imgUrl}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @endif
                                         </div>
                                     </div>

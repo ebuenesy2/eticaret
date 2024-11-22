@@ -235,14 +235,30 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
 
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                //! Ürünler - Yeni Ürünler
+                $DB_Products= DB::table('products')
+                ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->where('products.lang','=',__('admin.lang'))
+                ->where('products.new_product','=',1)
+                ->where('products.isActive','=',1)
+                ->skip(0)->take(20)
+                ->orderBy('products.uid','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_Products); die();
+
+                //! Return
+                $DB["DB_Products"] =  $DB_Products;
+                //! Ürünler - Yeni Ürünler Son
 
                 return view('web/product/productList',$DB);
             } //! Web

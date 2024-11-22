@@ -136,7 +136,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
-                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="width: 100%;height: 230px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="width: 100%;height: 230px;object-fit: contain;" >
                                         </div>
                                     </div>
                                 </div>

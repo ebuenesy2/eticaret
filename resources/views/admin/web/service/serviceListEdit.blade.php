@@ -155,11 +155,11 @@
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
                                             @if($DB_Find_en) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_en->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_en->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @elseif($DB_Find_de) 
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_de->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_de->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @else
-                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_tr->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: cover;" >
+                                            <img class="img-circle img-thumbnail" src="{{$DB_Find_tr->img_url}}" id="fileUploadImage" style="width: 100%;height: 340px;object-fit: contain;" >
                                             @endif
                                         </div>
                                     </div>

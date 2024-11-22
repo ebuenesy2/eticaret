@@ -148,7 +148,7 @@
                                     <div class="control-group">
                                         <label class="control-label">@lang('admin.image')</label>
                                         <div class="controls controls-row">
-                                           <img class="img-circle img-thumbnail" src="{{$DB_Find->img_url}}" id="fileUploadImage" style="width: 100%;height: 360px;object-fit: cover;" >
+                                           <img class="img-circle img-thumbnail" src="{{$DB_Find->img_url}}" id="fileUploadImage" style="width: 100%;height: 360px;object-fit: contain;" >
                                         </div>
                                     </div>
                                 </div>

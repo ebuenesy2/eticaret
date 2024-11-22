@@ -148,7 +148,7 @@
                                     <figure class="product-media bg-white ">
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}">
                                             @if($DB_Products_Editor_Suggestion[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_Editor_Suggestion[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products_Editor_Suggestion[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                            <img src="{{$DB_Products_Editor_Suggestion[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: contain;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
@@ -214,7 +214,7 @@
                                     <figure class="product-media bg-white ">
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}">
                                             @if($DB_Products_bestseller[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_bestseller[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products_bestseller[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                            <img src="{{$DB_Products_bestseller[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: contain;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
@@ -280,7 +280,7 @@
                                     <figure class="product-media bg-white ">
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
                                             @if($DB_Products[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: cover;">
+                                            <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: contain;">
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
@@ -311,6 +311,7 @@
                 </div>
                 <!--- YENİ ÇIKANLAR Son -->
                 
+                <!--- Blog -->
                 <div class="bg-lighter blog-section pt-6 pb-5">
                     <div class="container">
                         <div class="heading py-2 pb-0">
@@ -348,7 +349,7 @@
 
                                 <div class="entry-body text-left">
                                     <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">Jan 12, 2020</a>
+                                        <a href="{{asset('/assets')}}/web/#">{{\Carbon\Carbon::parse($DB_Blogs[$i]->created_at)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</a>
                                     </div> 
 
                                     <h3 class="entry-title text-dark">
@@ -367,6 +368,8 @@
 
                     </div>
                 </div>
+                <!--- Blog Son -->
+
             </div>
         </main>
         <footer class="footer footer-2 font-weight-normal second-primary-color" style="background-color: #222">
