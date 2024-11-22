@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Kart | {{ $DB_HomeSettings->title }} </title>
+    <title> @lang('admin.myProfile') | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -24,7 +24,7 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                 <div class="container">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
                         <li class="breadcrumb-item"><a href="#">Shop</a></li>
                         <li class="breadcrumb-item active" aria-current="page">My Account</li>
                     </ol>

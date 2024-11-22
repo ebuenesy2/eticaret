@@ -25,12 +25,15 @@
                 <ul>
                     <li><a href="tel:{{ $DB_HomeSettings->phone }}" class="ff"><i class="fa fa-phone"></i>Ara: {{ $DB_HomeSettings->phone }}</a></li>
                     <li><a href="#">Sipariş Takip</a></li>
-                    <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
                     <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
-                    <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>
-                    <li><a href="/@lang('admin.lang')/user/login"><i class="fa fa-user"></i>Giriş Yap</a></li>
+                    
+                    <!-- Kullanıcı -->
+                    @if(isset($_COOKIE["userId"])) 
+                    <li><a href="/@lang('admin.lang')/user/profile"><i class="fa fa-user"></i>Profil Sayfası </a></li>
+                    <li><a href="/@lang('admin.lang')/user/logout"><i class="fa fa-user"></i>Çıkış </a></li>
+
                     <li>
-                        <a href="/@lang('admin.lang')/wishlist" class="wishlist-link">
+                        <a href="/@lang('admin.lang')/user/wishlist" class="wishlist-link">
                             <div class="icon position-relative">
                                 <i class="fa fa-heart-o" style="font-size: 15px;" ></i>
                                 <span class="wishlist-count">3</span>
@@ -39,7 +42,7 @@
                     </li>
                     <li>
                         <div class="dropdown cart-dropdown">
-                            <a href="{{asset('/assets')}}/web/#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a href="/@lang('admin.lang')/user/cart" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon position-relative">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-count">2</span>
@@ -103,6 +106,13 @@
                             </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
                     </li>
+
+                    @else
+                    <li><a href="/@lang('admin.lang')/user/login"><i class="fa fa-user"></i>Giriş / Kayıt Sayfası </a></li>
+                    @endif
+                    <!-- Kullanıcı Son -->
+                    
+                  
                 </ul>
             </li>
         </ul>

@@ -13776,7 +13776,7 @@ button:focus {
     border-bottom: .1rem solid #ebebeb; }
     .nav-dashboard .nav-link:before {
       font-family: "arial";
-      content: '\f274';
+      content: '>';
       display: block;
       font-size: 1.5rem;
       line-height: 1;

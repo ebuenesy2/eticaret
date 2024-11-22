@@ -555,7 +555,11 @@ class Web extends Controller
 
     //************* Web - Kullanıcı ***************** */
 
-    //! UserLogin
+    
+
+    //************* Kullanıcı Giriş ***************** */
+
+    //! Kullanıcı - Giriş
     public function UserLogin($site_lang="tr")
     {
         
@@ -577,12 +581,131 @@ class Web extends Controller
                $DB["seo_keywords"] =  $seo_keywords;
                //! Site Bilgileri Son
 
+                setcookie("userId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("roleId","", time() - 86400,'/'); //! Cookie Silme
+
+
                 return view('web/user/login',$DB);
             } //! Web
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! UserLogin Son
+    } //! Kullanıcı - Giriş Son
+
+    //! Kullanıcı - Giriş Post
+    public function UserLoginPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Veri Arama
+            $DB_Find = DB::table('web_users')
+            ->where('email',$request->email)
+            ->where('password',$request->password)
+            ->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+                
+                $url = ""; //! Yönlendiren Url
+                $url = "/". __('admin.lang')."/user/profile";
+
+                // if($DB_Find->role_id == 1) { $url = "/". __('admin.lang')."/customer/profile"; }
+                // if($DB_Find->role_id == 2) { $url = "/". __('admin.lang')."/company/profile"; }
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'url' =>  $url,
+                    'userId' =>  $DB_Find->id,
+                    'roleId' =>  $DB_Find->role_id,
+                    'error' => null,  
+                );
+
+                return response()->json($response);
+               
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.theEmailPasswordMayBeIncorrect'),
+                    'error' => $th,            
+                );
+        
+                return response()->json($response);
+                
+            }
+            
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Kullanıcı - Giriş Post Son
+
+    //! Kullanıcı - Çıkış
+    public function UserLogout($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                setcookie("userId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("roleId","", time() - 86400,'/'); //! Cookie Silme
+
+                return redirect('/'.__('admin.lang').'/'.'user/login');
+                
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Kullanıcı - Çıkış Son
+
+    //! Kullanıcı - Profil
+    public function UserProfile($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                return view('web/user/profile',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Kullanıcı - Profil Son
+
     
     //! UserCart
     public function UserCart($site_lang="tr")
@@ -671,33 +794,6 @@ class Web extends Controller
 
     } //! UserWishlist Son
                 
-    //! UserDashboard
-    public function UserDashboard($site_lang="tr")
-    {
-        
-        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
 
-        try {
-
-            //! Sayfa Kontrol
-            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
-            else { 
-
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
-
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
-
-                return view('web/user/dashboard',$DB);
-            } //! Web
-        
-        } catch (\Throwable $th) {  throw $th; }
-
-    } //! UserDashboard Son
    
 }

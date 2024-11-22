@@ -17,10 +17,7 @@
                     <ul>
                         <li><a href="/@lang('admin.lang')/error404">Hata 404</a></li>
                         <li><a href="/@lang('admin.lang')/coming-soon">Yakında</a></li>
-                        <li><a href="/@lang('admin.lang')/user/cart">Cart</a></li>
                         <li><a href="/@lang('admin.lang')/user/checkout">Checkout</a></li>
-                        <li><a href="/@lang('admin.lang')/user/wishlist">Wishlist</a></li>
-                        <li><a href="/@lang('admin.lang')/user/dashboard">My Account</a></li>
                         <li><a href="/@lang('admin.lang')/blog-single">Blog Detay</a></li>
                     </ul>
                 </li>

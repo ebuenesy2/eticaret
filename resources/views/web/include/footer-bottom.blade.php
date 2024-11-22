@@ -16,7 +16,7 @@
         <nav class="mobile-nav">
             <ul class="mobile-menu">
                 <li class="active">
-                    <a href="index.html">Home</a>
+                    <a href="/@lang('admin.lang')">@lang('admin.home')</a>
 
                     <ul>
                         <li><a href="index-1.html">01 - furniture store</a></li>
@@ -192,3 +192,16 @@
 
 <!-- Main JS File -->
 <script src="{{asset('/assets')}}/web/js/main.js"></script>
+
+<!--------- Jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<!--- Alert toastr js -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<!-- Sweet Alerts js -->
+<script src="{{asset('/assets/js')}}/sweetalert2/sweetalert2.min.js"></script>
+
+<!------- Controller --->
+<script src="{{asset('/assets/admin')}}/js/00_0_sabit/4_0_controllersToSettingLocalStorage.js"></script>

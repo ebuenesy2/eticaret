@@ -40,11 +40,17 @@ Route::get('/{lang}/error404', [Web::class,'Error404']) -> name("web.error.404")
 Route::get('/{lang}/coming-soon', [Web::class,'ComingSoon']) -> name("web.coming-soon"); //! Web - Yakında
 
 //************* Web - Kullanıcı ***************** */
-Route::get('/{lang}/user/login', [Web::class,'UserLogin']) -> name("web.user.login"); //! Web - Kullanıcı Giriş
+
+//! Giriş
+Route::get('/{lang}/user/login', [Web::class,'UserLogin']) -> name("web.user.login"); //! Web - Kullanıcı - Giriş
+Route::post('/user/login/post', [Web::class,'UserLoginPost']) -> name("web.user.login.post"); //! Web Kullanıcı Giriş - Post
+Route::get('/{lang}/user/logout', [Web::class,'UserLogout']) -> name("web.user.logout"); //! Web - Kullanıcı - Çıkış
+
+Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Profil
+
 Route::get('/{lang}/user/cart', [Web::class,'UserCart']) -> name("web.user.cart"); //! Web - Kullanıcı Kart
 Route::get('/{lang}/user/checkout', [Web::class,'UserCheckout']) -> name("web.user.checkout"); //! Web - Kullanıcı - Checkout
 Route::get('/{lang}/user/wishlist', [Web::class,'UserWishlist']) -> name("web.user.wishlist"); //! Web - Kullanıcı - Wishlist
-Route::get('/{lang}/user/dashboard', [Web::class,'UserDashboard']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Dashboard
 
 //************* Admin Test  ***************** */
 
