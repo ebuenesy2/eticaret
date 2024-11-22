@@ -21,7 +21,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">@lang('admin.home')</a></li>
                         <li class="breadcrumb-item"><a href="#">Products</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Default</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{$seoTitle}}</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->

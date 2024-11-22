@@ -8044,6 +8044,7 @@ class Admin extends Controller
                         'uid' => $time,
                         'img_url' => $request->img_url,
                         'title' => $title,
+                        'seo_url' => SEOLink($title),
                         'created_byId'=>$request->created_byId,
                     ]); //! Veri Ekleme - TR Son
 
@@ -8195,6 +8196,7 @@ class Admin extends Controller
                         ->update([            
                             'img_url' => $request->img_url,
                             'title' => $title,
+                            'seo_url' => SEOLink($title),
                             'isUpdated'=>true,
                             'updated_at'=>Carbon::now(),
                             'updated_byId'=>$request->updated_byId,
@@ -8212,6 +8214,7 @@ class Admin extends Controller
                             'uid' => $request->uid,
                             'img_url' => $request->img_url,
                             'title' => $title,
+                            'seo_url' => SEOLink($title),
                             'created_byId'=>$request->created_byId,
                         ]); //! Veri Ekleme Son
                     }

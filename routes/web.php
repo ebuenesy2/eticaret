@@ -20,7 +20,8 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 
 //************* Web - Ürün ***************** */
 
-Route::get('/{lang}/category', [Web::class,'Category']) -> name("web.category"); //! Web - Kategoriler
+Route::get('/{lang}/product/category', [Web::class,'ProductCategoryList']) -> name("web.product.category"); //! Web - Ürün Kategoriler
+Route::get('/{lang}/product/category/{uid}', [Web::class,'ProductCategoryView']) -> name("web.product.category.view"); //! Web - Ürün Kategorilerdeki Ürünler
 Route::get('/{lang}/product/list', [Web::class,'ProductList']) -> name("web.product"); //! Web - Ürün Listesi
 Route::get('/{lang}/product/view/{uid}', [Web::class,'ProductView']) -> name("web.product.view"); //! Web - Ürün Listesi
 

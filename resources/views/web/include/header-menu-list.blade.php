@@ -8,7 +8,8 @@
         <nav class="main-nav">
             <ul class="menu sf-arrows">
                 <li class="megamenu-container active"><a href="/@lang('admin.lang')" class="active">Anasayfa</a></li>
-                <li class="megamenu-container "><a href="/@lang('admin.lang')/category" class="passive">Tüm Kategoriler</a></li>
+                <li class="megamenu-container "><a href="/@lang('admin.lang')/product/category" class="passive">Tüm Kategoriler</a></li>
+                <li class="megamenu-container "><a href="/@lang('admin.lang')/product/list" class="passive">Tüm Ürünler</a></li>
                 <li class="megamenu-container "><a href="/@lang('admin.lang')/product/list" class="passive">Yeni Ürünler</a></li>
                 <li class="megamenu-container "><a href="/@lang('admin.lang')/category" class="passive">Çok Satanlar</a></li>
                 <li class="megamenu-container "><a href="/@lang('admin.lang')/blog" class="passive">Blog</a></li>

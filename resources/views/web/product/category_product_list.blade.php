@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Ürün Listesi | {{ $DB_HomeSettings->title }} </title>
+    <title> Kategori - {{$seoTitle}}  | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -18,14 +18,14 @@
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
-        			<h1 class="page-title">{{$DB_Products_Title}}</span></h1>
+        			<h1 class="page-title">{{ $DB_Find->title }}</span></h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{$DB_Products_Title}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ $DB_Find->title }}</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -138,9 +138,7 @@
 
                 				<div class="widget widget-collapsible">
     								<h3 class="widget-title">
-									    <a data-toggle="collapse" href="{{asset('/assets')}}/web/#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-									        @lang('admin.category')
-									    </a>
+									    <a> @lang('admin.category') </a>
 									</h3><!-- End .widget-title -->
 
 									<div class="collapse show" id="widget-1">
@@ -150,7 +148,7 @@
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
 														<input type="checkbox" class="custom-control-input" id="cat-1">
-														<label class="custom-control-label" for="cat-1">Dresses</label>
+														<label class="custom-control-label" for="cat-1" checked >{{ $DB_Find->title }}</label>
 													</div><!-- End .custom-checkbox -->
 												</div><!-- End .filter-item -->
 

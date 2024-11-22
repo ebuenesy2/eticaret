@@ -92,7 +92,8 @@
                         </div>
                     </div>
                 </div>
-             
+                   
+                <!--- Kategoriler -->
                 <div class="container">
                     <hr class="m-0">
                     <div class="cat-section mt-4 mb-3">
@@ -102,7 +103,7 @@
                             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-8col">
                                 <div class="cat bg-white pt-1 mb-2">
                                     <div class="cat-image d-flex justify-content-center align-items-center">
-                                        <a href="{{asset('/assets')}}/web/#"><img src="{{$DB_product_categories[$i]->img_url}}" width="137" height="137"></a>
+                                        <a href="/@lang('admin.lang')/product/category/{{$DB_product_categories[$i]->uid}}-{{$DB_product_categories[$i]->seo_url}}"><img src="{{$DB_product_categories[$i]->img_url}}" width="137" height="137"></a>
                                     </div>
                                     <div class="cat-content text-center">
                                         <a href="{{asset('/assets')}}/web/#" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
@@ -110,10 +111,11 @@
                                 </div>
                             </div>
                             @endfor
-                           
+                            
                         </div>
                     </div>
                 </div>
+                <!--- Kategoriler Son -->
 
                 <!--- EDİTÖRÜN ÖNERİSİ -->
                 <div class="flash-section bg-lighter">

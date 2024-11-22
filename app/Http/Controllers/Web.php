@@ -193,8 +193,8 @@ class Web extends Controller
     
     //************* Web - Ürün ***************** */
 
-    //! Category
-    public function Category($site_lang="tr")
+    //! Ürün Kategorisi
+    public function ProductCategoryList($site_lang="tr")
     {
         
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
@@ -206,21 +206,129 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
 
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                
+                //! Ürün Kategorisi
+                $DB_product_categories= DB::table('product_categories')
+                ->orderBy('product_categories.id','desc')
+                ->where('product_categories.lang','=',__('admin.lang'))
+                ->where('product_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_product_categories); die();
+
+                //! Return
+                $DB["DB_product_categories"] =  $DB_product_categories;
+                //! Ürün Kategorisi Son
 
                 return view('web/product/category',$DB);
             } //! Web
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! Category Son
+    } //! Ürün Kategorisi Son
+
+    //! Ürün Kategorisi - Ürün Listesi
+    public function ProductCategoryView($site_lang="tr",$seo_url)
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
+
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                //! Uid
+                $dizi=explode("-",$seo_url); //! Parçıyor
+                $uid = $dizi[0]; //! uid
+                //echo "uid:"; echo $uid; die(); //! uid
+
+                //! Ürün Kategori Verileri
+                $DB_Find= DB::table('product_categories')
+                ->where('product_categories.lang','=',__('admin.lang'))
+                ->where('product_categories.uid','=',$uid)->first();
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB["DB_Find"] =  $DB_Find;
+                $DB["seoTitle"] =  $DB_Find->seo_url;
+                //! Ürün Kategori Verileri Son
+
+                //! Params - Url Veri Alma
+                // ?page=10&rowcount=10&order=desc
+
+                $page = request('page'); //! Sayfa Numarası
+                $rowcount = request('rowcount') ? request('rowcount') : 20; //! Sayfada Gösterecek Veri Sayısı
+                $orderBy = request('orderBy') ? request('orderBy') : "products.uid";  //! Sıralama Türü
+                $order = request('order') ? request('order') : "desc";  //! Sıralama [asc = Küçükten -> Büyüğe] [ desc = Büyükten -> Küçüğe ]
+                //echo "orderBy: "; echo $orderBy; die();
+
+                //! Sayfada veri gösterme sayısı hesaplama
+                if($page) {
+                    $page = $page - 1; //! Sayfa Numarası
+                    if($page <= 0) { $page = 0; }
+                } else { $page = 0; }
+
+                    
+                //! Ürünler Listesi Kontrol
+                $DB_Products= DB::table('products')
+                ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->where('products.lang','=',__('admin.lang'))
+                ->where('products.category','=',$uid)
+                ->where('products.isActive','=',1);
+
+                //! Sayfa Sayısı Hesaplama
+                $DB_Count = $DB_Products->count(); //! Veri Sayısı
+                $pageNow = $page+1; //! Bulunduğu Sayfa
+                $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
+                //echo "pageTop: "; echo $pageTop; die();
+                
+                //! Ürün Listesi
+                $DB_Products_List = $DB_Products
+                ->skip($page)->take($rowcount)
+                ->orderBy($orderBy,$order)
+                ->get();
+                //echo "<pre>"; print_r($DB_Products_List); die();
+
+                //! Return
+                $DB["page"] =  $page; //! Params Sayfa Sayısı
+                $DB["rowcount"] =  $rowcount; //! Params Sayfada Gösterilecek Veri Sayısı
+                $DB["orderBy"] =  $orderBy; //! Params Sıralama Türü
+                $DB["order"] =  $order; //! Params Sıralama
+                
+                $DB["pageNow"] =  $pageNow; //! Şimdiki Sayfa
+                $DB["pageTop"] =  $pageTop; //! Toplam Sayfa
+                $DB["DB_Count"] =  $DB_Count; //! Toplam Ürün Sayısı
+
+                $DB["DB_Products"] =  $DB_Products_List; //! Toplam Ürün Listesi
+                $DB["DB_Products_Count"] =  count($DB_Products_List); //! Gösterilen Ürün Sayısı
+                //! Ürünler Listesi Kontrol - Son
+
+                return view('web/product/category_product_list',$DB);
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Ürün Kategorisi -Ürün Listesi Son
 
     //! Ürün Listesi
     public function ProductList($site_lang="tr")
@@ -291,6 +399,7 @@ class Web extends Controller
                 $DB["pageTop"] =  $pageTop; //! Toplam Sayfa
                 $DB["DB_Count"] =  $DB_Count; //! Toplam Ürün Sayısı
 
+                $DB["DB_Products_Title"] =  "Yeni Ürünler";
                 $DB["DB_Products"] =  $DB_Products_List; //! Toplam Ürün Listesi
                 $DB["DB_Products_Count"] =  count($DB_Products_List); //! Gösterilen Ürün Sayısı
                 //! Ürünler Listesi Kontrol - Son
