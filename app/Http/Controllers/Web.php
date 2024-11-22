@@ -214,7 +214,6 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
-
                 
                 //! Ürün Kategorisi
                 $DB_product_categories= DB::table('product_categories')
@@ -351,6 +350,17 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
+
+                //! Ürün Kategorisi
+                $DB_product_categories= DB::table('product_categories')
+                ->orderBy('product_categories.id','desc')
+                ->where('product_categories.lang','=',__('admin.lang'))
+                ->where('product_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_product_categories); die();
+
+                //! Return
+                $DB["DB_product_categories"] =  $DB_product_categories;
+                //! Ürün Kategorisi Son
 
                 //! Params - Url Veri Alma
                 // ?page=10&rowcount=10&order=desc

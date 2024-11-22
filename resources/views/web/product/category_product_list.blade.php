@@ -147,8 +147,8 @@
 
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-1">
-														<label class="custom-control-label" for="cat-1" checked >{{ $DB_Find->title }}</label>
+														<input type="checkbox" class="custom-control-input" id="cat-1" checked>
+														<label class="custom-control-label" for="cat-1"  >{{ $DB_Find->title }}</label>
 													</div><!-- End .custom-checkbox -->
 												</div><!-- End .filter-item -->
 

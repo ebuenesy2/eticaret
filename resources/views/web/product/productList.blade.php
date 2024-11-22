@@ -147,14 +147,20 @@
 										<div class="widget-body">
 											<div class="filter-items filter-items-count">
 
+												@for ($i = 0; $i < count($DB_product_categories); $i++)
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="cat-1">
-														<label class="custom-control-label" for="cat-1">Dresses</label>
+														<input type="checkbox" class="custom-control-input" id="{{$DB_product_categories[$i]->uid}}"  >
+														<label class="custom-control-label" for="{{$DB_product_categories[$i]->uid}}">{{$DB_product_categories[$i]->title}}</label>
 													</div><!-- End .custom-checkbox -->
 												</div><!-- End .filter-item -->
+												@endfor
 
 											</div><!-- End .filter-items -->
+											
+											<hr>
+											<button type="button" style="width: 100%;background-color: green;color: white;" >Ara</button>
+
 										</div><!-- End .widget-body -->
 									</div><!-- End .collapse -->
         						</div><!-- End .widget -->

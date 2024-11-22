@@ -43,8 +43,6 @@
 
                 <ul class="widget-list">
                     <li><a href="/@lang('admin.lang')/user/login">Giriş Yap</a></li>
-                    <li><a href="/@lang('admin.lang')/user/wishlist">Siparişler</a></li>
-                    <li><a href="/@lang('admin.lang')/user/wishlist">İstek Listesi</a></li>
                 </ul><!-- End .widget-list -->
             </div><!-- End .widget -->
         </div><!-- End .col-sm-6 col-lg-3 -->

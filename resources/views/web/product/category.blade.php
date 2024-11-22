@@ -29,7 +29,7 @@
                                 <a href="/@lang('admin.lang')/product/category/{{$DB_product_categories[$i]->uid}}-{{$DB_product_categories[$i]->seo_url}}"><img src="{{$DB_product_categories[$i]->img_url}}" width="137" height="137"></a>
                             </div>
                             <div class="cat-content text-center">
-                                <a href="{{asset('/assets')}}/web/#" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
+                                <a href="/@lang('admin.lang')/product/category/{{$DB_product_categories[$i]->uid}}-{{$DB_product_categories[$i]->seo_url}}" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
                             </div>
                         </div>
                     </div>

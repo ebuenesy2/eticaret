@@ -82,8 +82,7 @@
                                     <h3 class="intro-desc mb-2 font-weight-light text-secondary">{!!$DB_Slider[$i]->description!!}</h3>
                                     
                                     @if($DB_Slider[$i]->url !="" )
-                                    <a href="{{asset('/assets')}}/web/#" class="btn btn-primary text-uppercase">{{$DB_Slider[$i]->url}}
-                                    </a>
+                                    <a href="{{$DB_Slider[$i]->url}}" class="btn btn-primary text-uppercase">{{$DB_Slider[$i]->url}}</a>
                                     @endif
                                 </div>
                             </div>
@@ -106,7 +105,7 @@
                                         <a href="/@lang('admin.lang')/product/category/{{$DB_product_categories[$i]->uid}}-{{$DB_product_categories[$i]->seo_url}}"><img src="{{$DB_product_categories[$i]->img_url}}" width="137" height="137"></a>
                                     </div>
                                     <div class="cat-content text-center">
-                                        <a href="{{asset('/assets')}}/web/#" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
+                                        <a href="/@lang('admin.lang')/product/category/{{$DB_product_categories[$i]->uid}}-{{$DB_product_categories[$i]->seo_url}}" class="cat-title">{{$DB_product_categories[$i]->title}}</a>
                                     </div>
                                 </div>
                             </div>
