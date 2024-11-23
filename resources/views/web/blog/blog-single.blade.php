@@ -97,10 +97,10 @@
                                         <div class="col-md-auto mt-2 mt-md-0">
                                             <div class="social-icons social-icons-color">
                                                 <span class="social-label">Share this post:</span>
-                                                <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                                <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                                <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
-                                                <a href="#" class="social-icon social-linkedin" title="Linkedin" target="_blank"><i class="icon-linkedin"></i></a>
+                                                <a href="#" class="social-icon social-facebook" title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                                <a href="#" class="social-icon social-twitter" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                                <a href="#" class="social-icon social-pinterest" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
+                                                <a href="#" class="social-icon social-linkedin" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                             </div><!-- End .soial-icons -->
                                         </div><!-- End .col-auto -->
                                     </div><!-- End .entry-footer row no-gutters -->
@@ -119,7 +119,7 @@
                                                 <h4><a href="#">John Doe</a></h4>
                                             </div><!-- End .col -->
                                             <div class="col-auto mt-1 mt-md-0">
-                                                <a href="#" class="author-link">View all posts by John Doe <i class="icon-long-arrow-right"></i></a>
+                                                <a href="#" class="author-link">View all posts by John Doe <i class="fa fa-long-arrow-right"></i></a>
                                             </div><!-- End .col -->
                                         </div><!-- End .row -->
 
@@ -360,7 +360,7 @@
 
                                     <button type="submit" class="btn btn-outline-primary-2">
                                         <span>POST COMMENT</span>
-                                        <i class="icon-long-arrow-right"></i>
+                                        <i class="fa fa-long-arrow-right"></i>
                                     </button>
                                 </form>
                             </div><!-- End .reply -->
@@ -374,7 +374,7 @@
                                     <form action="#">
                                         <label for="ws" class="sr-only">Search in blog</label>
                                         <input type="search" class="form-control" name="ws" id="ws" placeholder="Search in blog" required>
-                                        <button type="submit" class="btn"><i class="icon-search"></i><span class="sr-only">Search</span></button>
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i><span class="sr-only">Search</span></button>
                                     </form>
                 				</div><!-- End .widget -->
 

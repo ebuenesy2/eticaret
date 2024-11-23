@@ -52,10 +52,10 @@
               <!--- List -->
               <div class="widget red">
                   <div class="widget-title">
-                    <h4><i class="icon-edit"></i> {{$listTitle}} </h4>
+                    <h4><i class="fa fa-edit"></i> {{$listTitle}} </h4>
                     <span class="tools">
-                        <a href="javascript:;" class="icon-chevron-down"></a>
-                        <a href="javascript:;" class="icon-remove"></a>
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                        <a href="javascript:;" class="fa fa-remove"></a>
                     </span>
                   </div>
                   <div class="widget-body">
@@ -66,7 +66,7 @@
 
                           <!-- Modal -->
                           <button class="btn btn-success" href="#addModal" role="button" data-toggle="modal" >
-                            <i class="icon-plus icon-white"></i> @lang('admin.newAdd')  
+                            <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
                           </button>
                           <!-- Modal Son -->
 
@@ -149,8 +149,8 @@
                                   <td>
                                     <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_uid="{{$dbFind[$i]->uid}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_uid="{{$dbFind[$i]->uid}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_uid="{{$dbFind[$i]->uid}}" ><i data_uid="{{$dbFind[$i]->uid}}" class=" icon-copy"></i></button>
-                                    <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" ><i data_uid="{{$dbFind[$i]->uid}}" class="icon-pencil"></i></button>
-                                    <button class="btn btn-danger" id="deleteItem" data_uid="{{$dbFind[$i]->uid}}"><i data_uid="{{$dbFind[$i]->uid}}" class="icon-trash "></i></button>
+                                    <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" ><i data_uid="{{$dbFind[$i]->uid}}" class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger" id="deleteItem" data_uid="{{$dbFind[$i]->uid}}"><i data_uid="{{$dbFind[$i]->uid}}" class="fa fa-trash "></i></button>
                                   </td>
                               </tr>
                               @endfor

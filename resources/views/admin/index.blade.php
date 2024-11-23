@@ -53,10 +53,10 @@
                      <!-- BEGIN BLANK PAGE PORTLET-->
                      <div class="widget red">
                          <div class="widget-title">
-                             <h4><i class="icon-edit"></i> Blank Page </h4>
+                             <h4><i class="fa fa-edit"></i> Blank Page </h4>
                            <span class="tools">
-                               <a href="javascript:;" class="icon-chevron-down"></a>
-                               <a href="javascript:;" class="icon-remove"></a>
+                               <a href="javascript:;" class="fa fa-chevron-down"></a>
+                               <a href="javascript:;" class="fa fa-remove"></a>
                            </span>
                          </div>
                          <div class="widget-body">

@@ -2069,7 +2069,7 @@ blockquote {
   transition: color 0.35s; }
   .mmenu-btn::after {
     font-family: "arial";
-    content: '\f110';
+    content: '>';
     display: inline-block; }
   .mmenu-btn:hover, .mmenu-btn:focus {
     color: #cc9966; }

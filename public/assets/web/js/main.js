@@ -236,8 +236,8 @@ $(document).ready(function () {
     function quantityInputs() {
         if ( $.fn.inputSpinner ) {
             $("input[type='number']").inputSpinner({
-                decrementButton: '<i class="icon-minus"></i>',
-                incrementButton: '<i class="icon-plus"></i>',
+                decrementButton: '<i class="fa fa-minus"></i>',
+                incrementButton: '<i class="fa fa-plus"></i>',
                 groupClass: 'input-spinner',
                 buttonsClass: 'btn-spinner',
                 buttonsWidth: '26px'
@@ -262,7 +262,7 @@ $(document).ready(function () {
                 margin: 0,
                 responsiveClass: true,
                 nav: true,
-                navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+                navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
                 dots: true,
                 smartSpeed: 400,
                 autoplay: false,
@@ -347,7 +347,7 @@ $(document).ready(function () {
             margin: 0,
             responsiveClass: true,
             nav: true,
-            navText: ['<i class="icon-angle-left">', '<i class="icon-angle-right">'],
+            navText: ['<i class="fa fa-angle-left">', '<i class="fa fa-angle-right">'],
             dots: false,
             smartSpeed: 400,
             autoplay: false,

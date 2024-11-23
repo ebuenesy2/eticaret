@@ -62,11 +62,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i>  @lang('admin.add') - @lang('admin.information')  </h4>
+                            <h4><i class="fa fa-edit"></i>  @lang('admin.add') - @lang('admin.information')  </h4>
                             <div id='loaderAdd' lang="tr" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -149,11 +149,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.add') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.add') </h4>
                             <div id='loaderAdd' lang="tr" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -215,11 +215,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget blue">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.add') En </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.add') En </h4>
                             <div  id='loaderAdd' lang="en" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                             <span class="tools">
-                                <a href="javascript:;" class="icon-chevron-down"></a>
-                                <a href="javascript:;" class="icon-remove"></a>
+                                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <a href="javascript:;" class="fa fa-remove"></a>
                             </span>
                         </div>
                         <div class="widget-body">
@@ -279,11 +279,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget yellow">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.add') De </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.add') De </h4>
                             <div  id='loaderAdd' lang="de" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">

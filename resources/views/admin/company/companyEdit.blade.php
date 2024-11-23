@@ -52,13 +52,13 @@
                     <!-- İşlemler -->
                     <ul class="breadcrumb">
                         <li>
-                            <button class="btn btn-warning" id="edit_item" ><i class="icon-save "></i></button>
+                            <button class="btn btn-warning" id="edit_item" ><i class="fa fa-save "></i></button>
                         </li>
                         <li>
                           <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$DB_Find->id}}" ><i data_id="{{$DB_Find->id}}" class=" icon-copy"></i></button>
                         </li>
                         <li>
-                          <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="icon-trash "></i></button>
+                          <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="fa fa-trash "></i></button>
                         </li>
                     </ul>
                     <!-- İşlemler Son -->
@@ -72,10 +72,10 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.companyInformation') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.companyInformation') </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -122,10 +122,10 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget blue">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.authorizedPerson') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.authorizedPerson') </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -175,10 +175,10 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget green">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.address') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.address') </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">

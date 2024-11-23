@@ -31,7 +31,7 @@
             		<p>We are sorry, the page you've requested is not available.</p>
             		<a href="index.html" class="btn btn-outline-primary-2 btn-minwidth-lg">
             			<span>BACK TO HOMEPAGE</span>
-            			<i class="icon-long-arrow-right"></i>
+            			<i class="fa fa-long-arrow-right"></i>
             		</a>
             	</div><!-- End .container -->
         	</div><!-- End .error-content text-center -->

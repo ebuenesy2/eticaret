@@ -335,14 +335,14 @@
                                 <ul class="pagination">
                                     <li class="page-item disabled">
                                         <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                                            <span aria-hidden="true"><i class="fa fa-long-arrow-left"></i></span>Prev
                                         </a>
                                     </li>
                                     <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                                     <li class="page-item">
                                         <a class="page-link page-link-next" href="#" aria-label="Next">
-                                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                                            Next <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
                                         </a>
                                     </li>
                                 </ul>
@@ -357,7 +357,7 @@
                                     <form action="#">
                                         <label for="ws" class="sr-only">Search in blog</label>
                                         <input type="search" class="form-control" name="ws" id="ws" placeholder="Search in blog" required>
-                                        <button type="submit" class="btn"><i class="icon-search"></i><span class="sr-only">Search</span></button>
+                                        <button type="submit" class="btn"><i class="fa fa-search"></i><span class="sr-only">Search</span></button>
                                     </form>
                 				</div><!-- End .widget -->
 

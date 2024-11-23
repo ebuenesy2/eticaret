@@ -69,7 +69,7 @@
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col">$84.00</td>
-											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+											<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
 										</tr>
 										<tr>
 											<td class="product-col">
@@ -92,7 +92,7 @@
                                                 </div><!-- End .cart-product-quantity -->                                 
                                             </td>
 											<td class="total-col">$76.00</td>
-											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+											<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
 										</tr>
 									</tbody>
 								</table><!-- End .table table-wishlist -->
@@ -103,13 +103,13 @@
 			            					<div class="input-group">
 				        						<input type="text" class="form-control" required placeholder="coupon code">
 				        						<div class="input-group-append">
-													<button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
+													<button class="btn btn-outline-primary-2" type="submit"><i class="fa fa-long-arrow-right"></i></button>
 												</div><!-- .End .input-group-append -->
 			        						</div><!-- End .input-group -->
 			            				</form>
 			            			</div><!-- End .cart-discount -->
 
-			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="fa fa-refresh"></i></a>
 		            			</div><!-- End .cart-bottom -->
 	                		</div><!-- End .col-lg-9 -->
 	                		<aside class="col-lg-3">
@@ -172,7 +172,7 @@
 	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 	                			</div><!-- End .summary -->
 
-		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="fa fa-refresh"></i></a>
 	                		</aside><!-- End .col-lg-3 -->
 	                	</div><!-- End .row -->
 	                </div><!-- End .container -->

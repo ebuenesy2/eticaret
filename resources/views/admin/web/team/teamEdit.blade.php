@@ -55,7 +55,7 @@
                         <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$DB_Find->id}}" ><i data_id="{{$DB_Find->id}}" class=" icon-copy"></i></button>
                     </li>
                     <li>
-                        <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="icon-trash "></i></button>
+                        <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="fa fa-trash "></i></button>
                     </li>
                 </ul>
                 <!-- İşlemler Son -->
@@ -70,11 +70,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.image') - @lang('admin.edit')  </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.image') - @lang('admin.edit')  </h4>
                             <div id='loaderEdit' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -162,11 +162,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget green">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.edit') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.edit') </h4>
                             <div id='loaderEdit' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">

@@ -68,12 +68,12 @@
 
 								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
 								    	<p>No order has been made yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="fa fa-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
 								    	<p>No downloads available yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="fa fa-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
@@ -91,7 +91,7 @@
 														New York, NY 10001<br>
 														1-234-987-6543<br>
 														yourmail@mail.com<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+														<a href="#">Edit <i class="fa fa-edit"></i></a></p>
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -102,7 +102,7 @@
 								    					<h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
 
 														<p>You have not set up this type of address yet.<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+														<a href="#">Edit <i class="fa fa-edit"></i></a></p>
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -141,7 +141,7 @@
 
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>
-			            						<i class="icon-long-arrow-right"></i>
+			            						<i class="fa fa-long-arrow-right"></i>
 			                				</button>
 			                			</form>
 								    </div><!-- .End .tab-pane -->

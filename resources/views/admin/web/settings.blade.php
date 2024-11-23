@@ -57,10 +57,10 @@
                     <!-- Web -->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> Web </h4>
+                            <h4><i class="fa fa-edit"></i> Web </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -97,10 +97,10 @@
                     <!-- Sosyal Ağ -->
                     <div class="widget blue">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.socialMedia') </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.socialMedia') </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -192,10 +192,10 @@
                     <!-- Web -->
                     <div class="widget green">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> Seo </h4>
+                            <h4><i class="fa fa-edit"></i> Seo </h4>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">

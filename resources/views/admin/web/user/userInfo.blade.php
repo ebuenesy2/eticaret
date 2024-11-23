@@ -55,7 +55,7 @@
                     <!-- İşlemler -->
                     <ul class="breadcrumb">
                         <li>
-                          <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="icon-trash "></i></button>
+                          <button class="btn btn-danger" id="deleteItem" data_id="{{$DB_Find->id}}"><i data_id="{{$DB_Find->id}}" class="fa fa-trash "></i></button>
                         </li>
                     </ul>
                     <!-- İşlemler Son -->
@@ -177,7 +177,7 @@
                                                 <div class="widget-title">
                                                     <h4>@lang('admin.resetMyPassword')</h4>
                                                     <span class="tools">
-                                                        <a class="icon-chevron-down" href="javascript:;"></a>
+                                                        <a class="fa fa-chevron-down" href="javascript:;"></a>
                                                     </span>
                                                 </div>
                                                 <div class="widget-body ">
@@ -215,7 +215,7 @@
                                                 <div class="widget-title">
                                                     <h4>@lang('admin.editEmail')</h4>
                                                     <span class="tools">
-                                                        <a class="icon-chevron-down" href="javascript:;"></a>
+                                                        <a class="fa fa-chevron-down" href="javascript:;"></a>
                                                     </span>
                                                 </div>
                                                 <div class="widget-body ">
@@ -239,7 +239,7 @@
                                                 <div class="widget-title">
                                                     <h4>Profil Resmi Güncelle </h4>
                                                     <span class="tools">
-                                                        <a class="icon-chevron-down" href="javascript:;"></a>
+                                                        <a class="fa fa-chevron-down" href="javascript:;"></a>
                                                     </span>
                                                 </div>
                                                 <div class="widget-body form">
@@ -311,7 +311,7 @@
                                         <div class="widget">
                                             <div class="widget-title">
                                                 <h4></i> @lang('admin.authorizationList')</h4>
-                                                <span class="tools"><a href="javascript:;" class="icon-chevron-down"></a></span>
+                                                <span class="tools"><a href="javascript:;" class="fa fa-chevron-down"></a></span>
                                             </div>
                                             <div class="widget-body">
                                                 <ul>

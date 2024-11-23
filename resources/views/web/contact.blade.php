@@ -44,15 +44,15 @@
 
                 						<ul class="contact-list">
                 							<li>
-                								<i class="icon-map-marker"></i>
+                								<i class="fa fa-map-marker"></i>
 	                							70 Washington Square South New York, NY 10012, United States
 	                						</li>
                 							<li>
-                								<i class="icon-phone"></i>
+                								<i class="fa fa-phone"></i>
                 								<a href="{{asset('/assets')}}/web/tel:#">+92 423 567</a>
                 							</li>
                 							<li>
-                								<i class="icon-envelope"></i>
+                								<i class="fa fa-envelope"></i>
                 								<a href="{{asset('/assets')}}/web/mailto:#">info@Yıldırımdev.com</a>
                 							</li>
                 						</ul><!-- End .contact-list -->
@@ -65,11 +65,11 @@
 
                 						<ul class="contact-list">
                 							<li>
-                								<i class="icon-clock-o"></i>
+                								<i class="fa fa-clock-o"></i>
 	                							<span class="text-dark">Monday-Saturday</span> <br>11am-7pm ET
 	                						</li>
                 							<li>
-                								<i class="icon-calendar"></i>
+                								<i class="fa fa-calendar"></i>
                 								<span class="text-dark">Sunday</span> <br>11am-6pm ET
                 							</li>
                 						</ul><!-- End .contact-list -->
@@ -111,7 +111,7 @@
 
                 				<button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                 					<span>SUBMIT</span>
-            						<i class="icon-long-arrow-right"></i>
+            						<i class="fa fa-long-arrow-right"></i>
                 				</button>
                 			</form><!-- End .contact-form -->
                 		</div><!-- End .col-lg-6 -->
@@ -141,7 +141,7 @@
                 								<div>Monday - Saturday 11am to 7pm</div>
                 								<div>Sunday 11am to 6pm</div>
 
-                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="icon-long-arrow-right"></i></a>
+                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="fa fa-long-arrow-right"></i></a>
 	                						</div><!-- End .store-content -->
 	                					</div><!-- End .col-xl-6 -->
 	                				</div><!-- End .row -->
@@ -168,7 +168,7 @@
 												<div>Saturday - 9am to 2pm</div>
 												<div>Sunday - Closed</div>
 
-                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="icon-long-arrow-right"></i></a>
+                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="fa fa-long-arrow-right"></i></a>
 	                						</div><!-- End .store-content -->
 	                					</div><!-- End .col-xl-6 -->
 	                				</div><!-- End .row -->

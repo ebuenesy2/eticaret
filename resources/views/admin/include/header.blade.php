@@ -4,7 +4,7 @@
            <div class="container-fluid">
                <!--BEGIN SIDEBAR TOGGLE-->
                <div class="sidebar-toggle-box hidden-phone">
-                   <div class="icon-reorder tooltips" data-placement="right" ></div>
+                   <div class="fa fa-reorder tooltips" data-placement="right" ></div>
                </div>
                <!--END SIDEBAR TOGGLE-->
                <!-- BEGIN LOGO -->
@@ -14,9 +14,9 @@
                <!-- END LOGO -->
                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
                <a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
+                   <span class="fa fa-bar"></span>
+                   <span class="fa fa-bar"></span>
+                   <span class="fa fa-bar"></span>
                    <span class="arrow"></span>
                </a>
                <div class="top-nav ">
@@ -31,12 +31,12 @@
                            <ul class="dropdown-menu extended logout">
                                
                                @if($CookieData['yildirimdev_userID'] == '0')
-                               <li><a><i class="icon-user"></i>Yıldırımdev</a></li>
+                               <li><a><i class="fa fa-user"></i>Yıldırımdev</a></li>
                                @else
-                               <li><a href="/@lang('admin.lang')/admin/info/{{$CookieData['yildirimdev_userID']}}" ><i class="icon-user"></i>@lang('admin.myProfile')</a></li>
+                               <li><a href="/@lang('admin.lang')/admin/info/{{$CookieData['yildirimdev_userID']}}" ><i class="fa fa-user"></i>@lang('admin.myProfile')</a></li>
                                @endif
 
-                               <li><a href="/@lang('admin.lang')/admin/login"><i class="icon-key"></i>@lang('admin.logout')</a></li>
+                               <li><a href="/@lang('admin.lang')/admin/login"><i class="fa fa-key"></i>@lang('admin.logout')</a></li>
                            </ul>
                        </li>
                        <!-- END USER LOGIN DROPDOWN -->

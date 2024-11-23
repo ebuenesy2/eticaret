@@ -53,12 +53,12 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> @lang('admin.image') - @lang('admin.edit')  </h4>
+                            <h4><i class="fa fa-edit"></i> @lang('admin.image') - @lang('admin.edit')  </h4>
                             <div id='loaderEdit_img' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                             <div id='loaderAdd' lang="tr" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">
@@ -140,11 +140,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> {{$institutional_title}} </h4>
+                            <h4><i class="fa fa-edit"></i> {{$institutional_title}} </h4>
                             <div id='loaderEdit' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">  
@@ -174,11 +174,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget blue">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> {{$institutional_title}} EN </h4>
+                            <h4><i class="fa fa-edit"></i> {{$institutional_title}} EN </h4>
                             <div id='loaderEdit2' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">  
@@ -205,11 +205,11 @@
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget yellow">
                         <div class="widget-title">
-                            <h4><i class="icon-edit"></i> {{$institutional_title}} DE </h4>
+                            <h4><i class="fa fa-edit"></i> {{$institutional_title}} DE </h4>
                             <div id='loaderEdit3' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
                         <span class="tools">
-                            <a href="javascript:;" class="icon-chevron-down"></a>
-                            <a href="javascript:;" class="icon-remove"></a>
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
                         </span>
                         </div>
                         <div class="widget-body">  
