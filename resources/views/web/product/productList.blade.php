@@ -47,11 +47,11 @@
                 						<div class="select-custom">
 
                                             <!-- Sıralama -->
-											<select name="sortby" id="sortby" class="form-control" onchange="javascript:orderByData(this)">
-												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=desc" {{$orderBy == 'products.uid' && $order == 'desc' ? 'selected' : ''}} >En Yeniler</option>
-												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=asc" {{$orderBy == 'products.uid' && $order == 'asc' ? 'selected' : ''}}>En Eskiler</option>
-												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=asc" {{$orderBy == 'products.sale_price' && $order == 'asc' ? 'selected' : ''}} >Artan Fiyat</option>
-												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=desc" {{$orderBy == 'products.sale_price' && $order == 'desc' ? 'selected' : ''}} >Azalan Fiyat</option>
+											<select name="sortby" id="sortby" class="form-control" onchange="javascript:orderByData(this)" style="cursor: pointer;">
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=desc&categories={{$categories}}" {{$orderBy == 'products.uid' && $order == 'desc' ? 'selected' : ''}} >En Yeniler</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.uid&order=asc&categories={{$categories}}" {{$orderBy == 'products.uid' && $order == 'asc' ? 'selected' : ''}}>En Eskiler</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=asc&categories={{$categories}}" {{$orderBy == 'products.sale_price' && $order == 'asc' ? 'selected' : ''}} >Artan Fiyat</option>
+												<option value="?page=1&rowcount={{$rowcount}}&orderBy=products.sale_price&order=desc&categories={{$categories}}" {{$orderBy == 'products.sale_price' && $order == 'desc' ? 'selected' : ''}} >Azalan Fiyat</option>
 											</select>
                                             
                                             <script type="text/javascript">
@@ -112,17 +112,17 @@
 							    <ul class="pagination justify-content-center" >
                                     
 							        <li class="page-item" style="{{$pageTop > 1 && $pageNow != 1 ? '' : 'display:none;'}}">
-							            <a class="page-link page-link-prev" href="?page={{$pageNow-1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}" aria-label="Öncesi" tabindex="-1" aria-disabled="true">
+							            <a class="page-link page-link-prev" href="?page={{$pageNow-1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}&categories={{$categories}}" aria-label="Öncesi" tabindex="-1" aria-disabled="true">
 							                <span aria-hidden="true"><i class="fa fa-long-arrow-left"></i></span>Öncesi
 							            </a>
 							        </li>
                                     
                                     @for ($i = 1; $i < $pageTop+1; $i++)
-							        <li class="page-item {{$i==$pageNow ? 'active': ''}} "><a class="page-link" href="?page={{$i}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}">{{$i}}</a></li>
+							        <li class="page-item {{$i==$pageNow ? 'active': ''}} "><a class="page-link" href="?page={{$i}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}&categories={{$categories}}">{{$i}}</a></li>
                                     @endfor
 							       
 							        <li class="page-item"  style="{{$pageTop > 1 && $pageTop != $pageNow ? '' : 'display:none;'}}" >
-							            <a class="page-link page-link-next" href="?page={{$pageNow+1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}" aria-label="Sonrası">
+							            <a class="page-link page-link-next" href="?page={{$pageNow+1}}&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}&categories={{$categories}}" aria-label="Sonrası">
 							                Sonrası <span aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
 							            </a>
 							        </li>
@@ -150,7 +150,7 @@
 												@for ($i = 0; $i < count($DB_product_categories); $i++)
 												<div class="filter-item">
 													<div class="custom-control custom-checkbox">
-														<input type="checkbox" class="custom-control-input" id="{{$DB_product_categories[$i]->uid}}"  >
+														<input type="checkbox" class="custom-control-input" name="product_categories" id="{{$DB_product_categories[$i]->uid}}" value="{{$DB_product_categories[$i]->uid}}"  {{ in_array($DB_product_categories[$i]->uid, $dizi_categories) ? 'checked' : '' }} >
 														<label class="custom-control-label" for="{{$DB_product_categories[$i]->uid}}">{{$DB_product_categories[$i]->title}}</label>
 													</div><!-- End .custom-checkbox -->
 												</div><!-- End .filter-item -->
@@ -159,7 +159,7 @@
 											</div><!-- End .filter-items -->
 											
 											<hr>
-											<button type="button" style="width: 100%;background-color: green;color: white;" >Ara</button>
+											<button type="button" id="filtereleControl" data_url="?page=1&rowcount={{$rowcount}}&orderBy={{$orderBy}}&order={{$order}}" style="width: 100%;background-color: green;color: white;" >Ara</button>
 
 										</div><!-- End .widget-body -->
 									</div><!-- End .collapse -->
@@ -194,6 +194,9 @@
              
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+	
+    <!------- JS --->
+    <script src="{{asset('/assets/web')}}/js/product/product_actions_web.js"></script>
 
 </body>
 

@@ -369,8 +369,18 @@ class Web extends Controller
                 $rowcount = request('rowcount') ? request('rowcount') : 20; //! Sayfada Gösterecek Veri Sayısı
                 $orderBy = request('orderBy') ? request('orderBy') : "products.uid";  //! Sıralama Türü
                 $order = request('order') ? request('order') : "desc";  //! Sıralama [asc = Küçükten -> Büyüğe] [ desc = Büyükten -> Küçüğe ]
-                //echo "orderBy: "; echo $orderBy; die();
+                //echo "order: "; echo $order; die();
 
+                //! Kategoriler
+                $categories = request('categories') ? request('categories') : "";  //! Params - Kategoriler
+                $dizi_categories=explode("_",$categories);
+                //echo "categories: "; echo $categories; die();
+                //echo "<pre>"; print_r($dizi_categories); die();
+
+                $DB["categories"] =  $categories;
+                $DB["dizi_categories"] =  $dizi_categories;
+                //! Kategoriler Son
+                
                 //! Sayfada veri gösterme sayısı hesaplama
                 if($page) {
                     $page = $page - 1; //! Sayfa Numarası
@@ -383,8 +393,9 @@ class Web extends Controller
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->select('products.*', 'product_categories.title as CategoryTitle')
                 ->where('products.lang','=',__('admin.lang'))
-                ->where('products.new_product','=',1)
                 ->where('products.isActive','=',1);
+
+                if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
 
                 //! Sayfa Sayısı Hesaplama
                 $DB_Count = $DB_Products->count(); //! Veri Sayısı
