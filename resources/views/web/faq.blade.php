@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Faq | {{ $DB_HomeSettings->title }} </title>
+    <title> @lang('admin.frequentlyAskedQuestions') | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -18,15 +18,14 @@
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
-        			<h1 class="page-title">F.A.Q<span>Pages</span></h1>
+        			<h1 class="page-title">@lang('admin.frequentlyAskedQuestions')</h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                        <li class="breadcrumb-item active" aria-current="page">@lang('admin.frequentlyAskedQuestions')</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -206,6 +205,7 @@
 					        </div><!-- End .collapse -->
 					    </div><!-- End .card -->
 					</div><!-- End .accordion -->
+					
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->

@@ -560,6 +560,7 @@ class Web extends Controller
                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                $DB["seo_keywords"] =  $seo_keywords;
                //! Site Bilgileri Son
+               
 
                 return view('web/faq',$DB);
             } //! Web

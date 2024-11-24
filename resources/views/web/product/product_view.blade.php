@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Urun - {{$seoTitle}}  | {{ $DB_HomeSettings->title }} </title>
+    <title> @lang('admin.product') - {{$seoTitle}}  | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -20,7 +20,7 @@
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                        <li class="breadcrumb-item"><a href="#">Kategori Olacak</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{$seoTitle}}</li>
                     </ol>
                 </div><!-- End .container -->

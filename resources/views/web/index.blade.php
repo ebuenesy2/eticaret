@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>Yıldırımdev - Bootstrap eCommerce Template</title>
+    <title> @lang('admin.home') | {{ $DB_HomeSettings->title }} </title>
 
     <script>
         WebFontConfig = {
