@@ -6861,7 +6861,8 @@ a:focus {
       min-width: 17px;
       margin-right: 2.4rem; }
     .card-title a:before {
-      content: '\e802';
+      content: '>';
+      transform: translateY(-51%) rotate(90deg);
       display: inline-block;
       position: absolute;
       right: 1.2rem;
@@ -6869,15 +6870,13 @@ a:focus {
       color: #c96;
       font-family: "arial";
       line-height: 1;
-      transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
       transition: all 0.3s; }
     .card-title a.collapsed {
       color: #333; }
       .card-title a.collapsed:hover, .card-title a.collapsed:focus {
         color: #c96; }
       .card-title a.collapsed:before {
-        content: '\f110';
+        content: '>';
         color: #8c8c8c;
         transform: translateY(-50%);
         -ms-transform: translateY(-50%); }
