@@ -3638,9 +3638,15 @@ class Admin extends Controller
                 $table = "faq";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
+                
                 $selectData = [];  //! Select
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => "faq_categories", "parametre" => "title", "name" => "faqCategoryTitle", );
+
                 $selectDataRaw = [];  //! Select - Raw
+
                 $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "faq_categories" , "value" => "uid", "refTable" => $table, "refValue" => "category", ); //! Join
 
                 //! Arama
                 $searchData = [];
