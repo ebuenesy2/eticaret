@@ -123,7 +123,7 @@
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">EDİTÖRÜN ÖNERİSİ</h2>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
-                            <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                            <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
                                 "loop": false   ,
@@ -189,7 +189,7 @@
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">ÇOK SATANLAR</h2>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
-                            <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                            <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
                                 "loop": false   ,
@@ -255,7 +255,7 @@
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Yeni Ürünler</h2>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
-                            <div class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                            <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
                                 "loop": false   ,

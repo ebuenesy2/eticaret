@@ -3,12 +3,18 @@
 console.log("4_0_controllersToSettingLocalStorage js çalışıyor");
 
 var siteLang = $('html').attr('lang'); //! Site Dili
-var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu Dil
-if(yildirimdevMultiLangJson == null) {  getLangData(siteLang); }
-else {
-    var localLang = yildirimdevMultiLangJson?.lang; //! Local Dil
-    if(siteLang != localLang ) { getLangData(siteLang); } //! Yoksa Ayarla
-}
+
+try {
+    
+    var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu Dil
+    if(yildirimdevMultiLangJson == null) {  getLangData(siteLang); }
+    else {
+        var localLang = yildirimdevMultiLangJson?.lang; //! Local Dil
+        if(siteLang != localLang ) { getLangData(siteLang); } //! Yoksa Ayarla
+    }
+ 
+} catch (error) { console.log("siteLang:",siteLang); }
+
 
 //! Dilleri Getir
 function getLangData(changeLang) { console.log("changeLang:",changeLang);

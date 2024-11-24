@@ -8,6 +8,10 @@
     <meta name="description" content="{{ config('admin.Admin_Meta_Description') }}">
     <meta name="keywords" content="{{ config('admin.Admin_Keywords') }}">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/assets')}}/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/assets')}}/img/favicon/favicon-16x16.png">
+
     <!----- Thema ------> 
     <link href="{{asset('/assets/adminTheme')}}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{asset('/assets/adminTheme')}}/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
