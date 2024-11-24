@@ -46,7 +46,6 @@
 
                 <div class="mb-2"></div><!-- End .mb-2 -->
 
-
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1">
@@ -55,53 +54,16 @@
                             </div><!-- End .brands-text -->
                             <div class="brands-display">
                                 <div class="row justify-content-center">
+                                    
+                                    @for ($i = 0; $i < count($DB_institutional_references); $i++)
                                     <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/1.png" alt="Brand Name">
+                                        <a href="{{$DB_institutional_references[$i]->site_url}}" class="brand">
+                                            <img src="{{$DB_institutional_references[$i]->img_url}}" alt="{{$DB_institutional_references[$i]->title}}" style="object-fit: cover;" >
                                         </a>
                                     </div><!-- End .col-md-3 -->
+                                    @endfor
 
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/2.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/3.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/7.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/4.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/5.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/6.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
-
-                                    <div class="col-6 col-sm-4 col-md-3">
-                                        <a href="#" class="brand">
-                                            <img src="{{asset('/assets')}}/web/images/brands/9.png" alt="Brand Name">
-                                        </a>
-                                    </div><!-- End .col-md-3 -->
+                                   
                                 </div><!-- End .row -->
                             </div><!-- End .brands-display -->
                         </div><!-- End .col-lg-10 offset-lg-1 -->

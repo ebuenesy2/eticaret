@@ -650,6 +650,16 @@ class Web extends Controller
                 $DB_Institutional= DB::table('institutional')->where('lang','=',__('admin.lang'))->first();
                 //echo "<pre>"; print_r($DB_Institutional); die();
 
+                //! Referanslar
+                $DB_institutional_references= DB::table('institutional_references')
+                ->orderBy('institutional_references.id','desc')
+                 ->where('institutional_references.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_institutional_references); die();
+
+                //! Return
+                $DB["DB_institutional_references"] =  $DB_institutional_references;
+                //! Referanslar Son
+
                 //! Return
                 $DB["DB_Institutional"] =  $DB_Institutional;
                 //! Kurumsal Son
