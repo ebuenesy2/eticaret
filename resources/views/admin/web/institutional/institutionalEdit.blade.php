@@ -255,7 +255,7 @@
 
 
     <!------- Js --->
-    <script src="{{asset('/assets/admin')}}/js/web/institutional.js"></script>
+    <script src="{{asset('/assets/admin')}}/js/web/institutional/institutional.js"></script>
 
 </body>
 <!-- END BODY -->

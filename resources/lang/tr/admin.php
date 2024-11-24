@@ -24,6 +24,7 @@
     'termsOfConditions' => 'Kullanım Şartları',
     'privacyPolicy' => 'Gizlilik Koşulları',
     'personalDataProtectionLaw' => 'Kişisel Verilerin Korunma Kanunu',
+    'references' => 'Referanslar',
    
     'faqCategory' => 'Sıkça Sorulan Sorular Kategorisi',
     'frequentlyAskedQuestions' => 'Sıkça Sorulan Sorular',

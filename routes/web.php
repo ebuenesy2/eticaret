@@ -157,6 +157,18 @@ Route::get('/{lang}/admin/institutional/personalDataProtectionLaw', [Admin::clas
 Route::post('/admin/institutional/edit/post', [Admin::class,'InstitutionalEdit']) -> name("admin.web.institutional.edit");  //!  Kurumsal - Güncelleme
 Route::post('/admin/institutional/edit/img/post', [Admin::class,'InstitutionalEditImage']) -> name("admin.web.institutional.edit.img");  //!  Kurumsal - Güncelleme Resim
 
+//! Kurumsal - Refaranslar
+Route::get('/{lang}/admin/institutional/references', [Admin::class,'InstitutionalReferences']) -> name("admin.web.institutional.references.list");  //! Tüm Veriler
+Route::post('/admin/institutional/references/search/post', [Admin::class,'InstitutionalReferencesSearchPost']) -> name("admin.web.institutional.references.search.post"); //! Veri Arama - Post
+Route::post('/admin/institutional/references/add/post', [Admin::class,'InstitutionalReferencesAddPost']) -> name("admin.web.institutional.references.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/institutional/references/delete/post', [Admin::class,'InstitutionalReferencesDeletePost']) -> name("admin.web.institutional.references.delete.post"); //! Veri Silme
+Route::post('/admin/institutional/references/delete/post/multi', [Admin::class,'InstitutionalReferencesDeletePostMulti']) -> name("admin.web.institutional.references.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/institutional/references/edit/post', [Admin::class,'InstitutionalReferencesEditPost']) -> name("admin.web.institutional.references.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/institutional/references/edit/active', [Admin::class,'InstitutionalReferencesEditActive']) -> name("admin.web.institutional.references.edit.active"); //! Veri Durum Güncelle - Post
+Route::post('/admin/institutional/references/edit/multi/active', [Admin::class,'InstitutionalReferencesEditMultiActive']) -> name("admin.web.institutional.references.detail.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
+Route::post('/admin/institutional/references/clone', [Admin::class,'InstitutionalReferencesClonePost']) -> name("admin.web.institutional.references.clone.post"); //! Veri Clone - Post
+Route::post('/admin/institutional/references/clone/multi', [Admin::class,'InstitutionalReferencesClonePostMulti']) -> name("admin.web.institutional.references.clone.post.multi"); //! Çoklu Veri Clone - Post
+
 
 //************* Admin - Web - Faq - Sıkça Sorulan Sorular ***************** */
 

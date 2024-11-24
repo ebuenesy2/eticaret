@@ -23,8 +23,10 @@
     'termsOfUse' => 'Terms Of Use',
     'termsOfConditions' => 'Terms Of Conditions',
     'privacyPolicy' => 'Privacy Policy',
-    'personalDataProtectionLaw' => 'Personal Data Protection Law',    
+    'personalDataProtectionLaw' => 'Personal Data Protection Law',
+    'references' => 'References',  
 
+    'faqCategory' => 'Frequently Asked Questions Category',
     'frequentlyAskedQuestions' => 'Frequently Asked Questions',
 
     'category' => 'Category',
