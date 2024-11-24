@@ -135,6 +135,14 @@
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <div class="control-group">
+                                            <label class="control-label">Map Adres</label>
+                                            <input class="span12" type="text" id="web_address_map" name="web_address_map" placeholder="" value="{{ $DB_HomeSettings->web_address_map }}"> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <div class="control-group">
                                             <label class="control-label">Adres</label>
                                             <textarea class="span12" id="web_address" rows="5" cols="80">{!! $DB_HomeSettings->address !!}</textarea>
                                         </div>

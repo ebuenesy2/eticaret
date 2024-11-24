@@ -2710,6 +2710,7 @@ class Admin extends Controller
                     'phone2'=>$request->phone2,
                     'whatsapp'=>$request->whatsapp,
                     'address'=>$request->address,
+                    'web_address_map'=>$request->web_address_map,
 
                     'facebook_Url'=>$request->facebook_Url,
                     'twitter_Url'=>$request->twitter_Url,

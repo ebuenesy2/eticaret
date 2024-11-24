@@ -198,6 +198,7 @@ $("#socialMedia_Save").click(function (e) {
                 phone2: $('#web_phone2').val(),
                 whatsapp: $('#web_whatsapp').val(),
                 address: document.getElementById('web_address').value,
+                web_address_map: document.getElementById('web_address_map').value,
 
                 facebook_Url: $('#web_facebook').val(),
                 twitter_Url: $('#web_twitter').val(),

@@ -112,7 +112,9 @@
 
                 
                 </div><!-- End .container -->
-            	<div id="map"></div><!-- End #map -->
+            	<div id="map">
+					<iframe src="{{ $DB_HomeSettings->web_address_map }}" width="100%" style="border:0;height: inherit;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div><!-- End #map -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 
