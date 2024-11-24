@@ -34,7 +34,10 @@ Route::get('/{lang}/blog-single', [Web::class,'BlogSingle']) -> name("web.single
 //************* Web - Sayfalar ***************** */
 
 Route::get('/{lang}/faq', [Web::class,'Faq']) -> name("web.faq"); //! Web - Faq
+
 Route::get('/{lang}/contact', [Web::class,'Contact']) -> name("web.contact"); //! Web - İletişim
+Route::post('/contact/message/add/post', [Web::class,'ContactMessage']) -> name("web.contact.message.add.post"); //! Web - İletişim Mesaj Yaz - Post
+
 Route::get('/{lang}/about', [Web::class,'About']) -> name("web.about"); //! Web - Hakkımızda
 
 Route::get('/{lang}/error404', [Web::class,'Error404']) -> name("web.error.404"); //! Web - Hata 404

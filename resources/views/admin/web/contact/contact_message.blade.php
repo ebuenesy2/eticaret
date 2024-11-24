@@ -117,6 +117,7 @@
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.name')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.surname')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.email')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.phone')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.subject')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.message')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
@@ -134,6 +135,7 @@
                                   <td class="">{{$dbFind[$i]->name}}</td>
                                   <td class="">{{$dbFind[$i]->surname}}</td>
                                   <td class="">{{$dbFind[$i]->email}}</td>
+                                  <td class="">{{$dbFind[$i]->phone}}</td>
                                   <td class="">{{$dbFind[$i]->subject}}</td>
                                   <td class="">{{$dbFind[$i]->message}}</td>
 
@@ -252,6 +254,16 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
+                <label class="control-label">@lang('admin.phone')</label>
+                <div class="controls controls-row">
+                    <input type="email" class="input-block-level" name="phoneAdd" id="phoneAdd" placeholder="@lang('admin.phone')" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
                 <label class="control-label">@lang('admin.subject')</label>
                 <div class="controls controls-row">
                     <input type="text" class="input-block-level" name="subjectAdd" id="subjectAdd" placeholder="@lang('admin.subject')" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="4" >
@@ -310,6 +322,16 @@
                 <label class="control-label">@lang('admin.email')</label>
                 <div class="controls controls-row">
                     <input type="text" class="input-block-level" name="emailEdit" id="emailEdit" placeholder="@lang('admin.email')" value="" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.phone')</label>
+                <div class="controls controls-row">
+                    <input type="email" class="input-block-level" name="phoneEdit" id="phoneEdit" placeholder="@lang('admin.phone')" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
                 </div>
               </div>
           </div>

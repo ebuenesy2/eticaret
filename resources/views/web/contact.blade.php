@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> İletişim | {{ $DB_HomeSettings->title }} </title>
+    <title> @lang('admin.contact') | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -18,16 +18,15 @@
         <main class="main">
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{asset('/assets')}}/web/index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{asset('/assets')}}/web/#">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+				    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> @lang('admin.contact')</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
             <div class="container">
 	        	<div class="page-header page-header-big text-center" style="background-image: url('{{asset('/assets')}}/web/images/contact-header-bg.jpg')">
-        			<h1 class="page-title text-white">Contact us<span class="text-white">keep in touch with us</span></h1>
+        			<h1 class="page-title text-white">@lang('admin.contact')</h1>
 	        	</div><!-- End .page-header -->
             </div><!-- End .container -->
 
@@ -35,147 +34,83 @@
                 <div class="container">
                 	<div class="row">
                 		<div class="col-lg-6 mb-2 mb-lg-0">
-                			<h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
-                			<p class="mb-3">Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-                			<div class="row">
+                			<h2 class="title mb-1">İletişim Bilgilerimiz</h2>
+							<div class="row">
                 				<div class="col-sm-7">
                 					<div class="contact-info">
-                						<h3>The Office</h3>
 
                 						<ul class="contact-list">
                 							<li>
                 								<i class="fa fa-map-marker"></i>
-	                							70 Washington Square South New York, NY 10012, United States
+	                							{!! $DB_HomeSettings->address !!}
 	                						</li>
                 							<li>
-                								<i class="fa fa-phone"></i>
-                								<a href="{{asset('/assets')}}/web/tel:#">+92 423 567</a>
-                							</li>
-                							<li>
                 								<i class="fa fa-envelope"></i>
-                								<a href="{{asset('/assets')}}/web/mailto:#">info@Yıldırımdev.com</a>
+                								<a href="{{asset('/assets')}}/web/mailto:#">{{ $DB_HomeSettings->email }}</a>
                 							</li>
                 						</ul><!-- End .contact-list -->
                 					</div><!-- End .contact-info -->
                 				</div><!-- End .col-sm-7 -->
-
-                				<div class="col-sm-5">
+								<div class="col-sm-5">
                 					<div class="contact-info">
-                						<h3>The Office</h3>
 
                 						<ul class="contact-list">
+                							
                 							<li>
-                								<i class="fa fa-clock-o"></i>
-	                							<span class="text-dark">Monday-Saturday</span> <br>11am-7pm ET
-	                						</li>
-                							<li>
-                								<i class="fa fa-calendar"></i>
-                								<span class="text-dark">Sunday</span> <br>11am-6pm ET
+                								<i class="fa fa-phone"></i>
+                								<a href="tel:{{ $DB_HomeSettings->phone }}">{{ $DB_HomeSettings->phone }}	</a>
                 							</li>
+                							
                 						</ul><!-- End .contact-list -->
                 					</div><!-- End .contact-info -->
-                				</div><!-- End .col-sm-5 -->
+                				</div><!-- End .col-sm-7 -->
                 			</div><!-- End .row -->
                 		</div><!-- End .col-lg-6 -->
                 		<div class="col-lg-6">
-                			<h2 class="title mb-1">Got Any Questions?</h2><!-- End .title mb-2 -->
-                			<p class="mb-2">Use the form below to get in touch with the sales team</p>
-
-                			<form action="#" class="contact-form mb-3">
+                			<h2 class="title mb-1">@lang('admin.contactMessage')</h2><!-- End .title mb-2 -->
+                			
+							<form action="#" class="contact-form mb-3">
                 				<div class="row">
-                					<div class="col-sm-6">
-                                        <label for="cname" class="sr-only">Name</label>
-                						<input type="text" class="form-control" id="cname" placeholder="Name *" required>
+                					<div class="col-sm-3">
+                                        <label for="nameAdd" class="sr-only">@lang('admin.name')</label>
+                						<input type="text" class="form-control" id="nameAdd" placeholder="@lang('admin.name') *" required>
+                					</div><!-- End .col-sm-6 -->
+
+									<div class="col-sm-3">
+                                        <label for="surnameAdd" class="sr-only">@lang('admin.surname')</label>
+                						<input type="text" class="form-control" id="surnameAdd" placeholder="@lang('admin.surname') *" required>
                 					</div><!-- End .col-sm-6 -->
 
                 					<div class="col-sm-6">
-                                        <label for="cemail" class="sr-only">Email</label>
-                						<input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                        <label for="emailAdd" class="sr-only">@lang('admin.email')</label>
+                						<input type="email" class="form-control" id="emailAdd" placeholder="@lang('admin.email') *" required>
                 					</div><!-- End .col-sm-6 -->
                 				</div><!-- End .row -->
 
                 				<div class="row">
                 					<div class="col-sm-6">
-                                        <label for="cphone" class="sr-only">Phone</label>
-                						<input type="tel" class="form-control" id="cphone" placeholder="Phone">
+                                        <label for="phoneAdd" class="sr-only">@lang('admin.phone')</label>
+                						<input type="tel" class="form-control" id="phoneAdd" placeholder="@lang('admin.phone')">
                 					</div><!-- End .col-sm-6 -->
 
                 					<div class="col-sm-6">
-                                        <label for="csubject" class="sr-only">Subject</label>
-                						<input type="text" class="form-control" id="csubject" placeholder="Subject">
+                                        <label for="subjectAdd" class="sr-only">@lang('admin.subject')</label>
+                						<input type="text" class="form-control" id="subjectAdd" placeholder="@lang('admin.subject')">
                 					</div><!-- End .col-sm-6 -->
                 				</div><!-- End .row -->
 
-                                <label for="cmessage" class="sr-only">Message</label>
-                				<textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
+                                <label for="messageAdd" class="sr-only">@lang('admin.message')</label>
+                				<textarea class="form-control" cols="30" rows="4" id="messageAdd" required></textarea>
 
-                				<button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
-                					<span>SUBMIT</span>
+                				<button class="btn btn-outline-primary-2 btn-minwidth-sm" id="contact_message_new">
+                					<span>@lang('admin.send')</span>
             						<i class="fa fa-long-arrow-right"></i>
                 				</button>
                 			</form><!-- End .contact-form -->
                 		</div><!-- End .col-lg-6 -->
                 	</div><!-- End .row -->
 
-                	<hr class="mt-4 mb-5">
-
-                	<div class="stores mb-4 mb-lg-5">
-	                	<h2 class="title text-center mb-3">Our Stores</h2><!-- End .title text-center mb-2 -->
-
-	                	<div class="row">
-	                		<div class="col-lg-6">
-	                			<div class="store">
-	                				<div class="row">
-	                					<div class="col-sm-5 col-xl-6">
-	                						<figure class="store-media mb-2 mb-lg-0">
-	                							<img src="{{asset('/assets')}}/web/images/stores/img-1.jpg" alt="image">
-	                						</figure><!-- End .store-media -->
-	                					</div><!-- End .col-xl-6 -->
-	                					<div class="col-sm-7 col-xl-6">
-	                						<div class="store-content">
-	                							<h3 class="store-title">Wall Street Plaza</h3><!-- End .store-title -->
-	                							<address>88 Pine St, New York, NY 10005, USA</address>
-	                							<div><a href="{{asset('/assets')}}/web/tel:#">+1 987-876-6543</a></div>
-
-	                							<h4 class="store-subtitle">Store Hours:</h4><!-- End .store-subtitle -->
-                								<div>Monday - Saturday 11am to 7pm</div>
-                								<div>Sunday 11am to 6pm</div>
-
-                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="fa fa-long-arrow-right"></i></a>
-	                						</div><!-- End .store-content -->
-	                					</div><!-- End .col-xl-6 -->
-	                				</div><!-- End .row -->
-	                			</div><!-- End .store -->
-	                		</div><!-- End .col-lg-6 -->
-
-	                		<div class="col-lg-6">
-	                			<div class="store">
-	                				<div class="row">
-	                					<div class="col-sm-5 col-xl-6">
-	                						<figure class="store-media mb-2 mb-lg-0">
-	                							<img src="{{asset('/assets')}}/web/images/stores/img-2.jpg" alt="image">
-	                						</figure><!-- End .store-media -->
-	                					</div><!-- End .col-xl-6 -->
-
-	                					<div class="col-sm-7 col-xl-6">
-	                						<div class="store-content">
-	                							<h3 class="store-title">One New York Plaza</h3><!-- End .store-title -->
-	                							<address>88 Pine St, New York, NY 10005, USA</address>
-	                							<div><a href="{{asset('/assets')}}/web/tel:#">+1 987-876-6543</a></div>
-
-	                							<h4 class="store-subtitle">Store Hours:</h4><!-- End .store-subtitle -->
-												<div>Monday - Friday 9am to 8pm</div>
-												<div>Saturday - 9am to 2pm</div>
-												<div>Sunday - Closed</div>
-
-                								<a href="{{asset('/assets')}}/web/#" class="btn btn-link" target="_blank"><span>View Map</span><i class="fa fa-long-arrow-right"></i></a>
-	                						</div><!-- End .store-content -->
-	                					</div><!-- End .col-xl-6 -->
-	                				</div><!-- End .row -->
-	                			</div><!-- End .store -->
-	                		</div><!-- End .col-lg-6 -->
-	                	</div><!-- End .row -->
-                	</div><!-- End .stores -->
+                
                 </div><!-- End .container -->
             	<div id="map"></div><!-- End #map -->
             </div><!-- End .page-content -->
@@ -202,6 +137,9 @@
              
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+
+    <!------- JS --->
+    <script src="{{asset('/assets/web')}}/js/contact/contact_message.js"></script>
 
 </body>
 

@@ -90,6 +90,7 @@ $("#new_add").click(function (e) {
                 name: $('#nameAdd').val(),
                 surname: $('#surnameAdd').val(),
                 email: $('#emailAdd').val(),
+                phone: $('#phoneAdd').val(),
                 subject: $('#subjectAdd').val(),
                 message: $('#messageAdd').val(),
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
@@ -278,6 +279,7 @@ document.querySelectorAll("#editItem").forEach((Item) => {
                     $('#nameEdit').val(response.DB.name);
                     $('#surnameEdit').val(response.DB.surname);
                     $('#emailEdit').val(response.DB.email);
+                    $('#phoneEdit').val(response.DB.phone);
                     $('#subjectEdit').val(response.DB.subject);
                     $('#messageEdit').val(response.DB.message);
 
@@ -369,6 +371,7 @@ $("#edit_item").click(function (e) {
                 name: $('#nameEdit').val(),
                 surname: $('#surnameEdit').val(),
                 email: $('#emailEdit').val(),
+                phone: $('#phoneEdit').val(),
                 subject: $('#subjectEdit').val(),
                 message: $('#messageEdit').val(),
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]

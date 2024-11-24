@@ -595,7 +595,7 @@ class Web extends Controller
 
     } //! Faq Son
 
-    //! Contact
+    //! İletişim
     public function Contact($site_lang="tr")
     {
         
@@ -622,7 +622,48 @@ class Web extends Controller
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! Contact Son
+    } //! İletişim Son
+    
+    //! Web - İletişim Mesaj Yaz - Post
+    public function ContactMessage(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Ekleme
+            DB::table('contact_message')->insert([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'subject' => $request->subject,
+                'message' => $request->message,
+                'created_byId'=>$request->created_byId,
+            ]); //! Veri Ekleme Son
+
+            $response = array(
+                'status' => 'success',
+                'msg' => __('admin.transactionSuccessful'),
+                'error' => null, 
+            );
+
+            return response()->json($response);
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Web - İletişim Mesaj Yaz - Post - Son
     
     //! About
     public function About($site_lang="tr")
