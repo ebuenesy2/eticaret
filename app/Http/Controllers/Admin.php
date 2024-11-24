@@ -6130,7 +6130,9 @@ class Admin extends Controller
                     DB::table($tableName)->insert([
                         'lang' => $lang,
                         'uid' => $time,
+                        'img_url' => $request->img_url,
                         'title' => $title,
+                        'seo_url' => SEOLink($title),
                         'created_byId'=>$request->created_byId,
                     ]); //! Veri Ekleme - TR Son
 
@@ -6280,7 +6282,9 @@ class Admin extends Controller
                         ->where('lang',$lang)
                         ->where('uid',$request->uid)
                         ->update([            
+                            'img_url' => $request->img_url,
                             'title' => $title,
+                            'seo_url' => SEOLink($title),
                             'isUpdated'=>true,
                             'updated_at'=>Carbon::now(),
                             'updated_byId'=>$request->updated_byId,
@@ -6296,7 +6300,9 @@ class Admin extends Controller
                         DB::table($table)->insert([
                             'lang' => $lang,
                             'uid' => $request->uid,
+                            'img_url' => $request->img_url,
                             'title' => $title,
+                            'seo_url' => SEOLink($title),
                             'created_byId'=>$request->created_byId,
                         ]); //! Veri Ekleme Son
                     }

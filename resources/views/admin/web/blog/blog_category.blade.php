@@ -127,6 +127,7 @@
                                 <th style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th role="columnheader" rowspan="1" colspan="1" >Uid</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.image')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.title')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
@@ -141,7 +142,9 @@
                                   <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
 
                                   <td class="">{{$dbFind[$i]->uid}}</td>
+                                  <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td class="">{{$dbFind[$i]->title}}</td>
+
                                   <td style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
@@ -223,6 +226,30 @@
    <!-- END CONTAINER -->
 
   <!--************* Modal *********--->
+    
+  <!----  Modal IMG -->
+  <div id="imgModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="imgModalTitle" style="display: flex;" ><p>@lang('admin.image') #</p><p id="imgModalValueId">54</p> </h3>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                 <div class="controls controls-row" style="display: flex;justify-content: center;" >
+                      <img id="imgView" src="" alt="" style="width: 100%;">
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+      </div>
+  </div>
+  <!----  Modal IMG Son -->
+
   <!----  Modal Ekleme -->
   <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
       <div class="modal-header">
@@ -232,7 +259,64 @@
       </div>
       <div class="modal-body">
         <div class="row-fluid">
-          <div class="span12">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Kapak Resmi</label>
+                    <div class="controls controls-row">
+
+                        <!-- Dosya Yükleme Kutusu ----->
+                        <div style="border: 2px solid;padding: 10px;">
+
+                            <!-- Dosya Yükleme ----->
+                            <form method="POST" id="uploadForm" enctype="multipart/form-data">
+                                <div style="display: flex;flex-direction: column; gap: 15px;">
+
+                                    <!-- Dosya Yükleme Bilgileri ----->
+                                    <input type="hidden" name="fileDbSave" id="fileDbSave" value="true" >
+                                    <input type="hidden" name="fileWhere" id="fileWhere" value="Sabit" >
+
+                                    <!---  Loading --->
+                                    <div id="LoadingFileUpload" style="display:none;" ><span class="d-flex align-items-center">
+                                        <span class="spinner-border flex-shrink-0" role="status"></span>
+                                        <span class="flex-grow-1 ms-2">@lang('admin.loading') </span>
+                                    </span> </div>
+                                    <div id="uploadStatus"></div>
+                                    <!--- End Loading --->
+
+                                    <input type="file" name="file" id="fileInput" style="display: flex; color: steelblue; margin-left: 10px; ">
+                                    <div style="display: flex; gap: 10px; margin-bottom: -25px;" ><p>@lang('admin.fileUrl'):</p><p id="filePathUrl"></p></div>
+                                    <button type="button" id="fileUploadClick" class="btn btn-success" style="cursor:pointer; background-image: linear-gradient(#04519b, #033c73 60%, #02325f);color: #ffffff;border-bottom: 1px solid #022241;padding: 12px;border-radius: 6px;display: flex; gap:10px; justify-content: center;align-items: center;">
+                                        <i class="ri-folder-upload-line" style="margin-top: -8px;  margin-bottom: -8px; font-size: 24px;"></i> 
+                                        <p style=" color: blanchedalmond; font-size: 14px; font-weight: bold; " > @lang('admin.fileUpload') </p>
+                                    </button>
+                                    
+                                    <!-- ProgressBar ---->
+                                    <div class="progress" style="margin-top: 14px;height: auto;">
+                                        <div class="progress-bar" id="progressBarFileUpload" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: teal;color: rgb(255, 255, 255);border-radius: 6px;display: flex;justify-content: center;"></div>
+                                    </div>
+                                    <!-- ProgressBar Son ---->
+                                    
+                                </div>
+                            </form>
+                            <!-- Dosya Yükleme Son ---->
+
+                        </div>
+                        <!-- Dosya Yükleme Kutusu Son ----->
+
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">@lang('admin.image')</label>
+                    <div class="controls controls-row">
+                        <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImage" style="width: 100%;height: 230px;object-fit: contain;" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') TR</label>
                 <div class="controls controls-row">
@@ -240,9 +324,7 @@
                 </div>
               </div>
           </div>
-        </div>
-        <div class="row-fluid">
-          <div class="span12">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') EN</label>
                 <div class="controls controls-row">
@@ -279,7 +361,64 @@
       </div>
       <div class="modal-body">
         <div class="row-fluid">
-          <div class="span12">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Kapak Resmi</label>
+                    <div class="controls controls-row">
+
+                        <!-- Dosya Yükleme Kutusu ----->
+                        <div style="border: 2px solid;padding: 10px;">
+
+                            <!-- Dosya Yükleme ----->
+                            <form method="POST" id="uploadForm2" enctype="multipart/form-data">
+                                <div style="display: flex;flex-direction: column; gap: 15px;">
+
+                                    <!-- Dosya Yükleme Bilgileri ----->
+                                    <input type="hidden" name="fileDbSaveEdit" id="fileDbSaveEdit" value="true" >
+                                    <input type="hidden" name="fileWhereEdit" id="fileWhereEdit" value="Sabit" >
+
+                                    <!---  Loading --->
+                                    <div id="LoadingFileUploadEdit" style="display:none;" ><span class="d-flex align-items-center">
+                                        <span class="spinner-border flex-shrink-0" role="status"></span>
+                                        <span class="flex-grow-1 ms-2">@lang('admin.loading') </span>
+                                    </span> </div>
+                                    <div id="uploadStatusEdit"></div>
+                                    <!--- End Loading --->
+
+                                    <input type="file" name="fileEdit" id="fileInputEdit" style="display: flex; color: steelblue; margin-left: 10px; ">
+                                    <div style="display: flex; gap: 10px; margin-bottom: -25px;" ><p>@lang('admin.fileUrl'):</p><p id="filePathUrlEdit"></p></div>
+                                    <button type="button" id="fileUploadClickEdit" class="btn btn-success" style="cursor:pointer; background-image: linear-gradient(#04519b, #033c73 60%, #02325f);color: #ffffff;border-bottom: 1px solid #022241;padding: 12px;border-radius: 6px;display: flex; gap:10px; justify-content: center;align-items: center;">
+                                        <i class="ri-folder-upload-line" style="margin-top: -8px;  margin-bottom: -8px; font-size: 24px;"></i> 
+                                        <p style=" color: blanchedalmond; font-size: 14px; font-weight: bold; " > @lang('admin.fileUpload') </p>
+                                    </button>
+                                    
+                                    <!-- ProgressBar ---->
+                                    <div class="progress" style="margin-top: 14px;height: auto;">
+                                        <div class="progress-bar" id="progressBarFileUploadEdit" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: teal;color: rgb(255, 255, 255);border-radius: 6px;display: flex;justify-content: center;"></div>
+                                    </div>
+                                    <!-- ProgressBar Son ---->
+                                    
+                                </div>
+                            </form>
+                            <!-- Dosya Yükleme Son ---->
+
+                        </div>
+                        <!-- Dosya Yükleme Kutusu Son ----->
+
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">@lang('admin.image')</label>
+                    <div class="controls controls-row">
+                        <img class="img-circle img-thumbnail" src="{{config('admin.Default_ImgUrl')}}" id="fileUploadImageEdit" style="width: 100%;height: 230px;object-fit: contain;" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') TR</label>
                 <div class="controls controls-row">
@@ -287,9 +426,7 @@
                 </div>
               </div>
           </div>
-        </div>
-        <div class="row-fluid">
-          <div class="span12">
+          <div class="span6">
               <div class="control-group">
                 <label class="control-label">@lang('admin.title') EN</label>
                 <div class="controls controls-row">
