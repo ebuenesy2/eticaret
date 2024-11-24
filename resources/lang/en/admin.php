@@ -58,6 +58,7 @@
     'withdrawn' => 'Withdrawn',
     'result' => 'Result',
 
+    'cartList' => 'Cart List',
     'myCart' => 'My Cart',
 
     'order' => 'Order',

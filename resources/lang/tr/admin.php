@@ -58,6 +58,7 @@
     'withdrawn' => 'Çekilen',
     'result' => 'Sonuc',
     
+    'cartList' => 'Sepet Listesi',
     'myCart' => 'Sepetim',
 
     'order' => 'Sipariş',

@@ -255,6 +255,18 @@ Route::post('/admin/web/user/edit/imgUrl', [Admin::class,'AdminWebUserEditImgUrl
 Route::post('/admin/web/user/edit/active', [Admin::class,'AdminWebUserEditActive']) -> name("admin.web.user.edit.active"); //! Veri Durum Güncelle - Post
 Route::post('/admin/web/user/edit/multi/active', [Admin::class,'AdminWebUserEditMultiActive']) -> name("admin.web.user.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
 
+//************* Admin - Kullanıcı Ürün İşlemleri ***************** */
+
+//! Admin - Web User - Sepet
+Route::get('/{lang}/admin/web/user/cart', [Admin::class,'AdminWebUserCartList']) -> name("admin.web.user.cart.list");  //! Tüm Veriler
+Route::post('/admin/web/user/cart/search/post', [Admin::class,'AdminWebUserCartSearchPost']) -> name("admin.web.user.cart.search.post"); //! Veri Arama - Post
+Route::post('/admin/web/user/cart/add/post', [Admin::class,'AdminWebUserCartAddPost']) -> name("admin.web.user.cart.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/web/user/cart/delete/post', [Admin::class,'AdminWebUserCartDeletePost']) -> name("admin.web.user.cart.delete.post"); //! Veri Silme
+Route::post('/admin/web/user/cart/delete/post/multi', [Admin::class,'AdminWebUserCartDeletePostMulti']) -> name("admin.web.user.cart.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/web/user/cart/edit/post', [Admin::class,'AdminWebUserCartEditPost']) -> name("admin.web.user.cart.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/web/user/cart/clone', [Admin::class,'AdminWebUserCartClonePost']) -> name("admin.web.user.cart.clone.post"); //! Veri Clone - Post
+Route::post('/admin/web/user/cart/clone/multi', [Admin::class,'AdminWebUserCartClonePostMulti']) -> name("admin.web.user.cart.clone.post.multi"); //! Çoklu Veri Clone - Post
+
 //************* Admin - Web - Blog ***************** */
 
 //! Blog - Kategori

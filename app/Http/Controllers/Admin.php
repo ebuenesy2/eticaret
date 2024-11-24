@@ -7248,6 +7248,446 @@ class Admin extends Controller
         }
 
     } //! Admin - Web User - Çoklu Veri Durum Güncelle - Post Son
+
+
+    //************* Admin - Web User - Sepet  ***************** */
+
+    //! Admin - Web User - Sepet
+    public function AdminWebUserCartList($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "user_cart";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                $selectData = [];  //! Select
+                $selectDataRaw = [];  //! Select - Raw
+                $joinData = [];  //! Join
+                $searchData = []; //! Arama
+                $whereData = []; //! Where
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/web/user/userCart',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Admin - Web User - Sepet Son
+
+    //! Admin - Web User - Sepet - Arama Post
+    public function AdminWebUserCartSearchPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Arama
+            $DB_Find = DB::table('user_cart')->where('id',$request->id)->first(); //Tüm verileri çekiyor
+   
+            if($DB_Find) {
+   
+               $response = array(
+                  'status' => 'success',
+                  'msg' => __('admin.transactionSuccessful'),
+                  'DB' =>  $DB_Find,
+                  'error' => null,
+               );
+
+               return response()->json($response);
+            }
+   
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'DB' =>  [],
+                  'error' => null, 
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'DB' =>  [],
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet - Arama Post Son
+
+    //! Admin - Web User - Sepet - Veri Ekleme Post
+    public function AdminWebUserCartAddPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Ekleme
+            DB::table('user_cart')->insert([
+                'user_id' => $request->user_id,
+                'product_uid' => $request->product_uid,
+                'product_quantity' => $request->product_quantity,
+                'created_byId'=>$request->created_byId,
+            ]); //! Veri Ekleme Son
+
+            $response = array(
+                'status' => 'success',
+                'msg' => __('admin.transactionSuccessful'),
+                'error' => null, 
+            );
+
+             return response()->json($response);
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet - Veri Ekleme Post Son
+
+    //! Admin - Web User - Sepet - Veri Silme Post
+    public function AdminWebUserCartDeletePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'user_cart';
+            $DB_Find = DB::table($table)->where('id',$request->id)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Silme
+                $DB_Status = DB::table($table)->where('id',$request->id)->delete();
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,  
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,  
+                );  
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet - Veri Silme Post Son
+
+    //! Admin - Web User - Sepet - Veri Çoklu Silme Post
+    public function AdminWebUserCartDeletePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Silme
+            $DB_Status = DB::table('user_cart')->whereIn('id',$request->ids)->delete();
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet - Veri Çoklu Silme Post Son
+
+    //! Admin - Web User - Sepet - Veri Güncelleme Post
+    public function AdminWebUserCartEditPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Arama
+            $DB = DB::table('user_cart')->where('id',$request->id); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'user_id' => $request->user_id,
+                    'product_uid' => $request->product_uid,
+                    'product_quantity' => $request->product_quantity,
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet - Veri Güncelleme Post Son
+
+    //! Admin - Web User - Sepet  -Clone - Post
+    public function AdminWebUserCartClonePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'user_cart';
+            $DB = DB::table($table)->where('id',$request->id); //VeriTabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) { 
+            
+                //! Verileri Ayarlıyor
+                unset($DB_Find->id); //! Veri Silme 
+                unset($DB_Find->created_at); //! Veri Silme 
+                unset($DB_Find->isUpdated); //! Veri Silme 
+                unset($DB_Find->updated_at); //! Veri Silme 
+                unset($DB_Find->updated_byId); //! Veri Silme 
+                unset($DB_Find->isActive); //! Veri Silme 
+                unset($DB_Find->isDeleted); //! Veri Silme 
+                unset($DB_Find->deleted_at); //! Veri Silme 
+                unset($DB_Find->deleted_byId); //! Veri Silme 
+
+                $DB_Find->created_byId = $request->created_byId; //! Veri Güncelle
+            
+                //! Tanım
+                $newData = array(); //! Eklenecek Veri 
+                $table_columns = array_keys(json_decode(json_encode($DB_Find), true));  //! Sutun Veriler
+            
+                //! Veriler
+                for ($i=0; $i < count($table_columns); $i++) { 
+                    $col=$table_columns[$i];
+                    $newData[$col] = $DB->pluck($col)[0];
+                }
+                //! Veriler Son
+
+                //$newData['img_url'] = config('admin.Default_UserImgUrl');
+                $newData['created_byId'] = $request->created_byId;
+
+                //! Veri Ekleme
+                $addNewId = DB::table($table)->insertGetId($newData); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'error' => null, 
+                    'addNewId' => $addNewId,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.dataNotFound'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet  - Clone - Post Son
+
+    //! Admin - Web User - Sepet  - Çoklu Clone - Post
+    public function AdminWebUserCartClonePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Arama
+            $table = 'user_cart';
+            $DB = DB::table($table)->whereIn('id',$request->ids);
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+            
+            if( count($DB_Find) > 0 ){ 
+
+                //! Tanım
+                $DB_FindInsert = []; //! Eklenecek Veri
+
+                for ($i=0; $i < count($DB_Find); $i++) { 
+
+                    //! Veri Silme
+                    unset($DB_Find[$i]->id); //! Veri Silme 
+                    unset($DB_Find[$i]->created_at); //! Veri Silme 
+                    unset($DB_Find[$i]->isUpdated); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_at); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_byId); //! Veri Silme 
+                    unset($DB_Find[$i]->isActive); //! Veri Silme 
+                    unset($DB_Find[$i]->isDeleted); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_at); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
+
+                    $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
+
+                    //! Yeni Data
+                    $newData = array(); //! Eklenecek Veri 
+                    $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
+                    
+                    //! Veriler
+                    for ($k=0; $k < count($table_columns); $k++) { 
+                        $col=$table_columns[$k];
+                        $newData[$col] = $DB_Find->pluck($col)[$i];
+                    }
+                    //! Veriler Son
+                 
+                    $DB_FindInsert[] = $newData;
+                }
+
+                //! Veri Ekleme
+                $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => $addNewStatus ? 'success' : 'error',
+                    'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+
+            }
+            else {
+    
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+    
+               return response()->json($response);
+            }
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Admin - Web User - Sepet  - Çoklu Clone - Post Son
+    
     
 
     //************* Blog - Kategori  ***************** */
