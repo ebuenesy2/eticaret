@@ -263,7 +263,8 @@ class Web extends Controller
                 //! Ürün Kategori Verileri
                 $DB_Find= DB::table('product_categories')
                 ->where('product_categories.lang','=',__('admin.lang'))
-                ->where('product_categories.uid','=',$uid)->first();
+                ->where('product_categories.uid','=',$uid)
+                ->first();
                 //echo "<pre>"; print_r($DB_Find); die();
 
                 //! Return
