@@ -39,6 +39,7 @@
     'product' => 'Product',
     'productCategory' => 'Product Category',
     'stock' => 'Stock',
+    'quantity' => 'Quantity',
     'currency' => 'Currency',
     'salePrice' => 'Sale Price',
     'discount' => 'Discount',
@@ -56,6 +57,8 @@
     'deposited' => 'Deposited',
     'withdrawn' => 'Withdrawn',
     'result' => 'Result',
+
+    'myCart' => 'My Cart',
 
     'order' => 'Order',
     'orders' => 'Orders',

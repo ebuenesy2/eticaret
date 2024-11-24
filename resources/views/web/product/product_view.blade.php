@@ -67,11 +67,23 @@
                                         <a href="#" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" ><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                     </div><!-- End .product-details-action -->
 
+                                    <div class="wishlist-share">
+                                        <div class="social-icons social-icons-sm mb-2">
+                                            <label class="social-label">Share on:</label>
+                                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                                            <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
+                                        </div><!-- End .soial-icons -->
+                                    </div><!-- End .wishlist-share -->
+
                                    
                                 </div><!-- End .product-details -->
                             </div><!-- End .col-md-6 -->
                         </div><!-- End .row -->
                     </div><!-- End .product-details-top -->
+                    
                    
 
                     <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 

@@ -39,6 +39,7 @@
     'product' => 'Ürün',
     'productCategory' => 'Ürün Kategorisi',
     'stock' => 'Stok',
+    'quantity' => 'Miktar',
     'currency' => 'Para Birimi',
     'salePrice' => 'Satış Fiyat',
     'discount' => 'İndirim',
@@ -57,6 +58,8 @@
     'withdrawn' => 'Çekilen',
     'result' => 'Sonuc',
     
+    'myCart' => 'Sepetim',
+
     'order' => 'Sipariş',
     'orders' => 'Siparişler',
     'totalPurchaseAmount' => 'Toplam Alış Miktarı',

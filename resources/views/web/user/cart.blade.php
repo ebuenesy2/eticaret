@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Kart | {{ $DB_HomeSettings->title }} </title>
+	<title> @lang('admin.myCart') | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -18,15 +18,14 @@
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
-        			<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+        			<h1 class="page-title">@lang('admin.myCart')</h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                        <li class="breadcrumb-item active" aria-current="page">@lang('admin.myCart')</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -39,10 +38,10 @@
 	                			<table class="table table-cart table-mobile">
 									<thead>
 										<tr>
-											<th>Product</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Total</th>
+											<th>@lang('admin.product')</th>
+											<th>@lang('admin.salePrice')</th>
+											<th>@lang('admin.quantity')</th>
+											<th>@lang('admin.total')</th>
 											<th></th>
 										</tr>
 									</thead>
