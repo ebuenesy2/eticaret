@@ -42,7 +42,7 @@
                     </li>
                     <li>
                         <div class="dropdown cart-dropdown">
-                            <a href="/@lang('admin.lang')/user/cart" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon position-relative">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="cart-count">2</span>
@@ -100,7 +100,7 @@
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action">
-                                    <a href="{{asset('/assets')}}/web/cart.html" class="btn btn-primary">View Cart</a>
+                                    <a href="/@lang('admin.lang')/user/cart" class="btn btn-primary">@lang('admin.myCart')</a>
                                     <a href="{{asset('/assets')}}/web/checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="fa fa-long-arrow-right"></i></a>
                                 </div><!-- End .dropdown-cart-total -->
                             </div><!-- End .dropdown-menu -->
