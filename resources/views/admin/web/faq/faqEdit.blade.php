@@ -66,6 +66,48 @@
             <!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
              <div class="row-fluid">
+                <div class="span6" id="leftAdd">
+                    <!-- BEGIN BLANK PAGE PORTLET-->
+                    <div class="widget red">
+                        <div class="widget-title">
+                            <h4><i class="fa fa-edit"></i> @lang('admin.edit') -  @lang('admin.information')  </h4>
+                            <div id='loaderEditImage'  style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+                            <div id='loaderAdd' lang="tr" style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+                        <span class="tools">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-remove"></a>
+                        </span>
+                        </div>
+                        <div class="widget-body">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.category')</label>
+                                        <div class="controls controls-row">
+                                            <select class="span12" style="cursor: pointer;" id="faqCategoryEdit"   >
+                                                @for ($i = 0; $i < count($DB_Find_faq_categories); $i++)
+                                                    @if($DB_Find_en) 
+                                                    <option value="{{$DB_Find_faq_categories[$i]->uid}}" {{ $DB_Find_en->category == $DB_Find_faq_categories[$i]->uid ? 'selected' : ''}} >{{$DB_Find_faq_categories[$i]->title}}</option>
+                                                    @elseif($DB_Find_de) 
+                                                    <option value="{{$DB_Find_faq_categories[$i]->uid}}" {{ $DB_Find_de->category == $DB_Find_faq_categories[$i]->uid ? 'selected' : ''}} >{{$DB_Find_faq_categories[$i]->title}}</option>
+                                                    @else
+                                                    <option value="{{$DB_Find_faq_categories[$i]->uid}}" {{ $DB_Find_tr->category == $DB_Find_faq_categories[$i]->uid ? 'selected' : ''}} >{{$DB_Find_faq_categories[$i]->title}}</option>
+                                                    @endif
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="row-fluid" >
+                               <button class="btn btn-info" id="edit_item_info"  style="width: 100%;" >@lang('admin.edit') - @lang('admin.information') </button>
+                            </div>
+                            
+                        </div>
+                           
+                    </div>
+                    <!-- END BLANK PAGE PORTLET-->
+                </div>
                 <div class="span6" id="leftEdit">
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget red">
@@ -116,6 +158,8 @@
                     </div>
                     <!-- END BLANK PAGE PORTLET-->
                 </div>
+             </div>
+             <div class="row-fluid">
                 <div class="span6">
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget blue">
@@ -166,8 +210,6 @@
                     </div>
                     <!-- END BLANK PAGE PORTLET-->
                 </div>
-             </div>
-             <div class="row-fluid">
                 <div class="span6" id="leftEdit">
                     <!-- BEGIN BLANK PAGE PORTLET-->
                     <div class="widget yellow">

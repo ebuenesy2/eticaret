@@ -3731,6 +3731,13 @@ class Admin extends Controller
 
             if($CookieControl['isCookie']) {  
                 //echo "Çerez var"; die();
+
+                                    
+                //! Faq Kategori
+                $DB_Find_faq_categories = DB::table('faq_categories')->get(); 
+                //echo "<pre>"; print_r($DB_Find_faq_categories); die();
+                $DB["DB_Find_faq_categories"] = $DB_Find_faq_categories;
+                //! Faq Kategori Son
                 
                 //! Return
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
@@ -3765,7 +3772,8 @@ class Admin extends Controller
             if($DB_Find) {
 
                  //! Veri Güncelle
-                 $DB_Status = $DB->update([            
+                 $DB_Status = $DB->update([   
+                    'category' => $request->category,         
                     'question' => $request->question,
                     'answer' => $request->answer,
                     'isUpdated'=>true,
@@ -3779,6 +3787,7 @@ class Admin extends Controller
                 $DB_Status = DB::table($table)->insert([
                     'lang' => $request->lang,
                     'uid' => $request->uid,
+                    'category' => $request->category,
                     'question' => $request->question,
                     'answer' => $request->answer,
                     'created_byId'=>$request->created_byId,
@@ -3913,6 +3922,12 @@ class Admin extends Controller
                 $DB_Find_de = DB::table($table)->where('uid',$id)->where('lang','de')->first(); //Almanca
 
                 if($DB_Find_tr) {
+
+                    //! Faq Kategori
+                    $DB_Find_faq_categories = DB::table('faq_categories')->get(); 
+                    //echo "<pre>"; print_r($DB_Find_faq_categories); die();
+                    $DB["DB_Find_faq_categories"] = $DB_Find_faq_categories;
+                    //! Faq Kategori Son
                 
                     //! Return
                     $DB["CookieData"] = $CookieControl["CookieDataList"];
@@ -3955,7 +3970,8 @@ class Admin extends Controller
             if($DB_Find) {
 
                  //! Veri Güncelle
-                 $DB_Status = $DB->update([            
+                 $DB_Status = $DB->update([        
+                    'category' => $request->category,    
                     'question' => $request->question,
                     'answer' => $request->answer,
                     'isUpdated'=>true,
@@ -3969,6 +3985,7 @@ class Admin extends Controller
                 $DB_Status = DB::table($table)->insert([
                     'lang' => $request->lang,
                     'uid' => $request->uid,
+                    'category' => $request->category,
                     'question' => $request->question,
                     'answer' => $request->answer,
                     'created_byId'=>$request->updated_byId,
@@ -3996,6 +4013,53 @@ class Admin extends Controller
         }
 
     } //! Faq - Sıkça Sorulan Sorular- Veri Güncelleme Post Son
+
+    //! Faq - Veri Bilgileri Güncelleme Post
+    public function FaqEditInfoPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //veri tabanı işlemleri
+            $table = 'faq';
+            $DB = DB::table($table)->where('uid','=',$request->uid);
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+            
+            if($DB_Find) {
+
+                 //! Veri Güncelle
+                 $DB_Status = $DB->update([
+                    'category' => $request->category, 
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+            }
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Faq - Veri Bilgileri Güncelleme Post Son
         
     //! Faq - Veri Durum Güncelleme Post
     public function FaqEditActive(Request $request)
@@ -7570,15 +7634,17 @@ class Admin extends Controller
 
                 if($DB_Find_tr) {
 
-                    $DB_Find_blogs_categories = DB::table('blogs_categories')->get(); //! Blog Kategori
+                    //! Blog Kategori
+                    $DB_Find_blogs_categories = DB::table('blogs_categories')->get(); 
                     //echo "<pre>"; print_r($DB_Find_blogs_categories); die();
+                    $DB["DB_Find_blogs_categories"] = $DB_Find_blogs_categories;
+                    //! Blog Kategori Son
                     
                     //! Return
                     $DB["CookieData"] = $CookieControl["CookieDataList"];
                     $DB["DB_Find_tr"] =  $DB_Find_tr;
                     $DB["DB_Find_en"] =  $DB_Find_en;
                     $DB["DB_Find_de"] =  $DB_Find_de;
-                    $DB["DB_Find_blogs_categories"] = $DB_Find_blogs_categories;
 
                     return view('admin/web/blog/blogListEdit',$DB); 
 

@@ -124,6 +124,7 @@
                                 <th style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th role="columnheader" rowspan="1" colspan="1" >Uid</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.category')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >Soru</th>
                                 <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
@@ -138,6 +139,7 @@
                                   <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
 
                                   <td class="">{{$dbFind[$i]->uid}}</td>
+                                  <td class="">{{$dbFind[$i]->category}}</td>
                                   <td class="">{{$dbFind[$i]->question}}</td>
                                   <td style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>

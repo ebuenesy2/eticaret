@@ -181,6 +181,7 @@ Route::post('/admin/faq/delete/post', [Admin::class,'FaqDeletePost']) -> name("a
 Route::post('/admin/faq/delete/post/multi', [Admin::class,'FaqDeletePostMulti']) -> name("admin.web.faq.delete.post.multi"); //! Çoklu Veri Silme - Post
 Route::get('/{lang}/admin/faq/edit/{id}', [Admin::class,'FaqEdit']) -> name("admin.web.faq.edit.view");  //! Veri Güncelle - Sayfa
 Route::post('/admin/faq/edit/post', [Admin::class,'FaqEditPost']) -> name("admin.web.faq.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/faq/edit/info/post', [Admin::class,'FaqEditInfoPost']) -> name("admin.web.faq.edit.info.post"); //! Veri Bilgileri Güncelle - Post
 Route::post('/admin/faq/edit/active', [Admin::class,'FaqEditActive']) -> name("admin.web.faq.edit.active"); //! Veri Durum Güncelle - Post
 Route::post('/admin/faq/edit/multi/active', [Admin::class,'FaqEditMultiActive']) -> name("admin.web.faq.detail.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
 Route::post('/admin/faq/clone', [Admin::class,'FaqClonePost']) -> name("admin.web.faq.clone.post"); //! Veri Clone - Post

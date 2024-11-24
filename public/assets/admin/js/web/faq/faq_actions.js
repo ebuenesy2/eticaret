@@ -91,6 +91,7 @@ document.querySelectorAll('#new_add').forEach(function (i) {
                     siteLang: yildirimdevMultiLangJsonReturnR.lang,
                     lang:dataLang,
                     uid:data_uid,
+                    category:Number($('#faqCategoryAdd').val()),
                     question:questionAdd,
                     answer: dataAdd,
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
@@ -144,6 +145,88 @@ document.querySelectorAll('#new_add').forEach(function (i) {
 //! Ekleme Son
 
 //! ************ Ekleme Son  ***************
+
+//! ************ Güncelle - Bilgiler *******************
+//! Güncelle
+document.querySelectorAll('#edit_item_info').forEach(function (i) {
+    i.addEventListener('click', function (event) {
+
+        var dataLang = event.target.lang; //! Dil
+        var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+        //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+        var data_uid = $('#dataValueInfo').attr('data_uid'); //! id
+        //console.log("data_id:", data_id);
+
+        //! Loading - Veri Yükleniyor
+        $('[id="loaderEditImage"][lang="'+dataLang+'"]').show(); //! Laoding Göster
+        $('[id="edit_item_img"][lang="'+dataLang+'"]').attr('disabled','disabled'); //! Button Gizleme
+        $('[id="edit_item_img"][lang="'+dataLang+'"]').css('cursor','wait'); //! Cursor - Dönen
+    
+        //! Loading - Veri Yüklendi
+        function loadingYuklendi(){
+            $('[id="loaderEditImage"][lang="'+dataLang+'"]').hide(); //! Laoding Gizle
+            $('[id="edit_item_img"][lang="'+dataLang+'"]').removeAttr('disabled'); //! //! Button Göster
+            $('[id="edit_item_img"][lang="'+dataLang+'"]').css('cursor','pointer'); //! Cursor - Ok
+        }
+        //! Loading - Veri Yüklendi Son
+
+        //! Ajax  Post
+        $.ajax({
+            url: listUrl + "/edit/info/post",
+            type: "post",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                lang:dataLang,
+                uid:data_uid,
+                category:Number($('#faqCategoryEdit').val()),
+                updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
+            },
+            beforeSend: function() { console.log("Başlangıc"); },
+            success: function (response) {
+                // alert("başarılı");
+                console.log("response:", response);
+                // console.log("status:", response.status);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+
+                    //! Sayfa Yenileme
+                    //window.location.reload();
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                }
+
+            },
+            error: function (error) {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+                console.log("error:", error);
+            },
+            complete: function() { loadingYuklendi();  }
+        }); //! Ajax Post Son
+      
+    });
+}); //! Güncelle Son
+//! ************ Güncelle - Bilgiler Son  ***************
 
 //! ************ Güncelle  *******************
 
@@ -214,6 +297,7 @@ document.querySelectorAll('#edit_item').forEach(function (i) {
                     siteLang: yildirimdevMultiLangJsonReturnR.lang,
                     lang:dataLang,
                     uid:data_uid,
+                    category:Number($('#faqCategoryEdit').val()),
                     question: questionEdit,
                     answer:answerEdit,
                     updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
