@@ -157,6 +157,21 @@ Route::get('/{lang}/admin/institutional/personalDataProtectionLaw', [Admin::clas
 Route::post('/admin/institutional/edit/post', [Admin::class,'InstitutionalEdit']) -> name("admin.web.institutional.edit");  //!  Kurumsal - Güncelleme
 Route::post('/admin/institutional/edit/img/post', [Admin::class,'InstitutionalEditImage']) -> name("admin.web.institutional.edit.img");  //!  Kurumsal - Güncelleme Resim
 
+
+//************* Admin - Web - Faq - Sıkça Sorulan Sorular ***************** */
+
+//! Faq - Sıkça Sorulan Sorular - Kategori
+Route::get('/{lang}/admin/faq/category', [Admin::class,'FaqCategory']) -> name("admin.web.faq.category.list");  //! Tüm Veriler
+Route::post('/admin/faq/category/search/post', [Admin::class,'FaqCategorySearchPost']) -> name("admin.web.faq.category.search.post"); //! Veri Arama - Post
+Route::post('/admin/faq/category/add/post', [Admin::class,'FaqCategoryAddPost']) -> name("admin.web.faq.category.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/faq/category/delete/post', [Admin::class,'FaqCategoryDeletePost']) -> name("admin.web.faq.category.delete.post"); //! Veri Silme
+Route::post('/admin/faq/category/delete/post/multi', [Admin::class,'FaqCategoryDeletePostMulti']) -> name("admin.web.faq.category.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/faq/category/edit/post', [Admin::class,'FaqCategoryEditPost']) -> name("admin.web.faq.category.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/faq/category/edit/active', [Admin::class,'FaqCategoryEditActive']) -> name("admin.web.faq.category.edit.active"); //! Veri Durum Güncelle - Post
+Route::post('/admin/faq/category/edit/multi/active', [Admin::class,'FaqCategoryEditMultiActive']) -> name("admin.web.faq.category.detail.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
+Route::post('/admin/faq/category/clone', [Admin::class,'FaqCategoryClonePost']) -> name("admin.web.faq.category.clone.post"); //! Veri Clone - Post
+Route::post('/admin/faq/category/clone/multi', [Admin::class,'FaqCategoryClonePostMulti']) -> name("admin.web.faq.category.clone.post.multi"); //! Çoklu Veri Clone - Post
+
 //! Faq - Sıkça Sorulan Sorular
 Route::get('/{lang}/admin/faq/list', [Admin::class,'FaqList']) -> name("admin.web.faq.list");  //! Tüm Veriler
 Route::post('/admin/faq/search/post', [Admin::class,'FaqSearchPost']) -> name("admin.web.faq.search.post"); //! Veri Arama - Post

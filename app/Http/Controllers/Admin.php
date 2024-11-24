@@ -2984,6 +2984,638 @@ class Admin extends Controller
         }
 
     } //! Kurumsal  Veri Güncelleme Post Son 
+    
+    //************* Faq - Kategori  ***************** */
+
+    //! Faq - Kategori
+    public function FaqCategory($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "faq_categories";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                $selectData = [];  //! Select
+                $selectDataRaw = [];  //! Select - Raw
+                $joinData = [];  //! Join
+
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "uid", "table" => $table, "where" => "uid", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+                $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                
+                $whereData = []; //! Where
+                $whereData[] = array( "table" => $table, "where" => "lang" , "data_item_object" => "=", "value" => __('admin.lang') ); //! Arama
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/web/faq/faq_category',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Faq - Kategori Son
+
+    //! Faq - Kategori- Arama Post
+    public function FaqCategorySearchPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Arama
+            $DB_Find = DB::table('faq_categories')->where('uid',$request->uid)->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+   
+            if( count($DB_Find) > 0 ) {
+   
+               $response = array(
+                  'status' => 'success',
+                  'msg' => __('admin.transactionSuccessful'),
+                  'DB' =>  $DB_Find,
+                  'error' => null,
+               );
+
+               return response()->json($response);
+            }
+   
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'DB' =>  [],
+                  'error' => null, 
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'DB' =>  [],
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Arama Post Son
+
+    //! Faq - Kategori - Veri Ekleme Post
+    public function FaqCategoryAddPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            
+            //! Tanım
+            $tableName = 'faq_categories'; //! Tablo Adı
+            $time = time(); //! uid
+            $langList = ['tr','en','de']; //! Dil
+            $DB_Count = 0; //! Veri Sayısı
+           
+            for ($i=0; $i < count($langList) ; $i++) { 
+                $lang = $langList[$i];
+
+                if($lang == "tr"){  $title = $request->title_tr; }
+                if($lang == "en"){  $title = $request->title_en; }
+                if($lang == "de"){  $title = $request->title_de; }
+
+                //! Ekleme
+                if($title != "") { 
+                    $DB_Count++; //! Veri Sayısı Artır
+
+                    //! Veri Ekleme - TR
+                    DB::table($tableName)->insert([
+                        'lang' => $lang,
+                        'uid' => $time,
+                        'img_url' => $request->img_url,
+                        'title' => $title,
+                        'seo_url' => SEOLink($title),
+                        'created_byId'=>$request->created_byId,
+                    ]); //! Veri Ekleme - TR Son
+
+                }
+
+            }
+           
+            $response = array(
+                'status' => $DB_Count > 0 ? 'success' : 'error',
+                'msg' =>  $DB_Count > 0  ? __('admin.transactionSuccessful') : __('admin.dataNotFound'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Veri Ekleme Post Son
+
+    //! Faq - Kategori - Veri Silme Post
+    public function FaqCategoryDeletePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'faq_categories';
+            $DB_Find = DB::table($table)->where('uid',$request->uid)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Silme
+                $DB_Status = DB::table($table)->where('uid',$request->uid)->delete();
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,  
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,  
+                );  
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Veri Silme Post Son
+
+    //! Faq - Kategori - Veri Çoklu Silme Post
+    public function FaqCategoryDeletePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Silme
+            $DB_Status = DB::table('faq_categories')->whereIn('uid',$request->uids)->delete();
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Veri Çoklu Silme Post Son
+
+    //! Faq - Kategori - Veri Güncelleme Post
+    public function FaqCategoryEditPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+            
+            //! Tanım
+            $table = 'faq_categories'; //! Tablo Adı
+            $langList = ['tr','en','de']; //! Dil
+            $DB_Count = 0; //! Veri Sayısı
+            
+            for ($i=0; $i < count($langList) ; $i++) { 
+                $lang = $langList[$i];
+
+                if($lang == "tr"){  $title = $request->title_tr; }
+                if($lang == "en"){  $title = $request->title_en; }
+                if($lang == "de"){  $title = $request->title_de; }
+                
+                $DB = DB::table($table)->where('lang',$lang)->where('uid',$request->uid); //Veri Tabanı
+                $DB_Find = $DB->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                if( count($DB_Find) > 0 ) {  
+                    $DB_Count++; //! Veri Sayısı Artır
+
+                    //! Sil
+                    if($title == "") { DB::table($table)->where('lang',$lang)->where('uid',$request->uid)->delete();  }
+                    else {
+                        
+                        //! Veri Güncelle
+                        DB::table($table)
+                        ->where('lang',$lang)
+                        ->where('uid',$request->uid)
+                        ->update([            
+                            'img_url' => $request->img_url,
+                            'title' => $title,
+                            'seo_url' => SEOLink($title),
+                            'isUpdated'=>true,
+                            'updated_at'=>Carbon::now(),
+                            'updated_byId'=>$request->updated_byId,
+                        ]);  //! Veri Güncelle Son
+
+                    }
+                }
+                else { 
+                
+                    if($title != "") {
+
+                        //! Veri Ekleme 
+                        DB::table($table)->insert([
+                            'lang' => $lang,
+                            'uid' => $request->uid,
+                            'img_url' => $request->img_url,
+                            'title' => $title,
+                            'seo_url' => SEOLink($title),
+                            'created_byId'=>$request->created_byId,
+                        ]); //! Veri Ekleme Son
+                    }
+
+                }
+            }
+            
+            $response = array(
+                'status' => $DB_Count > 0 ? 'success' : 'error',
+                'msg' =>  $DB_Count > 0  ? __('admin.transactionSuccessful') : __('admin.dataNotFound'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Veri Güncelleme Post Son 
+            
+    //! Faq - Kategori - Veri Durum Güncelleme Post
+    public function FaqCategoryEditActive(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $DB = DB::table('faq_categories')->where('uid',$request->uid); //Veri Tabanı
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+
+            if( count($DB_Find) > 0 ) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'isActive'=>$request->active == "true" ? true : false,
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori - Veri Durum Güncelleme Post Son
+
+    //! Faq - Kategori  - Çoklu Veri Durum Güncelle - Post
+    public function FaqCategoryEditMultiActive(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Güncelleme
+            $DB_Status = DB::table('faq_categories')->whereIn('uid',$request->uids)
+            ->update([  
+                'isActive'=>$request->active == "true" ? true : false,
+                'isUpdated'=>true,
+                'updated_at'=>Carbon::now(),
+                'updated_byId'=>$request->updated_byId,
+            ]);
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Faq - Kategori- Çoklu Veri Durum Günceleme - Post Son
+
+    //!  Faq - Kategori - Clone - Post
+    public function FaqCategoryClonePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'faq_categories';
+            $DB = DB::table($table)->where('uid',$request->uid); //VeriTabanı
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+
+            if( count($DB_Find) > 0 ){  
+
+                //! Tanım
+                $DB_FindInsert = []; //! Eklenecek Veri
+                $time = time(); //! uid
+
+                for ($i=0; $i < count($DB_Find); $i++) { 
+
+                    //! Veri Silme
+                    unset($DB_Find[$i]->id); //! Veri Silme 
+                    unset($DB_Find[$i]->uid); //! Veri Silme 
+                    unset($DB_Find[$i]->created_at); //! Veri Silme 
+                    unset($DB_Find[$i]->isUpdated); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_at); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_byId); //! Veri Silme 
+                    unset($DB_Find[$i]->isActive); //! Veri Silme 
+                    unset($DB_Find[$i]->isDeleted); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_at); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
+
+                    $DB_Find[$i]->uid = $time; //! Veri Güncelle
+                    $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
+
+                    //! Yeni Data
+                    $newData = array(); //! Eklenecek Veri 
+                    $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
+                    
+                    //! Veriler
+                    for ($k=0; $k < count($table_columns); $k++) { 
+                        $col=$table_columns[$k];
+                        $newData[$col] = $DB_Find->pluck($col)[$i];
+                    }
+                    //! Veriler Son
+                 
+                    $DB_FindInsert[] = $newData; //! Ekleme
+                }
+
+                //! Veri Ekleme
+                $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => $addNewStatus ? 'success' : 'error',
+                    'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                    'addNewId' => $time,
+                );
+
+                return response()->json($response);
+
+            }
+            else {
+    
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+    
+               return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //!  Faq - Kategori - Clone - Post Son
+
+    //!  Faq - Kategori - Çoklu Clone - Post
+    public function FaqCategoryClonePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Arama
+            $table = 'faq_categories';
+            $dbFind_uids = $request->uids;
+            $dbFind_uids_count = count($dbFind_uids);
+            //echo "sayisi: "; echo $dbFind_uids_count; die();
+
+            if( $dbFind_uids_count > 0 ){ 
+                        
+                //! Veri Arama
+                $DB = DB::table($table)->whereIn('uid',$dbFind_uids); //VeriTabanı
+                $DB_Find = $DB->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                if( count($DB_Find) > 0 ){  
+
+                    //! Tanım
+                    $DB_FindInsert = []; //! Eklenecek Veri
+
+                    for ($j=0; $j < $dbFind_uids_count; $j++) { 
+                        $time = time()+$j; //! uid
+
+                        for ($i=0; $i < count($DB_Find); $i++) {  
+                            if( $DB_Find[$i]->uid == $dbFind_uids[$j] ) {
+                                //echo $DB_Find[$i]->uid; echo " ";
+                            
+                                //! Veri Silme
+                                unset($DB_Find[$i]->id); //! Veri Silme 
+                                unset($DB_Find[$i]->uid); //! Veri Silme 
+                                unset($DB_Find[$i]->created_at); //! Veri Silme 
+                                unset($DB_Find[$i]->isUpdated); //! Veri Silme 
+                                unset($DB_Find[$i]->updated_at); //! Veri Silme 
+                                unset($DB_Find[$i]->updated_byId); //! Veri Silme 
+                                unset($DB_Find[$i]->isActive); //! Veri Silme 
+                                unset($DB_Find[$i]->isDeleted); //! Veri Silme 
+                                unset($DB_Find[$i]->deleted_at); //! Veri Silme 
+                                unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
+
+                                $DB_Find[$i]->uid = $time; //! Veri Güncelle
+                                $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
+
+                                //! Yeni Data
+                                $newData = array(); //! Eklenecek Veri 
+                                $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
+                                
+                                //! Veriler
+                                for ($k=0; $k < count($table_columns); $k++) { 
+                                    $col=$table_columns[$k];
+                                    $newData[$col] = $DB_Find->pluck($col)[$i];
+                                }
+                                //! Veriler Son
+                            
+                                $DB_FindInsert[] = $newData; //! Ekleme
+                            }
+                        }
+
+                    }
+
+                    //! Veri Ekleme
+                    $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
+
+                    $response = array(
+                        'status' => $addNewStatus ? 'success' : 'error',
+                        'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                        'error' => null,
+                    );
+
+                    return response()->json($response);
+
+                }
+                else {
+        
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+        
+                return response()->json($response);
+                }
+
+            }
+            else {
+    
+               $response = array(
+                  'status' => 'error',
+                  'msg' => "uid:".__('admin.dataNotFound'),
+                  'error' => null,
+               );
+    
+               return response()->json($response);
+            }
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' =>  __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //!  Faq - Kategori - Çoklu Clone - Post Son
 
     //************* Faq ***************** */
 

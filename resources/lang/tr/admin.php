@@ -25,6 +25,7 @@
     'privacyPolicy' => 'Gizlilik Koşulları',
     'personalDataProtectionLaw' => 'Kişisel Verilerin Korunma Kanunu',
    
+    'faqCategory' => 'Sıkça Sorulan Sorular Kategorisi',
     'frequentlyAskedQuestions' => 'Sıkça Sorulan Sorular',
 
     'category' => 'Kategori',
