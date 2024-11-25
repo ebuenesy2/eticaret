@@ -30,7 +30,7 @@ function getLangData(changeLang) { console.log("changeLang:",changeLang);
             body: JSON.stringify({ lang: changeLang })
         });
         const response = await rawResponse.json();
-        console.log("response:",response);
+        //console.log("response:",response);
 
         localStorage.setItem('yildirimdevMultiLang', JSON.stringify(response.searchKey)); //! Ayarlama
     })();
