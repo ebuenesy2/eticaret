@@ -89,21 +89,21 @@
 			            				</form>
 			            			</div><!-- End .cart-discount -->
 
-			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="fa fa-refresh"></i></a>
+			            			<a href="#" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
 		            			</div><!-- End .cart-bottom -->
 	                		</div><!-- End .col-lg-9 -->
 	                		<aside class="col-lg-3">
 	                			<div class="summary summary-cart">
-	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+	                				<h3 class="summary-title">Sepet Toplam</h3><!-- End .summary-title -->
 
 	                				<table class="table table-summary">
 	                					<tbody>
 	                						<tr class="summary-subtotal">
-	                							<td>Subtotal:</td>
-	                							<td>$160.00</td>
+	                							<td>Toplam Sepet Fiyatı:</td>
+	                							<td>{{$productsAllTotalPrice}} {{$productsCurrency}} </td>
 	                						</tr><!-- End .summary-subtotal -->
 	                						<tr class="summary-shipping">
-	                							<td>Shipping:</td>
+	                							<td>Kargo:</td>
 	                							<td>&nbsp;</td>
 	                						</tr>
 
@@ -111,7 +111,7 @@
 	                							<td>
 													<div class="custom-control custom-radio">
 														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
+														<label class="custom-control-label" for="free-shipping">Ücretsiz Kargo</label>
 													</div><!-- End .custom-control -->
 	                							</td>
 	                							<td>$0.00</td>
@@ -138,12 +138,12 @@
 	                						</tr><!-- End .summary-shipping-row -->
 
 	                						<tr class="summary-shipping-estimate">
-	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+	                							<td>Adres<br> <a href="dashboard.html">Change address</a></td>
 	                							<td>&nbsp;</td>
 	                						</tr><!-- End .summary-shipping-estimate -->
 
 	                						<tr class="summary-total">
-	                							<td>Total:</td>
+	                							<td>Toplam:</td>
 	                							<td>$160.00</td>
 	                						</tr><!-- End .summary-total -->
 	                					</tbody>

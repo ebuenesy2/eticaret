@@ -202,3 +202,6 @@
 
 <!-- Sweet Alerts js -->
 <script src="{{asset('/assets/js')}}/sweetalert2/sweetalert2.min.js"></script>
+
+<!------- Controller --->
+<script src="{{asset('/assets/admin')}}/js/00_0_sabit/4_0_controllersToSettingLocalStorage.js"></script>
