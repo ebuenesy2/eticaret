@@ -982,39 +982,34 @@ class Web extends Controller
         \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
         //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
 
-        echo "sepet ekleme"; die();
+        try {
 
-        // try {
+            //! Veri Ekleme
+            DB::table('user_cart')->insert([
+                'user_id' => $request->user_id,
+                'product_uid' => $request->product_uid,
+                'product_quantity' => $request->product_quantity,
+                'created_byId'=>$request->created_byId,
+            ]); //! Veri Ekleme Son
 
-        //     //! Veri Ekleme
-        //     DB::table('contact_message')->insert([
-        //         'name' => $request->name,
-        //         'surname' => $request->surname,
-        //         'email' => $request->email,
-        //         'phone' => $request->phone,
-        //         'subject' => $request->subject,
-        //         'message' => $request->message,
-        //         'created_byId'=>$request->created_byId,
-        //     ]); //! Veri Ekleme Son
+            $response = array(
+                'status' => 'success',
+                'msg' => __('admin.transactionSuccessful'),
+                'error' => null, 
+            );
 
-        //     $response = array(
-        //         'status' => 'success',
-        //         'msg' => __('admin.transactionSuccessful'),
-        //         'error' => null, 
-        //     );
-
-        //     return response()->json($response);
+            return response()->json($response);
     
-        // } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
             
-        //     $response = array(
-        //         'status' => 'error',
-        //         'msg' => __('admin.transactionFailed'),
-        //         'error' => $th,            
-        //     );
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
     
-        //     return response()->json($response);
-        // }
+            return response()->json($response);
+        }
 
     } //! Kullanıcı Sepet Ekle -  Post Son
         

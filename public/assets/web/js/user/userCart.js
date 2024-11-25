@@ -32,12 +32,18 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
         var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
         
-        //! Veriler
-        var data_productid = e.target.getAttribute("data_productid"); //! Urun
-        console.log("data_productid:", data_productid);
-
+        //! Kullanıcı
         var userid = document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1];
-        console.log("userid:",userid);  
+        //console.log("userid:",userid);  
+
+        //! Ürün
+        var data_productid = e.target.getAttribute("data_productid"); //! Urun
+        //console.log("data_productid:", data_productid);
+
+        var data_product_quantity = e.target.getAttribute("data_product_quantity"); //! Urun Sayısı
+        //console.log("data_product_quantity:", data_product_quantity);
+        //! Ürün Son
+      
 
         if(data_productid == '') { 
 
@@ -69,12 +75,9 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 data: {
                     siteLang: yildirimdevMultiLangJsonReturnR.lang,
-                    name: $('#nameAdd').val(),
-                    surname: $('#surnameAdd').val(),
-                    email: $('#emailAdd').val(),
-                    phone: $('#phoneAdd').val(),
-                    subject: $('#subjectAdd').val(),
-                    message: $('#messageAdd').val(),
+                    user_id: userid,
+                    product_uid: data_productid,
+                    product_quantity: data_product_quantity,
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Başlangıc"); },
@@ -93,7 +96,7 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                         });
 
                         //! Sayfa Yenileme
-                        window.location.reload();
+                        //window.location.reload();
                     } else {
                         Swal.fire({
                             position: "center",

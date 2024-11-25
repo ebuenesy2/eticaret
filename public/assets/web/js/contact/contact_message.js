@@ -69,7 +69,7 @@ $("#contact_message_new").click(function (e) {
                 phone: $('#phoneAdd').val(),
                 subject: $('#subjectAdd').val(),
                 message: $('#messageAdd').val(),
-                created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
+                created_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
             success: function (response) {
