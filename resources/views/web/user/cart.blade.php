@@ -47,17 +47,19 @@
 									</thead>
 
 									<tbody>
+
+										@for ($i = 0; $i < count($DB_user_cart); $i++)
 										<tr>
 											<td class="product-col">
 												<div class="product">
 													<figure class="product-media">
 														<a href="#">
-															<img src="{{asset('/assets')}}/web/images/products/table/product-1.jpg" alt="Product image">
+															<img src="{{$DB_user_cart[$i]->productsImg}}" alt="Product image">
 														</a>
 													</figure>
 
 													<h3 class="product-title">
-														<a href="#">Beige knitted elastic runner shoes</a>
+														<a href="#">{{$DB_user_cart[$i]->productsTitle}}</a>
 													</h3><!-- End .product-title -->
 												</div><!-- End .product -->
 											</td>
@@ -70,29 +72,8 @@
 											<td class="total-col">$84.00</td>
 											<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
 										</tr>
-										<tr>
-											<td class="product-col">
-												<div class="product">
-													<figure class="product-media">
-														<a href="#">
-															<img src="{{asset('/assets')}}/web/images/products/table/product-2.jpg" alt="Product image">
-														</a>
-													</figure>
-
-													<h3 class="product-title">
-														<a href="#">Blue utility pinafore denim dress</a>
-													</h3><!-- End .product-title -->
-												</div><!-- End .product -->
-											</td>
-											<td class="price-col">$76.00</td>
-											<td class="quantity-col">
-                                                <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                                </div><!-- End .cart-product-quantity -->                                 
-                                            </td>
-											<td class="total-col">$76.00</td>
-											<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
-										</tr>
+										@endfor
+										
 									</tbody>
 								</table><!-- End .table table-wishlist -->
 

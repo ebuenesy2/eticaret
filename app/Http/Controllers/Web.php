@@ -922,8 +922,13 @@ class Web extends Controller
         } catch (\Throwable $th) {  throw $th; }
 
     } //! Kullanıcı - Profil Son
+    
+    //************* Kullanıcı Giriş Son ***************** */
 
     
+    
+    //************* Kullanıcı Sepet ***************** */
+
     //! UserCart
     public function UserCart($site_lang="tr")
     {
@@ -937,14 +942,28 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-               //! Site Bilgileri
-               $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
-               $seo_keywords =  $DB_HomeSettings->seo_keywords;
-               //echo "<pre>"; print_r($DB_HomeSettings); die();
+                //! Site Bilgileri
+                $DB_HomeSettings= DB::table('homesettings')->where('id','=',2)->first();
+                $seo_keywords =  $DB_HomeSettings->seo_keywords;
+                //echo "<pre>"; print_r($DB_HomeSettings); die();
 
-               $DB["DB_HomeSettings"] =  $DB_HomeSettings;
-               $DB["seo_keywords"] =  $seo_keywords;
-               //! Site Bilgileri Son
+                $DB["DB_HomeSettings"] =  $DB_HomeSettings;
+                $DB["seo_keywords"] =  $seo_keywords;
+                //! Site Bilgileri Son
+
+                //! Kullanıcı Sepet Listesi
+                $DB_user_cart= DB::table('user_cart')
+                ->join('products', 'products.uid', '=', 'user_cart.product_uid')
+                ->join('web_users', 'web_users.id', '=', 'user_cart.user_id')
+                ->select('user_cart.*', 'products.title as productsTitle','products.img_url as productsImg','web_users.name as userName','web_users.surname as userSurName')
+                ->where('user_cart.isActive','=',1)
+                ->orderBy('user_cart.id','desc')
+                ->get();
+                echo "<pre>"; print_r($DB_user_cart); die();
+
+                //! Return
+                $DB["DB_user_cart"] =  $DB_user_cart;
+                //! Kullanıcı Sepet Listesi -  Son
 
                 return view('web/user/cart',$DB);
             } //! Web

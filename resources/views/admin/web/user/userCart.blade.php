@@ -115,7 +115,10 @@
 
                                 <th role="columnheader" rowspan="1" colspan="1" >ID</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.user')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.user') @lang('admin.name')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.product')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.image')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.product') @lang('admin.title')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.quantity')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
 
@@ -130,7 +133,10 @@
 
                                   <td class="">{{$dbFind[$i]->id}}</td>
                                   <td class="">{{$dbFind[$i]->user_id}}</td>
+                                  <td class="">{{$dbFind[$i]->userName}} {{$dbFind[$i]->userSurName}}</td>
                                   <td class="">{{$dbFind[$i]->product_uid}}</td>
+                                  <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->productsImg}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
+                                  <td class="">{{$dbFind[$i]->productTitle}}</td>
                                   <td class="">{{$dbFind[$i]->product_quantity}}</td>
 
                                   <td>
@@ -209,6 +215,30 @@
    <!-- END CONTAINER -->
 
   <!--************* Modal *********--->
+      
+  <!----  Modal IMG -->
+  <div id="imgModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="imgModalTitle" style="display: flex;" ><p>@lang('admin.image') #</p><p id="imgModalValueId">54</p> </h3>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                 <div class="controls controls-row" style="display: flex;justify-content: center;" >
+                      <img id="imgView" src="" alt="" style="width: 180px;">
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+      </div>
+  </div>
+  <!----  Modal IMG Son -->
+
   <!----  Modal Ekleme -->
   <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
       <div class="modal-header">

@@ -317,7 +317,7 @@
           <div class="span12">
               <div class="control-group">
                  <div class="controls controls-row">
-                      <img id="imgView" src="" alt="" style="width: 100%;">
+                      <img id="imgView" src="" alt="" style="width: 180px;">
                   </div>
               </div>
           </div>

@@ -24,6 +24,24 @@ var listUrl = "/admin/web/user/cart"; //! List Adresi
 //! Yüklenince Kapanıyor
 $(document).ready(function () { $('#loader').hide(); });
 
+
+//! ************ Resim *******************
+//! Resim
+document.querySelectorAll("#imgItem").forEach((deleteItem) => {  
+    deleteItem.addEventListener("click", e => { 
+      
+        var data_uid = e.target.getAttribute("data_uid"); //! id
+        var data_imgUrl = e.target.getAttribute("src"); //! Resim Url
+        //console.log("data_imgUrl:", data_imgUrl);
+ 
+        //! Gösterme
+        $('#imgModalValueId').html(data_uid); //! Veriyi Gösterme
+        $('#imgView').attr("src",data_imgUrl); //! Veriyi Gösterme
+    
+    })
+}) //! Resim Son
+//! ************ Resim Son  ***************
+
 //! ************ Ekleme  ***************
 //! Ekleme
 $("#new_add").click(function (e) {

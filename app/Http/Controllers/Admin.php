@@ -7271,9 +7271,20 @@ class Admin extends Controller
                 $table = "user_cart";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
+
                 $selectData = [];  //! Select
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => "products", "parametre" => "title", "name" => "productTitle", );
+                $selectData[] = array( "table" => "products", "parametre" => "img_url", "name" => "productsImg", );
+                $selectData[] = array( "table" => "web_users", "parametre" => "name", "name" => "userName", );
+                $selectData[] = array( "table" => "web_users", "parametre" => "surname", "name" => "userSurName", );
+
                 $selectDataRaw = [];  //! Select - Raw
+                
                 $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "products" , "value" => "uid", "refTable" => $table, "refValue" => "product_uid", ); //! Join Veri Ekleme
+                $joinData[] = array( "type" => "LEFT", "table" => "web_users" , "value" => "id", "refTable" => $table, "refValue" => "user_id", ); //! Join Veri Ekleme
+
                 $searchData = []; //! Arama
                 $whereData = []; //! Where
                 
