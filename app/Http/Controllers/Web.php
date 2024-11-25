@@ -930,7 +930,7 @@ class Web extends Controller
     
     //************* Kullanıcı Sepet ***************** */
 
-    //! UserCart
+    //! Kullanıcı Sepet
     public function UserCart($site_lang="tr")
     {
         
@@ -972,7 +972,51 @@ class Web extends Controller
         
         } catch (\Throwable $th) {  throw $th; }
 
-    } //! UserCart Son
+    } //! Kullanıcı Sepet Son
+
+    
+    //! Kullanıcı Sepet Ekle -  Post
+    public function UserCartAddPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        echo "sepet ekleme"; die();
+
+        // try {
+
+        //     //! Veri Ekleme
+        //     DB::table('contact_message')->insert([
+        //         'name' => $request->name,
+        //         'surname' => $request->surname,
+        //         'email' => $request->email,
+        //         'phone' => $request->phone,
+        //         'subject' => $request->subject,
+        //         'message' => $request->message,
+        //         'created_byId'=>$request->created_byId,
+        //     ]); //! Veri Ekleme Son
+
+        //     $response = array(
+        //         'status' => 'success',
+        //         'msg' => __('admin.transactionSuccessful'),
+        //         'error' => null, 
+        //     );
+
+        //     return response()->json($response);
+    
+        // } catch (\Throwable $th) {
+            
+        //     $response = array(
+        //         'status' => 'error',
+        //         'msg' => __('admin.transactionFailed'),
+        //         'error' => $th,            
+        //     );
+    
+        //     return response()->json($response);
+        // }
+
+    } //! Kullanıcı Sepet Ekle -  Post Son
         
     //! UserCheckout
     public function UserCheckout($site_lang="tr")
