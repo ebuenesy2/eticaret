@@ -8,13 +8,11 @@
     <!------- Head --->
     @include('web.include.head')
 
-    <!-- Favicon -->
-   
-    <meta name="apple-mobile-web-app-title" content="Yıldırımdev">
-    <meta name="application-name" content="Yıldırımdev">
-    <meta name="msapplication-TileColor" content="#cc9966">
-    <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/style.css">
+    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/nouislider/nouislider.css">
 
     <script>
         WebFontConfig = {
@@ -29,18 +27,12 @@
     </script>
     
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/jquery.countdown.css">
-    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/magnific-popup/magnific-popup.css">
+   
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="{{asset('/assets')}}/web/css/style.css">
     <link rel="stylesheet" href="{{asset('/assets')}}/web/css/skins/skin-demo-28.css">
     <link rel="stylesheet" href="{{asset('/assets')}}/web/css/demos/demo-28.css">
     <link rel="stylesheet" href="{{asset('/assets')}}/web/css/demos/carousel-layout.css">
-
-    <!--------- Font - ıCON  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
