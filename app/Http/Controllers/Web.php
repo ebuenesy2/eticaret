@@ -102,6 +102,29 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
+                                           
+                //! Kullanıcı Sepet Listesi
+                $DB_user_cart= DB::table('user_cart')
+                ->join('products', 'products.uid', '=', 'user_cart.product_uid')
+                ->join('web_users', 'web_users.id', '=', 'user_cart.user_id')
+                ->select('user_cart.*', 
+                          'products.title as productsTitle','products.img_url as productsImg',
+                          'products.uid as productsUid','products.seo_url as productsSeo_url',
+                          'products.currency as productsCurrency',
+                          DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                          DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) AS productsTotalPrice'),
+                          'web_users.name as userName',
+                          'web_users.surname as userSurName'
+                        )
+                ->where('user_cart.user_id','=', (int)$_COOKIE["web_userId"])
+                ->where('user_cart.isActive','=',1)
+                ->orderBy('user_cart.id','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_user_cart); die();
+
+                //! Return
+                $DB["DB_user_cart"] =  $DB_user_cart;
+                //! Kullanıcı Sepet Listesi -  Son
 
                 //! Slider
                 $DB_Slider= DB::table('sliders')->where('sliders.lang','=',__('admin.lang'))->where('isActive','=',1)->get();
@@ -951,12 +974,20 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
-
+                           
                 //! Kullanıcı Sepet Listesi
                 $DB_user_cart= DB::table('user_cart')
                 ->join('products', 'products.uid', '=', 'user_cart.product_uid')
                 ->join('web_users', 'web_users.id', '=', 'user_cart.user_id')
-                ->select('user_cart.*', 'products.title as productsTitle','products.img_url as productsImg','web_users.name as userName','web_users.surname as userSurName')
+                ->select('user_cart.*', 
+                          'products.title as productsTitle','products.img_url as productsImg',
+                          'products.uid as productsUid','products.seo_url as productsSeo_url',
+                          'products.currency as productsCurrency',
+                          DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                          DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) AS productsTotalPrice'),
+                          'web_users.name as userName',
+                          'web_users.surname as userSurName'
+                        )
                 ->where('user_cart.user_id','=', (int)$_COOKIE["web_userId"])
                 ->where('user_cart.isActive','=',1)
                 ->orderBy('user_cart.id','desc')

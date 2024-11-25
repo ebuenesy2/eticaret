@@ -52,45 +52,29 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-cart-products">
+
+                                    @for ($i = 0; $i < count($DB_user_cart); $i++)
                                     <div class="product mb-0 rounded-0 w-100">
                                         <div class="product-cart-details">
                                             <h4 class="product-title overflow-hidden letter-spacing-normal">
-                                                <a href="{{asset('/assets')}}/web/product.html">Beige knitted elastic runner shoes</a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}">{{$DB_user_cart[$i]->productsTitle}}</a>
                                             </h4>
 
                                             <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $84.00
+                                                <span class="cart-product-qty">{{$DB_user_cart[$i]->product_quantity}}</span>
+                                                x {{$DB_user_cart[$i]->productsPrice}} {{$DB_user_cart[$i]->productsCurrency}}
                                             </span>
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="{{asset('/assets')}}/web/product.html" class="product-image">
-                                                <img src="{{asset('/assets')}}/web/images/products/cart/product-1.jpg" alt="product mb-0 rounded-0 w-100">
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}" class="product-image">
+                                                <img src="{{$DB_user_cart[$i]->productsImg}}" alt="product mb-0 rounded-0 w-100">
                                             </a>
                                         </figure>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-remove" title="Remove Product"><i class="fa fa-close"></i></a>
+                                        <a class="btn-remove" title="Remove Product"><i class="fa fa-close"></i></a>
                                     </div><!-- End .product -->
+                                    @endfor
 
-                                    <div class="product mb-0 rounded-0 w-100">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title overflow-hidden letter-spacing-normal">
-                                                <a href="{{asset('/assets')}}/web/product.html">Blue utility pinafore denim dress</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $76.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="{{asset('/assets')}}/web/product.html" class="product-image">
-                                                <img src="{{asset('/assets')}}/web/images/products/cart/product-2.jpg" alt="product mb-0 rounded-0 w-100">
-                                            </a>
-                                        </figure>
-                                        <a href="{{asset('/assets')}}/web/#" class="btn-remove" title="Remove Product"><i class="fa fa-close"></i></a>
-                                    </div><!-- End .product -->
                                 </div><!-- End .cart-product -->
 
                                 <div class="dropdown-cart-total">
