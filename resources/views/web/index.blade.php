@@ -166,8 +166,8 @@
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                                <a id="userCartAdd" style="cursor: pointer;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2"><span>Sepete Ekle</span></a>
+                                                <a  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                             </div>
                                         </div>
                                     </div>
@@ -395,6 +395,10 @@
               
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+
+    
+    <!------- JS --->
+    <script src="{{asset('/assets/web')}}/js/user/userCart.js"></script>
 
 </body>
 

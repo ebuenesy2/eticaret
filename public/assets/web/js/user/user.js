@@ -21,9 +21,6 @@ function yildirimdevMultiLangJsonReturn () {
 //! Tanım
 var listUrl = "/user"; //! List Adresi
 
-//! Yüklenince Kapanıyor
-$(document).ready(function () { $('#loader').hide(); });
-
 //! ************ Kayıt ***************
 //! Kayıt
 $("#register").click(function (e) {
