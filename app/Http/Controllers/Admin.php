@@ -7285,7 +7285,11 @@ class Admin extends Controller
                 $joinData[] = array( "type" => "LEFT", "table" => "products" , "value" => "uid", "refTable" => $table, "refValue" => "product_uid", ); //! Join Veri Ekleme
                 $joinData[] = array( "type" => "LEFT", "table" => "web_users" , "value" => "id", "refTable" => $table, "refValue" => "user_id", ); //! Join Veri Ekleme
 
-                $searchData = []; //! Arama
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
                 $whereData = []; //! Where
                 
                 $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı

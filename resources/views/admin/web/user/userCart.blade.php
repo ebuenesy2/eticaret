@@ -83,6 +83,13 @@
                             <input type="number" placeholder="id" class="" id="searchTable" searchName="Id" style="width: 120px;" >
                           </div>
                           <!------ Arama ID Son----->
+
+                          <!------ Arama User ID ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Kullanıcı Id</p>
+                            <input type="number" placeholder="userId" class="" id="searchTable" searchName="userId" style="width: 120px;" >
+                          </div>
+                          <!------ Arama User ID Son----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->

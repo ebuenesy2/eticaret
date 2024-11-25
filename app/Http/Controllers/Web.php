@@ -952,13 +952,12 @@ class Web extends Controller
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
 
-
-
                 //! Kullanıcı Sepet Listesi
                 $DB_user_cart= DB::table('user_cart')
                 ->join('products', 'products.uid', '=', 'user_cart.product_uid')
                 ->join('web_users', 'web_users.id', '=', 'user_cart.user_id')
                 ->select('user_cart.*', 'products.title as productsTitle','products.img_url as productsImg','web_users.name as userName','web_users.surname as userSurName')
+                ->where('user_cart.user_id','=', (int)$_COOKIE["web_userId"])
                 ->where('user_cart.isActive','=',1)
                 ->orderBy('user_cart.id','desc')
                 ->get();
