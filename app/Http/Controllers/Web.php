@@ -959,7 +959,7 @@ class Web extends Controller
                 ->where('user_cart.isActive','=',1)
                 ->orderBy('user_cart.id','desc')
                 ->get();
-                echo "<pre>"; print_r($DB_user_cart); die();
+                //echo "<pre>"; print_r($DB_user_cart); die();
 
                 //! Return
                 $DB["DB_user_cart"] =  $DB_user_cart;
