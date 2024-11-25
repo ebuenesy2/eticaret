@@ -45,9 +45,9 @@
                             <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <div class="icon position-relative">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="cart-count">2</span>
+                                    <span class="cart-count">{{$productsCount}}</span>
                                 </div>
-                                <span class="cart-txt font-weight-normal" style="font-size: 15px;" >$0.00</span>
+                                <span class="cart-txt font-weight-normal" style="font-size: 15px;" >{{$productsAllTotalPrice}} {{$productsCurrency}}</span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right">
@@ -80,7 +80,7 @@
                                 <div class="dropdown-cart-total">
                                     <span>Total</span>
 
-                                    <span class="cart-total-price">$160.00</span>
+                                    <span class="cart-total-price">{{$productsAllTotalPrice}} {{$productsCurrency}}</span>
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action">

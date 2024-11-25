@@ -205,3 +205,7 @@
 
 <!------- Controller --->
 <script src="{{asset('/assets/admin')}}/js/00_0_sabit/4_0_controllersToSettingLocalStorage.js"></script>
+
+
+<!------- Sepetim JS --->
+<script src="{{asset('/assets/web')}}/js/user/userCart.js"></script>

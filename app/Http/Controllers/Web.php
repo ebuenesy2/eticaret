@@ -113,6 +113,7 @@ class Web extends Controller
                           'products.currency as productsCurrency',
                           DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
                           DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) AS productsTotalPrice'),
+                          DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
                           'web_users.name as userName',
                           'web_users.surname as userSurName'
                         )
@@ -124,6 +125,9 @@ class Web extends Controller
 
                 //! Return
                 $DB["DB_user_cart"] =  $DB_user_cart;
+                $DB["productsCount"] =  $DB_user_cart->count();
+                $DB["productsCurrency"] =  $DB_user_cart->count() > 0 ? $DB_user_cart[0]->productsCurrency : "TL";
+                $DB["productsAllTotalPrice"] =  $DB_user_cart->count() > 0 ? $DB_user_cart[0]->productsAllTotalPrice : 0;
                 //! Kullanıcı Sepet Listesi -  Son
 
                 //! Slider
@@ -980,14 +984,14 @@ class Web extends Controller
                 ->join('products', 'products.uid', '=', 'user_cart.product_uid')
                 ->join('web_users', 'web_users.id', '=', 'user_cart.user_id')
                 ->select('user_cart.*', 
-                          'products.title as productsTitle','products.img_url as productsImg',
-                          'products.uid as productsUid','products.seo_url as productsSeo_url',
-                          'products.currency as productsCurrency',
-                          DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
-                          DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) AS productsTotalPrice'),
-                          DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
-                          'web_users.name as userName',
-                          'web_users.surname as userSurName'
+                        'products.title as productsTitle','products.img_url as productsImg',
+                        'products.uid as productsUid','products.seo_url as productsSeo_url',
+                        'products.currency as productsCurrency',
+                        DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                        DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) AS productsTotalPrice'),
+                        DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
+                        'web_users.name as userName',
+                        'web_users.surname as userSurName'
                         )
                 ->where('user_cart.user_id','=', (int)$_COOKIE["web_userId"])
                 ->where('user_cart.isActive','=',1)
@@ -997,6 +1001,7 @@ class Web extends Controller
 
                 //! Return
                 $DB["DB_user_cart"] =  $DB_user_cart;
+                $DB["productsCount"] =  $DB_user_cart->count();
                 $DB["productsCurrency"] =  $DB_user_cart->count() > 0 ? $DB_user_cart[0]->productsCurrency : "TL";
                 $DB["productsAllTotalPrice"] =  $DB_user_cart->count() > 0 ? $DB_user_cart[0]->productsAllTotalPrice : 0;
                 //! Kullanıcı Sepet Listesi -  Son

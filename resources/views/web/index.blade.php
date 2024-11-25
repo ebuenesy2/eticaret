@@ -381,10 +381,6 @@
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
 
-    
-    <!------- JS --->
-    <script src="{{asset('/assets/web')}}/js/user/userCart.js"></script>
-
 </body>
 
 </html>
