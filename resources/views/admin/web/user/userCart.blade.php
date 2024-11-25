@@ -114,7 +114,7 @@
                                 <th style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th role="columnheader" rowspan="1" colspan="1" >ID</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.user')</th>
+                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.user') ID</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.user') @lang('admin.name')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.product')</th>
                                 <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.image')</th>

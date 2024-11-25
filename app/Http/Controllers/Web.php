@@ -798,8 +798,8 @@ class Web extends Controller
                $DB["seo_keywords"] =  $seo_keywords;
                //! Site Bilgileri Son
 
-                setcookie("userId","", time() - 86400,'/'); //! Cookie Silme
-                setcookie("roleId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("web_userId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("web_roleId","", time() - 86400,'/'); //! Cookie Silme
 
 
                 return view('web/user/login',$DB);
@@ -832,6 +832,7 @@ class Web extends Controller
                 // if($DB_Find->role_id == 1) { $url = "/". __('admin.lang')."/customer/profile"; }
                 // if($DB_Find->role_id == 2) { $url = "/". __('admin.lang')."/company/profile"; }
 
+                //! Return
                 $response = array(
                     'status' => 'success',
                     'msg' => __('admin.transactionSuccessful'),
@@ -883,8 +884,8 @@ class Web extends Controller
             if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
             else { 
 
-                setcookie("userId","", time() - 86400,'/'); //! Cookie Silme
-                setcookie("roleId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("web_userId","", time() - 86400,'/'); //! Cookie Silme
+                setcookie("web_roleId","", time() - 86400,'/'); //! Cookie Silme
 
                 return redirect('/'.__('admin.lang').'/'.'user/login');
                 
@@ -950,6 +951,8 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
+
+
 
                 //! Kullanıcı Sepet Listesi
                 $DB_user_cart= DB::table('user_cart')

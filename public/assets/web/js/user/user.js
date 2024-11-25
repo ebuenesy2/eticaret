@@ -255,8 +255,8 @@ $("#login").click(function (e) {
                     });
 
                     //! Çerez
-                    document.cookie="userId="+response.userId+";path=/";
-                    document.cookie="roleId="+response.roleId+";path=/"; 
+                    document.cookie="web_userId="+response.userId+";path=/";
+                    document.cookie="web_roleId="+response.roleId+";path=/"; 
 
                     //! Sayfa Yönlendirme
                     window.location.href = response.url;

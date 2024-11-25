@@ -28,7 +28,7 @@
                     <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
                     
                     <!-- Kullanıcı -->
-                    @if(isset($_COOKIE["userId"])) 
+                    @if(isset($_COOKIE["web_userId"])) 
                     <li><a href="/@lang('admin.lang')/user/profile"><i class="fa fa-user"></i>Profil Sayfası </a></li>
                     <li><a href="/@lang('admin.lang')/user/logout"><i class="fa fa-user"></i>Çıkış </a></li>
 
