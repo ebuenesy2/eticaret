@@ -22,12 +22,10 @@ function yildirimdevMultiLangJsonReturn () {
 var listUrl = "/user/cart"; //! List Adresi
 
 
-//! ************ Sepete Ekle ***************
-//! Sepete Ekle
+//! ************ Sepete Ürün Ekle ***************
+//! Sepete Ürün Ekle
 document.querySelectorAll("#userCartAdd").forEach((Item) => {
     Item.addEventListener("click", e => {
-
-        alert("userCartAdd");
 
         var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
@@ -43,7 +41,6 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
         var data_product_quantity = e.target.getAttribute("data_product_quantity"); //! Urun Sayısı
         //console.log("data_product_quantity:", data_product_quantity);
         //! Ürün Son
-      
 
         if(data_productid == '') { 
 
@@ -123,5 +120,88 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
         }
 
     })
-}) //! Sepete Ekle Son
-//! ************ Sepete Ekle Son  ***************
+}) //! Sepete Ürün Ekle Son
+//! ************ Sepete Ürün Ekle Son  ***************
+
+//! ************ Sepete Ürün Silme ***************
+//! Sepete Ürün Silme
+document.querySelectorAll("#userCartDelete").forEach((Item) => {
+    Item.addEventListener("click", e => {
+       
+        var data_id = e.target.getAttribute("data_id"); //! Target ATTR
+        console.log("data_id:", data_id);
+
+        var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+        //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+      
+        //! Alert
+        Swal.fire({
+            title: yildirimdevMultiLangJsonReturnR.areYouSure+" #"+data_id,
+            //text:  yildirimdevMultiLangJsonReturnR.deleteWarning,
+            icon: 'error',
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            cancelButtonText: yildirimdevMultiLangJsonReturnR.no,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: yildirimdevMultiLangJsonReturnR.yes,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //alert("oldu");
+
+                //! Ajax  Post
+                $.ajax({
+                    url: listUrl + "/delete/post",
+                    type: "post",
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    data: {
+                        siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                        id:Number(data_id),
+                        //created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1],
+                    },              
+                    beforeSend: function() { console.log("Başlangıc"); },
+                    success: function (response) {
+                        //alert("başarılı");
+                        console.log("response:", response);
+                        //console.log("status:", response.status);
+
+                        if (response.status == "success") {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+            
+                            //! Sayfa Yenileme
+                            window.location.reload();
+                        } else {
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                                showConfirmButton: false,
+                                timer: 2000,
+                            });
+                        console.log("error:", error);
+                    },
+                    complete: function() {  console.log("Search Ajax Bitti"); }
+                }); //! Ajax Post Son
+
+            }
+        });
+        //! Alert Son
+
+    })
+}) //! Sepete Ürün Silme Son
+//! ************ Sepete Ürün Silme Son  ***************

@@ -70,13 +70,14 @@
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col">{{$DB_user_cart[$i]->productsTotalPrice}} {{$DB_user_cart[$i]->productsCurrency}}</td>
-											<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
+											<td class="remove-col"><button class="btn-remove" id="userCartDelete" data_id="{{$DB_user_cart[$i]->id}}" ><i data_id="{{$DB_user_cart[$i]->id}}" class="fa fa-close" style="color: red;" ></i></button></td>
 										</tr>
 										@endfor
 										
 									</tbody>
 								</table><!-- End .table table-wishlist -->
 
+								<!-- coupon -->
 	                			<div class="cart-bottom">
 			            			<div class="cart-discount">
 			            				<form action="#">
@@ -87,10 +88,11 @@
 												</div><!-- .End .input-group-append -->
 			        						</div><!-- End .input-group -->
 			            				</form>
-			            			</div><!-- End .cart-discount -->
+			            			</div><!-- End  coupon -->
 
 			            			<a href="#" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
 		            			</div><!-- End .cart-bottom -->
+
 	                		</div><!-- End .col-lg-9 -->
 	                		<aside class="col-lg-3">
 	                			<div class="summary summary-cart">

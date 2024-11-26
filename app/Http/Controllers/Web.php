@@ -1012,7 +1012,6 @@ class Web extends Controller
         } catch (\Throwable $th) {  throw $th; }
 
     } //! Kullanıcı Sepet Son
-
     
     //! Kullanıcı Sepet Ekle -  Post
     public function UserCartAddPost(Request $request)
@@ -1051,6 +1050,58 @@ class Web extends Controller
         }
 
     } //! Kullanıcı Sepet Ekle -  Post Son
+
+
+    //! Kullanıcı Sepet - Veri Silme Post
+    public function UserCartDeletePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'user_cart';
+            $DB_Find = DB::table($table)->where('id',$request->id)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Silme
+                $DB_Status = DB::table($table)->where('id',$request->id)->delete();
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,  
+                );  
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Kullanıcı Sepet - Veri Silme Post Son
+
         
     //! UserCheckout
     public function UserCheckout($site_lang="tr")

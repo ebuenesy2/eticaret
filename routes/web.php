@@ -52,8 +52,9 @@ Route::get('/{lang}/user/logout', [Web::class,'UserLogout']) -> name("web.user.l
 
 Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Profil
 
-Route::get('/{lang}/user/cart', [Web::class,'UserCart']) -> name("web.user.cart"); //! Web - Kullanıcı Kart
-Route::post('/user/cart/add/post', [Web::class,'UserCartAddPost']) -> name("web.user.cart.add.post"); //! Web Kullanıcı Kart Ekle - Post
+Route::get('/{lang}/user/cart', [Web::class,'UserCart']) -> name("web.user.cart"); //! Web - Kullanıcı Sepet
+Route::post('/user/cart/add/post', [Web::class,'UserCartAddPost']) -> name("web.user.cart.add.post"); //! Web Kullanıcı Sepet Ekle - Post
+Route::post('/user/cart/delete/post', [Web::class,'UserCartDeletePost']) -> name("web.user.cart.delete.post"); //! Web Kullanıcı Sepet Sil- Post
 
 Route::get('/{lang}/user/checkout', [Web::class,'UserCheckout']) -> name("web.user.checkout"); //! Web - Kullanıcı - Checkout
 Route::get('/{lang}/user/wishlist', [Web::class,'UserWishlist']) -> name("web.user.wishlist"); //! Web - Kullanıcı - Wishlist
