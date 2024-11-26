@@ -60,6 +60,7 @@
 
     'cartList' => 'Cart List',
     'myCart' => 'My Cart',
+    'myWishList' => 'My Wish List',
 
     'order' => 'Order',
     'orders' => 'Orders',

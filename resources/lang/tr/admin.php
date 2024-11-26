@@ -60,6 +60,7 @@
     
     'cartList' => 'Sepet Listesi',
     'myCart' => 'Sepetim',
+    'myWishList' => 'İstek Listem',
 
     'order' => 'Sipariş',
     'orders' => 'Siparişler',
