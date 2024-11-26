@@ -53,25 +53,25 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-cart-products">
 
-                                    @for ($i = 0; $i < count($DB_user_cart); $i++)
+                                    @for ($i = 0; $i < count($DB_web_user_cart); $i++)
                                     <div class="product mb-0 rounded-0 w-100">
                                         <div class="product-cart-details">
                                             <h4 class="product-title overflow-hidden letter-spacing-normal">
-                                                <a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}">{{$DB_user_cart[$i]->productsTitle}}</a>
+                                                <a href="/@lang('admin.lang')/product/view/{{$DB_web_user_cart[$i]->productsUid}}-{{$DB_web_user_cart[$i]->productsSeo_url}}">{{$DB_web_user_cart[$i]->productsTitle}}</a>
                                             </h4>
 
                                             <span class="cart-product-info">
-                                                <span class="cart-product-qty">{{$DB_user_cart[$i]->product_quantity}}</span>
-                                                x {{$DB_user_cart[$i]->productsPrice}} {{$DB_user_cart[$i]->productsCurrency}}
+                                                <span class="cart-product-qty">{{$DB_web_user_cart[$i]->product_quantity}}</span>
+                                                x {{$DB_web_user_cart[$i]->productsPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}
                                             </span>
                                         </div><!-- End .product-cart-details -->
 
                                         <figure class="product-image-container">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}" class="product-image">
-                                                <img src="{{$DB_user_cart[$i]->productsImg}}" alt="product mb-0 rounded-0 w-100">
+                                            <a href="/@lang('admin.lang')/product/view/{{$DB_web_user_cart[$i]->productsUid}}-{{$DB_web_user_cart[$i]->productsSeo_url}}" class="product-image">
+                                                <img src="{{$DB_web_user_cart[$i]->productsImg}}" alt="product mb-0 rounded-0 w-100">
                                             </a>
                                         </figure>
-                                        <a class="btn-remove" title="Remove Product" id="userCartDelete" data_id="{{$DB_user_cart[$i]->id}}" ><i data_id="{{$DB_user_cart[$i]->id}}" class="fa fa-close" style="color: red; cursor:pointer;" ></i></a>
+                                        <a class="btn-remove" title="Remove Product" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" class="fa fa-close" style="color: red; cursor:pointer;" ></i></a>
                                     </div><!-- End .product -->
                                     @endfor
 
