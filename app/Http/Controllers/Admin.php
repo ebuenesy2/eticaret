@@ -7268,7 +7268,7 @@ class Admin extends Controller
                 //echo "Çerez var"; die();
 
                 //! Tanım
-                $table = "user_cart";
+                $table = "web_user_cart";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
 
@@ -7320,7 +7320,7 @@ class Admin extends Controller
         try {
          
             //! Veri Arama
-            $DB_Find = DB::table('user_cart')->where('id',$request->id)->first(); //Tüm verileri çekiyor
+            $DB_Find = DB::table('web_user_cart')->where('id',$request->id)->first(); //Tüm verileri çekiyor
    
             if($DB_Find) {
    
@@ -7370,7 +7370,7 @@ class Admin extends Controller
         try {
          
             //! Veri Ekleme
-            DB::table('user_cart')->insert([
+            DB::table('web_user_cart')->insert([
                 'user_id' => $request->user_id,
                 'product_uid' => $request->product_uid,
                 'product_quantity' => $request->product_quantity,
@@ -7408,7 +7408,7 @@ class Admin extends Controller
         try {
         
             //! Veri Arama
-            $table = 'user_cart';
+            $table = 'web_user_cart';
             $DB_Find = DB::table($table)->where('id',$request->id)->first(); //Tüm verileri çekiyor
 
             if($DB_Find) {
@@ -7458,7 +7458,7 @@ class Admin extends Controller
         try {
         
             //! Veri Silme
-            $DB_Status = DB::table('user_cart')->whereIn('id',$request->ids)->delete();
+            $DB_Status = DB::table('web_user_cart')->whereIn('id',$request->ids)->delete();
 
             $response = array(
                 'status' => $DB_Status ? 'success' : 'error',
@@ -7491,7 +7491,7 @@ class Admin extends Controller
         try {
          
             //! Veri Arama
-            $DB = DB::table('user_cart')->where('id',$request->id); //Veri Tabanı
+            $DB = DB::table('web_user_cart')->where('id',$request->id); //Veri Tabanı
             $DB_Find = $DB->first(); //Tüm verileri çekiyor
 
             if($DB_Find) {
@@ -7549,7 +7549,7 @@ class Admin extends Controller
         try {
         
             //! Veri Arama
-            $table = 'user_cart';
+            $table = 'web_user_cart';
             $DB = DB::table($table)->where('id',$request->id); //VeriTabanı
             $DB_Find = $DB->first(); //Tüm verileri çekiyor
 
@@ -7628,7 +7628,7 @@ class Admin extends Controller
         try {
 
             //! Veri Arama
-            $table = 'user_cart';
+            $table = 'web_user_cart';
             $DB = DB::table($table)->whereIn('id',$request->ids);
             $DB_Find = $DB->get(); //Tüm verileri çekiyor
             //echo "<pre>"; print_r($DB_Find); die();
