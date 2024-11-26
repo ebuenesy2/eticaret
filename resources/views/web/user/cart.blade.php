@@ -48,29 +48,29 @@
 
 									<tbody>
 
-										@for ($i = 0; $i < count($DB_user_cart); $i++)
+										@for ($i = 0; $i < count($DB_web_user_cart); $i++)
 										<tr>
 											<td class="product-col">
 												<div class="product">
 													<figure class="product-media">
-														<a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}">
-															<img src="{{$DB_user_cart[$i]->productsImg}}" alt="Product image">
+														<a href="/@lang('admin.lang')/product/view/{{$DB_web_user_cart[$i]->productsUid}}-{{$DB_web_user_cart[$i]->productsSeo_url}}">
+															<img src="{{$DB_web_user_cart[$i]->productsImg}}" alt="Product image">
 														</a>
 													</figure>
 
 													<h3 class="product-title">
-														<a href="/@lang('admin.lang')/product/view/{{$DB_user_cart[$i]->productsUid}}-{{$DB_user_cart[$i]->productsSeo_url}}">{{$DB_user_cart[$i]->productsTitle}}</a>
+														<a href="/@lang('admin.lang')/product/view/{{$DB_web_user_cart[$i]->productsUid}}-{{$DB_web_user_cart[$i]->productsSeo_url}}">{{$DB_web_user_cart[$i]->productsTitle}}</a>
 													</h3><!-- End .product-title -->
 												</div><!-- End .product -->
 											</td>
-											<td class="price-col">{{$DB_user_cart[$i]->productsPrice}} {{$DB_user_cart[$i]->productsCurrency}}</td>
+											<td class="price-col">{{$DB_web_user_cart[$i]->productsPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
 											<td class="quantity-col">
                                                 <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="{{$DB_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
+                                                    <input type="number" class="form-control" value="{{$DB_web_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
-											<td class="total-col">{{$DB_user_cart[$i]->productsTotalPrice}} {{$DB_user_cart[$i]->productsCurrency}}</td>
-											<td class="remove-col"><button class="btn-remove" id="userCartDelete" data_id="{{$DB_user_cart[$i]->id}}" ><i data_id="{{$DB_user_cart[$i]->id}}" class="fa fa-close" style="color: red;" ></i></button></td>
+											<td class="total-col">{{$DB_web_user_cart[$i]->productsTotalPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
+											<td class="remove-col"><button class="btn-remove" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" class="fa fa-close" style="color: red;" ></i></button></td>
 										</tr>
 										@endfor
 										

@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Kart | {{ $DB_HomeSettings->title }} </title>
+	<title> @lang('admin.myWishList') | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')
@@ -18,15 +18,14 @@
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
-        			<h1 class="page-title">Wishlist<span>Shop</span></h1>
+        			<h1 class="page-title">@lang('admin.myWishList')</h1>
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                        <li class="breadcrumb-item active" aria-current="page">@lang('admin.myWishList')</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -36,100 +35,42 @@
 					<table class="table table-wishlist table-mobile">
 						<thead>
 							<tr>
-								<th>Product</th>
-								<th>Price</th>
-								<th>Stock Status</th>
+								<th>@lang('admin.product')</th>
+								<th>@lang('admin.salePrice')</th>
+								<th>@lang('admin.stockStatus')</th>
 								<th></th>
 								<th></th>
 							</tr>
 						</thead>
 
 						<tbody>
+						    
+						    @for ($i = 0; $i < count($DB_web_user_wish); $i++)
 							<tr>
 								<td class="product-col">
 									<div class="product">
 										<figure class="product-media">
-											<a href="#">
-												<img src="{{asset('/assets')}}/web/images/products/table/product-1.jpg" alt="Product image">
+											<a href="/@lang('admin.lang')/product/view/{{$DB_web_user_wish[$i]->productsUid}}-{{$DB_web_user_wish[$i]->productsSeo_url}}">
+												<img src="{{$DB_web_user_wish[$i]->productsImg}}" alt="Product image">
 											</a>
 										</figure>
 
 										<h3 class="product-title">
-											<a href="#">Beige knitted elastic runner shoes</a>
+											<a href="/@lang('admin.lang')/product/view/{{$DB_web_user_wish[$i]->productsUid}}-{{$DB_web_user_wish[$i]->productsSeo_url}}">{{$DB_web_user_wish[$i]->productsTitle}}</a>
 										</h3><!-- End .product-title -->
 									</div><!-- End .product -->
 								</td>
-								<td class="price-col">$84.00</td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
-								<td class="action-col">
-                                    <div class="dropdown">
-									<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-list-alt"></i>Select Options
-                                    </button>
+								<td class="price-col">{{$DB_web_user_wish[$i]->productsPrice}} {{$DB_web_user_wish[$i]->productsCurrency}}</td>
+								
+								<td class="stock-col"><span class="{{$DB_web_user_wish[$i]->productsStock > 0 ? 'in-stock' : 'out-of-stock'}}">{{$DB_web_user_wish[$i]->productsStock > 0 ? "Stokta Var" : "Stok Yok"}}</span></td>
 
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">First option</a>
-                                        <a class="dropdown-item" href="#">Another option</a>
-                                        <a class="dropdown-item" href="#">The best option</a>
-                                      </div>
-                                    </div>
-								</td>
 								<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
 							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="{{asset('/assets')}}/web/images/products/table/product-2.jpg" alt="Product image">
-											</a>
-										</figure>
-
-										<h3 class="product-title">
-											<a href="#">Blue utility pinafore denim dress</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$76.00</td>
-								<td class="stock-col"><span class="in-stock">In stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2"><i class="fa fa-cart-plus"></i>Add to Cart</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
-							</tr>
-							<tr>
-								<td class="product-col">
-									<div class="product">
-										<figure class="product-media">
-											<a href="#">
-												<img src="{{asset('/assets')}}/web/images/products/table/product-3.jpg" alt="Product image">
-											</a>
-										</figure>
-
-										<h3 class="product-title">
-											<a href="#">Orange saddle lock front chain cross body bag</a>
-										</h3><!-- End .product-title -->
-									</div><!-- End .product -->
-								</td>
-								<td class="price-col">$52.00</td>
-								<td class="stock-col"><span class="out-of-stock">Out of stock</span></td>
-								<td class="action-col">
-									<button class="btn btn-block btn-outline-primary-2 disabled">Out of Stock</button>
-								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="fa fa-close"></i></button></td>
-							</tr>
+							@endfor
+							
 						</tbody>
 					</table><!-- End .table table-wishlist -->
-	            	<div class="wishlist-share">
-	            		<div class="social-icons social-icons-sm mb-2">
-	            			<label class="social-label">Share on:</label>
-	    					<a href="#" class="social-icon" title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
-	    					<a href="#" class="social-icon" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-	    					<a href="#" class="social-icon" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
-	    					<a href="#" class="social-icon" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-	    					<a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
-	    				</div><!-- End .soial-icons -->
-	            	</div><!-- End .wishlist-share -->
+	            	
             	</div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->

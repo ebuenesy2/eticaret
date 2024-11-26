@@ -482,7 +482,35 @@ class Web extends Controller
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
 
-                //! Product Verileri
+                                                          
+                //! Kullanıcı Sepet Listesi
+                $DB_web_user_cart= DB::table('web_user_cart')
+                ->join('products', 'products.uid', '=', 'web_user_cart.product_uid')
+                ->join('web_users', 'web_users.id', '=', 'web_user_cart.user_id')
+                ->select('web_user_cart.*', 
+                        'products.title as productsTitle','products.img_url as productsImg',
+                        'products.uid as productsUid','products.seo_url as productsSeo_url',
+                        'products.currency as productsCurrency',
+                        DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                        DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) AS productsTotalPrice'),
+                        DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
+                        'web_users.name as userName',
+                        'web_users.surname as userSurName'
+                        )
+                ->where('web_user_cart.user_id','=', (int)$_COOKIE["web_userId"])
+                ->where('web_user_cart.isActive','=',1)
+                ->orderBy('web_user_cart.id','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_web_user_cart); die();
+
+                //! Return
+                $DB["DB_web_user_cart"] =  $DB_web_user_cart;
+                $DB["productsCount"] =  $DB_web_user_cart->count();
+                $DB["productsCurrency"] =  $DB_web_user_cart->count() > 0 ? $DB_web_user_cart[0]->productsCurrency : "TL";
+                $DB["productsAllTotalPrice"] =  $DB_web_user_cart->count() > 0 ? $DB_web_user_cart[0]->productsAllTotalPrice : 0;
+                //! Kullanıcı Sepet Listesi -  Son
+
+                //! Ürün Verileri
                
                 //! Uid
                 $dizi=explode("-",$seo_url); //! Parçıyor
@@ -495,7 +523,7 @@ class Web extends Controller
                 //! Return
                 $DB["DB_Find"] =  $DB_Find;
                 $DB["seoTitle"] =  $DB_Find->seo_url;
-                //! Blog Verileri Son
+                //! Ürün Verileri Son
 
                 return view('web/product/product_view',$DB);
             } //! Web
@@ -1131,14 +1159,15 @@ class Web extends Controller
                 ->join('products', 'products.uid', '=', 'web_user_cart.product_uid')
                 ->join('web_users', 'web_users.id', '=', 'web_user_cart.user_id')
                 ->select('web_user_cart.*', 
-                        'products.title as productsTitle','products.img_url as productsImg',
-                        'products.uid as productsUid','products.seo_url as productsSeo_url',
-                        'products.currency as productsCurrency',
-                        DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
-                        DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) AS productsTotalPrice'),
-                        DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
-                        'web_users.name as userName',
-                        'web_users.surname as userSurName'
+                            'products.title as productsTitle','products.img_url as productsImg',
+                            'products.uid as productsUid','products.seo_url as productsSeo_url',
+                            'products.currency as productsCurrency',
+                            'products.stock as productsStock',
+                            DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                            DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) AS productsTotalPrice'),
+                            DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
+                            'web_users.name as userName',
+                            'web_users.surname as userSurName',
                         )
                 ->where('web_user_cart.user_id','=', (int)$_COOKIE["web_userId"])
                 ->where('web_user_cart.isActive','=',1)
@@ -1151,7 +1180,43 @@ class Web extends Controller
                 $DB["productsCount"] =  $DB_web_user_cart->count();
                 $DB["productsCurrency"] =  $DB_web_user_cart->count() > 0 ? $DB_web_user_cart[0]->productsCurrency : "TL";
                 $DB["productsAllTotalPrice"] =  $DB_web_user_cart->count() > 0 ? $DB_web_user_cart[0]->productsAllTotalPrice : 0;
-                //! Kullanıcı Sepet Listesi -  Son
+                //! Kullanıcı Sepet Listesi - Son
+
+                //! Kullanıcı İstek Listesi - Sayısı
+                $DB_web_user_wish_count = DB::table('web_user_wish')->where('web_user_wish.user_id','=', (int)$_COOKIE["web_userId"])->count(); //! İstek Listesi - Sayısı
+                //echo "DB_web_user_wish_count:"; echo $DB_web_user_wish_count; die();
+
+                //! Return
+                $DB["DB_web_user_wish_count"] =  $DB_web_user_wish_count;
+                //! Kullanıcı İstek Listesi - Sayısı - Son
+
+                //! Kullanıcı İstek Listesi
+                $DB_web_user_wish= DB::table('web_user_wish')
+                ->join('products', 'products.uid', '=', 'web_user_wish.product_uid')
+                ->join('web_users', 'web_users.id', '=', 'web_user_wish.user_id')
+                ->select('web_user_wish.*', 
+                            'products.title as productsTitle','products.img_url as productsImg',
+                            'products.uid as productsUid','products.seo_url as productsSeo_url',
+                            'products.currency as productsCurrency',
+                            'products.stock as productsStock',
+                            DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                            DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_wish.product_quantity) AS productsTotalPrice'),
+                            DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_wish.product_quantity) OVER() AS productsAllTotalPrice'),
+                            'web_users.name as userName',
+                            'web_users.surname as userSurName',
+                        )
+                ->where('web_user_wish.user_id','=', (int)$_COOKIE["web_userId"])
+                ->where('web_user_wish.isActive','=',1)
+                ->orderBy('web_user_wish.id','desc')
+                ->get();
+                //echo "<pre>"; print_r($DB_web_user_wish); die();
+
+                //! Return
+                $DB["DB_web_user_wish"] =  $DB_web_user_wish;
+                $DB["productsCount"] =  $DB_web_user_wish->count();
+                $DB["productsCurrency"] =  $DB_web_user_wish->count() > 0 ? $DB_web_user_wish[0]->productsCurrency : "TL";
+                $DB["productsAllTotalPrice"] =  $DB_web_user_wish->count() > 0 ? $DB_web_user_wish[0]->productsAllTotalPrice : 0;
+                //! Kullanıcı İstek Listesi -  Son
 
                 return view('web/user/wishlist',$DB);
             } //! Web

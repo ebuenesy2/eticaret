@@ -39,6 +39,7 @@
     'product' => 'Ürün',
     'productCategory' => 'Ürün Kategorisi',
     'stock' => 'Stok',
+    'stockStatus' => 'Stok Durumu',
     'quantity' => 'Miktar',
     'currency' => 'Para Birimi',
     'salePrice' => 'Satış Fiyat',

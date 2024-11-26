@@ -39,6 +39,7 @@
     'product' => 'Product',
     'productCategory' => 'Product Category',
     'stock' => 'Stock',
+    'stockStatus' => 'Stock Status',
     'quantity' => 'Quantity',
     'currency' => 'Currency',
     'salePrice' => 'Sale Price',
