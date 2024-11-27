@@ -209,3 +209,7 @@
 
 <!------- Sepetim JS --->
 <script src="{{asset('/assets/web')}}/js/user/userCart.js"></script>
+
+
+<!------- İstek Listesi JS --->
+<script src="{{asset('/assets/web')}}/js/user/userWish.js"></script>

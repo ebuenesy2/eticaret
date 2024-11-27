@@ -36,7 +36,7 @@
                         <a href="/@lang('admin.lang')/user/wishlist" class="wishlist-link">
                             <div class="icon position-relative">
                                 <i class="fa fa-heart-o" style="font-size: 15px;" ></i>
-                                <span class="wishlist-count">3</span>
+                                <span class="wishlist-count">{{$DB_web_user_wish_count}}</span>
                             </div>
                         </a>
                     </li>

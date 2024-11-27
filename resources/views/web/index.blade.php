@@ -152,7 +152,7 @@
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
                                                 <a id="userCartAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" style="cursor: pointer;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2">Sepete Ekle</a>
-                                                <a  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                                <a id="userWishAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
                                             </div>
                                         </div>
                                     </div>
