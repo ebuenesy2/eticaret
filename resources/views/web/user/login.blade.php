@@ -6,9 +6,6 @@
     
     <!------- Head --->
     @include('web.include.head')
-
-	<!---- Jquery dosyası çekme--->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 </head>
 
@@ -115,14 +112,15 @@
 	        	</div><!-- End .container -->
 	        </div><!-- End .footer-bottom -->
 
-			<!------- JS --->
-			<script src="{{asset('/assets/web')}}/js/user/user.js"></script>
-
         </footer><!-- End .footer -->
     </div><!-- End .page-wrapper -->
              
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+
+	
+	<!------- JS --->
+	<script src="{{asset('/assets/web')}}/js/user/user.js"></script>
 
 </body>
 
