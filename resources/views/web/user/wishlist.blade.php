@@ -40,6 +40,7 @@
 								<th>@lang('admin.stockStatus')</th>
 								<th></th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 
@@ -62,6 +63,7 @@
 								</td>
 								<td class="price-col">{{$DB_web_user_wish[$i]->productsPrice}} {{$DB_web_user_wish[$i]->productsCurrency}}</td>
 								<td class="stock-col"><span class="{{$DB_web_user_wish[$i]->productsStock > 0 ? 'in-stock' : 'out-of-stock'}}">{{$DB_web_user_wish[$i]->productsStock > 0 ? "Stokta Var" : "Stok Yok"}}</span></td>
+                                <td class="remove-col"><a id="userCartAdd" data_productid="{{$DB_web_user_wish[$i]->productsUid}}" data_product_quantity="1" style="cursor: pointer;height: 15px;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2">Sepete Ekle</a></td>
                                 <td class="remove-col"><button class="btn-remove" id="userWishDelete" data_id="{{$DB_web_user_wish[$i]->id}}" data_productstitle="{{$DB_web_user_wish[$i]->productsTitle}}" ><i data_id="{{$DB_web_user_wish[$i]->id}}" data_productstitle="{{$DB_web_user_wish[$i]->productsTitle}}" class="fa fa-close" style="color: red;" ></i></button></td>
 							@endfor
 							
