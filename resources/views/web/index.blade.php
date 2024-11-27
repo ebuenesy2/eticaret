@@ -128,13 +128,12 @@
                                     }
                                 }
                             }'>
-
                                 @for ($i = 0; $i < count($DB_Products_Editor_Suggestion); $i++)
-                                <div class="product mb-0 rounded-0 w-100">
+                                <div class="product mb-0 rounded-0 w-100" style="border: 1px solid #ebebeb;" >
                                     <figure class="product-media bg-white ">
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}">
                                             @if($DB_Products_Editor_Suggestion[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_Editor_Suggestion[$i]->discounted_price_percent}}%</span> @endif
-                                            <img src="{{$DB_Products_Editor_Suggestion[$i]->img_url}}"  style="width: max-content;height: auto;object-fit: contain;">
+                                            <img src="{{$DB_Products_Editor_Suggestion[$i]->img_url}}" style="width: 170px;height: 170px;object-fit: contain;" >
                                         </a>
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
