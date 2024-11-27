@@ -110,7 +110,7 @@
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">EDİTÖRÜN ÖNERİSİ</h2>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
-                            <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
+                            <div style="overflow-y: hidden;overflow-x: hidden;padding-bottom: 22px;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
                                 "nav": true,
                                 "dots": true,
                                 "loop": false   ,
@@ -383,6 +383,20 @@
               
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+
+    <script src="{{asset('/assets')}}/web/js/jquery.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/jquery.hoverIntent.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/jquery.waypoints.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/superfish.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/owl.carousel.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/bootstrap-input-spinner.js"></script>
+    <script src="{{asset('/assets')}}/web/js/jquery.plugin.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/jquery.countdown.min.js"></script>
+    <script src="{{asset('/assets')}}/web/js/jquery.magnific-popup.min.js"></script>
+
+    <script src="{{asset('/assets')}}/web/js/main.js"></script>
+    <script src="{{asset('/assets')}}/web/js/demos/demo-2.js"></script>
 
 </body>
 
