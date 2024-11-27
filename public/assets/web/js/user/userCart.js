@@ -19,7 +19,7 @@ function yildirimdevMultiLangJsonReturn () {
 }  //! Çoklu Dil Fonksiyon Son
 
 //! Tanım
-var listUrl = "/user/cart"; //! List Adresi
+var listUrl_Cart = "/user/cart"; //! List Adresi
 
 
 //! ************ Sepete Ürün Ekle ***************
@@ -67,7 +67,7 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
 
             //! Ajax  Post
             $.ajax({
-                url: listUrl + "/add/post",
+                url: listUrl_Cart + "/add/post",
                 type: "post",
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 data: {
@@ -129,14 +129,17 @@ document.querySelectorAll("#userCartDelete").forEach((Item) => {
     Item.addEventListener("click", e => {
        
         var data_id = e.target.getAttribute("data_id"); //! Target ATTR
-        console.log("data_id:", data_id);
+        //console.log("data_id:", data_id);
+
+        var data_productstitle = e.target.getAttribute("data_productstitle"); //! Target 
+        //console.log("data_productstitle:", data_productstitle);
 
         var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
       
         //! Alert
         Swal.fire({
-            title: yildirimdevMultiLangJsonReturnR.areYouSure+" #"+data_id,
+            title: yildirimdevMultiLangJsonReturnR.deleteWarning + " " +yildirimdevMultiLangJsonReturnR.areYouSure+" #"+data_id + "[ " + data_productstitle +"]",
             //text:  yildirimdevMultiLangJsonReturnR.deleteWarning,
             icon: 'error',
             showCancelButton: true,
@@ -150,7 +153,7 @@ document.querySelectorAll("#userCartDelete").forEach((Item) => {
 
                 //! Ajax  Post
                 $.ajax({
-                    url: listUrl + "/delete/post",
+                    url: listUrl_Cart + "/delete/post",
                     type: "post",
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     data: {
@@ -161,7 +164,7 @@ document.querySelectorAll("#userCartDelete").forEach((Item) => {
                     beforeSend: function() { console.log("Başlangıc"); },
                     success: function (response) {
                         //alert("başarılı");
-                        console.log("response:", response);
+                        // console.log("response:", response);
                         //console.log("status:", response.status);
 
                         if (response.status == "success") {

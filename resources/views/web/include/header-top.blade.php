@@ -71,7 +71,7 @@
                                                 <img src="{{$DB_web_user_cart[$i]->productsImg}}" alt="product mb-0 rounded-0 w-100">
                                             </a>
                                         </figure>
-                                        <a class="btn-remove" title="Remove Product" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" class="fa fa-close" style="color: red; cursor:pointer;" ></i></a>
+                                        <a class="btn-remove" title="Remove Product" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" data_productstitle="{{$DB_web_user_cart[$i]->productsTitle}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" data_productstitle="{{$DB_web_user_cart[$i]->productsTitle}}" class="fa fa-close" style="color: red; cursor:pointer;" ></i></a>
                                     </div><!-- End .product -->
                                     @endfor
 

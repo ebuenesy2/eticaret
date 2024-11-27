@@ -19,7 +19,7 @@ function yildirimdevMultiLangJsonReturn () {
 }  //! Çoklu Dil Fonksiyon Son
 
 //! Tanım
-var listUrl = "/user/wishlist"; //! List Adresi
+var listUrl_wish = "/user/wishlist"; //! List Adresi
 
 
 //! ************ İstek Listesine Ürün Ekle ***************
@@ -67,7 +67,7 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
 
             //! Ajax  Post
             $.ajax({
-                url: listUrl + "/add/post",
+                url: listUrl_wish + "/add/post",
                 type: "post",
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 data: {
@@ -80,7 +80,7 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
                 beforeSend: function() { console.log("Başlangıc"); },
                 success: function (response) {
                     // alert("başarılı");
-                    console.log("response:", response);
+                    // console.log("response:", response);
                     // console.log("status:", response.status);
 
                     if (response.status == "success") {
@@ -153,7 +153,7 @@ document.querySelectorAll("#userWishDelete").forEach((Item) => {
 
                 //! Ajax  Post
                 $.ajax({
-                    url: listUrl + "/delete/post",
+                    url: listUrl_wish + "/delete/post",
                     type: "post",
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     data: {
@@ -164,7 +164,7 @@ document.querySelectorAll("#userWishDelete").forEach((Item) => {
                     beforeSend: function() { console.log("Başlangıc"); },
                     success: function (response) {
                         //alert("başarılı");
-                        console.log("response:", response);
+                        // console.log("response:", response);
                         //console.log("status:", response.status);
 
                         if (response.status == "success") {

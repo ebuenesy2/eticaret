@@ -70,7 +70,7 @@
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col">{{$DB_web_user_cart[$i]->productsTotalPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
-											<td class="remove-col"><button class="btn-remove" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" class="fa fa-close" style="color: red;" ></i></button></td>
+											<td class="remove-col"><button class="btn-remove" id="userCartDelete" data_id="{{$DB_web_user_cart[$i]->id}}" data_productstitle="{{$DB_web_user_cart[$i]->productsTitle}}" ><i data_id="{{$DB_web_user_cart[$i]->id}}" data_productstitle="{{$DB_web_user_cart[$i]->productsTitle}}" class="fa fa-close" style="color: red;" ></i></button></td>
 										</tr>
 										@endfor
 										
