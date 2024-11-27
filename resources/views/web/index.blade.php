@@ -101,6 +101,8 @@
                 </div>
                 <!--- Kategoriler Son -->
 
+                <hr>
+
                 <!--- EDİTÖRÜN ÖNERİSİ -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
@@ -295,6 +297,8 @@
                     </div>
                 </div>
                 <!--- YENİ ÇIKANLAR Son -->
+
+                <hr>
                 
                 <!--- Blog -->
                 <div class="bg-lighter blog-section pt-6 pb-5">
