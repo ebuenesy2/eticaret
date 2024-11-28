@@ -106,8 +106,9 @@
                 <!--- EDİTÖRÜN ÖNERİSİ -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
-                        <div class="heading d-flex flex-column flex-md-row">
+                        <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">EDİTÖRÜN ÖNERİSİ</h2>
+                            <a href="">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;overflow-x: hidden;padding-bottom: 22px;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
@@ -171,8 +172,9 @@
                 <!--- ÇOK SATANLAR -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
-                        <div class="heading d-flex flex-column flex-md-row">
+                        <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">ÇOK SATANLAR</h2>
+                            <a href="">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
@@ -237,8 +239,9 @@
                 <!--- YENİ ÇIKANLAR -->
                 <div class="flash-section bg-lighter">
                     <div class="container">
-                        <div class="heading d-flex flex-column flex-md-row">
+                        <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Yeni Ürünler</h2>
+                            <a href="">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
@@ -303,8 +306,9 @@
                 <!--- Blog -->
                 <div class="bg-lighter blog-section pt-6 pb-5">
                     <div class="container">
-                        <div class="heading py-2 pb-0">
+                        <div class="heading py-2 pb-0" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Blog Yazılarımız</h2>
+                            <a href="/@lang('admin.lang')/blog">Tümü Göster</a>
                         </div>
                         <div class="owl-carousel owl-simple shadow-carousel rows cols-1 cols-sm-2 cols-lg-3 cols-xl-4" data-toggle="owl" data-owl-options='{
                             "nav": false, 
