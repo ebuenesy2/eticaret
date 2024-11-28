@@ -102,6 +102,10 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
+
+                //! Web UserId
+                $web_userId = 0;
+                if(isset($_COOKIE["userId"])) { $web_userId = (int)$_COOKIE["web_userId"]; }
                                            
                 //! Kullanıcı Sepet Listesi
                 $DB_web_user_cart= DB::table('web_user_cart')
@@ -117,7 +121,7 @@ class Web extends Controller
                           'web_users.name as userName',
                           'web_users.surname as userSurName'
                         )
-                ->where('web_user_cart.user_id','=', (int)$_COOKIE["web_userId"])
+                ->where('web_user_cart.user_id','=', $web_userId)
                 ->where('web_user_cart.isActive','=',1)
                 ->orderBy('web_user_cart.id','desc')
                 ->get();
@@ -132,7 +136,7 @@ class Web extends Controller
 
                                 
                 //! Kullanıcı İstek Listesi - Sayısı
-                $DB_web_user_wish_count = DB::table('web_user_wish')->where('web_user_wish.user_id','=', (int)$_COOKIE["web_userId"])->count(); //! İstek Listesi - Sayısı
+                $DB_web_user_wish_count = DB::table('web_user_wish')->where('web_user_wish.user_id','=', $web_userId)->count(); //! İstek Listesi - Sayısı
                 //echo "DB_web_user_wish_count:"; echo $DB_web_user_wish_count; die();
 
                 //! Return

@@ -42,17 +42,7 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
         //console.log("data_product_quantity:", data_product_quantity);
         //! Ürün Son
 
-        if(data_productid == '') { 
-
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Ürün Seçilmedi",
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        }
-        else if(userid == '') { 
+        if(userid == '' || !userid ) { 
 
             Swal.fire({
                 position: "center",
@@ -62,6 +52,16 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
                 timer: 2000,
             });
 
+        }
+        else if(data_productid == '') { 
+
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Ürün Seçilmedi",
+                showConfirmButton: false,
+                timer: 2000,
+            });
         }
         else {
 
