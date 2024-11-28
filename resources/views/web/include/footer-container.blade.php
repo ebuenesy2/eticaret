@@ -3,8 +3,7 @@
         <div class="col-sm-6 col-lg-3">
             <div class="widget widget-about">
                 <img src="{{asset('/assets')}}/web/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                <p> Footer - Yazı </p>
-
+                
                 <div class="social-icons">
                     @if($DB_HomeSettings->facebook_Url !="" )<a href="{{ $DB_HomeSettings->facebook_Url }}" class="social-icon" target="_blank" title="Facebook"><i class="fa fa-facebook-f"></i></a>@endif
                     @if($DB_HomeSettings->twitter_Url !="" )<a href="{{ $DB_HomeSettings->twitter_Url }}" class="social-icon" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>@endif
@@ -20,10 +19,10 @@
                 <h4 class="widget-title">Sıkca Kullanılan Sayfalar</h4><!-- End .widget-title -->
 
                 <ul class="widget-list">
-                    <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>
-                    <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
                     <li><a href="/@lang('admin.lang')/faq">Sıkça Sorulan Sorular</a></li>
+                    <li><a href="/@lang('admin.lang')/blog">Blog</a></li>
                 </ul><!-- End .widget-list -->
+
             </div><!-- End .widget -->
         </div><!-- End .col-sm-6 col-lg-3 -->
 
@@ -33,17 +32,24 @@
 
                 <ul class="widget-list">
                     <li><a href="/@lang('admin.lang')/about">Hakkımızda</a></li>
+                    <li><a href="/@lang('admin.lang')/contact">İletişim</a></li>
                 </ul><!-- End .widget-list -->
+
             </div><!-- End .widget -->
         </div><!-- End .col-sm-6 col-lg-3 -->
 
         <div class="col-sm-6 col-lg-3">
             <div class="widget">
-                <h4 class="widget-title">Kullanıcı</h4><!-- End .widget-title -->
+                <h4 class="widget-title">Linkler</h4><!-- End .widget-title -->
 
                 <ul class="widget-list">
                     <li><a href="/@lang('admin.lang')/user/login">Giriş Yap</a></li>
+                    <li><a href="/@lang('admin.lang')/error404">Hata 404</a></li>
+                    <li><a href="/@lang('admin.lang')/coming-soon">Yakında</a></li>
+                    <li><a href="/@lang('admin.lang')/user/checkout">Checkout</a></li>
+                    <li><a href="/@lang('admin.lang')/blog-single">Blog Detay</a></li>
                 </ul><!-- End .widget-list -->
+                
             </div><!-- End .widget -->
         </div><!-- End .col-sm-6 col-lg-3 -->
     </div><!-- End .row -->

@@ -195,7 +195,7 @@ class Web extends Controller
                 //! Ürünler - Çok Satanlar Son
 
                 //! Ürünler - Yeni Ürünler
-                $DB_Products= DB::table('products')
+                $DB_Products_new= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->select('products.*', 'product_categories.title as CategoryTitle')
                 ->where('products.lang','=',__('admin.lang'))
@@ -204,10 +204,10 @@ class Web extends Controller
                 ->skip(0)->take(20)
                 ->orderBy('products.uid','desc')
                 ->get();
-                //echo "<pre>"; print_r($DB_Products); die();
+                //echo "<pre>"; print_r($DB_Products_new); die();
 
                 //! Return
-                $DB["DB_Products"] =  $DB_Products;
+                $DB["DB_Products_new"] =  $DB_Products_new;
                 //! Ürünler - Yeni Ürünler Son
 
                 //! Blog 
@@ -653,9 +653,6 @@ class Web extends Controller
                 //! Return
                 $DB["DB_web_user_wish_count"] =  $DB_web_user_wish_count;
                 //! Kullanıcı İstek Listesi - Sayısı - Son
-
-                                                          
-              
 
                 //! Ürün Verileri
                

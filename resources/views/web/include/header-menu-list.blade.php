@@ -12,16 +12,9 @@
                 <li class="megamenu-container {{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}"><a href="/@lang('admin.lang')/product/list" class="{{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}">Tüm Ürünler</a></li>
                 <li class="megamenu-container {{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}"><a href="/@lang('admin.lang')/product/list" class="{{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}">Yeni Ürünler</a></li>
                 <li class="megamenu-container {{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}"><a href="/@lang('admin.lang')/product/list" class="{{Route::current()->getName() == 'web.product' ? 'active' : 'passive'}}">Çok Satanlar</a></li>
-                <li class="megamenu-container {{Route::current()->getName() == 'web.blog' ? 'active' : 'passive'}}"><a href="/@lang('admin.lang')/blog" class="{{Route::current()->getName() == 'web.blog' ? 'active' : 'passive'}}">Blog</a></li>
-                <li class="megamenu-list">
-                    <a href="{{asset('/assets')}}/web/#" class="sf-with-ul">Sayfalar</a>
-                    <ul>
-                        <li><a href="/@lang('admin.lang')/error404">Hata 404</a></li>
-                        <li><a href="/@lang('admin.lang')/coming-soon">Yakında</a></li>
-                        <li><a href="/@lang('admin.lang')/user/checkout">Checkout</a></li>
-                        <li><a href="/@lang('admin.lang')/blog-single">Blog Detay</a></li>
-                    </ul>
-                </li>
+                
+                <li class="d-none megamenu-container {{Route::current()->getName() == 'web.blog' ? 'active' : 'passive'}}"><a href="/@lang('admin.lang')/blog" class="{{Route::current()->getName() == 'web.blog' ? 'active' : 'passive'}}">Blog</a></li>
+              
             </ul>
         </nav>
     </div>
