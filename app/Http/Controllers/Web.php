@@ -172,7 +172,7 @@ class Web extends Controller
                 ->skip(0)->take(20)
                 ->orderBy('products.uid','desc')
                 ->get();
-                //echo "<pre>"; print_r($DB_Products_Editor_Suggestion); die();
+                echo "<pre>"; print_r($DB_Products_Editor_Suggestion); die();
 
                 //! Return
                 $DB["DB_Products_Editor_Suggestion"] =  $DB_Products_Editor_Suggestion;
@@ -551,12 +551,16 @@ class Web extends Controller
                 //! Ürünler Listesi Kontrol
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->select('products.*', 
+                        'product_categories.uid as product_categories_uid',
+                        'product_categories.title as product_categories_title',
+                        'product_categories.seo_url as product_categories_seo_url'
+                        )
                 ->where('products.lang','=',__('admin.lang'))
                 ->where('products.isActive','=',1);
 
                 if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
-
+                
                 //! Sayfa Sayısı Hesaplama
                 $DB_Count = $DB_Products->count(); //! Veri Sayısı
                 $pageNow = $page+1; //! Bulunduğu Sayfa
@@ -663,7 +667,11 @@ class Web extends Controller
 
                 $DB_Find= DB::table('products')
                           ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                          ->select('products.*','product_categories.uid as product_categories_uid','product_categories.title as product_categories_title','product_categories.seo_url as product_categories_seo_url')
+                          ->select('products.*',
+                                   'product_categories.uid as product_categories_uid',
+                                   'product_categories.title as product_categories_title',
+                                   'product_categories.seo_url as product_categories_seo_url'
+                                  )
                           ->where('products.lang','=',__('admin.lang'))
                           ->where('products.uid','=',$uid)
                           ->first();

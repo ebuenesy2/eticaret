@@ -84,7 +84,7 @@
 
                                             <div class="product-body">
                                                 <div class="product-cat">
-                                                    <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->CategoryTitle}}</a>
+													<a href="/@lang('admin.lang')/product/category/{{$DB_Products[$i]->product_categories_uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->product_categories_title}}</a>
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">{{$DB_Products[$i]->title}}</a></h3><!-- End .product-title -->
                                                 <div style="display: flex;justify-content: center;" >
