@@ -63,31 +63,51 @@
 							    </div>
 								<!------- Giriş Son ----------->
 
+								<!------- Kayıt ----------->
 							    <div class="tab-pane fade" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+									<div id='loader' style="display: none;width: 20px;margin-bottom: 15px;"><img src="/upload/images/loader.gif" alt=""></div>
 							    	<form action="#">
 							    		<div class="form-group">
-							    			<label for="register-email-2">Your email address *</label>
-							    			<input type="email" class="form-control" id="register-email-2" name="register-email" required>
+							    			<label for="name">@lang('admin.name')</label>
+							    			<input type="text" class="form-control" id="name" name="name" required>
+							    		</div><!-- End .form-group -->
+
+										<div class="form-group">
+							    			<label for="surname">@lang('admin.surname')</label>
+							    			<input type="text" class="form-control" id="surname" name="surname" required>
+							    		</div><!-- End .form-group -->
+
+										<div class="form-group">
+							    			<label for="phone">@lang('admin.phone')</label>
+							    			<input type="text" class="form-control" id="phone" name="phone" required>
+							    		</div><!-- End .form-group -->
+
+										<div class="form-group">
+							    			<label for="emailRegister">@lang('admin.email')</label>
+							    			<input type="email" class="form-control" id="emailRegister" name="emailRegister" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-group">
-							    			<label for="register-password-2">Password *</label>
-							    			<input type="password" class="form-control" id="register-password-2" name="register-password" required>
+							    			<label for="passwordRegister">@lang('admin.password')</label>
+							    			<input type="password" class="form-control" id="passwordRegister" name="passwordRegister" required>
+							    		</div><!-- End .form-group -->
+
+										<div class="form-group">
+							    			<label for="confirmPasswordRegister">@lang('admin.repeatPassword')</label>
+							    			<input type="password" class="form-control" id="confirmPasswordRegister" name="confirmPasswordRegister" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-footer">
-							    			<button type="submit" class="btn btn-outline-primary-2">
-			                					<span>SIGN UP</span>
+							    			<button id="register" style="cursor: pointer;"  class="btn btn-outline-primary-2">
+			                					<span>@lang('admin.register')</span>
 			            						<i class="fa fa-long-arrow-right"></i>
 			                				</button>
-
-			                				<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-												<label class="custom-control-label" for="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
-											</div><!-- End .custom-checkbox -->
 							    		</div><!-- End .form-footer -->
 							    	</form>
 							    </div><!-- .End .tab-pane -->
+								<!------- Kayıt Son ----------->
+
+								
 							</div><!-- End .tab-content -->
 						</div><!-- End .form-tab -->
             		</div><!-- End .form-box -->
@@ -117,7 +137,6 @@
              
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
-
 	
 	<!------- JS --->
 	<script src="{{asset('/assets/web')}}/js/user/user.js"></script>

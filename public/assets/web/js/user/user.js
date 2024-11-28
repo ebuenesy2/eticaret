@@ -46,9 +46,9 @@ $("#register").click(function (e) {
 
     //! Veriler
     var name = $('#name').val();
-    var email = $('#email').val();
-    var password = $('#password').val();
-    var confirmPassword = $('#confirmPassword').val();
+    var email = $('#emailRegister').val();
+    var password = $('#passwordRegister').val();
+    var confirmPassword = $('#confirmPasswordRegister').val();
 
     if(name == '') { 
 
@@ -110,17 +110,8 @@ $("#register").click(function (e) {
                 name: $('#name').val(),
                 surname: $('#surname').val(),
                 phone: $('#phone').val(),
-                email: $('#email').val(),
-                password: $('#password').val(),
-
-                city: $('#city').val(),
-                district: $('#district').val(),
-                neighborhood: $('#neighborhood').val(),
-                address: $('#address').val(),
-
-                service_type: $('#service_type').val(),
-                type: $('#type').val(),
-                description: $('#description').val(),
+                email: $('#emailRegister').val(),
+                password: $('#passwordRegister').val(),
 
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },

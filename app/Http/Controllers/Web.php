@@ -1427,6 +1427,67 @@ class Web extends Controller
 
     } //! Kullanıcı - Çıkış Son
 
+    //! Kullanıcı - Kayıt Post
+    public function UserRegisterPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Veri Arama
+            $DB_Find = DB::table('web_users')->where('email',$request->email)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' =>  "Email Kayıtlıdır",
+                    'error' => null,  
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                //! Veri Ekleme
+                DB::table('web_users')->insert([
+                    'name' => $request->name,
+                    'surname' => $request->surname,
+                    'phone' => $request->phone,
+                    'role_id' => 1,
+                    'img_url'=> config('admin.Default_UserImgUrl'),
+
+                    'email' => $request->email,
+                    'password' => $request->password,
+
+                    'created_byId'=>$request->created_byId,
+                ]); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'error' => null, 
+                );
+
+                return response()->json($response);
+
+            }
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Kullanıcı -  Kayıt Post Son
+
     //! Kullanıcı - Profil
     public function UserProfile($site_lang="tr")
     {

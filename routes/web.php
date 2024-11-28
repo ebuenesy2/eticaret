@@ -49,6 +49,7 @@ Route::get('/{lang}/coming-soon', [Web::class,'ComingSoon']) -> name("web.coming
 Route::get('/{lang}/user/login', [Web::class,'UserLogin']) -> name("web.user.login"); //! Web - Kullanıcı - Giriş
 Route::post('/user/login/post', [Web::class,'UserLoginPost']) -> name("web.user.login.post"); //! Web Kullanıcı Giriş - Post
 Route::get('/{lang}/user/logout', [Web::class,'UserLogout']) -> name("web.user.logout"); //! Web - Kullanıcı - Çıkış
+Route::post('/user/register/post', [Web::class,'UserRegisterPost']) -> name("web.register.post"); //! Web Kullanıcı Kayıt - Post - Router
 
 Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Profil
 
