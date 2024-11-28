@@ -7,7 +7,7 @@ var siteLang = $('html').attr('lang'); //! Site Dili
 try {
     
     var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu Dil
-    if(yildirimdevMultiLangJson == null) {  getLangData(siteLang); }
+    if(yildirimdevMultiLangJson == null || !yildirimdevMultiLangJson ) {  getLangData(siteLang); }
     else {
         var localLang = yildirimdevMultiLangJson?.lang; //! Local Dil
         if(siteLang != localLang ) { getLangData(siteLang); } //! Yoksa Ayarla
