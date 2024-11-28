@@ -61,9 +61,12 @@
                                     </div>
 
                                     <div class="product-content">{!!$DB_Find->description!!}</div><!-- End .product-content -->
+                                    
+                                  
 
                                     <div class="product-details-action" style="display: flex;gap: 9px;" >
-                                        <a id="userCartAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="btn-product btn-cart" style="cursor: pointer;" ><span>Sepete Ekle</span></a> <br>
+                                        <input type="number" id="product_quantity" class="form-control col-3 d-flex justify-content-center" value="1" min="1" max="10" step="1" data-decimals="0" style="margin: auto;background-color: white;border: 1px solid black;" >
+                                        <a id="userCartAdd" data_productid="{{$DB_Find->uid}}" class="btn-product btn-cart" style="cursor: pointer;" ><span>Sepete Ekle</span></a> <br>
                                         <a id="userWishAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" style="cursor: pointer;" ><i style="cursor: pointer;"  data_productid="{{$DB_Find->uid}}" data_product_quantity="1"  class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                     </div><!-- End .product-details-action -->
 
@@ -334,11 +337,11 @@
         </footer><!-- End .footer -->
     </div><!-- End .page-wrapper -->
 
-    <!------- JS --->
-    <script src="{{asset('/assets/web')}}/js/product/product_actions_web.js"></script>
-             
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+    
+    <!------- JS --->
+    <script src="{{asset('/assets/web')}}/js/product/product_actions_web.js"></script>
 
 </body>
 

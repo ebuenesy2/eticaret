@@ -34,11 +34,13 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
         var userid = document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1];
         //console.log("userid:",userid);  
 
-        //! Ürün
-        var data_productid = e.target.getAttribute("data_productid"); //! Urun
+        //! Ürün Id
+        var data_productid = e.target.getAttribute("data_productid"); 
         //console.log("data_productid:", data_productid);
 
-        var data_product_quantity = e.target.getAttribute("data_product_quantity"); //! Urun Sayısı
+        //! Urun Sayısı
+        var data_product_quantity = e.target.getAttribute("data_product_quantity");
+        data_product_quantity = data_product_quantity ? data_product_quantity : $('#product_quantity').val(); 
         //console.log("data_product_quantity:", data_product_quantity);
         //! Ürün Son
 
@@ -77,7 +79,7 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                     product_quantity: data_product_quantity,
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
                 },
-                beforeSend: function() { console.log("Başlangıc"); },
+                beforeSend: function() { console.log("Sepet Listesine Ekle - Başlangıc"); },
                 success: function (response) {
                     // alert("başarılı");
                     console.log("response:", response);
@@ -161,7 +163,7 @@ document.querySelectorAll("#userCartDelete").forEach((Item) => {
                         id:Number(data_id),
                         //created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1],
                     },              
-                    beforeSend: function() { console.log("Başlangıc"); },
+                    beforeSend: function() { console.log("Sepet Listesinden Sil -  Başlangıc"); },
                     success: function (response) {
                         //alert("başarılı");
                         // console.log("response:", response);

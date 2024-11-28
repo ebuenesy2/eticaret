@@ -77,7 +77,7 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
                     product_quantity: data_product_quantity,
                     created_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
                 },
-                beforeSend: function() { console.log("Başlangıc"); },
+                beforeSend: function() { console.log("İstek Listesine Ekle -  Başlangıc"); },
                 success: function (response) {
                     // alert("başarılı");
                     // console.log("response:", response);
@@ -161,7 +161,7 @@ document.querySelectorAll("#userWishDelete").forEach((Item) => {
                         id:Number(data_id),
                         //created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1],
                     },              
-                    beforeSend: function() { console.log("Başlangıc"); },
+                    beforeSend: function() { console.log("İstek Listesinden Sil -  Başlangıc"); },
                     success: function (response) {
                         //alert("başarılı");
                         // console.log("response:", response);
