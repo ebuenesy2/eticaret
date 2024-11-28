@@ -63,8 +63,8 @@
                                     <div class="product-content">{!!$DB_Find->description!!}</div><!-- End .product-content -->
 
                                     <div class="product-details-action" style="display: flex;gap: 9px;" >
-                                        <a href="#" class="btn-product btn-cart"><span>Sepete Ekle</span></a> <br>
-                                        <a href="#" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" ><i class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                        <a id="userCartAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="btn-product btn-cart" style="cursor: pointer;" ><span>Sepete Ekle</span></a> <br>
+                                        <a id="userWishAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" style="cursor: pointer;" ><i style="cursor: pointer;"  data_productid="{{$DB_Find->uid}}" data_product_quantity="1"  class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
                                     </div><!-- End .product-details-action -->
 
                                     <div class="wishlist-share">
