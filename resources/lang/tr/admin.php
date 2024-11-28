@@ -191,6 +191,7 @@
     'register' => 'Kayıt Ol',
     'send' => 'Gönder',
     'reset' => 'Reset',
+    'share' => 'Paylaş',
 
     'dataAdded' => 'Veri Eklendi',
     'dataDeleted' => 'Veri Silindi',

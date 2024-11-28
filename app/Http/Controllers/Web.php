@@ -664,7 +664,12 @@ class Web extends Controller
                 $uid = $dizi[0]; //! uid
                 //echo "uid:"; echo $uid; //! uid
 
-                $DB_Find= DB::table('products')->where('lang','=',__('admin.lang'))->where('uid','=',$uid)->first();
+                $DB_Find= DB::table('products')
+                          ->join('product_categories', 'product_categories.uid', '=', 'products.category')
+                          ->select('products.*','product_categories.uid as product_categories_uid','product_categories.title as product_categories_title','product_categories.seo_url as product_categories_seo_url')
+                          ->where('products.lang','=',__('admin.lang'))
+                          ->where('products.uid','=',$uid)
+                          ->first();
                 //echo "<pre>"; print_r($DB_Find); die();
             
                 //! Return

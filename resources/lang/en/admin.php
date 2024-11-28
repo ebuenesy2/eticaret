@@ -191,6 +191,7 @@
     'register' => 'Register',
     'send' => 'Send',
     'reset' => 'Reset',
+    'share' => 'Share',
 
     'dataAdded' => 'Data Added',
     'dataDeleted' => 'Data Deleted',

@@ -19,8 +19,8 @@
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">@lang('admin.home')</a></li>
-                        <li class="breadcrumb-item"><a href="#">Kategori Olacak</a></li>
+                        <li class="breadcrumb-item"><a href="/@lang('admin.lang')">@lang('admin.home')</a></li>
+                        <li class="breadcrumb-item"><a href="/@lang('admin.lang')/product/category/{{$DB_Find->product_categories_uid}}-{{$DB_Find->seo_url}}">{{$DB_Find->product_categories_title}}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{$seoTitle}}</li>
                     </ol>
                 </div><!-- End .container -->
@@ -69,12 +69,11 @@
 
                                     <div class="wishlist-share">
                                         <div class="social-icons social-icons-sm mb-2">
-                                            <label class="social-label">Share on:</label>
-                                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
-                                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
-                                            <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
+                                            <label class="social-label">@lang('admin.share')</label>
+                                            <a href="https://www.facebook.com/sharer.php?u={{ $DB_HomeSettings->siteUrl }}/@lang('admin.lang')/product/view/{{$DB_Find->uid}}-{{$DB_Find->seo_url}}" class="social-icon" title="Facebook" target="_blank"><i class="fa fa-facebook-f"></i></a>
+                                            <a href="https://twitter.com/share?url={{ $DB_HomeSettings->siteUrl }}/@lang('admin.lang')/product/view/{{$DB_Find->uid}}-{{$DB_Find->seo_url}}" class="social-icon" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                            <a href="{{ $DB_HomeSettings->siteUrl }}/@lang('admin.lang')/product/view/{{$DB_Find->uid}}-{{$DB_Find->seo_url}}" class="social-icon" title="Whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $DB_HomeSettings->siteUrl }}/@lang('admin.lang')/product/view/{{$DB_Find->uid}}-{{$DB_Find->seo_url}}" class="social-icon" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                         </div><!-- End .soial-icons -->
                                     </div><!-- End .wishlist-share -->
 
