@@ -74,7 +74,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}">
-                                                    <img src="{{$DB_Products[$i]->img_url}}"  style="width: 200px;height: 200px;object-fit: contain;">
+                                                    <img src="{{$DB_Products[$i]->img_url}}" style="width: 100%;height: 250px;object-fit: contain;" >
                                                 </a>
 
                                                 <div class="product-action">
