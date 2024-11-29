@@ -1,9 +1,5 @@
 <div class="container">
     <div class="header-left">
-        <button class="mobile-menu-toggler" id="mobile-bar">
-            <span class="sr-only">Toggle mobile menu</span>
-            <i class="fa fa-bars"></i>
-        </button>
         <a href="/" class="logo"><img src="{{asset('/assets')}}/web/images/logo.png" alt="Yıldırımdev Logo" width="105" height="25"></a>
         <nav class="main-nav">
             <ul class="menu sf-arrows">
