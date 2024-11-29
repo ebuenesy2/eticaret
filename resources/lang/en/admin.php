@@ -48,6 +48,7 @@
     'discountedPrice' => 'Discounted Price',
 
     'collection' => 'Collection',
+    'allProduct' => 'All Product',
     'newProduct' => 'New Product',
     'editorSuggestion' => 'Suggestion Of Editor',
     'bestseller' => 'Bestseller',

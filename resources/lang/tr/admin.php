@@ -48,6 +48,7 @@
     'discountedPrice' => 'İndirimli Fiyat',
 
     'collection' => 'Koleksiyon',
+    'allProduct' => 'Tüm Ürünler',
     'newProduct' => 'Yeni Ürünler',
     'editorSuggestion' => 'Editörün Önerisi',
     'bestseller' => 'Çok Satanlar',

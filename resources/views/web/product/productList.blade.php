@@ -2,7 +2,7 @@
 <html lang="@lang('admin.lang')" >
 <head>
     
-    <title> Ürün Listesi | {{ $DB_HomeSettings->title }} </title>
+    <title> {{$DB_Products_Title}} | {{ $DB_HomeSettings->title }} </title>
     
     <!------- Head --->
     @include('web.include.head')

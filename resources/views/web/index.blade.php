@@ -107,8 +107,8 @@
                 <div class="flash-section bg-lighter">
                     <div class="container">
                         <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
-                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">EDİTÖRÜN ÖNERİSİ</h2>
-                            <a href="">Tümü Göster</a>
+                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">@lang('admin.editorSuggestion')</h2>
+                            <a href="/{lang}/product/list/editor/suggestion">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;overflow-x: hidden;padding-bottom: 22px;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
@@ -174,7 +174,7 @@
                     <div class="container">
                         <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">ÇOK SATANLAR</h2>
-                            <a href="">Tümü Göster</a>
+                            <a href="/@lang('admin.lang')/product/list/bestseller">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;overflow-x: hidden;padding-bottom: 22px;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
@@ -240,7 +240,7 @@
                     <div class="container">
                         <div class="heading d-flex flex-column flex-md-row" style="display: flex;justify-content: space-between;" >
                             <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Yeni Ürünler</h2>
-                            <a href="">Tümü Göster</a>
+                            <a href="/@lang('admin.lang')/product/list/new">Tümü Göster</a>
                         </div>
                         <div class="flash-content mt-2 py-2 pb-7">
                             <div style="overflow-y: hidden;overflow-x: hidden;padding-bottom: 22px;" class="owl-carousel carousel-equal-height owl-simple rows cols-2 cols-md-3 cols-lg-4 cols-xl-6" data-toggle="owl" data-owl-options='{
