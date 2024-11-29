@@ -172,7 +172,7 @@ class Web extends Controller
                 ->skip(0)->take(20)
                 ->orderBy('products.uid','desc')
                 ->get();
-                echo "<pre>"; print_r($DB_Products_Editor_Suggestion); die();
+                //echo "<pre>"; print_r($DB_Products_Editor_Suggestion); die();
 
                 //! Return
                 $DB["DB_Products_Editor_Suggestion"] =  $DB_Products_Editor_Suggestion;

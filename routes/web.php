@@ -22,7 +22,13 @@ Route::get('/{lang}', [Web::class,'Index']) -> name("web.index"); //! Web Anasay
 
 Route::get('/{lang}/product/category', [Web::class,'ProductCategoryList']) -> name("web.product.category"); //! Web - Ürün Kategoriler
 Route::get('/{lang}/product/category/{uid}', [Web::class,'ProductCategoryView']) -> name("web.product.category.view"); //! Web - Ürün Kategorilerdeki Ürünler
+
 Route::get('/{lang}/product/list', [Web::class,'ProductList']) -> name("web.product"); //! Web - Ürün Listesi
+Route::get('/{lang}/product/list/new', [Web::class,'ProductList']) -> name("web.product"); //! Web - Ürün Listesi - Yeni Ürünler
+Route::get('/{lang}/product/list/bestseller', [Web::class,'ProductListBestseller']) -> name("web.product.editor.bestseller"); //! Web - Ürün Listesi - Çok Satanlar
+
+Route::get('/{lang}/product/list/editor/suggestion', [Web::class,'ProductListEditorSuggestion']) -> name("web.product.editor.suggestion"); //! Web - Ürün Listesi - Yeni Ürünler
+
 Route::get('/{lang}/product/view/{uid}', [Web::class,'ProductView']) -> name("web.product.view"); //! Web - Ürün Listesi
 
 //************* Web - Blog ***************** */
