@@ -1,5 +1,51 @@
-<button id="scroll-top" title="Back to Top"><i class="fa fa-arrow-up"></i></button>
 
+
+<!--- Alt Menu ------>
+<div class="navigation">
+    <ul>
+        <li class="list active">
+            <a href="#">
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="text"> Home</span>
+            </a>
+        </li>
+
+        <li class="list">
+            <a href="#">
+                <span class="icon"><i class="fas fa-chart-line"></i></span>
+                <span class="text"> Dashboard</span>
+            </a>
+        </li>
+
+        <li class="list">
+            <a href="#">
+                <span class="icon"><i class="fas fa-clone"></i></span>
+                <span class="text"> Services</span>
+            </a>
+        </li>
+
+        <li class="list">
+            <a href="#">
+                <span class="icon"><i class="far fa-user"></i></span>
+                <span class="text"> Profile</span>
+            </a>
+        </li>
+
+        <li class="list">
+            <a href="#">
+                <span class="icon"><i class="far fa-comment"></i></span>
+                <span class="text"> Message</span>
+            </a>
+        </li>
+
+        <div class="indicator"></div>
+
+    </ul>
+</div>
+<!--- Alt Menu Son -->
+
+
+<button id="scroll-top" title="Back to Top"><i class="fa fa-arrow-up"></i></button>
 
 <!-- Plugins JS File -->
 <script src="{{asset('/assets')}}/web/js/jquery.min.js"></script>

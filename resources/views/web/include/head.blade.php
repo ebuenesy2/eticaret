@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="{{asset('/assets')}}/web/css/plugins/nouislider/nouislider.css">
 
 <!--------- Css  --> 
-<link rel="stylesheet" type="text/css" href="{{asset('/assets/web')}}/css/sabit/0_const.css" />
+<link rel="stylesheet" type="text/css" href="{{asset('/assets/web')}}/css/yildirimdev.css" />
 
 <!--- Alert toastr css -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
