@@ -78,7 +78,7 @@
                                                 </a>
 
                                                 <div class="product-action">
-                                                    <a href="/@lang('admin.lang')/product/view/{{$DB_Products[$i]->uid}}-{{$DB_Products[$i]->seo_url}}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a id="userCartAdd" data_productid="{{$DB_Products[$i]->uid}}" data_product_quantity="1" style="cursor: pointer;" class="btn-product btn-cart"><span>Sepete Ekle</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 
