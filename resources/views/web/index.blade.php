@@ -141,7 +141,7 @@
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}">{{$DB_Products_Editor_Suggestion[$i]->CategoryTitle}}</a>
+                                            <a href="/@lang('admin.lang')/product/category/{{$DB_Products_Editor_Suggestion[$i]->product_categories_uid}}-{{$DB_Products_Editor_Suggestion[$i]->product_categories_seo_url}}">{{$DB_Products_Editor_Suggestion[$i]->product_categories_title}}</a>
                                         </div>
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_Editor_Suggestion[$i]->uid}}-{{$DB_Products_Editor_Suggestion[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products_Editor_Suggestion[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
@@ -207,7 +207,7 @@
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}">{{$DB_Products_bestseller[$i]->CategoryTitle}}</a>
+                                            <a href="/@lang('admin.lang')/product/category/{{$DB_Products_bestseller[$i]->product_categories_uid}}-{{$DB_Products_bestseller[$i]->product_categories_seo_url}}">{{$DB_Products_bestseller[$i]->product_categories_title}}</a>
                                         </div>
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products_bestseller[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">
@@ -273,7 +273,7 @@
                                     </figure>
                                     <div class="product-body position-static bg-transparent">
                                         <div class="product-cat overflow-hidden my-2 mt-0 font-weight-normal">
-                                            <a href="/@lang('admin.lang')/product/view/{{$DB_Products_new[$i]->uid}}-{{$DB_Products_new[$i]->seo_url}}">{{$DB_Products_new[$i]->CategoryTitle}}</a>
+                                            <a href="/@lang('admin.lang')/product/category/{{$DB_Products_new[$i]->product_categories_uid}}-{{$DB_Products_new[$i]->product_categories_seo_url}}">{{$DB_Products_new[$i]->product_categories_title}}</a>
                                         </div>
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_new[$i]->uid}}-{{$DB_Products_new[$i]->seo_url}}"><h3 class="product-title overflow-hidden letter-spacing-normal">{{$DB_Products_new[$i]->title}}</h3></a>
                                         <div class="product-price font-weight-bold align-items-center d-flex mb-0">

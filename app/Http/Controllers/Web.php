@@ -165,7 +165,11 @@ class Web extends Controller
                 //! Ürünler - Editörün Önerisi
                 $DB_Products_Editor_Suggestion= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->select('products.*', 
+                        'product_categories.uid as product_categories_uid',
+                        'product_categories.title as product_categories_title',
+                        'product_categories.seo_url as product_categories_seo_url'
+                       )
                 ->where('products.lang','=',__('admin.lang'))
                 ->where('products.editor_suggestion','=',1)
                 ->where('products.isActive','=',1)
@@ -181,7 +185,11 @@ class Web extends Controller
                 //! Ürünler - Çok Satanlar
                 $DB_Products_bestseller= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->select('products.*', 
+                    'product_categories.uid as product_categories_uid',
+                    'product_categories.title as product_categories_title',
+                    'product_categories.seo_url as product_categories_seo_url'
+                )
                 ->where('products.lang','=',__('admin.lang'))
                 ->where('products.bestseller','=',1)
                 ->where('products.isActive','=',1)
@@ -197,7 +205,11 @@ class Web extends Controller
                 //! Ürünler - Yeni Ürünler
                 $DB_Products_new= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 'product_categories.title as CategoryTitle')
+                ->select('products.*', 
+                    'product_categories.uid as product_categories_uid',
+                    'product_categories.title as product_categories_title',
+                    'product_categories.seo_url as product_categories_seo_url'
+                )
                 ->where('products.lang','=',__('admin.lang'))
                 ->where('products.new_product','=',1)
                 ->where('products.isActive','=',1)
