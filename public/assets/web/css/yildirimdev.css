@@ -1,3 +1,6 @@
+:root {
+    --clr: #222327;
+}
 
 /* Web */
 @media screen and (min-width: 1200px) {
@@ -20,7 +23,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 10px;
         margin-bottom: -682px;
         z-index: 16000161 !important;
     }
@@ -33,11 +35,9 @@
     .navigation ul li {
         position: relative;
         list-style: none;
-        width: 70px;
+        width: 100%;
         height: 70px;
         z-index: 1;
-        border: 1px solid white;
-        border-radius: 31%;
         cursor: pointer;
     }
     
@@ -91,7 +91,7 @@
         width: 70px;
         height: 70px;
         top: -32px;
-        background: #29ff53;
+        background: black;
         border-radius: 50%;
         border: 6px solid var(--clr);
         transition: 0.5s;
