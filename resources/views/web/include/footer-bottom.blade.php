@@ -1,40 +1,39 @@
 
-
 <!--- Alt Menu ------>
 <div class="navigation">
-    <ul>
-        <li class="list active">
-            <a href="#">
+    <ul style="position: absolute;" >
+        <li class="list {{Route::current()->getName() == 'web.index' ? 'active' : 'passive'}}">
+            <a href="/@lang('admin.lang')">
                 <span class="icon"><i class="fas fa-home"></i></span>
-                <span class="text"> Home</span>
+                <span class="text"> @lang('admin.home')</span>
             </a>
         </li>
 
-        <li class="list">
-            <a href="#">
-                <span class="icon"><i class="fas fa-chart-line"></i></span>
-                <span class="text"> Dashboard</span>
+        <li class="list {{request()->routeIs('web.product.*') ? 'active' : 'passive'}}">
+            <a href="/@lang('admin.lang')/product/list">
+                <span class="icon"><i class="fas fa-cube"></i></span>
+                <span class="text"> @lang('admin.product')</span>
             </a>
         </li>
 
-        <li class="list">
-            <a href="#">
-                <span class="icon"><i class="fas fa-clone"></i></span>
-                <span class="text"> Services</span>
+        <li class="list {{request()->routeIs('web.cart') ? 'active' : 'passive'}} ">
+            <a href="/@lang('admin.lang')/user/cart">
+                <span class="icon"><i class="fas fa-shopping-basket"></i></span>
+                <span class="text"> Sepet</span>
             </a>
         </li>
 
-        <li class="list">
-            <a href="#">
-                <span class="icon"><i class="far fa-user"></i></span>
-                <span class="text"> Profile</span>
+        <li class="list {{request()->routeIs('web.wishlist') ? 'active' : 'passive'}} ">
+            <a href="/@lang('admin.lang')/user/wishlist">
+                <span class="icon"><i class="fas fa-heart"></i></span>
+                <span class="text">İstek Listesi</span>
             </a>
         </li>
 
-        <li class="list">
-            <a href="#">
-                <span class="icon"><i class="far fa-comment"></i></span>
-                <span class="text"> Message</span>
+        <li class="list {{request()->routeIs('web.user.*') ? 'active' : 'passive'}}">
+            <a href="/@lang('admin.lang')/user/profile">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <span class="text">@lang('admin.user')</span>
             </a>
         </li>
 
