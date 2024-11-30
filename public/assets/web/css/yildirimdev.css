@@ -2,12 +2,47 @@
     --clr: #222327;
 }
 
+
+/* Whatsapp */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:130px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+}
+
+.my-float{
+	margin-top:16px;
+}
+/* Whatsapp Son */
+
+
+/* Navigation */
+.navigation{
+    display: none;
+}
+/* Navigation Son */
+
 /* Web */
 @media screen and (min-width: 1200px) {
-     
+
+    /* Whatsapp */
+    .float { left: 5px; }
+    /* Whatsapp Son */
+    
+    /* Navigation */
     .navigation{
         display: none;
     }
+    /* Navigation Son */
+
 }
 /* Web Son */
 
@@ -16,6 +51,12 @@
 /* Mobil */
 @media screen and (max-width: 959px) {
 
+    /* Whatsapp */
+    .float { right: 25px; }
+    /* Whatsapp Son */
+
+
+    /* Navigation */
     .navigation {
         width: 100%;
         height: 70px;
@@ -29,14 +70,15 @@
     
     .navigation ul {
         display: flex;
-        width: 350px;
+        width: 100%;
+
     }
     
     .navigation ul li {
         position: relative;
         list-style: none;
         width: 100%;
-        height: 70px;
+        height: 90px;
         z-index: 1;
         cursor: pointer;
     }
@@ -60,7 +102,7 @@
         font-size: 1.5em;
         text-align: center;
         transition: 0.5s;
-        color: var(--clr);
+        color: white;
     }
     
     .navigation ul li.active a .icon {
@@ -70,7 +112,7 @@
     
     .navigation ul li a .text {
         position: absolute;
-        color: var(--clr);
+        color: white;
         font-weight: 400;
         font-size: 0.75em;
         letter-spacing: 0.05em;
@@ -122,12 +164,12 @@
     }
     
     .navigation ul li:nth-child(1).active~.indicator {
-        transform: translateX(calc(75px*0));
+        transform: translateX(calc(75px*0)) translateY(calc(0px));
         display: block;
     }
     
     .navigation ul li:nth-child(2).active~.indicator {
-        transform: translateX(calc(75px*1));
+        transform: translateX(calc(70px*1));
         display: block;
     }
     
@@ -145,28 +187,7 @@
         transform: translateX(calc(75px*(3.75)));
         display: block;
     }
+    /* Navigation Son */
 
 }
 /* Mobil Son */
-
-
-/* Whatsapp */
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:130px;
-	right:20px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-  font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-  z-index:100;
-}
-
-.my-float{
-	margin-top:16px;
-}
-/* Whatsapp Son */
