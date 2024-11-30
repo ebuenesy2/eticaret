@@ -31,7 +31,7 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
         
         //! Kullanıcı
-        var userid = document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1];
+        var userid = document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1];
         //console.log("userid:",userid);  
 
         //! Ürün Id
