@@ -220,3 +220,47 @@ document.querySelectorAll("#userCartDelete").forEach((Item) => {
     })
 }) //! Sepete Ürün Silme Son
 //! ************ Sepete Ürün Silme Son  ***************
+
+
+//! ************ Sepete Ürün Güncelleme ***************
+//! Değişiklik Olduğunda
+document.querySelectorAll('#cart-product-quantity').forEach((Item) => {
+    Item.addEventListener("change", e => {
+
+        //! Sepet Ürün Id
+        var data_id = e.target.getAttribute("data_id"); 
+        //console.log("data_id:", data_id);
+    
+        //! Sepet Ürün Fiyatı
+        var data_productsPrice = e.target.getAttribute("data_productsPrice"); 
+        //console.log("data_productsPrice:", data_productsPrice);
+
+        //! Sepet Ürün Fiyat Birimi
+        var data_productsCurrency = e.target.getAttribute("data_productsCurrency");  //! TL
+        //console.log("data_productsCurrency:", data_productsCurrency);
+
+        //! Sayısı
+        var data_count = e.target.value;  //! Sayısı
+        //console.log("data_count:", data_count);
+
+        //! Toplam Fiyat
+        var data_sum_price = Number(data_productsPrice)* data_count;
+        data_sum_price = data_sum_price.toFixed(2);
+        //console.log("data_sum_price:", data_sum_price);
+
+        //! Sonuç
+        document.querySelector('[class="total-col"][data_id="'+data_id+'"]').innerHTML = data_sum_price+" "+data_productsCurrency;  //! Toplam Urun Güncelle
+        document.querySelector('[class="total-col"][data_id="'+data_id+'"]').setAttribute("data_productstotalprice",data_sum_price); //! Toplam Güncelle
+
+        //! Toplam Fiyat Hesaplama
+        var totalProductPrice = 0;
+        document.querySelectorAll('[class="total-col"]').forEach((Item) => {
+            var data_sum_price = Item.getAttribute("data_productstotalprice");
+            totalProductPrice = totalProductPrice + Number(data_sum_price);
+        });
+
+        $("#productTotalPrice").html(totalProductPrice+" " +data_productsCurrency);
+       
+    })
+ }); //! Değişiklik Olduğunda Son
+//! ************ Sepete Ürün Güncelleme Son ***************
