@@ -15,7 +15,7 @@
         <!------- Header --->
         @include('web.include.header')
 
-        <main class="main">
+        <main class="main" id="cart_info" data_products_currency="{{$productsCurrency}}"  >
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
         			<h1 class="page-title">@lang('admin.myCart')</h1>
@@ -77,14 +77,30 @@
 									</tbody>
 								</table><!-- End .table table-wishlist -->
 
-								<!-- coupon -->
-	                			<div class="cart-bottom">
+								<!-- İndirim -->
+	                			<div class="cart-bottom" style="display: flex;justify-content: space-between;" >
+			            			<div>
+								      <label for="discountedPercent">İskonta Oranı % : </label>
+									  <input type="text" id="discountedPercent" value="0" >
+			            			</div><!-- End  coupon -->
+
+			            			<div>
+								      <label for="discountedPrice">İskonta Fiyatı</label>
+									  <input type="text" id="discountedPrice" value="0" >
+			            			</div><!-- End  coupon -->
+
+		            			</div>
+								<!-- İndirim Son -->
+
+								<!-- Kart Buttonlar -->
+								<div class="cart-bottom">
 			            			<div class="cart-discount">
-			            				
+									 <a href="/@lang('admin.lang')/product/list" class="btn btn-outline-dark-2 btn-block mb-3"><span>Alışverişe Devam Et</span></a>
 			            			</div><!-- End  coupon -->
 
 			            			<a href="#" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
-		            			</div><!-- End .cart-bottom -->
+		            			</div>
+								<!-- Kart Buttonlar Son -->
 
 	                		</div><!-- End .col-lg-9 -->
 	                		<aside class="col-lg-3">
@@ -97,17 +113,21 @@
 											<!-- Sepet Fiyatı -->
 	                						<tr class="summary-subtotal">
 	                							<td>Sepet Fiyatı:</td>
-	                							<td id="productTotalPrice">{{$productsAllTotalPrice}} {{$productsCurrency}} </td>
+	                							<td id="productTotalPrice" productsAllTotalPrice="{{$productsAllTotalPrice}}">{{$productsAllTotalPrice}} {{$productsCurrency}} </td>
 	                						</tr>
 											<!-- Sepet Fiyatı Son -->
 
-											<!-- Kupon Kodu -->
+											<!-- İnd -->
+											<tr class="summary-subtotal">
+	                							<td>İndirim Fiyat:</td>
+	                							<td id="productDiscountPrice"> 0 {{$productsCurrency}} </td>
+	                						</tr>
 											<!-- Kupon Kodu Son -->
 
 											<!-- Genel Fiyatı -->
 	                						<tr class="summary-total">
 	                							<td>Toplam Sepet Fiyatı:</td>
-	                							<td>{{$productsAllTotalPrice}} {{$productsCurrency}}</td>
+	                							<td id="productResultPrice" >{{$productsAllTotalPrice}} {{$productsCurrency}}</td>
 	                						</tr>
 											<!-- Genel Fiyatı Son -->
 
@@ -116,8 +136,6 @@
 
 	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 	                			</div><!-- End .summary -->
-
-		            			<a href="/@lang('admin.lang')/product/list" class="btn btn-outline-dark-2 btn-block mb-3"><span>Alışverişe Devam Et</span><i class="fa fa-refresh"></i></a>
 	                		</aside><!-- End .col-lg-3 -->
 	                	</div><!-- End .row -->
 	                </div><!-- End .container -->
