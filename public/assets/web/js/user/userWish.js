@@ -96,6 +96,11 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
                         document.querySelectorAll('[id="userWishAdd"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="none" }) 
                         document.querySelectorAll('[id="userWishAdd_None"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="flex" })
 
+                        //! İstek Listesi  Sayısı
+                        var wishlist_count = $('.wishlist-count').html(); //! Sayısını Alıyor
+                        var wishlist_count = Number(wishlist_count) + 1; //! Sayısını Artılıyor
+                        $('.wishlist-count').html(wishlist_count); //! Sayısını Gösteriyor
+
                         //! Sayfa Yenileme
                         //window.location.reload();
                     } else {

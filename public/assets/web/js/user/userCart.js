@@ -98,6 +98,12 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                         document.querySelectorAll('[id="userCartAdd"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="none" }) 
                         document.querySelectorAll('[id="userCartAdd_None"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="flex" })
 
+
+                        //! Sepet Listesi  Sayısı
+                        var cart_count = $('.cart-count').html(); //! Sayısını Alıyor
+                        var cart_count = Number(cart_count) + 1; //! Sayısını Artılıyor
+                        $('.cart-count').html(cart_count); //! Sayısını Gösteriyor
+
                         //! Sayfa Yenileme
                         //window.location.reload();
                     } else {
