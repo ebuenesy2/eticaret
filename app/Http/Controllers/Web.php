@@ -166,12 +166,14 @@ class Web extends Controller
                 $DB_Products_Editor_Suggestion= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
                 ->leftJoin('web_user_cart', 'web_user_cart.product_uid', '=', 'products.uid')
+                ->leftJoin('web_user_wish', 'web_user_wish.product_uid', '=', 'products.uid')
                 ->select(   'products.*', 
                             'product_categories.uid as product_categories_uid',
                             'product_categories.title as product_categories_title',
                             'product_categories.seo_url as product_categories_seo_url',
                             'web_user_cart.user_id as web_users_id',
                             DB::raw('(CASE web_user_cart.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_cart_control'),
+                            DB::raw('(CASE web_user_wish.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_wish_control'),
                        )
                 ->groupBy('products.uid')
                 ->where('products.lang','=',__('admin.lang'))
