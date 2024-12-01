@@ -12,6 +12,11 @@
 /* Web */
 @media screen and (min-width: 1200px) {
 
+    .float{
+        margin-left: -309px;
+        margin-top: -63px;
+    }
+
   
     /* Navigation */
     .navigation{
