@@ -153,19 +153,16 @@
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                            
-                                                @if($DB_Products_Editor_Suggestion[$i]->web_user_cart_control == 1 )
-                                                <a id="userCartAdd_None" class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
-                                                @else
-                                                <a id="userCartAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" style="cursor: pointer;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
-                                                @endif
-
-                                                @if($DB_Products_Editor_Suggestion[$i]->web_user_wish_control == 1 )
-                                                <a id="userWishAdd_None" style="cursor: pointer; color: green;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart" style="font-size: 15px; color: green; " ></i><span>İstek Listesine Eklendi</span></a>
-                                                @else
-                                                <a id="userWishAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
-                                                @endif
-
+                                                
+                                                <!--- Sepet Ekleme Durumu -->
+                                                <a id="userCartAdd_None" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" style="display:{{$DB_Products_Editor_Suggestion[$i]->web_user_cart_control == 1  ? 'flex': 'none'}};"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
+                                                <a id="userCartAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" style="cursor: pointer; display:{{$DB_Products_Editor_Suggestion[$i]->web_user_cart_control == 0  ? 'flex': 'none'}};" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
+                                                
+                                                
+                                                <!--- İstek Listesine Ekleme Durumu -->
+                                                <a id="userWishAdd_None" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" style="color: green; display:{{$DB_Products_Editor_Suggestion[$i]->web_user_wish_control == 1  ? 'flex': 'none'}}; " class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart" style="font-size: 15px; color: green; " ></i><span>İstek Listesine Eklendi</span></a>
+                                                <a id="userWishAdd" data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer; display:{{$DB_Products_Editor_Suggestion[$i]->web_user_wish_control == 0  ? 'flex': 'none'}};" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_Editor_Suggestion[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                               
                                             </div>
                                         </div>
                                     </div>

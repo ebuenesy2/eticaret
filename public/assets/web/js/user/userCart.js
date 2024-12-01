@@ -86,13 +86,17 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                     // console.log("status:", response.status);
 
                     if (response.status == "success") {
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
-                            showConfirmButton: false,
-                            timer: 2000,
-                        });
+                        // Swal.fire({
+                        //     position: "center",
+                        //     icon: "success",
+                        //     title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                        //     showConfirmButton: false,
+                        //     timer: 2000,
+                        // });
+
+                        //! Buton Güncelleme
+                        document.querySelectorAll('[id="userCartAdd"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="none" }) 
+                        document.querySelectorAll('[id="userCartAdd_None"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="flex" })
 
                         //! Sayfa Yenileme
                         //window.location.reload();
