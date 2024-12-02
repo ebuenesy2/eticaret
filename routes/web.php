@@ -66,6 +66,7 @@ Route::post('/user/wishlist/delete/post', [Web::class,'UserWishDeletePost']) -> 
 Route::get('/{lang}/user/cart', [Web::class,'UserCart']) -> name("web.cart"); //! Web - Kullanıcı Sepet
 Route::post('/user/cart/add/post', [Web::class,'UserCartAddPost']) -> name("web.user.cart.add.post"); //! Web Kullanıcı Sepet Ekle - Post
 Route::post('/user/cart/delete/post', [Web::class,'UserCartDeletePost']) -> name("web.user.cart.delete.post"); //! Web Kullanıcı Sepet Sil- Post
+Route::post('/user/cart/edit/post', [Web::class,'UserCartEditPost']) -> name("web.user.cart.edit.post"); //! Web Kullanıcı Sepet Güncelleme- Post
 
 Route::get('/{lang}/user/checkout', [Web::class,'UserCheckout']) -> name("web.user.checkout"); //! Web - Kullanıcı - Checkout
 

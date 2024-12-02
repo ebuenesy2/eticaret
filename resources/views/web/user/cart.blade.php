@@ -66,7 +66,7 @@
 											<td class="price-col" >{{$DB_web_user_cart[$i]->productsPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
 											<td class="quantity-col">
                                                 <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" id="cart-product-quantity" data_id="{{$DB_web_user_cart[$i]->id}}" data_productsPrice="{{$DB_web_user_cart[$i]->productsPrice}}" data_productsCurrency="{{$DB_web_user_cart[$i]->productsCurrency}}" value="{{$DB_web_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
+                                                    <input type="number" class="form-control" id="cart-product-quantity" data_id="{{$DB_web_user_cart[$i]->id}}" data_productsPrice="{{$DB_web_user_cart[$i]->productsPrice}}" data_productsCurrency="{{$DB_web_user_cart[$i]->productsCurrency}}" data_product_quantity="{{$DB_web_user_cart[$i]->product_quantity}}" value="{{$DB_web_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col" data_id="{{$DB_web_user_cart[$i]->id}}" data_productstotalprice="{{$DB_web_user_cart[$i]->productsTotalPrice}}" >{{$DB_web_user_cart[$i]->productsTotalPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
@@ -79,15 +79,20 @@
 
 								<!-- İndirim -->
 	                			<div class="cart-bottom" style="display: flex;justify-content: space-between;" >
-			            			<div>
+			            			
+								    <!-- İskonta Oranı -->
+								    <div style="display:flex;">
 								      <label for="discountedPercent">İskonta Oranı % : </label>
-									  <input type="text" id="discountedPercent" value="0" >
-			            			</div><!-- End  coupon -->
+									  <input type="text" class="form-control" id="discountedPercent" value="0" style="width: 25%;margin-left: 15px;" >
+			            			</div>
+									<!-- İskonta Oranı - Son -->
 
-			            			<div>
+									<!-- İskonta Fiyatı -->
+			            			<div style="display:flex;">
 								      <label for="discountedPrice">İskonta Fiyatı</label>
-									  <input type="text" id="discountedPrice" value="0" >
-			            			</div><!-- End  coupon -->
+									  <input type="text" class="form-control" id="discountedPrice" value="0" style="width: 50%; margin-left: 15px;">
+			            			</div>
+									<!-- İskonta Fiyatı - Son -->
 
 		            			</div>
 								<!-- İndirim Son -->
@@ -98,7 +103,7 @@
 									 <a href="/@lang('admin.lang')/product/list" class="btn btn-outline-dark-2 btn-block mb-3"><span>Alışverişe Devam Et</span></a>
 			            			</div><!-- End  coupon -->
 
-			            			<a href="#" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
+			            			<a id="cartUpdate" style="cursor:pointer;" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
 		            			</div>
 								<!-- Kart Buttonlar Son -->
 
@@ -133,8 +138,18 @@
 
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
+									<hr/>
 
-	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+									<!-- Sipariş Adı -->
+			            			<div style="display:flex;flex-direction: column;" >
+								      <label for="orderName">Sipariş Adı</label>
+									  <input type="text" class="form-control" id="orderName">
+			            			</div>
+									<!-- Sipariş Adı - Son -->
+
+	                				<a id="orderCreate" style="cursor:pointer;" class="btn btn-outline-primary-2 btn-order btn-block">Sipariş Oluştur</a>
+
+
 	                			</div><!-- End .summary -->
 	                		</aside><!-- End .col-lg-3 -->
 	                	</div><!-- End .row -->

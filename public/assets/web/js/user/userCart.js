@@ -21,7 +21,6 @@ function yildirimdevMultiLangJsonReturn () {
 //! Tanım
 var listUrl_Cart = "/user/cart"; //! List Adresi
 
-
 //! ************ Sepete Ürün Ekle ***************
 //! Sepete Ürün Ekle
 document.querySelectorAll("#userCartAdd").forEach((Item) => {
@@ -320,3 +319,109 @@ function discountedPriceFun(){
 }
 //! Hesaplama
 //! ************ İskonto Hesaplama Son ***********************
+
+
+//! ************ Sepet Güncelleme  ***************
+//! Sepet Güncelleme
+$("#cartUpdate").click(function (e) {
+    e.preventDefault();
+
+    alert("cartUpdate");
+
+    var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+    //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+    //! Güncellecek Veriler
+    var cart_edit_list = [];
+
+    document.querySelectorAll('[id="cart-product-quantity"]').forEach((Item) => {
+        var data_id = Item.getAttribute("data_id");
+        //console.log("data_id:",data_id);
+
+        var data_product_quantity = Item.getAttribute("data_product_quantity");
+        //console.log("data_product_quantity:",data_product_quantity);
+
+        var data_value = Item.value;
+        //console.log("data_value:",data_value);
+
+        //! Veriler
+        if( data_product_quantity != data_value) {
+            var data_edit = {id:data_id, product_quantity:data_value};
+            cart_edit_list.push(data_edit);
+        }
+
+    });
+
+    console.log(cart_edit_list.length);
+    
+    //! Ajax  Post
+    $.ajax({
+        url: listUrl_Cart + "/edit/post",
+        type: "post",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: {
+            siteLang: yildirimdevMultiLangJsonReturnR.lang,
+            user_id: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1],
+            cart_list: JSON.stringify(cart_edit_list),
+
+            updated_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
+        },
+        beforeSend: function() { console.log("Başlangıc"); },
+        success: function (response) {
+            // alert("başarılı");
+            console.log("response:", response);
+
+            if (response.status == "success") {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+
+                //! Sayfa Yenileme
+                window.location.reload();
+
+            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: response.msg,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+
+        },
+        error: function (error) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+            console.log("error:", error);
+        },
+        complete: function() {  }
+    }); //! Ajax Post Son
+
+
+
+
+}); //! Sepet Güncelleme Son
+//! ************ Sepet Güncelleme Son ***************
+
+
+//! ************ Sipariş Oluşturma  ***************
+//! Sipariş Oluşturma
+$("#orderCreate").click(function (e) {
+    e.preventDefault();
+
+    alert("sipariş oluşturma");
+
+
+
+}); //! Sipariş Oluşturma Son
+//! ************ Sipariş Oluşturma Son ***************

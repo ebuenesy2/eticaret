@@ -2374,6 +2374,69 @@ class Web extends Controller
         }
 
     } //! Kullanıcı Sepet - Veri Silme Post Son
+
+    //! Kullanıcı Sepet - Veri Güncelleme Post
+    public function UserCartEditPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'web_user_cart';
+           
+            $cartList = $request->cart_list;
+            $cartListJson = json_decode($cartList, true);
+            $cartListCount = count($cartListJson);
+            
+            //echo "<pre>"; print_r($cartListJson);
+            //echo "sayisi:"; echo count($cartListJson); 
+            //echo "id:"; echo $cartListJson[0]["id"];
+            
+            for ($i=0; $i < $cartListCount ; $i++) { 
+               
+                $DB = DB::table($table)->where('id','=',$cartListJson[$i]["id"]);
+                $DB_Find = $DB->first(); //Tüm verileri çekiyor
+                if($DB_Find) {
+    
+                    //! Veri Güncelle
+                    $DB_Status = $DB->update([       
+                       'product_quantity' => $cartListJson[$i]["product_quantity"],
+                       'isUpdated'=>true,
+                       'updated_at'=>Carbon::now(),
+                       'updated_byId'=>$request->updated_byId,
+                   ]);
+                   
+                }
+                
+            }
+
+            if($cartListCount > 0 ){
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'error' => null, 
+                );
+    
+                return response()->json($response);
+
+            }
+             
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Kullanıcı Sepet - Veri Güncelleme Post Son
     
     //************* Kullanıcı xx ***************** */
 
