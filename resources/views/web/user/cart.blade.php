@@ -15,7 +15,7 @@
         <!------- Header --->
         @include('web.include.header')
 
-        <main class="main" id="cart_info" data_products_currency="{{$productsCurrency}}"  >
+        <main class="main" id="cart_info" data_products_currency="{{$productsCurrency}}" data_time="{{time()}}"  >
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         		<div class="container">
         			<h1 class="page-title">@lang('admin.myCart')</h1>
@@ -66,7 +66,7 @@
 											<td class="price-col" >{{$DB_web_user_cart[$i]->productsPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>
 											<td class="quantity-col">
                                                 <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" id="cart-product-quantity" data_id="{{$DB_web_user_cart[$i]->id}}" data_productsPrice="{{$DB_web_user_cart[$i]->productsPrice}}" data_productsCurrency="{{$DB_web_user_cart[$i]->productsCurrency}}" data_product_quantity="{{$DB_web_user_cart[$i]->product_quantity}}" value="{{$DB_web_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
+                                                    <input type="number" class="form-control" id="cart-product-quantity" data_id="{{$DB_web_user_cart[$i]->id}}" data_productsUid="{{$DB_web_user_cart[$i]->product_uid}}" data_productsPrice="{{$DB_web_user_cart[$i]->productsPrice}}" data_productsCurrency="{{$DB_web_user_cart[$i]->productsCurrency}}" data_product_quantity="{{$DB_web_user_cart[$i]->product_quantity}}" value="{{$DB_web_user_cart[$i]->product_quantity}}" min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
 											<td class="total-col" data_id="{{$DB_web_user_cart[$i]->id}}" data_productstotalprice="{{$DB_web_user_cart[$i]->productsTotalPrice}}" >{{$DB_web_user_cart[$i]->productsTotalPrice}} {{$DB_web_user_cart[$i]->productsCurrency}}</td>

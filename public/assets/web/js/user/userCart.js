@@ -76,7 +76,7 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                     user_id: userid,
                     product_uid: data_productid,
                     product_quantity: data_product_quantity,
-                    created_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
+                    created_byId: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1]
                 },
                 beforeSend: function() { console.log("Sepet Listesine Ekle - Başlangıc"); },
                 success: function (response) {
@@ -326,8 +326,6 @@ function discountedPriceFun(){
 $("#cartUpdate").click(function (e) {
     e.preventDefault();
 
-    alert("cartUpdate");
-
     var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
     //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
 
@@ -352,63 +350,62 @@ $("#cartUpdate").click(function (e) {
 
     });
 
-    console.log(cart_edit_list.length);
+    if(cart_edit_list.length > 0 ) {
     
-    //! Ajax  Post
-    $.ajax({
-        url: listUrl_Cart + "/edit/post",
-        type: "post",
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        data: {
-            siteLang: yildirimdevMultiLangJsonReturnR.lang,
-            user_id: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1],
-            cart_list: JSON.stringify(cart_edit_list),
+        //! Ajax  Post
+        $.ajax({
+            url: listUrl_Cart + "/edit/post",
+            type: "post",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                user_id: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1],
+                cart_list: JSON.stringify(cart_edit_list),
 
-            updated_byId: document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
-        },
-        beforeSend: function() { console.log("Başlangıc"); },
-        success: function (response) {
-            // alert("başarılı");
-            console.log("response:", response);
+                updated_byId: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1]
+            },
+            beforeSend: function() { console.log("Başlangıc"); },
+            success: function (response) {
+                // alert("başarılı");
+                console.log("response:", response);
 
-            if (response.status == "success") {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
+                if (response.status == "success") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
 
-                //! Sayfa Yenileme
-                window.location.reload();
+                    //! Sayfa Yenileme
+                    window.location.reload();
 
-            } else {
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: response.msg,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                }
+
+            },
+            error: function (error) {
                 Swal.fire({
                     position: "center",
                     icon: "error",
-                    title: response.msg,
+                    title: yildirimdevMultiLangJsonReturnR.transactionFailed,
                     showConfirmButton: false,
                     timer: 2000,
                 });
-            }
-
-        },
-        error: function (error) {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
-                showConfirmButton: false,
-                timer: 2000,
-            });
-            console.log("error:", error);
-        },
-        complete: function() {  }
-    }); //! Ajax Post Son
-
-
-
+                console.log("error:", error);
+            },
+            complete: function() {  }
+        }); //! Ajax Post Son
+    
+    }
 
 }); //! Sepet Güncelleme Son
 //! ************ Sepet Güncelleme Son ***************
@@ -419,7 +416,107 @@ $("#cartUpdate").click(function (e) {
 $("#orderCreate").click(function (e) {
     e.preventDefault();
 
-    alert("sipariş oluşturma");
+    var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+    //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+    var data_time = $('#cart_info').attr('data_time');
+    console.log("data_time:",data_time);
+
+    var orderName = $('#orderName').val();
+    console.log("orderName:",orderName);
+
+    if(orderName == "") {
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Sipariş Adı Yazılmadı",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+    }
+    else {
+       
+        //! Eklenecek Veriler
+        var cart_list = [];
+
+        document.querySelectorAll('[id="cart-product-quantity"]').forEach((Item) => {
+            var data_id = Item.getAttribute("data_id");
+            //console.log("data_id:",data_id);
+
+            var data_productsUid = Item.getAttribute("data_productsUid");
+            //console.log("data_productsUid:",data_productsUid);
+
+            var data_value = Item.value;
+            //console.log("data_value:",data_value);
+
+            //! Veriler
+            var data_add = {id:data_id, product_uid:data_productsUid, product_quantity:data_value};
+            cart_list.push(data_add);
+
+        });
+
+        if(cart_list.length > 0 ) {
+        
+            //! Ajax  Post
+            $.ajax({
+                url:  "/user/order/add/post",
+                type: "post",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: {
+                    siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                    uid:data_time,
+                    title:orderName,
+                    user_id: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1],
+                    cart_list: JSON.stringify(cart_list),
+
+                    updated_byId: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1]
+                },
+                beforeSend: function() { console.log("Başlangıc"); },
+                success: function (response) {
+                    // alert("başarılı");
+                    console.log("response:", response);
+
+                    if (response.status == "success") {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+
+                        //! Sayfa Yenileme
+                        window.location.reload();
+
+                    } else {
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: response.msg,
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+                    }
+
+                },
+                error: function (error) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                    console.log("error:", error);
+                },
+                complete: function() {  }
+            }); //! Ajax Post Son
+        
+        }
+        
+    }
 
 
 
