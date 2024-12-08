@@ -10,6 +10,9 @@
 <title> <?php echo $listTitle; ?>  | {{ config('admin.Admin_Title') }} </title>
 @include('admin.include.head')
 
+<!-- Yıldırımdev Table Css -->
+<link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
+
 <!-- BEGIN BODY -->
 <body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}}> 
     
@@ -170,24 +173,24 @@
                         <!------ Tablo Ayarları Son -->
                         
                         <!------  Tablo ----->
-                        <div id="editable-sample_wrapper" class="row-fluid" role="grid">
+                        <div class="table-container">
 
-                          <table class="table table-striped table-hover table-bordered dataTable" id="customers" aria-describedby="editable-sample_info">
+                          <table>
                               <thead>
 
                                 <!---- Tümü Seç --->
-                                <th style="margin: auto;" exportName="check" exportViewDisplay="false" ><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""></th>
+                                <th data-cell="Tümü Seç" style="margin: auto;" exportName="check" exportViewDisplay="false" ><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""></th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="id"  exportType="number" exportViewDisplay="true" >ID</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="name" exportType="text" >@lang('admin.name')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="surname" exportType="text" >@lang('admin.surname')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="email"  exportType="text" >@lang('admin.email')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="value" exportType="text" >@lang('admin.value')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="img_url" exportType="text" > @lang('admin.image')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="created_byId" exportType="number" >@lang('admin.user')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="created_at" exportType="time" >@lang('admin.createdDate')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
+                                <th class="table_title" exportName="id"  exportType="number" exportViewDisplay="true" >ID</th>
+                                <th class="table_title" exportName="name" exportType="text" >@lang('admin.name')</th>
+                                <th class="table_title" exportName="surname" exportType="text" >@lang('admin.surname')</th>
+                                <th class="table_title" exportName="email"  exportType="text" >@lang('admin.email')</th>
+                                <th class="table_title" exportName="value" exportType="text" >@lang('admin.value')</th>
+                                <th class="table_title" exportName="img_url" exportType="text" > @lang('admin.image')</th>
+                                <th class="table_title" exportName="created_byId" exportType="number" >@lang('admin.user')</th>
+                                <th class="table_title" exportName="created_at" exportType="time" >@lang('admin.createdDate')</th>
+                                <th class="table_title" exportName="isActive" exportType="number" >@lang('admin.status')</th>
+                                <th class="table_title" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
                               
                               </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -196,21 +199,21 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell" exportViewDisplay="false" ><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
+                                  <td data-cell="Seç" exportViewDisplay="false" ><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->name}}</td>
-                                  <td class="">{{$dbFind[$i]->surname}}</td>
-                                  <td class="">{{$dbFind[$i]->email}}</td>
-                                  <td class="">{{$dbFind[$i]->value}}</td>
-                                  <td class="" >{{$dbFind[$i]->img_url}}</td>
-                                  <td class="" >{{$dbFind[$i]->created_byId}}</td>
-                                  <td class="" >{{$dbFind[$i]->created_at}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.name')" >{{$dbFind[$i]->name}}</td>
+                                  <td data-cell="@lang('admin.surname')" >{{$dbFind[$i]->surname}}</td>
+                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
+                                  <td data-cell="@lang('admin.value')" >{{$dbFind[$i]->value}}</td>
+                                  <td data-cell="@lang('admin.image')" >{{$dbFind[$i]->img_url}}</td>
+                                  <td data-cell="@lang('admin.user')" >{{$dbFind[$i]->created_byId}}</td>
+                                  <td data-cell="@lang('admin.createdDate')" >{{$dbFind[$i]->created_at}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 
-                                  <td  exportViewDisplay="false" >
+                                  <td data-cell="@lang('admin.actions')"  exportViewDisplay="false" >
                                     <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <button class="btn btn-info" title="modal arama"  id="searchItem" href="#searchModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-search"></i></button>
@@ -462,6 +465,9 @@
 
     <!--------- Jquery  Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Yıldırımdev Table JS -->
+    <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
 
   </footer>
 
