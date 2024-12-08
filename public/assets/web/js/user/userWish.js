@@ -32,7 +32,8 @@ document.querySelectorAll("#userWishAdd").forEach((Item) => {
         
         //! Kullanıcı
         var userid = document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1];
-        //console.log("userid:",userid);  
+        var userid = userid ? userid : document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1];
+        //console.log("userid:",userid);    
 
         //! Ürün
         var data_productid = e.target.getAttribute("data_productid"); //! Urun
