@@ -2,11 +2,6 @@
        <!-- BEGIN TOP NAVIGATION BAR -->
        <div class="navbar-inner">
            <div class="container-fluid">
-               <!--BEGIN SIDEBAR TOGGLE-->
-               <div class="sidebar-toggle-box hidden-phone">
-                   <div class="fa fa-reorder tooltips" data-placement="right" ></div>
-               </div>
-               <!--END SIDEBAR TOGGLE-->
                <!-- BEGIN LOGO -->
                <a class="brand" href="/@lang('admin.lang')/admin">
                    <img src="{{ config('admin.Admin_Logo') }}" alt="{{ config('admin.Admin_Logo_Alt_Description') }}" style="width: 140px;height: 60px;margin-top: -14px;object-fit: fill;" />
