@@ -207,7 +207,7 @@
                             }'>
                                 @for ($i = 0; $i < count($DB_Products_bestseller); $i++)
                                 <div class="product mb-0 rounded-0 w-100" style="border: 1px solid #ebebeb;" >
-                                    <figure class="product-media bg-white ">
+                                    <figure class="product-media bg-white " style="display: flex;justify-content: center;" >
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_bestseller[$i]->uid}}-{{$DB_Products_bestseller[$i]->seo_url}}">
                                             @if($DB_Products_bestseller[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_bestseller[$i]->discounted_price_percent}}%</span> @endif
                                             <img src="{{$DB_Products_bestseller[$i]->img_url}}" style="width: 170px;height: 170px;object-fit: contain;" >
@@ -227,8 +227,16 @@
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a id="userCartAdd" data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" style="cursor: pointer;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2">Sepete Ekle</a>
-                                                <a id="userWishAdd" data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                                
+                                                <!--- Sepet Ekleme Durumu -->
+                                                <a id="userCartAdd_None" data_productid="{{$DB_Products_bestseller[$i]->uid}}" style="display:{{$DB_Products_bestseller[$i]->web_user_cart_control == 1  ? 'flex': 'none'}};"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
+                                                <a id="userCartAdd" data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" style="cursor: pointer; display:{{$DB_Products_bestseller[$i]->web_user_cart_control == 0  ? 'flex': 'none'}};" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
+                                                
+                                                
+                                                <!--- İstek Listesine Ekleme Durumu -->
+                                                <a id="userWishAdd_None" data_productid="{{$DB_Products_bestseller[$i]->uid}}" style="color: green; display:{{$DB_Products_bestseller[$i]->web_user_wish_control == 1  ? 'flex': 'none'}}; " class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart" style="font-size: 15px; color: green; " ></i><span>İstek Listesine Eklendi</span></a>
+                                                <a id="userWishAdd" data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer; display:{{$DB_Products_bestseller[$i]->web_user_wish_control == 0  ? 'flex': 'none'}};" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_bestseller[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -273,7 +281,7 @@
                             }'>
                                 @for ($i = 0; $i < count($DB_Products_new); $i++)
                                 <div class="product mb-0 rounded-0 w-100" style="border: 1px solid #ebebeb;" >
-                                    <figure class="product-media bg-white ">
+                                    <figure class="product-media bg-white " style="display: flex;justify-content: center;" >
                                         <a href="/@lang('admin.lang')/product/view/{{$DB_Products_new[$i]->uid}}-{{$DB_Products_new[$i]->seo_url}}">
                                             @if($DB_Products_new[$i]->discounted_price_percent !="0")<span class="product-label label-sale" style="margin-top: -40px;" >@lang('admin.discount'): {{$DB_Products_new[$i]->discounted_price_percent}}%</span> @endif
                                             <img src="{{$DB_Products_new[$i]->img_url}}" style="width: 170px;height: 170px;object-fit: contain;" >
@@ -293,8 +301,15 @@
                                         </div>
                                         <div class="product-footer bg-white rounded-0 d-block position-absolute">
                                             <div class="product-action d-flex justify-content-center flex-column align-items-center position-relative">
-                                                <a id="userCartAdd" data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" style="cursor: pointer;" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2 btn-outline-primary-2">Sepete Ekle</a>
-                                                <a id="userWishAdd" data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer;" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                                
+                                                <!--- Sepet Ekleme Durumu -->
+                                                <a id="userCartAdd_None" data_productid="{{$DB_Products_new[$i]->uid}}" style="display:{{$DB_Products_new[$i]->web_user_cart_control == 1  ? 'flex': 'none'}};"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
+                                                <a id="userCartAdd" data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" style="cursor: pointer; display:{{$DB_Products_new[$i]->web_user_cart_control == 0  ? 'flex': 'none'}};" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
+                                                                                                
+                                                <!--- İstek Listesine Ekleme Durumu -->
+                                                <a id="userWishAdd_None" data_productid="{{$DB_Products_new[$i]->uid}}" style="color: green; display:{{$DB_Products_new[$i]->web_user_wish_control == 1  ? 'flex': 'none'}}; " class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart" style="font-size: 15px; color: green; " ></i><span>İstek Listesine Eklendi</span></a>
+                                                <a id="userWishAdd" data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1"  style="cursor: pointer; display:{{$DB_Products_new[$i]->web_user_wish_control == 0  ? 'flex': 'none'}};" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Products_new[$i]->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -306,69 +321,7 @@
                     </div>
                 </div>
                 <!--- YENİ ÇIKANLAR Son -->
-
-                <hr>
                 
-                <!--- Blog -->
-                <div class="bg-lighter blog-section pt-6 pb-5 d-none">
-                    <div class="container">
-                        <div class="heading py-2 pb-0" style="display: flex;justify-content: space-between;" >
-                            <h2 class="title align-self-center letter-spacing-normal text-center text-md-left">Blog Yazılarımız</h2>
-                            <a href="/@lang('admin.lang')/blog">Tümü Göster</a>
-                        </div>
-                        <div class="owl-carousel owl-simple shadow-carousel rows cols-1 cols-sm-2 cols-lg-3 cols-xl-4" data-toggle="owl" data-owl-options='{
-                            "nav": false, 
-                            "dots": false,
-                            "items": 4,
-                            "margin": 20,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "576": {
-                                    "items":2
-                                },
-                                "992": {
-                                    "items":3
-                                },
-                                "1200": {
-                                    "items":4
-                                }
-                            }
-                        }'> 
-
-                            @for ($i = 0; $i < count($DB_Blogs); $i++)
-                            <article class="entry">
-                                <figure class="entry-media mb-0">
-                                    <a href="{{asset('/assets')}}/web/single.html">
-                                        <img src="{{$DB_Blogs[$i]->img_url}}" alt="image desc" style="width: 100%;height: 200px;object-fit: contain;" >
-                                    </a>
-                                </figure> 
-
-                                <div class="entry-body text-left">
-                                    <div class="entry-meta">
-                                        <a href="{{asset('/assets')}}/web/#">{{\Carbon\Carbon::parse($DB_Blogs[$i]->created_at)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</a>
-                                    </div> 
-
-                                    <h3 class="entry-title text-dark">
-                                        <a href="{{asset('/assets')}}/web/single.html">{{$DB_Blogs[$i]->title}}</a>
-                                    </h3> 
-
-                                    <div class="entry-content">
-                                        {!! strlen($DB_Blogs[$i]->description) > 150 ? substr($DB_Blogs[$i]->description,0,80).'...' : $DB_Blogs[$i]->description !!} 
-                                        <a href="{{asset('/assets')}}/web/single.html" class="read-more m-0 p-0">Daha Fazla Oku</a>
-                                    </div> 
-                                </div> 
-                            </article> 
-                            @endfor
-
-                        </div>
-
-                    </div>
-                </div>
-                <!--- Blog Son -->
-
             </div>
         </main>
         <footer class="footer footer-2 font-weight-normal second-primary-color" style="background-color: #222">
