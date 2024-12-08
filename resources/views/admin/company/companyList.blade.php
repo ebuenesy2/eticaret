@@ -124,29 +124,29 @@
                         <!------ Tablo Ayarları Son -->
                         
                         <!------  Tablo ----->
-                        <div id="editable-sample_wrapper" class="row-fluid" role="grid">
+                        <div class="table-container">
 
-                          <table class="table table-striped table-hover table-bordered dataTable" id="customers" aria-describedby="editable-sample_info">
+                          <table>
                               <thead>
 
                                 <!---- Tümü Seç --->
                                 <th style="margin: auto;" exportName="check" exportViewDisplay="false" ><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""></th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="id"  exportType="number" exportViewDisplay="true" >ID</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="companyName" exportType="text" >@lang('admin.companyName')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="category" exportType="text" >@lang('admin.category')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="authorizedPerson" exportType="text" >@lang('admin.authorizedPerson')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="authorizedPersonRole" exportType="text" >@lang('admin.authorizedPersonRole')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="authorizedPhone" exportType="text" >@lang('admin.authorizedPhone')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="authorizedPersonMail" exportType="text" >@lang('admin.authorizedPersonMail')</th>
+                                <th class="table_title" exportName="id" exportName="id"  exportType="number" exportViewDisplay="true" >ID</th>
+                                <th class="table_title" exportName="id" exportName="companyName" exportType="text" >@lang('admin.companyName')</th>
+                                <th class="table_title" exportName="id" exportName="category" exportType="text" >@lang('admin.category')</th>
+                                <th class="table_title" exportName="id" exportName="authorizedPerson" exportType="text" >@lang('admin.authorizedPerson')</th>
+                                <th class="table_title" exportName="id" exportName="authorizedPersonRole" exportType="text" >@lang('admin.authorizedPersonRole')</th>
+                                <th class="table_title" exportName="id" exportName="authorizedPhone" exportType="text" >@lang('admin.authorizedPhone')</th>
+                                <th class="table_title" exportName="id" exportName="authorizedPersonMail" exportType="text" >@lang('admin.authorizedPersonMail')</th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="country" exportType="text" >@lang('admin.country')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="city" exportType="text" >@lang('admin.city')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="district" exportType="text" >@lang('admin.district')</th>
+                                <th class="table_title" exportName="id" exportName="country" exportType="text" >@lang('admin.country')</th>
+                                <th class="table_title" exportName="id" exportName="city" exportType="text" >@lang('admin.city')</th>
+                                <th class="table_title" exportName="id" exportName="district" exportType="text" >@lang('admin.district')</th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="created_at" exportType="time" >@lang('admin.createdDate')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
+                                <th class="table_title" exportName="id" exportName="created_at" exportType="time" >@lang('admin.createdDate')</th>
+                                <th class="table_title" exportName="id" exportName="isActive" exportType="number" >@lang('admin.status')</th>
+                                <th class="table_title" exportName="id" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
                               
                               </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -157,7 +157,7 @@
                                   <!---- Seç --->
                                   <td class="c-table__cell" exportViewDisplay="false" ><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
                                   <td class="">{{$dbFind[$i]->company_name}}</td>
                                   <td class="">{{$dbFind[$i]->category}}</td>
                                   <td class="">{{$dbFind[$i]->authorized_person}}</td>
@@ -262,6 +262,9 @@
 
     <!--------- Jquery  Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+    <!-- Yıldırımdev Table JS -->
+    <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
 
   </footer>
 

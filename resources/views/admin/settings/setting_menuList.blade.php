@@ -9,6 +9,9 @@
 <?php $listTitle = __('admin.menuList'); ?>
 <?php $listUrl = "/admin/setting/menu";  ?>
 
+<!-- Yıldırımdev Table Css -->
+<link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
+
 <!-- BEGIN BODY -->
 <body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}} > 
     
@@ -138,24 +141,23 @@
                         <p>{{$dbSize}} / {{$dbTop}}</p>
                         
                         <!------  Tablo ----->
-                        <div id="editable-sample_wrapper" class="row-fluid" role="grid">
+                        <div class="table-container">
                             
-                          <table class="table table-striped table-hover table-bordered dataTable" id="customers" aria-describedby="editable-sample_info">
+                          <table>
                               <thead>
                                   
                                 <!---- Tümü Seç --->
-                                <th style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
+                                <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" >ID</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >Sıralama</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >Slug</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >Parent_id</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >Route Name</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >TR</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >EN</th>
-                                <th role="columnheader" rowspan="1" colspan="1" exportName="isActive" exportType="number" >@lang('admin.status')</th>
-                              
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
+                                <th class="table_title" exportName="id" >ID</th>
+                                <th class="table_title" exportName="id" >Sıralama</th>
+                                <th class="table_title" exportName="id" >Slug</th>
+                                <th class="table_title" exportName="id" >Parent_id</th>
+                                <th class="table_title" exportName="id" >Route Name</th>
+                                <th class="table_title" exportName="id" >TR</th>
+                                <th class="table_title" exportName="id" >EN</th>
+                                <th class="table_title" exportName="id" exportName="isActive" exportType="number" >@lang('admin.status')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -164,20 +166,20 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
+                                  <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->orderId}}</td>
-                                  <td class="">{{$dbFind[$i]->slug}}</td>
-                                  <td class="">{{$dbFind[$i]->parent_id}}</td>
-                                  <td class="">{{$dbFind[$i]->route_name}}</td>
-                                  <td class="">{{$dbFind[$i]->tr}}</td>
-                                  <td class="">{{$dbFind[$i]->en}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="Sıralama">{{$dbFind[$i]->orderId}}</td>
+                                  <td data-cell="Slug">{{$dbFind[$i]->slug}}</td>
+                                  <td data-cell="Parent_id">{{$dbFind[$i]->parent_id}}</td>
+                                  <td data-cell="Route Name">{{$dbFind[$i]->route_name}}</td>
+                                  <td data-cell="TR">{{$dbFind[$i]->tr}}</td>
+                                  <td data-cell="EN">{{$dbFind[$i]->en}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 
-                                  <td>
+                                  <td data-cell="@lang('admin.actions')" >
                                     <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     @if($i !=0 )  <button class="btn btn-info" id="orderItem"  data_location="up"   data_id="{{$dbFind[$i]->id}}"   data_otherId="{{$dbFind[$i-1]->id}}"  >  <i  data_location="up"  data_id="{{$dbFind[$i]->id}}"  data_otherId="{{$dbFind[$i-1]->id}}"  class="fa fa-arrow-up"></i></button> @endif
@@ -405,6 +407,9 @@
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
     <script src="{{asset('/assets/admin')}}/js/settings/setting_menuList.js"></script>
+        
+    <!-- Yıldırımdev Table JS -->
+    <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
 
   </footer>
 

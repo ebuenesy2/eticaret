@@ -367,7 +367,10 @@
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/admin/adminEdit.js"></script>
-    
+            
+    <!-- Yıldırımdev Table JS -->
+    <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
+
   </footer>
     
 </body>

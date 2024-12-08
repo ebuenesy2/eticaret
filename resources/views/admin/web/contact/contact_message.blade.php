@@ -9,8 +9,11 @@
 <?php $listTitle = __('admin.contactMessage'); ?>
 <?php $listUrl = "/admin/contact/message";  ?>
 
+<!-- Yıldırımdev Table Css -->
+<link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
+
 <!-- BEGIN BODY -->
-<body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}}> 
+<body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}} > 
     
     <!-- Header -->
     @include('admin.include.header')
@@ -105,22 +108,22 @@
                         <!------ Tablo Ayarları Son -->
                         
                         <!------  Tablo ----->
-                        <div id="editable-sample_wrapper" class="row-fluid" role="grid">
+                        <div class="table-container">
                             
-                          <table class="table table-striped table-hover table-bordered dataTable" id="customers" aria-describedby="editable-sample_info">
+                          <table>
                               <thead>
                                 
                                 <!---- Tümü Seç --->
-                                <th style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
+                                <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
-                                <th role="columnheader" rowspan="1" colspan="1" >ID</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.name')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.surname')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.email')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.phone')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.subject')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.message')</th>
-                                <th role="columnheader" rowspan="1" colspan="1" >@lang('admin.actions')</th>
+                                <th class="table_title" exportName="id" >ID</th>
+                                <th class="table_title" exportName="id" >@lang('admin.name')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.surname')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.email')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.phone')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.subject')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.message')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -129,9 +132,9 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
+                                  <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
                                   <td class="">{{$dbFind[$i]->name}}</td>
                                   <td class="">{{$dbFind[$i]->surname}}</td>
                                   <td class="">{{$dbFind[$i]->email}}</td>
@@ -139,7 +142,7 @@
                                   <td class="">{{$dbFind[$i]->subject}}</td>
                                   <td class="">{{$dbFind[$i]->message}}</td>
 
-                                  <td>
+                                  <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger" id="deleteItem" data_id="{{$dbFind[$i]->id}}"><i data_id="{{$dbFind[$i]->id}}" class="fa fa-trash "></i></button>
@@ -373,6 +376,9 @@
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
     <script src="{{asset('/assets/admin')}}/js/web/contact/contact_message.js"></script>
+        
+    <!-- Yıldırımdev Table JS -->
+    <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
 
   </footer>
 
