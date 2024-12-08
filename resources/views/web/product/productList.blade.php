@@ -58,7 +58,6 @@
                                                 function orderByData(elm) { window.location = elm.value; }
                                             </script>
                                             <!-- Sıralama Son -->
-
                                             
 										</div>
                 					</div><!-- End .toolbox-sort -->
