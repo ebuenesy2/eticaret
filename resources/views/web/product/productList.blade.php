@@ -113,7 +113,6 @@
                                 </div><!-- End .row -->
                             </div><!-- End .products -->
 
-
                             <!------  Pagination  -->
                 			<nav aria-label="Page navigation" style="{{$pageTop > 0 ? '' : 'display:none;'}}" >
 							    <ul class="pagination justify-content-center" >
@@ -143,11 +142,19 @@
                 		<aside class="col-lg-3 order-lg-first">
                 			<div class="sidebar sidebar-shop">
 
+							    <div>
+									<strong>Arama</strong>
+									<ul>
+										<input type="text" id="search_value" style="border: 1px solid #DDD;">
+										<button id="search_button" style="width: 40px;box-sizing: border-box;background-color: green;color: #FFF;cursor: pointer;" >Ara</button>
+									</ul>
+								</div>
+
+								<hr>
+
                 				<div class="widget widget-collapsible">
-    								<h3 class="widget-title">
-									    <a data-toggle="collapse" href="{{asset('/assets')}}/web/#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-									        @lang('admin.category')
-									    </a>
+    								<h3 style="font-size: 28px;font-weight: 100;border-bottom: 1px solid;">
+									   @lang('admin.category')
 									</h3><!-- End .widget-title -->
 
 									<div class="collapse show" id="widget-1">
@@ -171,7 +178,6 @@
 										</div><!-- End .widget-body -->
 									</div><!-- End .collapse -->
         						</div><!-- End .widget -->
-
         					
                 			</div><!-- End .sidebar sidebar-shop -->
                 		</aside><!-- End .col-lg-3 -->

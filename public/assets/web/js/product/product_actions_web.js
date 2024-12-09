@@ -36,6 +36,17 @@ document.querySelectorAll('#product_gallery').forEach(function (i) {
 
 
 //! ************ Filtreleme  ***************
+//! Arama
+$("#search_button").click(function (e) {
+    e.preventDefault();
+
+    alert("arama");
+
+    var search_value = $('#search_value').val();
+    console.log("search_value:",search_value);
+
+}); //! Arama Son
+
 //! Filtreleme
 $("#filtereleControl").click(function (e) {
     e.preventDefault();
