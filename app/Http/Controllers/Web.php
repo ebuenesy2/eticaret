@@ -724,30 +724,42 @@ class Web extends Controller
                     if($page <= 0) { $page = 0; }
                 } else { $page = 0; }
 
-                
+                 
                 //! Ürünler Listesi Kontrol
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 
-                        'product_categories.uid as product_categories_uid',
-                        'product_categories.title as product_categories_title',
-                        'product_categories.seo_url as product_categories_seo_url'
-                        )
-                ->where('products.new_product','=',1)
+                ->leftJoin('web_user_cart', 'web_user_cart.product_uid', '=', 'products.uid')
+                ->leftJoin('web_user_wish', 'web_user_wish.product_uid', '=', 'products.uid')
+                ->select(   'products.*', 
+                            'product_categories.uid as product_categories_uid',
+                            'product_categories.title as product_categories_title',
+                            'product_categories.seo_url as product_categories_seo_url',
+                            'web_user_cart.user_id as web_users_id',
+                            DB::raw('(CASE web_user_cart.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_cart_control'),
+                            DB::raw('(CASE web_user_wish.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_wish_control'),
+                       )
+                ->groupBy('products.uid')
                 ->where('products.lang','=',__('admin.lang'))
+                ->where('products.new_product','=',1)
                 ->where('products.isActive','=',1);
+                
+                //! Arama
+                $parameter_search = request('search');
+                if($parameter_search) { $DB_Products = $DB_Products->where('products.title','like','%'.$parameter_search.'%');  }
 
                 if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
                 
                 //! Sayfa Sayısı Hesaplama
-                $DB_Count = $DB_Products->count(); //! Veri Sayısı
+                $DB_Count = count($DB_Products->get()); //! Veri Sayısı
                 $pageNow = $page+1; //! Bulunduğu Sayfa
                 $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
+                //echo "DB_Count: "; echo $DB_Count; die();
+                //echo "pageNow: "; echo $pageNow; die();
                 //echo "pageTop: "; echo $pageTop; die();
                 
                 //! Ürün Listesi
                 $DB_Products_List = $DB_Products
-                ->skip($page)->take($rowcount)
+                ->skip($rowcount*$page)->take($rowcount)
                 ->orderBy($orderBy,$order)
                 ->get();
                 //echo "<pre>"; print_r($DB_Products_List); die();
@@ -871,31 +883,43 @@ class Web extends Controller
                     $page = $page - 1; //! Sayfa Numarası
                     if($page <= 0) { $page = 0; }
                 } else { $page = 0; }
-
                 
+                                
                 //! Ürünler Listesi Kontrol
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 
-                        'product_categories.uid as product_categories_uid',
-                        'product_categories.title as product_categories_title',
-                        'product_categories.seo_url as product_categories_seo_url'
-                        )
-                ->where('products.bestseller','=',1)
+                ->leftJoin('web_user_cart', 'web_user_cart.product_uid', '=', 'products.uid')
+                ->leftJoin('web_user_wish', 'web_user_wish.product_uid', '=', 'products.uid')
+                ->select(   'products.*', 
+                            'product_categories.uid as product_categories_uid',
+                            'product_categories.title as product_categories_title',
+                            'product_categories.seo_url as product_categories_seo_url',
+                            'web_user_cart.user_id as web_users_id',
+                            DB::raw('(CASE web_user_cart.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_cart_control'),
+                            DB::raw('(CASE web_user_wish.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_wish_control'),
+                       )
+                ->groupBy('products.uid')
                 ->where('products.lang','=',__('admin.lang'))
+                ->where('products.bestseller','=',1)
                 ->where('products.isActive','=',1);
+                
+                //! Arama
+                $parameter_search = request('search');
+                if($parameter_search) { $DB_Products = $DB_Products->where('products.title','like','%'.$parameter_search.'%');  }
 
                 if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
                 
                 //! Sayfa Sayısı Hesaplama
-                $DB_Count = $DB_Products->count(); //! Veri Sayısı
+                $DB_Count = count($DB_Products->get()); //! Veri Sayısı
                 $pageNow = $page+1; //! Bulunduğu Sayfa
                 $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
+                //echo "DB_Count: "; echo $DB_Count; die();
+                //echo "pageNow: "; echo $pageNow; die();
                 //echo "pageTop: "; echo $pageTop; die();
                 
                 //! Ürün Listesi
                 $DB_Products_List = $DB_Products
-                ->skip($page)->take($rowcount)
+                ->skip($rowcount*$page)->take($rowcount)
                 ->orderBy($orderBy,$order)
                 ->get();
                 //echo "<pre>"; print_r($DB_Products_List); die();
@@ -1019,31 +1043,42 @@ class Web extends Controller
                     $page = $page - 1; //! Sayfa Numarası
                     if($page <= 0) { $page = 0; }
                 } else { $page = 0; }
-
-                
+                                
                 //! Ürünler Listesi Kontrol
                 $DB_Products= DB::table('products')
                 ->join('product_categories', 'product_categories.uid', '=', 'products.category')
-                ->select('products.*', 
-                        'product_categories.uid as product_categories_uid',
-                        'product_categories.title as product_categories_title',
-                        'product_categories.seo_url as product_categories_seo_url'
-                        )
-                ->where('products.editor_suggestion','=',1)
+                ->leftJoin('web_user_cart', 'web_user_cart.product_uid', '=', 'products.uid')
+                ->leftJoin('web_user_wish', 'web_user_wish.product_uid', '=', 'products.uid')
+                ->select(   'products.*', 
+                            'product_categories.uid as product_categories_uid',
+                            'product_categories.title as product_categories_title',
+                            'product_categories.seo_url as product_categories_seo_url',
+                            'web_user_cart.user_id as web_users_id',
+                            DB::raw('(CASE web_user_cart.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_cart_control'),
+                            DB::raw('(CASE web_user_wish.user_id WHEN '.$web_userId.' THEN true ELSE false END) AS web_user_wish_control'),
+                       )
+                ->groupBy('products.uid')
                 ->where('products.lang','=',__('admin.lang'))
+                ->where('products.editor_suggestion','=',1)
                 ->where('products.isActive','=',1);
+                
+                //! Arama
+                $parameter_search = request('search');
+                if($parameter_search) { $DB_Products = $DB_Products->where('products.title','like','%'.$parameter_search.'%');  }
 
                 if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
                 
                 //! Sayfa Sayısı Hesaplama
-                $DB_Count = $DB_Products->count(); //! Veri Sayısı
+                $DB_Count = count($DB_Products->get()); //! Veri Sayısı
                 $pageNow = $page+1; //! Bulunduğu Sayfa
                 $pageTop = ceil($DB_Count / $rowcount); //! Toplam Sayfa
+                //echo "DB_Count: "; echo $DB_Count; die();
+                //echo "pageNow: "; echo $pageNow; die();
                 //echo "pageTop: "; echo $pageTop; die();
                 
                 //! Ürün Listesi
                 $DB_Products_List = $DB_Products
-                ->skip($page)->take($rowcount)
+                ->skip($rowcount*$page)->take($rowcount)
                 ->orderBy($orderBy,$order)
                 ->get();
                 //echo "<pre>"; print_r($DB_Products_List); die();

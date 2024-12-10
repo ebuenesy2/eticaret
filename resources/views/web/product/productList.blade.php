@@ -79,7 +79,7 @@
                                                 <div class="product-action" style="display: flex;flex-direction: column;" >
 
                                                     <!--- Sepet Ekleme Durumu -->
-													<a id="userCartAdd_None" data_productid="{{$DB_Products[$i]->uid}}" style="margin-top: 5px; display:{{$DB_Products[$i]->web_user_cart_control == 1  ? 'flex': 'none'}}; background-color: green;padding: 15px;"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
+													<a id="userCartAdd_None" data_productid="{{$DB_Products[$i]->uid}}" style="margin-top: 5px; display:{{$DB_Products[$i]->web_user_cart_control == 1  ? 'flex': 'none'}}; background-color: green;padding: 18px; font-size:15px;"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success"> <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
 													<a id="userCartAdd" data_productid="{{$DB_Products[$i]->uid}}" data_product_quantity="1" style="cursor: pointer; padding: 15px;margin-top: 5px; display:{{$DB_Products[$i]->web_user_cart_control == 0  ? 'flex': 'none'}};" class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
 																									
 													<!--- İstek Listesine Ekleme Durumu -->
