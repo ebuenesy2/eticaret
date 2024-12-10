@@ -179,7 +179,7 @@ Route::get('/{lang}/admin/institutional/personalDataProtectionLaw', [Admin::clas
 Route::post('/admin/institutional/edit/post', [Admin::class,'InstitutionalEdit']) -> name("admin.web.institutional.edit");  //!  Kurumsal - Güncelleme
 Route::post('/admin/institutional/edit/img/post', [Admin::class,'InstitutionalEditImage']) -> name("admin.web.institutional.edit.img");  //!  Kurumsal - Güncelleme Resim
 
-//! Kurumsal - Refaranslar
+//! Kurumsal - Referanslar
 Route::get('/{lang}/admin/institutional/references', [Admin::class,'InstitutionalReferences']) -> name("admin.web.institutional.references.list");  //! Tüm Veriler
 Route::post('/admin/institutional/references/search/post', [Admin::class,'InstitutionalReferencesSearchPost']) -> name("admin.web.institutional.references.search.post"); //! Veri Arama - Post
 Route::post('/admin/institutional/references/add/post', [Admin::class,'InstitutionalReferencesAddPost']) -> name("admin.web.institutional.references.add.post"); //! Veri Ekleme - Post
@@ -286,7 +286,6 @@ Route::post('/admin/web/user/cart/edit/post', [Admin::class,'AdminWebUserCartEdi
 Route::post('/admin/web/user/cart/clone', [Admin::class,'AdminWebUserCartClonePost']) -> name("admin.web.user.cart.clone.post"); //! Veri Clone - Post
 Route::post('/admin/web/user/cart/clone/multi', [Admin::class,'AdminWebUserCartClonePostMulti']) -> name("admin.web.user.cart.clone.post.multi"); //! Çoklu Veri Clone - Post
 
-
 //! Admin - Web User  - İstek Listesi
 Route::get('/{lang}/admin/web/user/wish', [Admin::class,'AdminWebUserWishList']) -> name("admin.web.user.wish.list");  //! Tüm Veriler
 Route::post('/admin/web/user/wish/search/post', [Admin::class,'AdminWebUserWishSearchPost']) -> name("admin.web.user.wish.search.post"); //! Veri Arama - Post
@@ -296,6 +295,16 @@ Route::post('/admin/web/user/wish/delete/post/multi', [Admin::class,'AdminWebUse
 Route::post('/admin/web/user/wish/edit/post', [Admin::class,'AdminWebUserWishEditPost']) -> name("admin.web.user.wish.edit.post"); //! Veri Güncelle - Post
 Route::post('/admin/web/user/wish/clone', [Admin::class,'AdminWebUserWishClonePost']) -> name("admin.web.user.wish.clone.post"); //! Veri Clone - Post
 Route::post('/admin/web/user/wish/clone/multi', [Admin::class,'AdminWebUserWishClonePostMulti']) -> name("admin.web.user.wish.clone.post.multi"); //! Çoklu Veri Clone - Post
+
+//! Admin - Web User  - Sipariş Listesi
+Route::get('/{lang}/admin/web/user/order', [Admin::class,'AdminWebUserOrderList']) -> name("admin.web.user.order.list");  //! Tüm Veriler
+Route::post('/admin/web/user/order/search/post', [Admin::class,'AdminWebUserOrderSearchPost']) -> name("admin.web.user.order.search.post"); //! Veri Arama - Post
+Route::post('/admin/web/user/order/add/post', [Admin::class,'AdminWebUserOrderAddPost']) -> name("admin.web.user.order.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/web/user/order/delete/post', [Admin::class,'AdminWebUserOrderDeletePost']) -> name("admin.web.user.order.delete.post"); //! Veri Silme
+Route::post('/admin/web/user/order/delete/post/multi', [Admin::class,'AdminWebUserOrderDeletePostMulti']) -> name("admin.web.user.order.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/web/user/order/edit/post', [Admin::class,'AdminWebUserOrderEditPost']) -> name("admin.web.user.order.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/web/user/order/clone', [Admin::class,'AdminWebUserOrderClonePost']) -> name("admin.web.user.order.clone.post"); //! Veri Clone - Post
+Route::post('/admin/web/user/order/clone/multi', [Admin::class,'AdminWebUserOrderClonePostMulti']) -> name("admin.web.user.order.clone.post.multi"); //! Çoklu Veri Clone - Post
 
 
 //************* Admin - Web - Blog ***************** */

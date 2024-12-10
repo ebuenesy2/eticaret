@@ -66,6 +66,9 @@
 
     'order' => 'Sipariş',
     'orders' => 'Siparişler',
+    'myOrderList' => 'Sipariş Listem',
+    'orderList' => 'Sipariş Listesi',
+
     'totalPurchaseAmount' => 'Toplam Alış Miktarı',
     'purchaseAmount' => 'Alış Miktarı',
     'purchaseUnitPrice' => 'Alış Birim Fiyatı',
