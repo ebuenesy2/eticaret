@@ -145,7 +145,7 @@
 							    <div>
 									<strong>Arama</strong>
 									<ul>
-										<input type="text" id="search_value" style="border: 1px solid #DDD;">
+										<input type="text" id="search_value" value="{{request('search')}}" style="border: 1px solid #DDD;">
 										<button id="search_button" style="width: 40px;box-sizing: border-box;background-color: green;color: #FFF;cursor: pointer;" >Ara</button>
 									</ul>
 								</div>

@@ -470,7 +470,6 @@ class Web extends Controller
     //! Ürün Listesi - Tüm Ürünler
     public function ProductListAll($site_lang="tr")
     {
-        
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
         //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
 
@@ -583,6 +582,10 @@ class Web extends Controller
                 ->where('products.lang','=',__('admin.lang'))
                 //->where('products.editor_suggestion','=',1)
                 ->where('products.isActive','=',1);
+                
+                //! Arama
+                $parameter_search = request('search');
+                if($parameter_search) { $DB_Products = $DB_Products->where('products.title','like','%'.$parameter_search.'%');  }
 
                 if( trim($categories) != "") { $DB_Products = $DB_Products->whereIn('products.category',$dizi_categories); }
                 

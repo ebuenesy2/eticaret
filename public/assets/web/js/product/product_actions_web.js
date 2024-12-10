@@ -40,10 +40,11 @@ document.querySelectorAll('#product_gallery').forEach(function (i) {
 $("#search_button").click(function (e) {
     e.preventDefault();
 
-    alert("arama");
-
     var search_value = $('#search_value').val();
-    console.log("search_value:",search_value);
+    //console.log("search_value:",search_value);
+
+    //! Sayfa yönlendirme
+    if(search_value != "") { window.location.href = "?search="+search_value; }
 
 }); //! Arama Son
 
@@ -59,7 +60,7 @@ $("#filtereleControl").click(function (e) {
     });
     
     //console.log("selectedCategory:", selectedCategory);
-    console.log("selectedCategory sayısı:",selectedCategory.length);
+    //console.log("selectedCategory sayısı:",selectedCategory.length);
     //! Seçilen Kategoriler Son
 
     var data_url = $('#filtereleControl').attr('data_url'); //! Url
