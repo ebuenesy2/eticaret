@@ -41,7 +41,7 @@ document.querySelectorAll('#cart-product-quantity').forEach((Item) => {
       $("#productTotalPrice").html(totalProductPrice+" " +data_productsCurrency); //! Sepet Fiyat
       $('#productTotalPrice').attr('productsAllTotalPrice',totalProductPrice);  //! Sepet Fiyat
 
-      discountedPercentFun(); //! Toplam Sepet Fiyat
+      discountedPercentFun(); //! Toplam Sepet Fiyat * indirimli fiyat
      
   })
 }); //! Değişiklik Olduğunda Son
@@ -59,14 +59,12 @@ function discountedPercentFun(){
 
   var productsAllTotalPrice = $('#productTotalPrice').attr('productsAllTotalPrice'); //! Sepet Fiyat
   productsAllTotalPrice = Number(productsAllTotalPrice.replace(',','.')).toFixed(3); //! Sayı Dönüştür
-  console.log("productsAllTotalPrice:",productsAllTotalPrice);
-
+  
   var discountedPercent = $('#discountedPercent').val(); //! Yüzdelik
   discountedPercent = Number(discountedPercent.replace(',','.')).toFixed(2); //! Sayı Dönüştür
 
   var productsDiscountedPrice = (Number(productsAllTotalPrice)*discountedPercent)/100; //! İndirim Fiyat
   productsDiscountedPrice = Number(productsDiscountedPrice).toFixed(2); //! Sayı Dönüştür
-  console.log("productsDiscountedPrice:",productsDiscountedPrice);
   
   var productsDiscountedPriceResult = productsAllTotalPrice - productsDiscountedPrice; //! İndirimli Fiyat
   productsDiscountedPriceResult = Number(productsDiscountedPriceResult).toFixed(2); //! Sayı Dönüştür
@@ -290,10 +288,10 @@ $("#orderCreate").click(function (e) {
   //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
 
   var data_time = $('#cart_info').attr('data_time');
-  console.log("data_time:",data_time);
+  //console.log("data_time:",data_time);
 
   var orderName = $('#orderName').val();
-  console.log("orderName:",orderName);
+  //console.log("orderName:",orderName);
 
   if(orderName == "") {
 
@@ -338,15 +336,15 @@ $("#orderCreate").click(function (e) {
                   siteLang: yildirimdevMultiLangJsonReturnR.lang,
                   uid:data_time,
                   title:orderName,
-                  user_id: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1],
+                  user_id: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1] ? document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1] : document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1],
                   cart_list: JSON.stringify(cart_list),
 
-                  updated_byId: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1]
+                  updated_byId: document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1] ? document.cookie.split(';').find((row) => row.startsWith('web_userId='))?.split('=')[1] : document.cookie.split(';').find((row) => row.startsWith(' web_userId='))?.split('=')[1]
               },
               beforeSend: function() { console.log("Başlangıc"); },
               success: function (response) {
                   // alert("başarılı");
-                  console.log("response:", response);
+                  //console.log("response:", response);
 
                   if (response.status == "success") {
                       Swal.fire({

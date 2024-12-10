@@ -2532,6 +2532,10 @@ class Web extends Controller
 
             if($cartListCount > 0 ){
 
+                //! Sepet Verileri Silme
+                DB::table('web_user_cart')->where('user_id',$request->user_id )->delete();
+
+                //! Return
                 $response = array(
                     'status' => 'success',
                     'msg' => __('admin.transactionSuccessful'),
