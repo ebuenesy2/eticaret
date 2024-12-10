@@ -82,14 +82,14 @@
 			            			
 								    <!-- İskonta Oranı -->
 								    <div style="display:flex;">
-								      <label for="discountedPercent">İskonta Oranı % : </label>
+								      <label for="discountedPercent" style="display: flex;align-items: center;" >İskonta Oranı % : </label>
 									  <input type="text" class="form-control" id="discountedPercent" value="0" style="width: 25%;margin-left: 15px;" >
 			            			</div>
 									<!-- İskonta Oranı - Son -->
 
 									<!-- İskonta Fiyatı -->
 			            			<div style="display:flex;">
-								      <label for="discountedPrice">İskonta Fiyatı</label>
+								      <label for="discountedPrice" style="display: flex;align-items: center;" >İskonta Fiyatı</label>
 									  <input type="text" class="form-control" id="discountedPrice" value="0" style="width: 50%; margin-left: 15px;">
 			            			</div>
 									<!-- İskonta Fiyatı - Son -->
@@ -179,6 +179,9 @@
              
     <!------- Footer - Bottom --->
     @include('web.include.footer-bottom')
+	
+	<!------- Sepetim Listesi JS --->
+	<script src="{{asset('/assets/web')}}/js/user/userCart_List.js"></script>
 
 </body>
 
