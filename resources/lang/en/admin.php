@@ -46,6 +46,8 @@
     'discount' => 'Discount',
     'discountedPricePercent' => 'Discounted Price Percent',
     'discountedPrice' => 'Discounted Price',
+    'productFloor' => 'Product Floor',
+    'productFloorPlace' => 'Product Floor Place',
 
     'collection' => 'Collection',
     'allProduct' => 'All Product',
@@ -75,7 +77,6 @@
     'purchaseUnitPrice' => 'Purchase Unit Price',
     'purchasePrice' => 'Purchase Price',
     'purchaseTotalPrice' => 'Purchase Total Price',
-    
 
     'purchase' => 'Purchase',
     'sale' => 'Sale',

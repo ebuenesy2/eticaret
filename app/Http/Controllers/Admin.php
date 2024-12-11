@@ -11786,14 +11786,20 @@ class Admin extends Controller
                     'seo_url' => SEOLink($request->title),
                     'description' => $request->description,
                     'seo_keywords' => $request->seo_keywords,
+
                     'stock' => $request->stock,
                     'currency' => $request->currency,
-                    'sale_price' => $request->sale_price,
+                    'sale_price' => $request->sale_price,                    
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+
+                    'floor_place' => $request->floor_place,
+                    'place' => $request->place,
+
                     'new_product' => $request->new_product,
                     'editor_suggestion' => $request->editor_suggestion,
                     'bestseller' => $request->bestseller,
+
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->created_byId,
@@ -11811,14 +11817,20 @@ class Admin extends Controller
                     'seo_url' => SEOLink($request->title),
                     'description' => $request->description,
                     'seo_keywords' => $request->seo_keywords,
+
                     'stock' => $request->stock,
                     'currency' => $request->currency,
                     'sale_price' => $request->sale_price,
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
+
+                    'floor_place' => $request->floor_place,
+                    'place' => $request->place,
+
                     'new_product' => $request->new_product,
                     'editor_suggestion' => $request->editor_suggestion,
                     'bestseller' => $request->bestseller,
+
                     'created_byId'=>$request->created_byId,
                 ]); //! Veri Ekleme Son
 
@@ -12008,6 +12020,9 @@ class Admin extends Controller
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
 
+                    'floor_place' => $request->floor_place,
+                    'place' => $request->place,
+
                     'new_product' => $request->new_product,
                     'editor_suggestion' => $request->editor_suggestion,
                     'bestseller' => $request->bestseller,
@@ -12087,6 +12102,9 @@ class Admin extends Controller
                     'discounted_price_percent' => $request->discounted_price_percent,
                     'discounted_price' => $request->discounted_price,
                     
+                    'floor_place' => $request->floor_place,
+                    'place' => $request->place,
+
                     'new_product' => $request->new_product,
                     'editor_suggestion' => $request->editor_suggestion,
                     'bestseller' => $request->bestseller,

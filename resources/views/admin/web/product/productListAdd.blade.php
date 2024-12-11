@@ -136,6 +136,24 @@
                             <div class="row-fluid">
                                 <div class="span6">
                                     <div class="control-group">
+                                        <label class="control-label">@lang('admin.productFloor')</label>
+                                        <div class="controls controls-row">
+                                            <input type="text" class="input-block-level" name="productFloor" id="productFloor" placeholder="@lang('admin.productFloor')" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.productFloorPlace')</label>
+                                        <div class="controls controls-row">
+                                            <input type="text" class="input-block-level" name="productFloorPlace" id="productFloorPlace" placeholder="@lang('admin.productFloorPlace')"  >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
                                         <label class="control-label">Kapak Resmi</label>
                                         <div class="controls controls-row">
 

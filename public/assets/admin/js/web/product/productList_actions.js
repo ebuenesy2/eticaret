@@ -198,6 +198,9 @@ document.querySelectorAll('#new_add').forEach(function (i) {
                     sale_price:Number($('#salePrice').val().replace(',','.')),
                     discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
                     discounted_price:Number($('#discountedPrice').val().replace(',','.')),
+
+                    floor_place:$('#productFloor').val(),
+                    place:$('#productFloorPlace').val(),
                     
                     new_product:$('#new_product').is(':checked') ? 1 : 0,
                     editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
@@ -295,6 +298,9 @@ document.querySelectorAll('#edit_item_info').forEach(function (i) {
                 sale_price:Number($('#salePrice').val().replace(',','.')),
                 discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
                 discounted_price:Number($('#discountedPrice').val().replace(',','.')),
+
+                floor_place:$('#productFloor').val(),
+                place:$('#productFloorPlace').val(),
                 
                 new_product:$('#new_product').is(':checked') ? 1 : 0,
                 editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,
@@ -425,6 +431,9 @@ document.querySelectorAll('#edit_item').forEach(function (i) {
                     sale_price:Number($('#salePrice').val().replace(',','.')),
                     discounted_price_percent:Number($('#discountedPricePercent').val().replace(',','.')),
                     discounted_price:Number($('#discountedPrice').val().replace(',','.')),
+
+                    floor_place:$('#productFloor').val(),
+                    place:$('#productFloorPlace').val(),
 
                     new_product:$('#new_product').is(':checked') ? 1 : 0,
                     editor_suggestion:$('#editor_suggestion').is(':checked') ? 1 : 0,

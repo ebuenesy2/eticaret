@@ -46,6 +46,8 @@
     'discount' => 'İndirim',
     'discountedPricePercent' => 'İnd. Fiyat Yüzdelik',
     'discountedPrice' => 'İndirimli Fiyat',
+    'productFloor' => 'Ürün Kat Yeri',
+    'productFloorPlace' => 'Ürün Nerde',
 
     'collection' => 'Koleksiyon',
     'allProduct' => 'Tüm Ürünler',

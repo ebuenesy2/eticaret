@@ -184,6 +184,36 @@
                             <div class="row-fluid">
                                 <div class="span6">
                                     <div class="control-group">
+                                        <label class="control-label">@lang('admin.productFloor')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="text" class="input-block-level" name="productFloor" id="productFloor"  lang="en"  placeholder="@lang('admin.productFloor')" value="{!!$DB_Find_en->floor_place!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="text" class="input-block-level" name="productFloor" id="productFloor"  lang="de"  placeholder="@lang('admin.productFloor')" value="{!!$DB_Find_de->floor_place!!}" >
+                                            @else
+                                            <input type="text" class="input-block-level" name="productFloor" id="productFloor"  lang="tr"  placeholder="@lang('admin.productFloor')" value="{!!$DB_Find_tr->floor_place!!}" >
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">@lang('admin.productFloorPlace')</label>
+                                        <div class="controls controls-row">
+                                            @if($DB_Find_en) 
+                                            <input type="text" class="input-block-level" name="productFloorPlace" id="productFloorPlace"  lang="en"  placeholder="@lang('admin.productFloorPlace')" value="{!!$DB_Find_en->place!!}" >
+                                            @elseif($DB_Find_de)
+                                            <input type="text" class="input-block-level" name="productFloorPlace" id="productFloorPlace"  lang="de"  placeholder="@lang('admin.productFloorPlace')" value="{!!$DB_Find_de->place!!}" >
+                                            @else
+                                            <input type="text" class="input-block-level" name="productFloorPlace" id="productFloorPlace"  lang="tr"  placeholder="@lang('admin.productFloorPlace')" value="{!!$DB_Find_tr->place!!}" >
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
                                         <label class="control-label">Kapak Resmi</label>
                                         <div class="controls controls-row">
 
