@@ -37,6 +37,7 @@
     'commentMake' => 'Yorum Yap',
 
     'product' => 'Ürün',
+    'productName' => 'Ürün Adı',
     'productCategory' => 'Ürün Kategorisi',
     'stock' => 'Stok',
     'stockStatus' => 'Stok Durumu',

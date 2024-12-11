@@ -11655,7 +11655,10 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "uid", "table" => $table, "where" => "uid", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
-                
+                $searchData[] = array("params" => "productName", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Eşit
+                $searchData[] = array("params" => "productFloor", "table" => $table, "where" => "floor_place", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+
+
                 $whereData = []; //! Where
                 $whereData[] = array( "table" => $table, "where" => "lang" , "data_item_object" => "=", "value" => __('admin.lang') ); //! Arama
                 

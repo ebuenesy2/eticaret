@@ -94,6 +94,21 @@
                             </select>
                           </div>
                           <!------ Arama Durum Son----->
+
+                          <!------ Arama Urun Adı ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>@lang('admin.productName')</p>
+                            <input type="text" placeholder="@lang('admin.productName')" class="" id="searchTable" searchName="productName" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Urun Adı Son----->
+
+                          
+                          <!------ Arama Urun Kat ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>@lang('admin.productFloor')</p>
+                            <input type="text" placeholder="@lang('admin.productFloor')" class="" id="searchTable" searchName="productFloor" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Urun Kat Son----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
@@ -128,7 +143,7 @@
 
                                 <th class="table_title" exportName="id" >Uid</th>
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.title')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.productName')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.category')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.category') @lang('admin.title')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.stock')</th>
@@ -153,22 +168,22 @@
                                   <!---- Seç --->
                                   <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->uid}}</td>
-                                  <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
+                                  <td data-cell="Uid" >{{$dbFind[$i]->uid}}</td>
+                                  <td data-cell="@lang('admin.image')" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
-                                  <td class="">{{$dbFind[$i]->category}}</td>
-                                  <td class="">{{$dbFind[$i]->productCategoryTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->stock}}</td>
+                                  <td data-cell="@lang('admin.category')" >{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.category') @lang('admin.title')" >{{$dbFind[$i]->productCategoryTitle}}</td>
+                                  <td data-cell="@lang('admin.stock')" >{{$dbFind[$i]->stock}}</td>
 
-                                  <td class="">{{$dbFind[$i]->currency}}</td>
-                                  <td class="">{{$dbFind[$i]->sale_price}}</td>
-                                  <td class="">{{$dbFind[$i]->discounted_price_percent}}</td>
-                                  <td class="">{{$dbFind[$i]->discounted_price}}</td>
+                                  <td data-cell="@lang('admin.currency')" >{{$dbFind[$i]->currency}}</td>
+                                  <td data-cell="@lang('admin.salePrice')" >{{$dbFind[$i]->sale_price}}</td>
+                                  <td data-cell="@lang('admin.discountedPricePercent')" >{{$dbFind[$i]->discounted_price_percent}}</td>
+                                  <td data-cell="@lang('admin.discountedPrice')" >{{$dbFind[$i]->discounted_price}}</td>
 
-                                  <td class="">{{$dbFind[$i]->floor_place}}</td>
-                                  <td class="">{{$dbFind[$i]->place}}</td>
+                                  <td data-cell="@lang('admin.productFloor')" > {{$dbFind[$i]->floor_place}}</td>
+                                  <td data-cell="@lang('admin.productFloorPlace')" > {{$dbFind[$i]->place}}</td>
 
-                                  <td style="display: flex;" >
+                                  <td style="display: flex;" data-cell="@lang('admin.status')" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

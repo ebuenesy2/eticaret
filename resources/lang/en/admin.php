@@ -37,6 +37,7 @@
     'commentMake' => 'Make a Comment',
 
     'product' => 'Product',
+    'productName' => 'Product Name',
     'productCategory' => 'Product Category',
     'stock' => 'Stock',
     'stockStatus' => 'Stock Status',
