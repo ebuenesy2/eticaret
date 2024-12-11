@@ -68,6 +68,7 @@
     'orders' => 'Orders',
     'myOrderList' => 'My Order List',
     'orderList' => 'Order List',
+    'orderProductList' => 'Order Product List',
 
     'totalPurchaseAmount' => 'Total Purchase Amount',
     'purchaseAmount' => 'Purchase Amount',

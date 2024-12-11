@@ -307,6 +307,17 @@ Route::post('/admin/web/user/order/clone', [Admin::class,'AdminWebUserOrderClone
 Route::post('/admin/web/user/order/clone/multi', [Admin::class,'AdminWebUserOrderClonePostMulti']) -> name("admin.web.user.order.clone.post.multi"); //! Çoklu Veri Clone - Post
 
 
+//! Admin - Web User  - Sipariş Ürünler Listesi
+Route::get('/{lang}/admin/web/user/order/product', [Admin::class,'AdminWebUserOrderProductList']) -> name("admin.web.user.order.product.list");  //! Tüm Veriler
+Route::post('/admin/web/user/order/product/search/post', [Admin::class,'AdminWebUserOrderProductSearchPost']) -> name("admin.web.user.order.product.search.post"); //! Veri Arama - Post
+Route::post('/admin/web/user/order/product/add/post', [Admin::class,'AdminWebUserOrderProductAddPost']) -> name("admin.web.user.order.product.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/web/user/order/product/delete/post', [Admin::class,'AdminWebUserOrderProductDeletePost']) -> name("admin.web.user.order.product.delete.post"); //! Veri Silme
+Route::post('/admin/web/user/order/product/delete/post/multi', [Admin::class,'AdminWebUserOrderProductDeletePostMulti']) -> name("admin.web.user.order.product.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/web/user/order/product/edit/post', [Admin::class,'AdminWebUserOrderProductEditPost']) -> name("admin.web.user.order.product.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/web/user/order/product/clone', [Admin::class,'AdminWebUserOrderProductClonePost']) -> name("admin.web.user.order.product.clone.post"); //! Veri Clone - Post
+Route::post('/admin/web/user/order/product/clone/multi', [Admin::class,'AdminWebUserOrderProductClonePostMulti']) -> name("admin.web.user.order.product.clone.post.multi"); //! Çoklu Veri Clone - Post
+
+
 //************* Admin - Web - Blog ***************** */
 
 //! Blog - Kategori
