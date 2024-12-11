@@ -127,9 +127,9 @@
                                 <th class="table_title" exportName="id" >@lang('admin.user') ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.user') @lang('admin.name')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.product')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.product') ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.product') @lang('admin.title')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.product')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 

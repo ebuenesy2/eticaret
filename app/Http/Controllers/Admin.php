@@ -8629,25 +8629,26 @@ class Admin extends Controller
                 //! Tanım
                 $table = "web_user_order";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                
+                //! Group
                 $groupData = []; //! GroupData
+                $groupData[]= "product_uid"; //! Ekleme
 
                 $selectData = [];  //! Select
                 $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
                 $selectData[] = array( "table" => "products", "parametre" => "title", "name" => "productTitle", );
                 $selectData[] = array( "table" => "products", "parametre" => "img_url", "name" => "productsImg", );
-                $selectData[] = array( "table" => "web_users", "parametre" => "name", "name" => "userName", );
-                $selectData[] = array( "table" => "web_users", "parametre" => "surname", "name" => "userSurName", );
-
-                $selectDataRaw = [];  //! Select - Raw
+                
+                //! Select - Raw
+                $selectDataRaw = []; 
+                $selectDataRaw[] = "SUM(product_quantity) AS sum_product_quantity";
                 
                 $joinData = [];  //! Join
-                $joinData[] = array( "type" => "LEFT", "table" => "products" , "value" => "uid", "refTable" => $table, "refValue" => "product_uid", ); //! Join Veri Ekleme
-                $joinData[] = array( "type" => "LEFT", "table" => "web_users" , "value" => "id", "refTable" => $table, "refValue" => "user_id", ); //! Join Veri Ekleme
+                $joinData[] = array( "type" => "LEFT", "table" => "products" , "value" => "uid", "refTable" => $table, "refValue" => "product_uid", ); //! Join Veri Ekleme                
 
                 //! Arama
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
-                $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
 
                 $whereData = []; //! Where
                 

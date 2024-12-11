@@ -123,11 +123,11 @@
                                 <!---- Tümü Seç --->
                                 <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
-                                <th class="table_title" exportName="id" >ID</th>
-                                <th class="table_title" exportName="id" >@lang('admin.product')</th>
+                                <th class="table_title" exportName="id" >Sayısı</th>
+                                <th class="table_title" exportName="id" >@lang('admin.product') ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.product') @lang('admin.title')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.product')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.total') - @lang('admin.amount')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -139,11 +139,11 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="ID">{{$i+1}}</td>
                                   <td class="">{{$dbFind[$i]->product_uid}}</td>
                                   <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->productsImg}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td class="">{{$dbFind[$i]->productTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->product_quantity}}</td>
+                                  <td class="">{{$dbFind[$i]->sum_product_quantity}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
