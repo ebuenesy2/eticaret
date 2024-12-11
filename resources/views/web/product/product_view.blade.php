@@ -66,8 +66,15 @@
 
                                     <div class="product-details-action" style="display: flex;gap: 9px;" >
                                         <input type="number" id="product_quantity" class="form-control col-3 d-flex justify-content-center" value="1" min="1" max="10" step="1" data-decimals="0" style="margin: auto;background-color: white;border: 1px solid black;" >
-                                        <a id="userCartAdd" data_productid="{{$DB_Find->uid}}" class="btn-product btn-cart" style="cursor: pointer;" ><span>Sepete Ekle</span></a> <br>
-                                        <a id="userWishAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="btn" style="border: 1px solid;height: max-content;padding: 11px;" style="cursor: pointer;" ><i style="cursor: pointer;"  data_productid="{{$DB_Find->uid}}" data_product_quantity="1"  class="fa fa-heart-o"></i><span>İstek Listesine Ekle</span></a>
+                                       
+                                       <!--- Sepet Ekleme Durumu -->
+										<a id="userCartAdd_None" data_productid="{{$DB_Find->uid}}"  class="btn btn-product font-weight-normal text-uppercase text-truncate text-white btn-success" style="margin-top: 5px; display:{{$DB_Find->web_user_cart_control == 1  ? 'flex': 'none'}}; background-color: green;padding: 18px; font-size:15px;height: 15px;" > <i class="fas fa-check" style="font-size: 15px;" ></i> Sepete Eklendi </a>
+										<a id="userCartAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1" style="cursor: pointer; padding: 15px;margin-top: 5px; display:{{$DB_Find->web_user_cart_control == 0  ? 'flex': 'none'}}; height: 15px; " class="btn btn-product font-weight-normal text-uppercase text-truncate btn-cart btn-outline-primary-2">Sepete Ekle</a>
+																																							
+                                        <!--- İstek Listesine Ekleme Durumu -->
+                                        <a id="userWishAdd_None" data_productid="{{$DB_Find->uid}}" style="color: green; display:{{$DB_Find->web_user_wish_control == 1  ? 'flex': 'none'}}; gap: 5px;align-items: center; " class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i class="fa fa-heart" style="font-size: 15px; color: green; " ></i><span>İstek Listesine Eklendi</span></a>
+                                        <a id="userWishAdd" data_productid="{{$DB_Find->uid}}" data_product_quantity="1"  style="cursor: pointer;gap: 5px;align-items: center;display:{{$DB_Find->web_user_wish_control == 0  ? 'flex': 'none'}};" class="wishlist-link-product px-3 ml-0 font-weight-normal mt-1"><i data_productid="{{$DB_Find->uid}}" data_product_quantity="1" class="fa fa-heart-o"></i><span data_productid="{{$DB_Find->uid}}" data_product_quantity="1" >İstek Listesine Ekle</span></a>
+                                        
                                     </div><!-- End .product-details-action -->
 
                                     <div class="wishlist-share">
