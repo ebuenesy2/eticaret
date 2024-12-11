@@ -8638,6 +8638,8 @@ class Admin extends Controller
                 $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
                 $selectData[] = array( "table" => "products", "parametre" => "title", "name" => "productTitle", );
                 $selectData[] = array( "table" => "products", "parametre" => "img_url", "name" => "productsImg", );
+                $selectData[] = array( "table" => "products", "parametre" => "floor_place", "name" => "productsFloorPlace", );
+                $selectData[] = array( "table" => "products", "parametre" => "place", "name" => "productPlace", );
                 
                 //! Select - Raw
                 $selectDataRaw = []; 

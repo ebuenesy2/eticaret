@@ -128,6 +128,10 @@
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.product')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.total') - @lang('admin.amount')</th>
+
+                                <th class="table_title" exportName="id" >@lang('admin.productFloor')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.productFloorPlace')</th>
+
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -144,6 +148,9 @@
                                   <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->productsImg}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td class="">{{$dbFind[$i]->productTitle}}</td>
                                   <td class="">{{$dbFind[$i]->sum_product_quantity}}</td>
+
+                                  <td class="">{{$dbFind[$i]->productsFloorPlace}}</td>
+                                  <td class="">{{$dbFind[$i]->productPlace}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
