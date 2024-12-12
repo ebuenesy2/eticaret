@@ -2006,6 +2006,11 @@ class Web extends Controller
         }
 
     } //! Kullanıcı -  Kayıt Post Son
+    
+    //************* Kullanıcı Giriş Son ***************** */
+
+        
+    //************* Kullanıcı Profil ***************** */
 
     //! Kullanıcı - Profil
     public function UserProfile($site_lang="tr")
@@ -2028,25 +2033,36 @@ class Web extends Controller
                 $DB["DB_HomeSettings"] =  $DB_HomeSettings;
                 $DB["seo_keywords"] =  $seo_keywords;
                 //! Site Bilgileri Son
-                
-                //! Web UserId
+
+                //! Çerez Bilgileri
                 $web_userId = 0;
-                if(isset($_COOKIE["web_userId"])) { $web_userId = (int)$_COOKIE["web_userId"]; }
-                //echo "web_userId:"; echo $web_userId; die();
-                                           
+                if(isset($_COOKIE["web_userId"])) {
+
+                    //! Profil Bilgileri
+                    $web_userId = (int)$_COOKIE["web_userId"];
+                    //echo "userId:"; echo $userId; die();
+
+                    $DB_ProfileInfo = DB::table('web_users')->where('id','=',$web_userId)->first();
+                    //echo "<pre>"; print_r($DB_web_users); die();
+
+                    $DB["DB_ProfileInfo"] =  $DB_ProfileInfo;
+                    //! Profil Bilgileri Son
+                }
+                else { return view('web/user/login',$DB); }
+                                        
                 //! Kullanıcı Sepet Listesi
                 $DB_web_user_cart= DB::table('web_user_cart')
                 ->join('products', 'products.uid', '=', 'web_user_cart.product_uid')
                 ->join('web_users', 'web_users.id', '=', 'web_user_cart.user_id')
                 ->select('web_user_cart.*', 
-                          'products.title as productsTitle','products.img_url as productsImg',
-                          'products.uid as productsUid','products.seo_url as productsSeo_url',
-                          'products.currency as productsCurrency',
-                          DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
-                          DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) AS productsTotalPrice'),
-                          DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
-                          'web_users.name as userName',
-                          'web_users.surname as userSurName'
+                        'products.title as productsTitle','products.img_url as productsImg',
+                        'products.uid as productsUid','products.seo_url as productsSeo_url',
+                        'products.currency as productsCurrency',
+                        DB::raw('(CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END) AS productsPrice'),
+                        DB::raw('((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) AS productsTotalPrice'),
+                        DB::raw('SUM((CASE WHEN products.discounted_price_percent = 0 THEN products.sale_price ELSE products.discounted_price END)*web_user_cart.product_quantity) OVER() AS productsAllTotalPrice'),
+                        'web_users.name as userName',
+                        'web_users.surname as userSurName'
                         )
                 ->where('web_user_cart.user_id','=', $web_userId)
                 ->where('web_user_cart.isActive','=',1)
@@ -2070,13 +2086,127 @@ class Web extends Controller
                 //! Kullanıcı İstek Listesi - Sayısı - Son
 
                 return view('web/user/profile',$DB);
+
             } //! Web
         
         } catch (\Throwable $th) {  throw $th; }
 
     } //! Kullanıcı - Profil Son
+
+    //! Kullanıcı - Profil - Güncelleme
+    public function UserProfileEdit(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {  
+
+            //! Veri Arama
+            $DB = DB::table('web_users')->where('id',$request->id); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'name' => $request->name,
+                    'surname' => $request->surname,
+                    'phone' => $request->phone,
+                  
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+                
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Kullanıcı - Profil - Güncelleme Son
     
-    //************* Kullanıcı Giriş Son ***************** */
+    //! Kullanıcı - Profil - Şifre - Güncelleme
+    public function UserSettingsPasswordEdit(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Veri Arama
+            $DB = DB::table('web_users')->where('id',$request->id)->where('password',$request->oldPassword); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) { 
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([
+                    'password' => $request->password,
+
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+                
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+    } //! Kullanıcı - Profil - Şifre - Güncelleme Son
+
+    //************* Kullanıcı Profil Son ***************** */
 
        
     //************* Kullanıcı İstek Listesi ***************** */

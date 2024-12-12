@@ -56,7 +56,10 @@ Route::post('/user/login/post', [Web::class,'UserLoginPost']) -> name("web.user.
 Route::get('/{lang}/user/logout', [Web::class,'UserLogout']) -> name("web.user.logout"); //! Web - Kullanıcı - Çıkış
 Route::post('/user/register/post', [Web::class,'UserRegisterPost']) -> name("web.register.post"); //! Web Kullanıcı Kayıt - Post - Router
 
-Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.dashboard"); //! Web - Kullanıcı - Profil
+//! Profil
+Route::get('/{lang}/user/profile', [Web::class,'UserProfile']) -> name("web.user.profile"); //! Web - Kullanıcı - Profil
+Route::post('/user/profile/edit', [Web::class,'UserProfileEdit']) -> name("web.user.profile.edit"); //! Web - Kullanıcı - Profil - Güncelleme
+Route::post('/user/settings/password/edit', [Web::class,'UserSettingsPasswordEdit']) -> name("web.user.settings.password.edit"); //! Web - Kullanıcı - Şifre - Güncelleme
 
 //! İstek Listesi
 Route::get('/{lang}/user/wishlist', [Web::class,'UserWishlist']) -> name("web.wishlist"); //! Web - Kullanıcı - İstek Listesi

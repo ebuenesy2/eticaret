@@ -287,7 +287,6 @@ $("#profileEdit").click(function (e) {
     var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
     //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
     
-
     //! Loading - Veri Yükleniyor
     $('#loader').show(); //! Laoding Göster
     $('input,textarea,select').attr('disabled','disabled'); //! İnputları Gizleme
@@ -384,9 +383,9 @@ $("#profileEdit").click(function (e) {
 
 //! ************ Şifre Değiştirme ***************
 //! Şifre Değiştirme
-$("#settingPasswordSave").click(function (e) {
+$("#profilePasswordSave").click(function (e) {
     e.preventDefault();
-    //alert("settingPasswordSave");
+    //alert("profilePasswordSave");
 
     var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
     //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
@@ -394,22 +393,22 @@ $("#settingPasswordSave").click(function (e) {
     //! Loading - Veri Yükleniyor
     $('#loader').show(); //! Laoding Göster
     $('input,textarea,select').attr('disabled','disabled'); //! İnputları Gizleme
-    $('#settingPasswordSave').attr('disabled','disabled'); //! Button Gizleme
-    document.getElementById("settingPasswordSave").style.cursor = "wait"; //! Cursor - Dönen
+    $('#profilePasswordSave').attr('disabled','disabled'); //! Button Gizleme
+    document.getElementById("profilePasswordSave").style.cursor = "wait"; //! Cursor - Dönen
 
     //! Loading - Veri Yüklendi
     function loadingYuklendi(){
         $('#loader').hide(); //! Laoding Gizle
         $('input,textarea,select').removeAttr('disabled'); //! İnputları Aç
-        $('#settingPasswordSave').removeAttr('disabled'); //! //! Button Göster
-        document.getElementById("settingPasswordSave").style.cursor = "pointer"; //! Cursor - Ok
+        $('#profilePasswordSave').removeAttr('disabled'); //! //! Button Göster
+        document.getElementById("profilePasswordSave").style.cursor = "pointer"; //! Cursor - Ok
     }
     //! Loading - Veri Yüklendi Son
 
     //! Veriler
     var oldPassword = $('#oldPassword').val();
-    var password = $('#password').val();
-    var confirmPassword = $('#confirmPassword').val();
+    var newPassword = $('#newPassword').val();
+    var repeatPassword = $('#repeatPassword').val();
 
     if(oldPassword == '') { 
 
@@ -423,7 +422,7 @@ $("#settingPasswordSave").click(function (e) {
 
         loadingYuklendi(); //! Fonksiyon Çalıştır
     }
-    else if(password == '') { 
+    else if(newPassword == '') { 
 
         Swal.fire({
             position: "center",
@@ -435,7 +434,7 @@ $("#settingPasswordSave").click(function (e) {
 
         loadingYuklendi(); //! Fonksiyon Çalıştır
     }
-    else if(password != confirmPassword) { 
+    else if(newPassword != repeatPassword) { 
 
         Swal.fire({
             position: "center",
@@ -458,7 +457,7 @@ $("#settingPasswordSave").click(function (e) {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
                 id: Number($('#userInfo').attr('userId')), 
                 oldPassword: $('#oldPassword').val(),
-                password: $('#password').val(),
+                password: $('#newPassword').val(),
                
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },

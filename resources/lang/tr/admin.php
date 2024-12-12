@@ -117,7 +117,6 @@
     'positive' => 'Olumlu',
     'negative' => 'Olumsuz',
     'pending' => 'Beklemede',
-    
 
     'all' => 'Tümü',
     'date'=> 'Tarih',
@@ -130,6 +129,7 @@
     'userName' => 'Kullanıcı Adı',
     'password'=> 'Şifre',
     'enterUrPassword'=> 'Şifrenizi Giriniz',
+    'newPassword'=> 'Yeni Şifre',
     'repeatPassword'=> 'Şifreyi Tekrar Giriniz',
     'value'=> 'Değer',
     'createdDate'=> 'Oluşturma Tarihi',
@@ -142,6 +142,9 @@
     'phone' => 'Telefon',
     'postCode'=> 'Posta Kodu',
     'notFound'=> 'Üzgünüz, ancak aradığınızı bulamadık',
+
+    'myAccount'=> 'Hesabım',
+    'myAddressInformation'=> 'Adres Bilgilerim',
 
     'createClone'=> 'Clone Oluştur',
 
@@ -223,7 +226,6 @@
     'emailSent' => 'Mail Gönderildi',
     'emailSentError' => 'Email Adresinizi Kontrol Ediniz',
     'theUserPasswordMayBeIncorrect' => 'Kullanıcı veya şifre yanlış olabilir',
-    'myProfile' => 'Profilim',
 
     'emailIsProhibited' => 'Bu e-mail kullanması yasaktır',
     'emailIsUsed' => 'Bu e-mail kullanılıyor',

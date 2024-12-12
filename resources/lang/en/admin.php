@@ -129,6 +129,7 @@
     'userName' => 'UserName',
     'password'=> 'Password',
     'enterUrPassword'=> 'Enter Your Password',
+    'newPassword'=> 'New Password',
     'repeatPassword'=> 'Repeat password',
     'value'=> 'Value',
     'createdDate'=> 'Created Date',
@@ -141,6 +142,9 @@
     'phone' => 'Phone',
     'postCode'=> 'Post Code',
     'notFound'=> 'We are sorry, but we could not find what you are looking for',
+
+    'myAccount'=> 'My Account',
+    'myAddressInformation'=> 'My Address Information',
 
     'createClone'=> 'Create Clone',
 
@@ -222,7 +226,6 @@
     'emailSent' => 'Email Sent',
     'emailSentError' => 'Check Your Email Address',
     'theUserPasswordMayBeIncorrect' => 'User or password may be incorrect',
-    'myProfile' => 'My Profile',
 
     'emailIsProhibited' => 'Using this email is prohibited',
     'emailIsUsed' => 'This email is being used',
