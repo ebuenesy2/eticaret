@@ -219,15 +219,15 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class=""><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->img_url}}" style="width: 33px;margin: auto;cursor:pointer;"></td>
-                                  <td class="">{{$dbFind[$i]->name}}</td>
-                                  <td class="">{{$dbFind[$i]->surname}}</td>
-                                  <td class="">{{$dbFind[$i]->email}}</td>
-                                  <td class="">{{$dbFind[$i]->password}}</td>
-                                  <td class="">{{$dbFind[$i]->roleTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->departmanTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->created_at}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="@lang('admin.image')" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->img_url}}" style="width: 33px;margin: auto;cursor:pointer;"></td>
+                                  <td data-cell="@lang('admin.name')" >{{$dbFind[$i]->name}}</td>
+                                  <td data-cell="@lang('admin.surname')" >{{$dbFind[$i]->surname}}</td>
+                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
+                                  <td data-cell="@lang('admin.password')">{{$dbFind[$i]->password}}</td>
+                                  <td data-cell="@lang('admin.role')">{{$dbFind[$i]->roleTitle}}</td>
+                                  <td data-cell="@lang('admin.department')">{{$dbFind[$i]->departmanTitle}}</td>
+                                  <td data-cell="@lang('admin.createdDate')">{{$dbFind[$i]->created_at}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}">{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 

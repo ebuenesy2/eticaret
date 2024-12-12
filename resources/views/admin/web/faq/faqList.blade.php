@@ -129,7 +129,7 @@
                                 <th class="table_title" exportName="id" >Uid</th>
                                 <th class="table_title" exportName="id" >@lang('admin.category')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.category') @lang('admin.title')</th>
-                                <th class="table_title" exportName="id" >Soru</th>
+                                <th class="table_title" exportName="id" >@lang('admin.question')</th>
                                 <th class="table_title" exportName="id" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
@@ -140,13 +140,13 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
+                                  <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->uid}}</td>
-                                  <td class="">{{$dbFind[$i]->category}}</td>
-                                  <td class="">{{$dbFind[$i]->faqCategoryTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->question}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="Uid" >{{$dbFind[$i]->uid}}</td>
+                                  <td data-cell="@lang('admin.category')" >{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.category') @lang('admin.title')" >{{$dbFind[$i]->faqCategoryTitle}}</td>
+                                  <td data-cell="@lang('admin.question')" >{{$dbFind[$i]->question}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

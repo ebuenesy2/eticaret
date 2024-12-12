@@ -168,7 +168,7 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
                                   <td data-cell="Sıralama">{{$dbFind[$i]->orderId}}</td>
                                   <td data-cell="Slug">{{$dbFind[$i]->slug}}</td>
                                   <td data-cell="Parent_id">{{$dbFind[$i]->parent_id}}</td>

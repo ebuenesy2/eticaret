@@ -163,14 +163,14 @@
                                   <td class="">{{$dbFind[$i]->date}}</td>
                                   <td class="">{{$dbFind[$i]->time}}</td>
                                   <td class="">{{$dbFind[$i]->interviewee}}</td>
-                                  <td class="">{{$dbFind[$i]->description}}</td>
+                                  <td data-cell="@lang('admin.description')" >{{$dbFind[$i]->description}}</td>
                                   <td class="" >
                                     @if($dbFind[$i]->businessStatus == 0 ) <span class="alert alert-danger"  >{{ __('admin.negative')  }}</span>
                                     @elseif($dbFind[$i]->businessStatus == 1 ) <span class="alert alert-success"  >{{ __('admin.positive')  }}</span>
                                     @elseif($dbFind[$i]->businessStatus == 2 ) <span class="alert alert-info"  >{{ __('admin.pending')  }}</span>
                                     @endif
                                   </td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

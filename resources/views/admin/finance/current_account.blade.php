@@ -173,12 +173,12 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{\Carbon\Carbon::parse($dbFind[$i]->date_time)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</td>
-                                  <td class="">{{$dbFind[$i]->deposited}}</td>
-                                  <td class="">{{$dbFind[$i]->withdrawn}}</td>
-                                  <td class="">{{$dbFind[$i]->result}}</td>
-                                  <td class="">{{$dbFind[$i]->description}}</td>
+                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.date')" >{{\Carbon\Carbon::parse($dbFind[$i]->date_time)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</td>
+                                  <td data-cell="@lang('admin.deposited')" >{{$dbFind[$i]->deposited}}</td>
+                                  <td data-cell="@lang('admin.withdrawn')" >{{$dbFind[$i]->withdrawn}}</td>
+                                  <td data-cell="@lang('admin.result')" >{{$dbFind[$i]->result}}</td>
+                                  <td data-cell="@lang('admin.description')" >{{$dbFind[$i]->description}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>

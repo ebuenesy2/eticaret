@@ -134,13 +134,13 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->name}}</td>
-                                  <td class="">{{$dbFind[$i]->surname}}</td>
-                                  <td class="">{{$dbFind[$i]->email}}</td>
-                                  <td class="">{{$dbFind[$i]->phone}}</td>
-                                  <td class="">{{$dbFind[$i]->subject}}</td>
-                                  <td class="">{{$dbFind[$i]->message}}</td>
+                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.name')" >{{$dbFind[$i]->name}}</td>
+                                  <td data-cell="@lang('admin.surname')" >{{$dbFind[$i]->surname}}</td>
+                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
+                                  <td data-cell="@lang('admin.phone')" >{{$dbFind[$i]->phone}}</td>
+                                  <td data-cell="@lang('admin.subject')" >{{$dbFind[$i]->subject}}</td>
+                                  <td data-cell="@lang('admin.message')" >{{$dbFind[$i]->message}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>

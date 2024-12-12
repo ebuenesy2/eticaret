@@ -143,9 +143,9 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->email}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>                             
 

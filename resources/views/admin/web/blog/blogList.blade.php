@@ -140,13 +140,13 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
+                                  <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->uid}}" > </td>
 
-                                  <td class="">{{$dbFind[$i]->uid}}</td>
-                                  <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
+                                  <td data-cell="Uid" >{{$dbFind[$i]->uid}}</td>
+                                  <td data-cell="@lang('admin.image')" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
-                                  <td class="">{{$dbFind[$i]->category}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="@lang('admin.category')" >{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

@@ -170,7 +170,7 @@
                                   <td class="">{{$dbFind[$i]->district}}</td>
 
                                   <td class="" >{{$dbFind[$i]->created_at}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 

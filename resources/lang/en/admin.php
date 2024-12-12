@@ -28,6 +28,7 @@
 
     'faqCategory' => 'Frequently Asked Questions Category',
     'frequentlyAskedQuestions' => 'Frequently Asked Questions',
+    'question' => 'Question',
 
     'category' => 'Category',
     'blogCategory' => 'Blog Category',

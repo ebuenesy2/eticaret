@@ -143,14 +143,14 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID">{{$i+1}}</td>
-                                  <td class="">{{$dbFind[$i]->product_uid}}</td>
-                                  <td class="" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->productsImg}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
-                                  <td class="">{{$dbFind[$i]->productTitle}}</td>
-                                  <td class="">{{$dbFind[$i]->sum_product_quantity}}</td>
+                                  <td data-cell="ID" >{{$i+1}}</td>
+                                  <td data-cell="@lang('admin.product')" >{{$dbFind[$i]->product_uid}}</td>
+                                  <td data-cell="@lang('admin.image')" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" src="{{$dbFind[$i]->productsImg}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
+                                  <td data-cell="@lang('admin.product') @lang('admin.title')"  >{{$dbFind[$i]->productTitle}}</td>
+                                  <td data-cell="@lang('admin.quantity')" >{{$dbFind[$i]->sum_product_quantity}}</td>
 
-                                  <td class="">{{$dbFind[$i]->productsFloorPlace}}</td>
-                                  <td class="">{{$dbFind[$i]->productPlace}}</td>
+                                  <td data-cell="@lang('admin.productFloor')" >{{$dbFind[$i]->productsFloorPlace}}</td>
+                                  <td data-cell="@lang('admin.productFloorPlace')" >{{$dbFind[$i]->productPlace}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>

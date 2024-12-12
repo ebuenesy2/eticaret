@@ -28,6 +28,7 @@
    
     'faqCategory' => 'Sıkça Sorulan Sorular Kategorisi',
     'frequentlyAskedQuestions' => 'Sıkça Sorulan Sorular',
+    'question' => 'Soru',
 
     'category' => 'Kategori',
     'blogCategory' => 'Blog Kategorisi',
