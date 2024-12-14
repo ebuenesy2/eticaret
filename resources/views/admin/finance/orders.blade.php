@@ -158,13 +158,13 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->date_time}}</td>
-                                  <td class="">{{$dbFind[$i]->date_timeFull}}</td>
-                                  <td class="">{{$dbFind[$i]->product}}</td>
-                                  <td class="">{{$dbFind[$i]->purchase_amount}}</td>
-                                  <td class="">{{$dbFind[$i]->purchase_unit_price}}</td>
-                                  <td class="">{{$dbFind[$i]->total}}</td>
-                                  <td class="">{{$dbFind[$i]->purchase_amount_net	}}</td>
+                                  <td data-cell="@lang('admin.date')" >{{$dbFind[$i]->date_time}}</td>
+                                  <td data-cell="@lang('admin.date') Full" >{{$dbFind[$i]->date_timeFull}}</td>
+                                  <td data-cell="@lang('admin.product')" >{{$dbFind[$i]->product}}</td>
+                                  <td data-cell="@lang('admin.purchaseAmount')" >{{$dbFind[$i]->purchase_amount}}</td>
+                                  <td data-cell="@lang('admin.purchaseUnitPrice')" >{{$dbFind[$i]->purchase_unit_price}}</td>
+                                  <td data-cell="@lang('admin.total')" >{{$dbFind[$i]->total}}</td>
+                                  <td data-cell="@lang('admin.purchaseAmount') Net" >{{$dbFind[$i]->purchase_amount_net	}}</td>
                                   <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>

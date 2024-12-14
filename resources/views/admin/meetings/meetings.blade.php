@@ -160,11 +160,11 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->date}}</td>
-                                  <td class="">{{$dbFind[$i]->time}}</td>
-                                  <td class="">{{$dbFind[$i]->interviewee}}</td>
+                                  <td data-cell="@lang('admin.date')" >{{$dbFind[$i]->date}}</td>
+                                  <td data-cell="@lang('admin.time')" >{{$dbFind[$i]->time}}</td>
+                                  <td data-cell="@lang('admin.interviewee')" >{{$dbFind[$i]->interviewee}}</td>
                                   <td data-cell="@lang('admin.description')" >{{$dbFind[$i]->description}}</td>
-                                  <td class="" >
+                                  <td data-cell="@lang('admin.businessStatus')"  >
                                     @if($dbFind[$i]->businessStatus == 0 ) <span class="alert alert-danger"  >{{ __('admin.negative')  }}</span>
                                     @elseif($dbFind[$i]->businessStatus == 1 ) <span class="alert alert-success"  >{{ __('admin.positive')  }}</span>
                                     @elseif($dbFind[$i]->businessStatus == 2 ) <span class="alert alert-info"  >{{ __('admin.pending')  }}</span>
