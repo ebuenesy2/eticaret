@@ -28,7 +28,7 @@
                                @if($CookieData['yildirimdev_userID'] == '0')
                                <li><a><i class="fa fa-user"></i>Yıldırımdev</a></li>
                                @else
-                               <li><a href="/@lang('admin.lang')/admin/info/{{$CookieData['yildirimdev_userID']}}" ><i class="fa fa-user"></i>@lang('admin.myProfile')</a></li>
+                               <li><a href="/@lang('admin.lang')/admin/info/{{$CookieData['yildirimdev_userID']}}" ><i class="fa fa-user"></i>@lang('admin.myAccount')</a></li>
                                @endif
 
                                <li><a href="/@lang('admin.lang')/admin/login"><i class="fa fa-key"></i>@lang('admin.logout')</a></li>
