@@ -288,19 +288,19 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->date_time}}</td>
-                                  <td class="">{{$dbFind[$i]->date_timeFull}}</td>
-                                  <td class="">{{$dbFind[$i]->type}}</td>
-                                  <td class="">{{$dbFind[$i]->amount}}</td>
-                                  <td class="">{{$dbFind[$i]->unit_price}}</td>
-                                  <td class="">{{$dbFind[$i]->total}}</td>
-                                  <td class="">{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->profit : '-'}}</td>
-                                  <td style="display: flex;" >
+                                  <td data-cell="@lang('admin.date')">{{$dbFind[$i]->date_time}}</td>
+                                  <td data-cell="@lang('admin.date') Full">{{$dbFind[$i]->date_timeFull}}</td>
+                                  <td data-cell="@lang('admin.type')">{{$dbFind[$i]->type}}</td>
+                                  <td data-cell="@lang('admin.amount')">{{$dbFind[$i]->amount}}</td>
+                                  <td data-cell="@lang('admin.unitPrice')">{{$dbFind[$i]->unit_price}}</td>
+                                  <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
+                                  <td data-cell="@lang('admin.profit_loss')" >{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->profit : '-'}}</td>
+                                  <td data-cell="@lang('admin.profit_loss') - @lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto; {{$dbFind[$i]->type == 'S' ? 'display:none;' : 'display:block;'}} " class="alert"  >@lang('admin.purchase')</span>
                                     <span style="margin: auto; {{$dbFind[$i]->type == 'A' ? 'display:none;' : 'display:block;'}} " class="alert {{$dbFind[$i]->profit > 0 ? 'alert-success' : 'alert-error' }}"  >{{$dbFind[$i]->profit > 0  ? __('admin.profit') : __('admin.loss')  }}</span>
                                   </td>
-                                  <td class="">{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->orderDetailPercent.'%' : '-'}}</td>
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.date')">{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->orderDetailPercent.'%' : '-'}}</td>
+                                  <td data-cell="@lang('admin.percent')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 
