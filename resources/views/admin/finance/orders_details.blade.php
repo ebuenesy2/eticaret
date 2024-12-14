@@ -9,6 +9,10 @@
 <?php $listTitle = __('admin.orderDetails'); ?>
 <?php $listUrl = "/admin/order";  ?>
 
+
+<!-- Yıldırımdev Table Css -->
+<link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
+
 <!-- BEGIN BODY -->
 <body class="fixed-top" id="dataValueInfo" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}} data_id={{$id}} > 
   <div style="display:none;" id="order_info" purchase_amount="{{$DB_Find_Order->purchase_amount}}" purchase_unit_price="{{$DB_Find_Order->purchase_unit_price}}" >Order Info</div>  
@@ -234,7 +238,7 @@
                         <!------  Tablo Üst - Sonucları Gösterme Son ----->
                
                         <!------ Tablo Ayarları -->
-                        <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
+                        <div id="choosedPanel" class="row-fluid"  style="margin-top:20px;display: none;gap: 5px;flex-wrap: wrap;" >
                         
                           <!-- Tablo İşlemi -->
                           <select  style="cursor: pointer;width: max-content;" id="tableSettings" >
@@ -253,7 +257,7 @@
                         <!------ Tablo Ayarları Son -->
                         
                         <!------  Tablo ----->
-                        <div class="table-container">
+                        <div class="table-container" style="margin-top: 15px;" >
                             
                           <table>
                               <thead>
