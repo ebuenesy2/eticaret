@@ -113,6 +113,35 @@
                             </select>
                           </div>
                           <!------ Arama Durum Son----->
+
+                          <!------ Arama Slug ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Slug</p>
+                            <input type="text" class="" id="searchTable" searchName="Slug" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Slug Son----->
+
+                          <!------ Arama Route ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Route</p>
+                            <input type="text" class="" id="searchTable" searchName="Route" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Route Son----->
+
+                          <!------ Arama TR ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>TR</p>
+                            <input type="text" class="" id="searchTable" searchName="TR" style="width: 120px;" >
+                          </div>
+                          <!------ Arama TR Son----->
+
+                          
+                          <!------ Arama EN ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>EN</p>
+                            <input type="text" class="" id="searchTable" searchName="EN" style="width: 120px;" >
+                          </div>
+                          <!------ Arama EN Son----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->

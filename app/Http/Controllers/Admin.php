@@ -1140,6 +1140,11 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "Menu", "table" => $table, "where" => "parent_id", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "Slug", "table" => $table, "where" => "slug", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
+                $searchData[] = array("params" => "Route", "table" => $table, "where" => "route_name", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
+                $searchData[] = array("params" => "TR", "table" => $table, "where" => "tr", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
+                $searchData[] = array("params" => "EN", "table" => $table, "where" => "en", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
+               
                 
                 $whereData = []; //! Where
                 //$whereData[] = array( "table" => $table, "where" => "created_byId" , "data_item_object" => "=", "value" => 26 ); //! Arama
