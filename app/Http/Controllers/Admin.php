@@ -15327,10 +15327,14 @@ class Admin extends Controller
 
                 //! Select
                 $selectData = [];
-                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );   
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => "company_categories", "parametre" => "title", "name" => "companyCategoryTitle", );
 
                 $selectDataRaw = [];  //! Select - Raw
-                $joinData = []; //! Join
+
+                //! Join
+                $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "company_categories" , "value" => "uid", "refTable" => $table, "refValue" => "category", ); //! Join Veri Ekleme
 
                 //! Arama
                 $searchData = [];

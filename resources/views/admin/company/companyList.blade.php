@@ -137,7 +137,8 @@
 
                                 <th class="table_title" exportName="id" exportName="id"  exportType="number" exportViewDisplay="true" >ID</th>
                                 <th class="table_title" exportName="id" exportName="companyName" exportType="text" >@lang('admin.companyName')</th>
-                                <th class="table_title" exportName="id" exportName="category" exportType="text" >@lang('admin.category')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.category')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.category') @lang('admin.title')</th>
                                 <th class="table_title" exportName="id" exportName="authorizedPerson" exportType="text" >@lang('admin.authorizedPerson')</th>
                                 <th class="table_title" exportName="id" exportName="authorizedPersonRole" exportType="text" >@lang('admin.authorizedPersonRole')</th>
                                 <th class="table_title" exportName="id" exportName="authorizedPhone" exportType="text" >@lang('admin.authorizedPhone')</th>
@@ -162,7 +163,8 @@
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
                                   <td data-cell="@lang('admin.companyName')">{{$dbFind[$i]->company_name}}</td>
-                                  <td data-cell="@lang('admin.category')">{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.category')" >{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.category') @lang('admin.title')" >{{$dbFind[$i]->companyCategoryTitle}}</td>
                                   <td data-cell="@lang('admin.authorizedPerson')">{{$dbFind[$i]->authorized_person}}</td>
                                   <td data-cell="@lang('admin.authorizedPersonRole')">{{$dbFind[$i]->authorized_person_role}}</td>
                                   <td data-cell="@lang('admin.authorizedPhone')">{{$dbFind[$i]->authorized_person_tel}}</td>
