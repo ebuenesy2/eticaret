@@ -4206,6 +4206,7 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "uid", "table" => $table, "where" => "uid", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "Category", "table" => $table, "where" => "category", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 
                 $whereData = []; //! Where
                 $whereData[] = array( "table" => $table, "where" => "lang" , "data_item_object" => "=", "value" => __('admin.lang') ); //! Arama
@@ -4216,6 +4217,17 @@ class Admin extends Controller
                 //! Return
                 $DB = $DB_Find;
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+                
+                //! Faq Category
+                $faq_categories= DB::table('faq_categories')
+                ->orderBy('faq_categories.uid','desc')
+                ->where('faq_categories.lang','=',__('admin.lang'))
+                ->where('faq_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($faq_categories); die();
+
+                //! Return
+                $DB["faq_categories"] =  $faq_categories;
+                //! Faq Category Son
 
                 //echo "<pre>"; print_r($DB); die();
                 return view('admin/web/faq/faqList',$DB); 
@@ -11680,6 +11692,7 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "uid", "table" => $table, "where" => "uid", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "Category", "table" => $table, "where" => "category", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "productName", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "productFloor", "table" => $table, "where" => "floor_place", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
 
@@ -11693,6 +11706,18 @@ class Admin extends Controller
                 //! Return
                 $DB = $DB_Find; 
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                
+                //! Blog Category
+                $DB_product_categories= DB::table('product_categories')
+                ->orderBy('product_categories.uid','desc')
+                ->where('product_categories.lang','=',__('admin.lang'))
+                ->where('product_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_product_categories); die();
+
+                //! Return
+                $DB["DB_product_categories"] =  $DB_product_categories;
+                //! Blog Category Son
 
                 //echo "<pre>"; print_r($DB); die();
                 return view('admin/web/product/productList',$DB); 

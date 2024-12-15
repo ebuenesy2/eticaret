@@ -95,6 +95,19 @@
                           </div>
                           <!------ Arama Durum Son----->
                           
+                          <!------ Arama Kategori ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p>Kategori</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Category"  >
+                                <option value="">@lang('admin.all')</option>
+                                @for ($i = 0; $i < count($faq_categories); $i++)
+                                <option value="{{$faq_categories[$i]->uid}}">{{$faq_categories[$i]->title}}</option>
+                                @endfor
+
+                            </select>
+                          </div>
+                          <!------ Arama Kategori Son----->
+                          
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
