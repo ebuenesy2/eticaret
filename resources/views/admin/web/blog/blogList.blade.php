@@ -98,10 +98,10 @@
                           <!------ Arama Kategori ----->
                           <div style="display: flex;flex-direction: column;" >
                             <p>Kategori</p>
-                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Status"  >
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Category"  >
                                 <option value="">@lang('admin.all')</option>
                                 @for ($i = 0; $i < count($DB_blogs_categories); $i++)
-                                <option value="{{$DB_blogs_categories[$i]->id}}">{{$DB_blogs_categories[$i]->title}}</option>
+                                <option value="{{$DB_blogs_categories[$i]->uid}}">{{$DB_blogs_categories[$i]->title}}</option>
                                 @endfor
 
                             </select>

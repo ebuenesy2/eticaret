@@ -9739,6 +9739,7 @@ class Admin extends Controller
                 //! Arama
                 $searchData = [];
                 $searchData[] = array("params" => "uid", "table" => $table, "where" => "uid", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+                $searchData[] = array("params" => "Category", "table" => $table, "where" => "category", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 
                 $whereData = []; //! Where
                 $whereData[] = array( "table" => $table, "where" => "lang" , "data_item_object" => "=", "value" => __('admin.lang') ); //! Arama
@@ -9759,7 +9760,7 @@ class Admin extends Controller
 
                 //! Return
                 $DB["DB_blogs_categories"] =  $DB_blogs_categories;
-                //! Sık Sorulan Sorular Son
+                //! Blog Category Son
 
                 //echo "<pre>"; print_r($DB); die();
                 return view('admin/web/blog/blogList',$DB); 
