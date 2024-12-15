@@ -9724,9 +9724,17 @@ class Admin extends Controller
                 $table = "blogs";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
-                $selectData = [];  //! Select
+               
+                //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );//! Join Veri Ekleme
+                $selectData[] = array( "table" => "blogs_categories", "parametre" => "title", "name" => "blogs_categories_title", );
+
                 $selectDataRaw = [];  //! Select - Raw
-                $joinData = [];  //! Join
+                
+                //! Join
+                $joinData = [];
+                $joinData[] = array( "type" => "LEFT", "table" => "blogs_categories" , "value" => "uid", "refTable" => $table, "refValue" => "category", ); //! Join Veri Ekleme
 
                 //! Arama
                 $searchData = [];
@@ -9741,6 +9749,17 @@ class Admin extends Controller
                 //! Return
                 $DB = $DB_Find; 
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //! Blog Category
+                $DB_blogs_categories= DB::table('blogs_categories')
+                ->orderBy('blogs_categories.uid','desc')
+                ->where('blogs_categories.lang','=',__('admin.lang'))
+                ->where('blogs_categories.isActive','=',1)->get();
+                //echo "<pre>"; print_r($DB_blogs_categories); die();
+
+                //! Return
+                $DB["DB_blogs_categories"] =  $DB_blogs_categories;
+                //! Sık Sorulan Sorular Son
 
                 //echo "<pre>"; print_r($DB); die();
                 return view('admin/web/blog/blogList',$DB); 

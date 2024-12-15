@@ -94,6 +94,19 @@
                             </select>
                           </div>
                           <!------ Arama Durum Son----->
+
+                          <!------ Arama Kategori ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p>Kategori</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Status"  >
+                                <option value="">@lang('admin.all')</option>
+                                @for ($i = 0; $i < count($DB_blogs_categories); $i++)
+                                <option value="{{$DB_blogs_categories[$i]->id}}">{{$DB_blogs_categories[$i]->title}}</option>
+                                @endfor
+
+                            </select>
+                          </div>
+                          <!------ Arama Kategori Son----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
@@ -130,6 +143,8 @@
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.category')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.category') @lang('admin.title')</th>
+
                                 <th class="table_title" exportName="id" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
@@ -146,6 +161,7 @@
                                   <td data-cell="@lang('admin.image')" ><img id="imgItem" href="#imgModal" data-toggle="modal" data_uid="{{$dbFind[$i]->uid}}" src="{{$dbFind[$i]->img_url}}" style="margin: auto;cursor:pointer;min-width: 40px;width: 50px;max-width: 100%;"  ></td>
                                   <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
                                   <td data-cell="@lang('admin.category')" >{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.category') @lang('admin.title')" >{{$dbFind[$i]->blogs_categories_title}}</td>
                                   <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
