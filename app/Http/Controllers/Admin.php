@@ -7306,6 +7306,8 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productId", "table" => $table, "where" => "product_uid", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productName", "table" => 'products', "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
 
                 $whereData = []; //! Where
                 
@@ -7759,6 +7761,8 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productId", "table" => $table, "where" => "product_uid", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productName", "table" => 'products', "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
 
                 $whereData = []; //! Where
                 
@@ -8212,6 +8216,8 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productId", "table" => $table, "where" => "product_uid", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productName", "table" => 'products', "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
 
                 $whereData = []; //! Where
                 
@@ -8668,6 +8674,8 @@ class Admin extends Controller
                 //! Arama
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productId", "table" => $table, "where" => "product_uid", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "productName", "table" => 'products', "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
 
                 $whereData = []; //! Where
                 

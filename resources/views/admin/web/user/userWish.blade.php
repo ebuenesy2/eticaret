@@ -94,6 +94,20 @@
                           </div>
                           <!------ Arama User ID Son----->
                           
+                          <!------ Arama Ürün ID ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Ürün ID</p>
+                            <input type="number" placeholder="ürün id" class="" id="searchTable" searchName="productId" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Ürün ID Son----->
+
+                          <!------ Arama Ürün Adı ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Ürün Adı</p>
+                            <input type="text" placeholder="ürün Adı" class="" id="searchTable" searchName="productName" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Ürün Adı Son----->
+                          
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
