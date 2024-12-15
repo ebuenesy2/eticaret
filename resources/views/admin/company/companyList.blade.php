@@ -10,6 +10,9 @@
 <title> <?php echo $listTitle; ?>  | {{ config('admin.Admin_Title') }} </title>
 @include('admin.include.head')
 
+<!-- Yıldırımdev Table Css -->
+<link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
+
 <!-- BEGIN BODY -->
 <body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}}> 
     
@@ -155,26 +158,26 @@
                               <tr>
 
                                   <!---- Seç --->
-                                  <td class="c-table__cell" exportViewDisplay="false" ><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
+                                  <td data-cell="Seç" exportViewDisplay="false" ><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
-                                  <td class="">{{$dbFind[$i]->company_name}}</td>
-                                  <td class="">{{$dbFind[$i]->category}}</td>
-                                  <td class="">{{$dbFind[$i]->authorized_person}}</td>
-                                  <td class="">{{$dbFind[$i]->authorized_person_role}}</td>
-                                  <td class="">{{$dbFind[$i]->authorized_person_tel}}</td>
-                                  <td class="">{{$dbFind[$i]->authorized_person_mail}}</td>
+                                  <td data-cell="@lang('admin.companyName')">{{$dbFind[$i]->company_name}}</td>
+                                  <td data-cell="@lang('admin.category')">{{$dbFind[$i]->category}}</td>
+                                  <td data-cell="@lang('admin.authorizedPerson')">{{$dbFind[$i]->authorized_person}}</td>
+                                  <td data-cell="@lang('admin.authorizedPersonRole')">{{$dbFind[$i]->authorized_person_role}}</td>
+                                  <td data-cell="@lang('admin.authorizedPhone')">{{$dbFind[$i]->authorized_person_tel}}</td>
+                                  <td data-cell="@lang('admin.authorizedPersonMail')">{{$dbFind[$i]->authorized_person_mail}}</td>
 
-                                  <td class="">{{$dbFind[$i]->country}}</td>
-                                  <td class="">{{$dbFind[$i]->city}}</td>
-                                  <td class="">{{$dbFind[$i]->district}}</td>
+                                  <td data-cell="@lang('admin.country')">{{$dbFind[$i]->country}}</td>
+                                  <td data-cell="@lang('admin.city')">{{$dbFind[$i]->city}}</td>
+                                  <td data-cell="@lang('admin.district')">{{$dbFind[$i]->district}}</td>
 
-                                  <td class="" >{{$dbFind[$i]->created_at}}</td>
+                                  <td data-cell="@lang('admin.createdDate')" >{{$dbFind[$i]->created_at}}</td>
                                   <td data-cell="@lang('admin.status')" style="display: flex;" >
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 
-                                  <td  exportViewDisplay="false" >
+                                  <td data-cell="@lang('admin.actions')" exportViewDisplay="false" >
                                     <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <a href="/@lang('admin.lang'){{$listUrl}}/edit/{{$dbFind[$i]->id}}" title="sayfa edit" ><button class="btn btn-warning" ><i class="fa fa-pencil"></i></button></a>

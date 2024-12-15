@@ -9,7 +9,6 @@
 <?php $listTitle = __('admin.orderDetails'); ?>
 <?php $listUrl = "/admin/order";  ?>
 
-
 <!-- Yıldırımdev Table Css -->
 <link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
 
@@ -274,6 +273,10 @@
                                 <th class="table_title" exportName="id" >@lang('admin.unitPrice')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.total')</th>
 
+                                <th class="table_title" exportName="id" >@lang('admin.profit_loss')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.profit_loss') - @lang('admin.status') <th>
+                                <th class="table_title" exportName="id" >@lang('admin.percent')</th>
+
                                 <th class="table_title" exportName="id" >@lang('admin.status')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
@@ -294,6 +297,13 @@
                                   <td data-cell="@lang('admin.amount')" >{{$dbFind[$i]->amount}}</td>
                                   <td data-cell="@lang('admin.unitPrice')" >{{$dbFind[$i]->unit_price}}</td>
                                   <td data-cell="@lang('admin.total')" >{{$dbFind[$i]->total}}</td>
+
+                                  <td data-cell="@lang('admin.profit_loss')" >{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->profit : '-'}}</td>
+                                  <td data-cell="@lang('admin.profit_loss') - @lang('admin.status')" style="display: flex;" >
+                                    <span style="margin: auto; {{$dbFind[$i]->type == 'S' ? 'display:none;' : 'display:block;'}} " class="alert"  >@lang('admin.purchase')</span>
+                                    <span style="margin: auto; {{$dbFind[$i]->type == 'A' ? 'display:none;' : 'display:block;'}} " class="alert {{$dbFind[$i]->profit > 0 ? 'alert-success' : 'alert-error' }}"  >{{$dbFind[$i]->profit > 0  ? __('admin.profit') : __('admin.loss')  }}</span>
+                                  </td>
+                                  <td data-cell="@lang('admin.percent')" >{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->orderDetailPercent.'%' : '-'}}</td>
                                  
 
                                   <td data-cell="@lang('admin.status')" style="display: flex;" >
