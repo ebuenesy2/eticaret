@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 23 Kas 2024, 03:53:34
+-- Üretim Zamanı: 17 Ara 2024, 22:30:37
 -- Sunucu sürümü: 10.4.24-MariaDB
 -- PHP Sürümü: 8.1.6
 
@@ -60,7 +60,8 @@ INSERT INTO `blogs` (`id`, `lang`, `uid`, `category`, `title`, `description`, `i
 (3, 'de', '1726932788', '1730073746', 'Blog 3', '<p>Blog 3 yazısı A&ccedil;ıklanama yazısı</p>', '/upload/uploads/1732156861.jpg', 0, 0, 'blog-3', NULL, '2022-11-16 12:38:22', 1, 1, '2024-11-21 02:41:03', 1, 1, 0, NULL, NULL),
 (42, 'tr', '1730404627', '1730073746', '3 buçuk milyon yıldır yaşıyor!', '<p>İnsanlar ilk &ccedil;ağlardan beri &ouml;l&uuml;ms&uuml;zl&uuml;ğ&uuml;n sırrını arıyor. Rus bilim adamları ise onu bulduğunu iddia ediyor. Moskova Devlet &Uuml;niversitesi&#39;nde yapılan araştırmaya g&ouml;re; Rus bilim adamları &uuml;&ccedil; bu&ccedil;uk milyon yıldır buzulun i&ccedil;inde hayatta kalan bir bakteri buldu.</p>\n\n<p>Buldukları bu bakteriyi farelere enjekte eden bilim adamları, farelerdeki değişimi takip etti. Araştırmacılara g&ouml;re yaşlı farelerin aşıdan sonra adeta dans etmeye başladıkları tespit edildi.</p>\n\n<p>&Uuml;reme kabiliyetini kaybetmiş yaşlı dişi farelerin ise bu işlevi tekrar kazandıkları belirtildi.</p>', '/upload/uploads/1730750659.jpg', 0, 0, '3-bucuk-milyon-yildir-yasiyor', NULL, '2024-10-31 20:04:30', 1, 1, '2024-11-09 18:48:55', 1, 1, 0, NULL, NULL),
 (48, 'tr', '1731265761', '1726932788', 'blog yeni', '<p>aciklama</p>', '/assets/img/default/default.jpg', 0, 0, 'blog-yeni', 'test,tr', '2024-11-10 19:09:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(49, 'tr', '1732157049', '1726932788', 'blog1', '<p>sadasd</p>', '/upload/uploads/1732157057.jpg', 0, 0, 'blog1', NULL, '2024-11-21 02:44:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(49, 'tr', '1732157049', '1726932788', 'blog1', '<p>sadasd</p>', '/upload/uploads/1732157057.jpg', 0, 0, 'blog1', NULL, '2024-11-21 02:44:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(50, 'tr', '1734269849', '1726932788', 'Doğa', '<p>A&ccedil;ıklama</p>', '/assets/img/default/default.jpg', 0, 0, 'doga', NULL, '2024-12-15 13:37:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -72,8 +73,10 @@ CREATE TABLE `blogs_categories` (
   `id` int(11) NOT NULL,
   `lang` text NOT NULL,
   `uid` text NOT NULL,
+  `img_url` text NOT NULL,
   `title` text DEFAULT NULL,
-  `imgUrl` text NOT NULL,
+  `seo_url` text DEFAULT NULL,
+  `seo_keywords` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_byId` int(11) DEFAULT NULL,
   `isUpdated` int(11) NOT NULL DEFAULT 0,
@@ -89,13 +92,13 @@ CREATE TABLE `blogs_categories` (
 -- Tablo döküm verisi `blogs_categories`
 --
 
-INSERT INTO `blogs_categories` (`id`, `lang`, `uid`, `title`, `imgUrl`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 'tr', '1726932788', 'Doğa', '', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(2, 'tr', '1726932789', 'Hava', '', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(3, 'tr', '1726932790', 'Hayat', '', '2022-11-16 12:38:22', NULL, 1, '2024-10-15 03:01:19', 1, 1, 0, NULL, NULL),
-(4, 'tr', '1726932791', 'Su', '', '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(79, 'tr', '1730073746', 'Test', '', '2024-10-28 00:02:26', 1, 1, '2024-10-28 04:17:19', 1, 1, 0, NULL, NULL),
-(80, 'en', '1730073746', 'test en', '', '2024-10-28 00:02:26', 1, 1, '2024-10-28 04:17:19', 1, 1, 0, NULL, NULL);
+INSERT INTO `blogs_categories` (`id`, `lang`, `uid`, `img_url`, `title`, `seo_url`, `seo_keywords`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 'tr', '1726932788', '/upload/uploads/1732227322.PNG', 'Doğa', NULL, NULL, '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'tr', '1726932789', '/upload/uploads/1732227322.PNG', 'Hava', NULL, NULL, '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 'tr', '1726932790', '/upload/uploads/1732227322.PNG', 'Hayat', NULL, NULL, '2022-11-16 12:38:22', NULL, 1, '2024-10-15 03:01:19', 1, 1, 0, NULL, NULL),
+(4, 'tr', '1726932791', '/upload/uploads/1732227322.PNG', 'Su', NULL, NULL, '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(79, 'tr', '1730073746', '/upload/uploads/1732446050.jpg', 'Test', 'test', NULL, '2024-10-28 00:02:26', 1, 1, '2024-11-24 11:00:51', 1, 1, 0, NULL, NULL),
+(80, 'en', '1730073746', '/upload/uploads/1732446050.jpg', 'test en', 'test-en', NULL, '2024-10-28 00:02:26', 1, 1, '2024-11-24 11:00:51', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +226,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `category`, `company_name`, `description`, `authorized_person`, `authorized_person_role`, `authorized_person_tel`, `authorized_person_whatsap`, `authorized_person_mail`, `web_address1`, `web_address2`, `tel1`, `tel2`, `fax1`, `fax2`, `email`, `email2`, `country`, `city`, `district`, `neighborhood`, `post_code`, `address`, `billing_address`, `tax_administration`, `tax_number`, `ref_person`, `ref_phone`, `ref_role`, `ref_email`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(48, '3', 'Firma Adı', 'Açıklama', 'Yetkili Kişi', 'Yetkili Kişi Görevi', 'Yetkili Telefon', NULL, 'Yetkili Kişi Maili', 'Web Adres 1', 'Web Adres 2', 'Telefon', 'Telefon 2', NULL, NULL, 'Email', 'Email 2', 'Ülke', 'İl', 'İlçe', 'Mahalle', NULL, 'Adres', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-03 10:53:55', 1, 1, '2024-11-03 11:01:27', 1, 1, 0, NULL, NULL);
+(48, '1726932788', 'Firma Adı', 'Açıklama', 'Yetkili Kişi', 'Yetkili Kişi Görevi', 'Yetkili Telefon', NULL, 'Yetkili Kişi Maili', 'Web Adres 1', 'Web Adres 2', 'Telefon', 'Telefon 2', NULL, NULL, 'Email', 'Email 2', 'Ülke', 'İl', 'İlçe', 'Mahalle', NULL, 'Adres', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-03 10:53:55', 1, 1, '2024-11-03 11:01:27', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -270,6 +273,7 @@ CREATE TABLE `contact_message` (
   `name` text DEFAULT NULL,
   `surname` text NOT NULL,
   `email` text NOT NULL,
+  `phone` text DEFAULT NULL,
   `subject` text NOT NULL,
   `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -287,11 +291,13 @@ CREATE TABLE `contact_message` (
 -- Tablo döküm verisi `contact_message`
 --
 
-INSERT INTO `contact_message` (`id`, `name`, `surname`, `email`, `subject`, `message`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 'Name 1', 'Surname 1', 'deneme@test.com', 'Konu 1', 'Mesaj 1', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(2, 'Name 2', 'Surname 2', 'deneme2@test.com', 'Konu 2', 'Mesaj 2', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(14, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', 'konu', 'mesaj', '2024-10-22 23:10:43', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(17, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', 'konu', 'Mesaj', '2024-11-09 20:48:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+INSERT INTO `contact_message` (`id`, `name`, `surname`, `email`, `phone`, `subject`, `message`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 'Name 1', 'Surname 1', 'deneme@test.com', NULL, 'Konu 1', 'Mesaj 1', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'Name 2', 'Surname 2', 'deneme2@test.com', NULL, 'Konu 2', 'Mesaj 2', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(14, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', NULL, 'konu', 'mesaj', '2024-10-22 23:10:43', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', NULL, 'konu', 'Mesaj', '2024-11-09 20:48:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(18, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', 'tel', 'Konu', 'Mesaj', '2024-11-24 19:52:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(20, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', '053', 'Konu', 'mesaj', '2024-11-24 19:56:57', 1, 1, '2024-11-24 19:58:28', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,7 +371,8 @@ INSERT INTO `current_account` (`id`, `date_time`, `deposited`, `withdrawn`, `res
 (48, '2024-11-16', '150', '50', '100.00', 'Yeni', '2024-11-16 19:43:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (49, '2024-11-16T22:46', '165', '15', '150.00', 'test', '2024-11-16 19:47:05', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (50, '2024-11-12T06:52', '70', '5', '65.00', '12 11 2024 - 06 52', '2024-11-16 19:47:35', 1, 1, '2024-11-16 19:48:34', 1, 1, 0, NULL, NULL),
-(51, '2024-11-12T06:52', '70', '5', '65.00', '12 11 2024 - 06 52', '2024-11-16 19:49:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(51, '2024-11-12T06:52', '70', '5', '65.00', '12 11 2024 - 06 52', '2024-11-16 19:49:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(52, '2024-12-10T21:37', '150', '10', '140.00', 'sadsad', '2024-12-10 18:38:06', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -407,6 +414,7 @@ CREATE TABLE `faq` (
   `id` int(11) NOT NULL,
   `lang` text NOT NULL,
   `uid` text NOT NULL,
+  `category` int(11) DEFAULT NULL,
   `question` text DEFAULT NULL,
   `answer` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -424,14 +432,47 @@ CREATE TABLE `faq` (
 -- Tablo döküm verisi `faq`
 --
 
-INSERT INTO `faq` (`id`, `lang`, `uid`, `question`, `answer`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(16, 'de', '1726932788', 'Soru 1 de sadsad', '<p>sadsad</p>', '2024-09-21 15:33:44', 1, 1, '2024-10-27 23:26:43', NULL, 1, 0, NULL, NULL),
-(17, 'tr', '1726932788', 'Soru 1 sdsa', '<p>sadsad</p>', '2024-09-21 15:33:46', 1, 1, '2024-10-27 23:26:43', NULL, 1, 0, NULL, NULL),
-(18, 'en', '1726932788', 'Soru 1 en sadsad', '<p>sadasd</p>', '2024-09-21 15:33:49', 1, 1, '2024-10-27 23:26:43', NULL, 1, 0, NULL, NULL),
-(57, 'de', '1729694503', 'de', '<p>sdasd</p>', '2024-10-23 14:42:07', 1, 1, '2024-10-27 23:26:43', NULL, 1, 0, NULL, NULL),
-(58, 'tr', '1729694503', 'tr', '<p>sadsa</p>', '2024-10-23 14:42:10', 1, 1, '2024-10-27 23:26:43', NULL, 1, 0, NULL, NULL),
-(59, 'tr', '1729694549', 'tr 1 Kontrol', '<p>sadsad</p>', '2024-10-23 14:42:40', 1, 1, '2024-10-28 04:13:57', 1, 1, 0, NULL, NULL),
-(60, 'en', '1729694549', 'en 1', '<p>sad</p>', '2024-10-23 14:42:43', 1, 1, '2024-10-28 04:13:57', 1, 1, 0, NULL, NULL);
+INSERT INTO `faq` (`id`, `lang`, `uid`, `category`, `question`, `answer`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(76, 'tr', '1732459025', 1732458974, 'Genel Sorular - 1', '<p>Genel Cevap - 1</p>', '2024-11-24 14:37:28', 1, 1, '2024-11-24 14:38:06', 1, 1, 0, NULL, NULL),
+(77, 'tr', '1732459095', 1732458974, 'Genel Sorular - 2', '<p>Genel Cevap - 2</p>', '2024-11-24 14:38:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(78, 'tr', '1732459156', 1732458982, 'Ödeme Sorular - 1', '<p>&Ouml;deme Cevap - 1</p>', '2024-11-24 14:39:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(79, 'tr', '1732459180', 1732459002, 'iade Sorular - 1', '<p>iade Cevap - 1</p>', '2024-11-24 14:40:05', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(80, 'tr', '1732459214', 1732459002, 'iade Sorular - 2', '<p>iade Cevap - 2</p>', '2024-11-24 14:40:31', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(81, 'tr', '1732459233', 1732459002, 'iade Sorular - 3', '<p>iade Cevap - 3</p>', '2024-11-24 14:40:46', 1, 1, '2024-12-15 14:56:21', 1, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `faq_categories`
+--
+
+CREATE TABLE `faq_categories` (
+  `id` int(11) NOT NULL,
+  `lang` text NOT NULL,
+  `uid` text NOT NULL,
+  `img_url` text NOT NULL,
+  `title` text DEFAULT NULL,
+  `seo_url` text DEFAULT NULL,
+  `seo_keywords` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `faq_categories`
+--
+
+INSERT INTO `faq_categories` (`id`, `lang`, `uid`, `img_url`, `title`, `seo_url`, `seo_keywords`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(82, 'tr', '1732458974', '/assets/img/default/default.jpg', 'Genel', 'genel', NULL, '2024-11-24 14:36:14', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(83, 'tr', '1732458982', '/assets/img/default/default.jpg', 'Ödeme İşlemleri', 'odeme-islemleri', NULL, '2024-11-24 14:36:22', 1, 1, '2024-11-24 14:36:51', 1, 1, 0, NULL, NULL),
+(84, 'tr', '1732459002', '/assets/img/default/default.jpg', 'İade İşlemleri', 'iade-islemleri', NULL, '2024-11-24 14:36:42', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -450,6 +491,7 @@ CREATE TABLE `homesettings` (
   `phone2` text DEFAULT NULL,
   `whatsapp` text DEFAULT NULL,
   `address` text NOT NULL,
+  `web_address_map` text DEFAULT NULL,
   `facebook_Url` text NOT NULL,
   `twitter_Url` text NOT NULL,
   `instagram_Url` text NOT NULL,
@@ -470,9 +512,9 @@ CREATE TABLE `homesettings` (
 -- Tablo döküm verisi `homesettings`
 --
 
-INSERT INTO `homesettings` (`id`, `siteUrl`, `title`, `logoUrl`, `footerLogo`, `email`, `phone`, `phone2`, `whatsapp`, `address`, `facebook_Url`, `twitter_Url`, `instagram_Url`, `linkedln_Url`, `youtube_Url`, `seo_description`, `seo_keywords`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, '/', 'Site Adı', 'LogoUrl', 'Footer Logo Url', 'info@site.com', '0551 032 ** **', 'phone2', 'whatsapp', 'Adress', 'facebook url', 'twitter url', 'instagram url', 'linkedln url', 'youtube url', 'yildirimdev tarafından yapılmış web sitesidir', 'admin,aciklama', 0, '2024-10-12 19:25:06', 0, 1, 0, NULL, 0),
-(2, 'yildirimdev.com', 'yildirimdev', '/assets/web/img/logo.png', '/assets/web/img/logo.png', 'ebuenesy2@gmail.com', '+90 551 032 05 01', '+90 551 032 05 02', '+90 551 032 05 03', 'Keçiören / Ankara', 'facebook url', 'twitter url', 'instagram url', 'linkedln url', 'youtube url', 'web seo', 'web,aciklama,enes,yildirimdev,deneme,admin', 1, '2024-11-16 18:30:25', 0, 1, 0, NULL, 0);
+INSERT INTO `homesettings` (`id`, `siteUrl`, `title`, `logoUrl`, `footerLogo`, `email`, `phone`, `phone2`, `whatsapp`, `address`, `web_address_map`, `facebook_Url`, `twitter_Url`, `instagram_Url`, `linkedln_Url`, `youtube_Url`, `seo_description`, `seo_keywords`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, '/', 'Site Adı', 'LogoUrl', 'Footer Logo Url', 'info@site.com', '0551 032 ** **', 'phone2', 'whatsapp', 'Adress', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3059.8945361178153!2d32.85071107651247!3d39.92137628563867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34e2b85382e63%3A0x114de76c7167f871!2sKIZILAY%20AVM!5e0!3m2!1str!2str!4v1732479883774!5m2!1str!2str', 'facebook url', 'twitter url', 'instagram url', 'linkedln url', 'youtube url', 'yildirimdev tarafından yapılmış web sitesidir', 'admin,aciklama', 0, '2024-10-12 19:25:06', 0, 1, 0, NULL, 0),
+(2, 'yildirimdev.com', 'yildirimdev', '/assets/web/img/logo.png', '/assets/web/img/logo.png', 'ebuenesy2@gmail.com', '+90 551 032 05 01', '+90 551 032 05 02', '5510320501', 'Keçiören / Ankara', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3059.8945361178153!2d32.85071107651247!3d39.92137628563867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34e2b85382e63%3A0x114de76c7167f871!2sKIZILAY%20AVM!5e0!3m2!1str!2str!4v1732479883774!5m2!1str!2str', 'facebook url', 'twitter url', 'instagram url', 'linkedln url', 'youtube url', 'web seo', 'web,aciklama,enes,yildirimdev,deneme,admin', 1, '2024-11-30 18:17:27', 0, 1, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -511,9 +553,40 @@ CREATE TABLE `institutional` (
 --
 
 INSERT INTO `institutional` (`id`, `lang`, `about`, `about_img_url`, `cookiePolicy`, `cookiePolicy_img_url`, `termsOfUse`, `termsOfUse_img_url`, `termsOfConditions`, `termsOfConditions_img_url`, `privacyPolicy`, `privacyPolicy_img_url`, `personalDataProtectionLaw`, `personalDataProtectionLaw_img_url`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 'tr', '<p>Hakkımızda Turkce x</p>', '/upload/uploads/1730923238.jpg', '<p>Çerez Politikası - Türkçe</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>tr</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>tr</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>tr</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>tr</p>', '/assets/img/default/default.jpg', '2022-11-16 12:34:01', NULL, 1, '2024-11-06 20:01:19', 1, 1, 0, NULL, NULL),
-(2, 'en', '<p>Hakkımızda İngilizce x</p>', '/upload/uploads/1730923238.jpg', '<p>Çerez Politikası - İngilizce</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>en</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>en</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>en</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>en</p>', '/assets/img/default/default.jpg', '2024-09-20 18:09:13', NULL, 1, '2024-11-06 20:01:19', 1, 1, 0, NULL, NULL),
-(3, 'de', '<p>Hakkımızda Almanca</p>', '/upload/uploads/1730923238.jpg', '<p>Çerez Politikası - Almanca</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>de</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>de</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>de</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>de</p>', '/assets/img/default/default.jpg', '2024-09-20 18:09:47', NULL, 1, '2024-11-06 20:01:19', 1, 1, 0, NULL, NULL);
+(1, 'tr', '<p>Hakkımızda yazı&nbsp;</p>\n\n<p>Phasellus consequat egestas tempor. Fusce faucibus et ligula consequat imperdiet vel non ligula. Aliquam lorem leo.</p>', '/upload/uploads/1732461736.jpg', '<p>Çerez Politikası - Türkçe</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>tr</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>tr</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>tr</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>tr</p>', '/assets/img/default/default.jpg', '2022-11-16 12:34:01', NULL, 1, '2024-11-24 15:32:53', 1, 1, 0, NULL, NULL),
+(2, 'en', '<p>Hakkımızda İngilizce x</p>', '/upload/uploads/1732461736.jpg', '<p>Çerez Politikası - İngilizce</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>en</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>en</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>en</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>en</p>', '/assets/img/default/default.jpg', '2024-09-20 18:09:13', NULL, 1, '2024-11-24 15:22:18', 1, 1, 0, NULL, NULL),
+(3, 'de', '<p>Hakkımızda Almanca</p>', '/upload/uploads/1732461736.jpg', '<p>Çerez Politikası - Almanca</p>', '/upload/uploads/1730923274.jpg', ' <h1>Kullanım Koşulları</h1>\n <p>Koşulları</p><p>de</p>', '/assets/img/default/default.jpg', '<h1>Kullanım Şartları</h1>\n<p>Şartlarımız</p> <p>de</p>', '/assets/img/default/default.jpg', ' <h1>Gizlilik Politikası</h1>\n <p>Gizlilik bizim işimiz</p> <p>de</p>', '/assets/img/default/default.jpg', ' <h1>Kişisel Verilerin Korunma Kanunu</h1>\n<p>Kanunlar</p><p>de</p>', '/assets/img/default/default.jpg', '2024-09-20 18:09:47', NULL, 1, '2024-11-24 15:22:18', 1, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `institutional_references`
+--
+
+CREATE TABLE `institutional_references` (
+  `id` int(11) NOT NULL,
+  `img_url` text NOT NULL,
+  `title` text DEFAULT NULL,
+  `site_url` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `institutional_references`
+--
+
+INSERT INTO `institutional_references` (`id`, `img_url`, `title`, `site_url`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, '/upload/uploads/1732472453.jpg', 'Githup', 'https://github.com/', '2022-11-16 12:34:01', NULL, 1, '2024-11-24 18:20:58', 1, 1, 0, NULL, NULL),
+(2, '/upload/uploads/1732472475.jpg', 'Google', 'https://google.com.tr/', '2022-11-16 12:37:15', NULL, 1, '2024-11-24 18:21:35', 1, 1, 0, NULL, NULL),
+(3, '/upload/uploads/1732472610.jpeg', 'Paribu', 'https://www.paribu.com/', '2022-11-16 12:38:22', NULL, 1, '2024-11-24 18:23:48', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -586,8 +659,8 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (4, 7, NULL, 0, NULL, 'admin.fixed', 'Sabit', 'Fixed', NULL, NULL, '2024-01-18 02:07:35', 0, 1, '2024-10-22 03:28:21', 1, 1, 0, NULL, NULL),
 (5, 5, '/admin/fixed', 4, NULL, 'admin.fixed.page', 'Sabit Sayfa', 'Fixed Page', NULL, NULL, '2024-01-18 02:09:09', 0, 1, '2024-01-18 02:09:34', 1, 1, 0, NULL, NULL),
 (6, 6, '/admin/fixed/form', 4, NULL, 'admin.fixed.form', 'Sabit Form', 'Fixed Form', NULL, NULL, '2024-01-18 02:12:36', 0, 1, '2024-01-18 02:12:42', 1, 1, 0, NULL, NULL),
-(7, 15, NULL, 0, NULL, 'admin.fixed.list', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:16:57', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(8, 8, '/admin/fixed_list/list', 7, NULL, 'admin.fixed.list.view', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:18:21', 0, 1, '2024-01-18 14:37:52', 1, 1, 0, NULL, NULL),
+(7, 15, NULL, 0, NULL, 'admin.fixed.list.view', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:16:57', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
+(8, 8, '/admin/fixed_list/list', 7, NULL, 'admin.fixed.list', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:18:21', 0, 1, '2024-01-18 14:37:52', 1, 1, 0, NULL, NULL),
 (9, 9, '/admin/fixed_list/search/1', 7, NULL, 'admin.fixed.search.view', 'Sabit Liste - Arama', 'Fixed List - Search', NULL, NULL, '2024-01-18 02:21:13', 0, 1, '2024-01-18 14:38:55', 1, 1, 0, NULL, NULL),
 (10, 10, '/admin/fixed_list/add', 7, NULL, 'admin.fixed.add', 'Sabit Liste - Ekle', 'Fixed List - Add', NULL, NULL, '2024-01-18 03:24:45', 0, 1, '2024-01-18 14:39:04', 1, 1, 0, NULL, NULL),
 (11, 11, '/admin/fixed_list/edit/1', 7, NULL, 'admin.fixed.edit.view', 'Sabit Liste - Düzenle', 'Fixed List - Edit', NULL, NULL, '2024-01-18 03:26:05', 0, 1, '2024-01-18 14:39:13', 1, 1, 0, NULL, NULL),
@@ -620,9 +693,9 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (44, 44, '/admin/institutional/termsOfConditions', 40, NULL, 'admin.web.institutional.termsOfConditions', 'Kullanım Şartları', 'Terms of Conditions', 'Allgemeine Geschäftsbedingungen', NULL, '2024-10-12 22:13:10', 1, 1, '2024-10-29 03:36:59', 1, 1, 0, NULL, NULL),
 (45, 45, '/admin/institutional/privacyPolicy', 40, NULL, 'admin.web.institutional.privacyPolicy', 'Gizlilik Politikası', 'Privacy Policy', 'Datenschutzrichtlinie', NULL, '2024-10-12 22:16:48', 1, 1, '2024-10-29 03:38:26', 1, 1, 0, NULL, NULL),
 (46, 46, '/admin/institutional/personalDataProtectionLaw', 40, NULL, 'admin.web.institutional.personalDataProtectionLaw', 'Kişisel Verilerin Korunma Kanunu', 'Personal Data Protection Law', 'Gesetz zum Schutz personenbezogener Daten', NULL, '2024-10-12 22:18:15', 1, 1, '2024-10-29 03:38:56', 1, 1, 0, NULL, NULL),
-(47, 47, '/admin/faq/list', 48, NULL, 'admin.web.faq.list', 'Sıkça Sorulan Sorular', 'Frequently Asked Questions', 'Häufig gestellte Fragen', NULL, '2024-10-12 23:50:18', 1, 1, '2024-10-13 00:05:53', 1, 1, 0, NULL, NULL),
-(48, 50, NULL, 0, NULL, 'web.faq.listx', 'Web - Ssk', 'Web - FAQ', 'Web - FAQ', NULL, '2024-10-12 23:51:05', 1, 1, '2024-10-12 23:51:57', 1, 1, 0, NULL, NULL),
-(49, 49, '/admin/faq/add', 48, NULL, 'admin.web.faq.add', 'SSS - Ekle', 'FAQ - Add', 'Häufig gestellte Fragen – Hinzufügen', NULL, '2024-10-13 00:05:32', 1, 1, '2024-10-28 20:22:39', 1, 1, 0, NULL, NULL),
+(47, 49, '/admin/faq/list', 48, NULL, 'admin.web.faq.list', 'Sıkça Sorulan Sorular', 'Frequently Asked Questions', 'Häufig gestellte Fragen', NULL, '2024-10-12 23:50:18', 1, 1, '2024-10-13 00:05:53', 1, 1, 0, NULL, NULL),
+(48, 50, NULL, 0, NULL, 'web.faq.listx', 'Web - SSS', 'Web - FAQ', 'Web - FAQ', NULL, '2024-10-12 23:51:05', 1, 1, '2024-12-15 12:43:58', 1, 1, 0, NULL, NULL),
+(49, 81, '/admin/faq/add', 48, NULL, 'admin.web.faq.add', 'SSS - Ekle', 'FAQ - Add', 'Häufig gestellte Fragen – Hinzufügen', NULL, '2024-10-13 00:05:32', 1, 1, '2024-10-28 20:22:39', 1, 1, 0, NULL, NULL),
 (50, 61, NULL, 0, NULL, 'admin.web.blog.listx', 'Web - Blog', 'Web - Blog', 'Web - Blog', NULL, '2024-10-13 14:02:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (51, 51, '/admin/blog/category', 50, NULL, 'admin.web.blog.category.list', 'Blog Kategori', 'Blog Category', 'Blog-Kategorie', NULL, '2024-10-13 14:05:06', 1, 1, '2024-11-01 00:13:03', 1, 1, 0, NULL, NULL),
 (53, 53, '/admin/blog/list', 50, NULL, 'admin.web.blog.list', 'Blog Listesi', 'Blog List', 'Blog-Liste', NULL, '2024-10-13 14:40:39', 1, 1, '2024-10-13 14:41:03', 1, 1, 0, NULL, NULL),
@@ -645,7 +718,7 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (78, 78, '/admin/current/account', 77, NULL, 'admin.web.current.account.list', 'Cari Hesap', 'Current Account', NULL, NULL, '2024-10-26 13:12:11', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (79, 79, '/admin/order', 77, NULL, 'admin.web.order.list', 'Satışlar', 'Orders', NULL, NULL, '2024-10-26 20:11:02', 1, 1, '2024-10-29 17:20:09', 1, 1, 0, NULL, NULL),
 (80, 80, '/admin/order/53/detail', 77, NULL, 'admin.web.order.detail.list', 'Satışlar Detay', 'Order Detail', NULL, NULL, '2024-10-27 00:35:34', 1, 1, '2024-10-29 17:20:16', 1, 1, 0, NULL, NULL),
-(81, 81, '/admin/faq/edit/1', 48, NULL, 'admin.web.faq.edit.view', 'SSK - Güncelle', 'FAQ - Edit', NULL, NULL, '2024-10-28 20:20:49', 1, 1, '2024-10-28 20:25:25', 1, 1, 0, NULL, NULL),
+(81, 105, '/admin/faq/edit/1', 48, NULL, 'admin.web.faq.edit.view', 'SSS - Güncelle', 'FAQ - Edit', NULL, NULL, '2024-10-28 20:20:49', 1, 1, '2024-10-28 20:25:25', 1, 1, 0, NULL, NULL),
 (82, 82, '/admin/slider/edit/1', 61, NULL, 'admin.web.slider.edit.view', 'Slider – Güncelle', 'Slider – Edit', NULL, NULL, '2024-10-28 20:24:37', 1, 1, '2024-10-28 20:25:11', 1, 1, 0, NULL, NULL),
 (83, 55, '/admin/blog/edit/1', 50, NULL, 'admin.web.blog.edit.view', 'Blog - Güncelle', 'Blog - Edit', NULL, NULL, '2024-10-28 20:26:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (84, 76, '/admin/product/edit/1', 72, NULL, 'admin.web.product.edit.view', 'Ürün - Güncelleme', 'Product - Edit', NULL, NULL, '2024-10-28 20:27:53', 1, 1, '2024-11-03 15:16:31', 1, 1, 0, NULL, NULL),
@@ -668,7 +741,13 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (101, 101, '/admin/team/list', 100, NULL, 'admin.web.team.list', 'Ekibimiz', 'Our Team', NULL, NULL, '2024-11-03 18:35:18', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (102, 102, '/admin/team/add', 100, NULL, 'admin.web.team.add', 'Ekibimiz - Ekle', 'Team - Add', NULL, NULL, '2024-11-03 18:41:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (103, 103, '/admin/team/edit/1', 100, NULL, 'admin.web.team.edit.view', 'Ekibimiz - Güncelle', 'Team - Edit', NULL, NULL, '2024-11-03 18:42:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(104, 104, '/admin/service/edit/1', 92, NULL, 'admin.web.service.edit.view', 'Servis - Hizmetler - Güncelle', 'Service - Edit', NULL, NULL, '2024-11-04 18:09:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(104, 104, '/admin/service/edit/1', 92, NULL, 'admin.web.service.edit.view', 'Servis - Hizmetler - Güncelle', 'Service - Edit', NULL, NULL, '2024-11-04 18:09:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(105, 47, '/admin/faq/category', 48, NULL, 'admin.web.faq.category.list', 'SSS - Kategori', 'FAQ - Category', NULL, NULL, '2024-11-24 12:34:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(106, 106, '/admin/institutional/references', 40, NULL, 'admin.web.institutional.references.list', 'Referanslar', 'References', NULL, NULL, '2024-11-24 17:21:11', 1, 1, '2024-12-08 14:45:23', 1, 1, 0, NULL, NULL),
+(107, 107, '/admin/web/user/cart', 57, NULL, 'admin.web.user.cart.list', 'Sepet Listesi', 'Cart List', NULL, NULL, '2024-11-26 21:22:03', 1, 1, '2024-11-27 00:43:13', 1, 1, 0, NULL, NULL),
+(108, 108, '/admin/web/user/wish', 57, NULL, 'admin.web.user.wish.list', 'İstek Listesi', 'Wish Listesi', NULL, NULL, '2024-11-27 00:42:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(109, 109, '/admin/web/user/order', 57, NULL, 'admin.web.user.order.list', 'Sipariş Listesi', 'Order Listesi', NULL, NULL, '2024-12-10 23:48:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(110, 110, '/admin/web/user/order/product', 57, NULL, 'admin.web.user.order.product.list', 'Sipariş Ürün Listesi', 'Order Product List', NULL, NULL, '2024-12-11 18:16:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -782,7 +861,8 @@ INSERT INTO `orders_details` (`id`, `date_time`, `date_timeFull`, `order_id`, `t
 (130, '2024-10-31', '31.10.2024 00:21:49', '57', 'S', '40.46', '37.8', '1529.39', NULL, '', '2024-10-30 21:24:28', 1, 1, '2024-10-30 21:24:48', 1, 0, 0, NULL, NULL),
 (131, '2024-11-16', '16.11.2024 18:40:53', '59', 'S', '88.430', '40', '3537.20', NULL, '', '2024-11-16 20:08:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (132, '2024-11-16', 'tarih', '60', 'S', '46.470', '42', '1951.74', NULL, '', '2024-11-16 20:30:07', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(133, '2024-11-16', 'tarih', '61', 'S', '89.732', '40.1', '3598.25', NULL, '', '2024-11-16 20:32:27', 1, 1, '2024-11-16 20:33:27', 1, 0, 0, NULL, NULL);
+(133, '2024-11-16', 'tarih', '61', 'S', '89.732', '40.1', '3598.25', NULL, '', '2024-11-16 20:32:27', 1, 1, '2024-11-16 20:33:27', 1, 0, 0, NULL, NULL),
+(134, '2024-12-13', 'tarih', '61', 'S', '150', '15', '2250.00', NULL, '', '2024-12-14 20:50:42', 1, 0, NULL, NULL, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -807,6 +887,8 @@ CREATE TABLE `products` (
   `sale_price` text DEFAULT NULL,
   `discounted_price_percent` text DEFAULT NULL,
   `discounted_price` text DEFAULT NULL,
+  `floor_place` int(11) DEFAULT NULL,
+  `place` text DEFAULT NULL,
   `new_product` int(11) NOT NULL DEFAULT 0,
   `editor_suggestion` int(11) NOT NULL DEFAULT 0,
   `bestseller` int(11) NOT NULL DEFAULT 0,
@@ -825,44 +907,44 @@ CREATE TABLE `products` (
 -- Tablo döküm verisi `products`
 --
 
-INSERT INTO `products` (`id`, `lang`, `uid`, `category`, `title`, `description`, `img_url`, `views`, `likes`, `seo_url`, `seo_keywords`, `stock`, `currency`, `sale_price`, `discounted_price_percent`, `discounted_price`, `new_product`, `editor_suggestion`, `bestseller`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(46, 'tr', '1732227696', '1732050376', 'Tuvalet Kagıdı - 16 lı', '<p>Tuvalet Kağıtı 16 lıdır</p>', '/upload/uploads/1732227771.PNG', 0, 0, 'tuvalet-kagidi-16-li', 'tuvalet,kağıt', 100, 'TL', '260', '0', '260', 1, 0, 0, '2024-11-21 22:22:48', 1, 1, '2024-11-21 22:22:53', 1, 1, 0, NULL, NULL),
-(47, 'tr', '1732227805', '1732050376', 'Z Katlı Havlu Kağıt 2 katlı', '<h2>Z Katlı Kağıt Havlu 2 katlı</h2>', '/upload/uploads/1732227861.PNG', 0, 0, 'z-katli-havlu-kagit-2-katli', NULL, 150, 'TL', '269', '0', '269', 1, 0, 0, '2024-11-21 22:24:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(48, 'tr', '1732228051', '1732050376', 'Deterjan', '<h1>Deterjan</h1>', '/upload/uploads/1732228134.PNG', 0, 0, 'deterjan', NULL, 65, 'TL', '51', '0', '50', 1, 0, 0, '2024-11-21 22:28:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(49, 'tr', '1732228143', '1732050376', 'Siyah Eldiven', '<p>Siyah Eldiven</p>', '/upload/uploads/1732228270.jpg', 0, 0, 'siyah-eldiven', NULL, 100, 'TL', '110', '0', '110', 1, 0, 0, '2024-11-21 22:31:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(50, 'tr', '1732228310', '1732050064', 'Karton Bardak 7 oz Standart', '<h2>&nbsp;7 oz hacminde karton bardak.</h2>', '/upload/uploads/1732228380.PNG', 0, 0, 'karton-bardak-7-oz-standart', NULL, 65, 'TL', '34', '10', '31', 1, 1, 1, '2024-11-21 22:33:09', 1, 1, '2024-11-21 23:50:21', 1, 1, 0, NULL, NULL),
-(51, 'tr', '1732228488', '1732050064', 'Bardak Tutacağı', '<p>7 oz, 9 oz&nbsp; karton bardaklarla uyumludur.&nbsp;</p>', '/upload/uploads/1732228508.PNG', 0, 0, 'bardak-tutacagi', NULL, 10, 'TL', '680', '0', '680', 1, 0, 1, '2024-11-21 22:35:33', 1, 1, '2024-11-21 23:40:24', 1, 1, 0, NULL, NULL),
-(52, 'tr', '1732228595', '1732050064', 'Karton Bardak 12 Oz Baskısız', '<h2>Sıcak ve soğuk i&ccedil;eceklerde kullanılabilir</h2>', '/upload/uploads/1732228608.PNG', 0, 0, 'karton-bardak-12-oz-baskisiz', NULL, 150, 'TL', '118', '0', '118', 1, 0, 0, '2024-11-21 22:37:12', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(53, 'tr', '1732228640', '1732050064', 'Bardak Taşıma Viyolü 4 Lü', '<p>Bardak taşıma</p>', '/upload/uploads/1732228699.PNG', 0, 0, 'bardak-tasima-viyolu-4-lu', NULL, 65, 'TL', '770', '0', '770', 1, 0, 0, '2024-11-21 22:38:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(54, 'tr', '1732228787', '1732050064', 'Karıştırıcı Tahta', '<h1>Karıştırıcı Tahta</h1>', '/upload/uploads/1732228809.PNG', 0, 0, 'karistirici-tahta', NULL, 85, 'TL', '100', '0', '100', 1, 0, 0, '2024-11-21 22:40:16', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(55, 'tr', '1732228823', '1729729071', 'Hamburger Kabı Kapaklı', '<h1>Hamburger Kabı Kapaklı</h1>', '/upload/uploads/1732228915.PNG', 0, 0, 'hamburger-kabi-kapakli', NULL, 60, 'TL', '365', '0', '365', 1, 0, 0, '2024-11-21 22:42:16', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(56, 'tr', '1732228939', '1729729071', 'Tabak Plastik', '<h1>Tabak Plastik</h1>', '/upload/uploads/1732229062.PNG', 0, 0, 'tabak-plastik', NULL, 10, 'TL', '110', '0', '110', 1, 0, 0, '2024-11-21 22:44:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(57, 'tr', '1732229087', '1729729071', 'Çorba Kase', '<h1>&Ccedil;orba Kase</h1>', '/upload/uploads/1732229166.PNG', 0, 0, 'corba-kase', NULL, 15, 'TL', '61', '0', '61', 1, 0, 0, '2024-11-21 22:46:10', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(58, 'tr', '1732229328', '1726932791', 'Alüminyum Künefe Kapak', '<h2>Restaurantlarda kullanabilir</h2>', '/upload/uploads/1732229349.PNG', 0, 0, 'aluminyum-kunefe-kapak', NULL, 10, 'TL', '45', '0', '45', 1, 0, 0, '2024-11-21 22:49:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(59, 'tr', '1732229368', '1726932791', 'Alüminyum Kap', '<h1>Al&uuml;minyum</h1>', '/upload/uploads/1732229415.PNG', 0, 0, 'aluminyum-kap', NULL, 15, 'TL', '200', '0', '200', 1, 0, 0, '2024-11-21 22:50:20', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(60, 'tr', '1732229427', '1726932791', 'Alüminyum 1500 Gr 100 adet', '<h1>Al&uuml;minyum 1500 Gr&nbsp;</h1>', '/upload/uploads/1732229474.PNG', 0, 0, 'aluminyum-1500-gr-100-adet', NULL, 100, 'TL', '262', '0', '262', 1, 0, 0, '2024-11-21 22:51:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(61, 'tr', '1732229552', '1726932791', 'Sızdırmaz Kap 150 CC', '<h1>Sızdırmaz Kap 150 CC</h1>', '/upload/uploads/1732229588.PNG', 0, 0, 'sizdirmaz-kap-150-cc', NULL, 150, 'TL', '53', '0', '53', 1, 0, 0, '2024-11-21 22:53:12', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(62, 'tr', '1732229633', '1726932791', 'Sızdırmaz Kap 2000 CC', '<h1>Sızdırmaz Kap 2000 CC</h1>', '/upload/uploads/1732229657.PNG', 0, 0, 'sizdirmaz-kap-2000-cc', NULL, 15, 'TL', '336', '0', '336', 1, 0, 0, '2024-11-21 22:54:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(63, 'tr', '1732229690', '1726932791', 'Siyah Plastik 3 Gözlü Kap+Kapak', '<h1>Siyah Plastik 3 G&ouml;zl&uuml; Kap+Kapak</h1>', '/upload/uploads/1732229717.PNG', 0, 0, 'siyah-plastik-3-gozlu-kap-kapak', NULL, 15, 'TL', '210', '0', '210', 1, 0, 0, '2024-11-21 22:55:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(64, 'tr', '1732229754', '1726932791', 'Plastik Üçgen Pasta Kutusu Siyah', '<h1>Plastik &Uuml;&ccedil;gen Pasta Kutusu Siyah</h1>', '/upload/uploads/1732229784.PNG', 0, 0, 'plastik-ucgen-pasta-kutusu-siyah', NULL, 66, 'TL', '146', '0', '145', 1, 0, 0, '2024-11-21 22:56:35', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(65, 'tr', '1732229874', '1726932790', 'Çöp Torbası 100x150 Cm Hantal', '<h1>&Ccedil;&ouml;p Torbası 100x150 Cm Hantal</h1>', '/upload/uploads/1732229894.PNG', 0, 0, 'cop-torbasi-100x150-cm-hantal', NULL, 15, 'TL', '55', '0', '55', 1, 0, 0, '2024-11-21 22:58:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(66, 'tr', '1732229902', '1726932790', 'Hışır Atlet Poşet Kg Büyük Siyah', '<h1>Hışır Atlet Poşet Kg B&uuml;y&uuml;k Siyah</h1>', '/upload/uploads/1732229954.PNG', 0, 0, 'hisir-atlet-poset-kg-buyuk-siyah', NULL, 10, 'TL', '47', '0', '47', 0, 0, 0, '2024-11-21 22:59:23', 1, 1, '2024-11-21 23:03:26', 1, 1, 0, NULL, NULL),
-(67, 'tr', '1732229985', '1726932790', 'Hışır Atlet Poşet Kg Mini', '<h1>Hışır Atlet Poşet Kg Mini&nbsp;</h1>', '/upload/uploads/1732230024.PNG', 0, 0, 'hisir-atlet-poset-kg-mini', NULL, 10, 'TL', '53', '0', '53', 1, 0, 0, '2024-11-21 23:00:29', 1, 1, '2024-11-21 23:01:27', 1, 1, 0, NULL, NULL),
-(68, 'tr', '1732230110', '1726932790', 'Kilitli Torba', '<h1>Kilitli Torba</h1>', '/upload/uploads/1732230150.PNG', 0, 0, 'kilitli-torba', NULL, 15, 'TL', '230', '0', '230', 1, 0, 0, '2024-11-21 23:02:32', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(69, 'tr', '1732230369', '1726932789', 'Kutu Baklava', '<h1>Kutu Baklava</h1>', '/upload/uploads/1732230388.PNG', 0, 0, 'kutu-baklava', NULL, 15, 'TL', '250', '0', '250', 1, 0, 0, '2024-11-21 23:06:30', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(70, 'tr', '1732230419', '1726932789', 'Kutu Turta', '<h1>Kutu Turta&nbsp;21x21x10</h1>', '/upload/uploads/1732230438.PNG', 0, 0, 'kutu-turta', NULL, 10, 'TL', '330', '0', '330', 1, 0, 0, '2024-11-21 23:07:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(71, 'tr', '1732230476', '1726932789', 'Kutu Pide Tst Baskısız', '<h1>Kutu Pide Tst Baskısız&nbsp;13,5x42,5 cm</h1>', '/upload/uploads/1732230497.PNG', 0, 0, 'kutu-pide-tst-baskisiz', NULL, 20, 'TL', '310', '0', '310', 1, 0, 0, '2024-11-21 23:08:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(72, 'tr', '1732230509', '1726932789', 'PİDE KUTUSU', '<h1>PİDE KUTUSU</h1>', '/upload/uploads/1732231025.PNG', 0, 0, 'pide-kutusu', NULL, 21, 'TL', '460', '10', '414', 1, 0, 0, '2024-11-21 23:17:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(73, 'tr', '1732231058', '1726932789', 'Kutu Hamburger', '<h1>Kutu Hamburger Orta</h1>', '/upload/uploads/1732231108.PNG', 0, 0, 'kutu-hamburger', NULL, 15, 'TL', '265', '15', '225.25', 1, 0, 1, '2024-11-21 23:18:31', 1, 1, '2024-11-21 23:40:10', 1, 1, 0, NULL, NULL),
-(74, 'tr', '1732231125', '1726932789', 'Kutu Cips Büyük Kraft', '<h1>Kutu Cips B&uuml;y&uuml;k Kraft&nbsp;</h1>', '/upload/uploads/1732231191.PNG', 0, 0, 'kutu-cips-buyuk-kraft', NULL, 10, 'TL', '550', '0', '550', 0, 1, 0, '2024-11-21 23:19:54', 1, 1, '2024-11-21 23:40:03', 1, 1, 0, NULL, NULL),
-(75, 'tr', '1732231214', '1726932789', 'Kutu Cips Küçük', '<h1>Kutu Cips K&uuml;&ccedil;&uuml;k</h1>', '/upload/uploads/1732231240.PNG', 0, 0, 'kutu-cips-kucuk', NULL, 10, 'TL', '425', '0', '425', 1, 1, 0, '2024-11-21 23:20:53', 1, 1, '2024-11-21 23:39:55', 1, 1, 0, NULL, NULL),
-(76, 'tr', '1732231281', '1726932789', 'Kutu Kumpir Yapışmalı Kraft', '<h1>Kutu Kumpir Yapışmalı Kraft&nbsp;</h1>', '/upload/uploads/1732231325.PNG', 0, 0, 'kutu-kumpir-yapismali-kraft', NULL, 10, 'TL', '128', '0', '128', 1, 0, 0, '2024-11-21 23:22:06', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(77, 'tr', '1732231330', '1726932788', 'Çanta Kraft', '<h1>&Ccedil;anta Kraft</h1>', '/upload/uploads/1732231493.PNG', 0, 0, 'canta-kraft', NULL, 10, 'TL', '145', '0', '145', 1, 0, 0, '2024-11-21 23:24:56', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(78, 'tr', '1732231523', '1726932788', 'Kese Kuruyemiş 1000 Gr', '<h1>Kese Kuruyemiş 1000 Gr</h1>', '/upload/uploads/1732231549.PNG', 0, 0, 'kese-kuruyemis-1000-gr', NULL, 10, 'TL', '326', '0', '325', 1, 0, 0, '2024-11-21 23:25:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(79, 'tr', '1732231557', '1726932788', 'Kese Kuruyemiş 500 Gr', '<h1>Kese Kuruyemiş 500 Gr</h1>', '/upload/uploads/1732231588.PNG', 0, 0, 'kese-kuruyemis-500-gr', NULL, 10, 'TL', '325', '0', '325', 0, 1, 1, '2024-11-21 23:26:31', 1, 1, '2024-11-21 23:39:20', 1, 1, 0, NULL, NULL),
-(80, 'tr', '1732231594', '1726932788', 'Kese Şamua', '<h1>Kese Şamua</h1>', '/upload/uploads/1732231631.PNG', 0, 0, 'kese-samua', NULL, 10, 'TL', '780', '0', '780', 1, 0, 0, '2024-11-21 23:27:14', 1, 1, '2024-11-21 23:27:51', 1, 1, 0, NULL, NULL),
-(81, 'tr', '1732231673', '1726932788', 'Dürüm Kese Kağıdı Şamua Kağıt', '<h1>D&uuml;r&uuml;m Kese Kağıdı Şamua Kağıt</h1>', '/upload/uploads/1732231702.PNG', 0, 0, 'durum-kese-kagidi-samua-kagit', NULL, 10, 'TL', '395', '15', '335.75', 1, 0, 0, '2024-11-21 23:28:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(82, 'tr', '1732231736', '1726932788', 'Kese Şamua Pencereli', '<h1>Kese Şamua Pencereli</h1>', '/upload/uploads/1732231755.PNG', 0, 0, 'kese-samua-pencereli', NULL, 10, 'TL', '120', '0', '120', 1, 0, 0, '2024-11-21 23:29:17', 1, 1, '2024-11-22 19:26:27', 1, 1, 0, NULL, NULL);
+INSERT INTO `products` (`id`, `lang`, `uid`, `category`, `title`, `description`, `img_url`, `views`, `likes`, `seo_url`, `seo_keywords`, `stock`, `currency`, `sale_price`, `discounted_price_percent`, `discounted_price`, `floor_place`, `place`, `new_product`, `editor_suggestion`, `bestseller`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(46, 'tr', '1732227696', '1732050376', 'Tuvalet Kagıdı - 16 lı', '<p>Tuvalet Kağıtı 16 lıdır</p>', '/upload/uploads/1732227771.PNG', 0, 0, 'tuvalet-kagidi-16-li', 'tuvalet,kağıt', 0, 'TL', '260', '0', '260', 4, 'dsf', 1, 0, 0, '2024-11-21 22:22:48', 1, 1, '2024-11-21 22:22:53', 1, 1, 0, NULL, NULL),
+(47, 'tr', '1732227805', '1732050376', 'Z Katlı Havlu Kağıt 2 katlı', '<h2>Z Katlı Kağıt Havlu 2 katlı</h2>', '/upload/uploads/1732227861.PNG', 0, 0, 'z-katli-havlu-kagit-2-katli', NULL, 150, 'TL', '269', '0', '269', 2, 'sd', 1, 0, 0, '2024-11-21 22:24:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(48, 'tr', '1732228051', '1732050376', 'Deterjan', '<h1>Deterjan</h1>', '/upload/uploads/1732228134.PNG', 0, 0, 'deterjan', NULL, 65, 'TL', '51', '0', '50', 2, 'dsf', 1, 0, 0, '2024-11-21 22:28:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(49, 'tr', '1732228143', '1732050376', 'Siyah Eldiven', '<p>Siyah Eldiven</p>', '/upload/uploads/1732228270.jpg', 0, 0, 'siyah-eldiven', NULL, 100, 'TL', '110', '0', '110', 2, 'asd', 1, 0, 0, '2024-11-21 22:31:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(50, 'tr', '1732228310', '1732050064', 'Karton Bardak 7 oz Standart', '<h2>&nbsp;7 oz hacminde karton bardak.</h2>', '/upload/uploads/1732228380.PNG', 0, 0, 'karton-bardak-7-oz-standart', NULL, 65, 'TL', '34', '10', '31', 3, 'gffd', 1, 1, 1, '2024-11-21 22:33:09', 1, 1, '2024-11-21 23:50:21', 1, 1, 0, NULL, NULL),
+(51, 'tr', '1732228488', '1732050064', 'Bardak Tutacağı', '<p>7 oz, 9 oz&nbsp; karton bardaklarla uyumludur.&nbsp;</p>', '/upload/uploads/1732228508.PNG', 0, 0, 'bardak-tutacagi', NULL, 10, 'TL', '680', '0', '680', 3, 'dsf', 1, 0, 1, '2024-11-21 22:35:33', 1, 1, '2024-11-21 23:40:24', 1, 1, 0, NULL, NULL),
+(52, 'tr', '1732228595', '1732050064', 'Karton Bardak 12 Oz Baskısız', '<h2>Sıcak ve soğuk i&ccedil;eceklerde kullanılabilir</h2>', '/upload/uploads/1732228608.PNG', 0, 0, 'karton-bardak-12-oz-baskisiz', NULL, 150, 'TL', '118', '0', '118', 3, 'jh', 1, 0, 0, '2024-11-21 22:37:12', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(53, 'tr', '1732228640', '1732050064', 'Bardak Taşıma Viyolü 4 Lü', '<p>Bardak taşıma</p>', '/upload/uploads/1732228699.PNG', 0, 0, 'bardak-tasima-viyolu-4-lu', NULL, 65, 'TL', '770', '0', '770', 4, 'dsf', 1, 0, 0, '2024-11-21 22:38:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(54, 'tr', '1732228787', '1732050064', 'Karıştırıcı Tahta', '<h1>Karıştırıcı Tahta</h1>', '/upload/uploads/1732228809.PNG', 0, 0, 'karistirici-tahta', NULL, 85, 'TL', '100', '0', '100', 4, 'xcv', 1, 0, 0, '2024-11-21 22:40:16', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(55, 'tr', '1732228823', '1729729071', 'Hamburger Kabı Kapaklı', '<h1>Hamburger Kabı Kapaklı</h1>', '/upload/uploads/1732228915.PNG', 0, 0, 'hamburger-kabi-kapakli', NULL, 60, 'TL', '365', '0', '365', 1, 'qsa', 1, 0, 0, '2024-11-21 22:42:16', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(56, 'tr', '1732228939', '1729729071', 'Tabak Plastik', '<h1>Tabak Plastik</h1>', '/upload/uploads/1732229062.PNG', 0, 0, 'tabak-plastik', NULL, 10, 'TL', '110', '0', '110', 1, 'w', 1, 0, 0, '2024-11-21 22:44:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(57, 'tr', '1732229087', '1729729071', 'Çorba Kase', '<h1>&Ccedil;orba Kase</h1>', '/upload/uploads/1732229166.PNG', 0, 0, 'corba-kase', NULL, 15, 'TL', '61', '0', '61', 2, 'wee', 1, 0, 0, '2024-11-21 22:46:10', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(58, 'tr', '1732229328', '1726932791', 'Alüminyum Künefe Kapak', '<h2>Restaurantlarda kullanabilir</h2>', '/upload/uploads/1732229349.PNG', 0, 0, 'aluminyum-kunefe-kapak', NULL, 10, 'TL', '45', '0', '45', 2, 'uu', 1, 0, 0, '2024-11-21 22:49:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(59, 'tr', '1732229368', '1726932791', 'Alüminyum Kap', '<h1>Al&uuml;minyum</h1>', '/upload/uploads/1732229415.PNG', 0, 0, 'aluminyum-kap', NULL, 15, 'TL', '200', '0', '200', 2, 'yy', 1, 0, 0, '2024-11-21 22:50:20', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(60, 'tr', '1732229427', '1726932791', 'Alüminyum 1500 Gr 100 adet', '<h1>Al&uuml;minyum 1500 Gr&nbsp;</h1>', '/upload/uploads/1732229474.PNG', 0, 0, 'aluminyum-1500-gr-100-adet', NULL, 100, 'TL', '262', '0', '262', 3, 'ss', 1, 0, 0, '2024-11-21 22:51:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(61, 'tr', '1732229552', '1726932791', 'Sızdırmaz Kap 150 CC', '<h1>Sızdırmaz Kap 150 CC</h1>', '/upload/uploads/1732229588.PNG', 0, 0, 'sizdirmaz-kap-150-cc', NULL, 150, 'TL', '53', '0', '53', 3, 'gg', 1, 0, 0, '2024-11-21 22:53:12', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(62, 'tr', '1732229633', '1726932791', 'Sızdırmaz Kap 2000 CC', '<h1>Sızdırmaz Kap 2000 CC</h1>', '/upload/uploads/1732229657.PNG', 0, 0, 'sizdirmaz-kap-2000-cc', NULL, 15, 'TL', '336', '0', '336', 3, 'jj', 1, 0, 0, '2024-11-21 22:54:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(63, 'tr', '1732229690', '1726932791', 'Siyah Plastik 3 Gözlü Kap+Kapak', '<h1>Siyah Plastik 3 G&ouml;zl&uuml; Kap+Kapak</h1>', '/upload/uploads/1732229717.PNG', 0, 0, 'siyah-plastik-3-gozlu-kap-kapak', NULL, 15, 'TL', '210', '0', '210', 3, 'vv', 1, 0, 0, '2024-11-21 22:55:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(64, 'tr', '1732229754', '1726932791', 'Plastik Üçgen Pasta Kutusu Siyah', '<h1>Plastik &Uuml;&ccedil;gen Pasta Kutusu Siyah</h1>', '/upload/uploads/1732229784.PNG', 0, 0, 'plastik-ucgen-pasta-kutusu-siyah', NULL, 66, 'TL', '146', '0', '145', 1, 'sadsa', 1, 0, 0, '2024-11-21 22:56:35', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(65, 'tr', '1732229874', '1726932790', 'Çöp Torbası 100x150 Cm Hantal', '<h1>&Ccedil;&ouml;p Torbası 100x150 Cm Hantal</h1>', '/upload/uploads/1732229894.PNG', 0, 0, 'cop-torbasi-100x150-cm-hantal', NULL, 15, 'TL', '55', '0', '55', 1, 'sada', 1, 1, 0, '2024-11-21 22:58:17', 1, 1, '2024-11-27 01:57:02', 1, 1, 0, NULL, NULL),
+(66, 'tr', '1732229902', '1726932790', 'Hışır Atlet Poşet Kg Büyük Siyah', '<h1>Hışır Atlet Poşet Kg B&uuml;y&uuml;k Siyah</h1>', '/upload/uploads/1732229954.PNG', 0, 0, 'hisir-atlet-poset-kg-buyuk-siyah', NULL, 10, 'TL', '47', '0', '47', 1, 'sdfsd', 0, 1, 0, '2024-11-21 22:59:23', 1, 1, '2024-11-27 01:57:11', 1, 1, 0, NULL, NULL),
+(67, 'tr', '1732229985', '1726932790', 'Hışır Atlet Poşet Kg Mini', '<h1>Hışır Atlet Poşet Kg Mini&nbsp;</h1>', '/upload/uploads/1732230024.PNG', 0, 0, 'hisir-atlet-poset-kg-mini', NULL, 10, 'TL', '53', '0', '53', 4, 'sd', 1, 0, 0, '2024-11-21 23:00:29', 1, 1, '2024-11-21 23:01:27', 1, 1, 0, NULL, NULL),
+(68, 'tr', '1732230110', '1726932790', 'Kilitli Torba', '<h1>Kilitli Torba</h1>', '/upload/uploads/1732230150.PNG', 0, 0, 'kilitli-torba', NULL, 15, 'TL', '230', '0', '230', 4, 'dv', 1, 0, 0, '2024-11-21 23:02:32', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(69, 'tr', '1732230369', '1726932789', 'Kutu Baklava', '<h1>Kutu Baklava</h1>', '/upload/uploads/1732230388.PNG', 0, 0, 'kutu-baklava', NULL, 15, 'TL', '250', '0', '250', 4, 'df', 1, 0, 0, '2024-11-21 23:06:30', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(70, 'tr', '1732230419', '1726932789', 'Kutu Turta', '<h1>Kutu Turta&nbsp;21x21x10</h1>', '/upload/uploads/1732230438.PNG', 0, 0, 'kutu-turta', NULL, 10, 'TL', '330', '0', '330', 1, 'ds', 1, 0, 0, '2024-11-21 23:07:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(71, 'tr', '1732230476', '1726932789', 'Kutu Pide Tst Baskısız', '<h1>Kutu Pide Tst Baskısız&nbsp;13,5x42,5 cm</h1>', '/upload/uploads/1732230497.PNG', 0, 0, 'kutu-pide-tst-baskisiz', NULL, 20, 'TL', '310', '0', '310', 2, 'sdf', 1, 0, 0, '2024-11-21 23:08:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(72, 'tr', '1732230509', '1726932789', 'PİDE KUTUSU', '<h1>PİDE KUTUSU</h1>', '/upload/uploads/1732231025.PNG', 0, 0, 'pide-kutusu', NULL, 21, 'TL', '460', '10', '414', 2, 'dsf', 1, 0, 0, '2024-11-21 23:17:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(73, 'tr', '1732231058', '1726932789', 'Kutu Hamburger', '<h1>Kutu Hamburger Orta</h1>', '/upload/uploads/1732231108.PNG', 0, 0, 'kutu-hamburger', NULL, 15, 'TL', '265', '15', '225.25', 2, 'gf', 1, 1, 1, '2024-11-21 23:18:31', 1, 1, '2024-11-27 01:56:28', 1, 1, 0, NULL, NULL),
+(74, 'tr', '1732231125', '1726932789', 'Kutu Cips Büyük Kraft', '<h1>Kutu Cips B&uuml;y&uuml;k Kraft&nbsp;</h1>', '/upload/uploads/1732231191.PNG', 0, 0, 'kutu-cips-buyuk-kraft', NULL, 10, 'TL', '550', '0', '550', 4, 'aa', 0, 1, 0, '2024-11-21 23:19:54', 1, 1, '2024-11-21 23:40:03', 1, 1, 0, NULL, NULL),
+(75, 'tr', '1732231214', '1726932789', 'Kutu Cips Küçük', '<h1>Kutu Cips K&uuml;&ccedil;&uuml;k</h1>', '/upload/uploads/1732231240.PNG', 0, 0, 'kutu-cips-kucuk', NULL, 10, 'TL', '425', '0', '425', 3, 'ac', 1, 1, 0, '2024-11-21 23:20:53', 1, 1, '2024-11-21 23:39:55', 1, 1, 0, NULL, NULL),
+(76, 'tr', '1732231281', '1726932789', 'Kutu Kumpir Yapışmalı Kraft', '<h1>Kutu Kumpir Yapışmalı Kraft&nbsp;</h1>', '/upload/uploads/1732231325.PNG', 0, 0, 'kutu-kumpir-yapismali-kraft', NULL, 10, 'TL', '128', '0', '128', 3, 'tt', 1, 1, 0, '2024-11-21 23:22:06', 1, 1, '2024-11-27 01:55:37', 1, 1, 0, NULL, NULL),
+(77, 'tr', '1732231330', '1726932788', 'Çanta Kraft', '<h1>&Ccedil;anta Kraft</h1>', '/upload/uploads/1732231493.PNG', 0, 0, 'canta-kraft', NULL, 10, 'TL', '135.85', '0', '135.85', 4, 'gg', 1, 1, 0, '2024-11-21 23:24:56', 1, 1, '2024-12-01 17:20:12', 1, 1, 0, NULL, NULL),
+(78, 'tr', '1732231523', '1726932788', 'Kese Kuruyemiş 1000 Gr', '<h1>Kese Kuruyemiş 1000 Gr</h1>', '/upload/uploads/1732231549.PNG', 0, 0, 'kese-kuruyemis-1000-gr', NULL, 10, 'TL', '326', '0', '325', 3, 'dd', 1, 0, 0, '2024-11-21 23:25:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(79, 'tr', '1732231557', '1726932788', 'Kese Kuruyemiş 500 Gr', '<h1>Kese Kuruyemiş 500 Gr</h1>', '/upload/uploads/1732231588.PNG', 0, 0, 'kese-kuruyemis-500-gr', NULL, 10, 'TL', '325', '0', '325', 2, 'cv', 0, 1, 1, '2024-11-21 23:26:31', 1, 1, '2024-11-21 23:39:20', 1, 1, 0, NULL, NULL),
+(80, 'tr', '1732231594', '1726932788', 'Kese Şamua', '<h1>Kese Şamua</h1>', '/upload/uploads/1732231631.PNG', 0, 0, 'kese-samua', NULL, 10, 'TL', '780', '0', '780', 2, 'ab1', 1, 0, 0, '2024-11-21 23:27:14', 1, 1, '2024-11-21 23:27:51', 1, 1, 0, NULL, NULL),
+(81, 'tr', '1732231673', '1726932788', 'Dürüm Kese Kağıdı Şamua Kağıt', '<h1>D&uuml;r&uuml;m Kese Kağıdı Şamua Kağıt</h1>', '/upload/uploads/1732231702.PNG', 0, 0, 'durum-kese-kagidi-samua-kagit', NULL, 100, 'TL', '395', '15', '335.75', 1, 'ln-4', 1, 1, 0, '2024-11-21 23:28:25', 1, 1, '2024-12-11 20:33:57', 1, 1, 0, NULL, NULL),
+(82, 'tr', '1732231736', '1726932788', 'Kese Şamua Pencereli', '<h1>Kese Şamua Pencereli</h1>', '/upload/uploads/1732231755.PNG', 0, 0, 'kese-samua-pencereli', NULL, 10, 'TL', '120', '0', '120', 4, 'kn-4', 0, 0, 0, '2024-11-21 23:29:17', 1, 1, '2024-12-11 20:24:52', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -970,7 +1052,8 @@ INSERT INTO `roles` (`id`, `title`, `created_at`, `created_byId`, `isUpdated`, `
 (1, 'Super Admin', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (2, 'Admin', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (3, 'User', '2022-11-16 12:38:22', NULL, 1, '2024-10-29 04:46:03', 1, 1, 0, NULL, NULL),
-(18, 'denemex', '2024-10-29 12:24:06', 1, 1, '2024-10-29 12:24:12', 1, 1, 0, NULL, NULL);
+(18, 'denemex', '2024-10-29 12:24:06', 1, 1, '2024-10-29 12:24:12', 1, 1, 0, NULL, NULL),
+(21, 'test', '2024-11-24 23:05:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1479,7 +1562,7 @@ CREATE TABLE `web_users` (
   `password` text NOT NULL,
   `img_url` text DEFAULT NULL,
   `role_id` int(11) DEFAULT 1 COMMENT 'müşteri =>1 yetkili => 2',
-  `phone` text NOT NULL,
+  `phone` text DEFAULT NULL,
   `dateofBirth` text NOT NULL,
   `city` text NOT NULL,
   `district` text NOT NULL,
@@ -1504,10 +1587,128 @@ CREATE TABLE `web_users` (
 --
 
 INSERT INTO `web_users` (`id`, `name`, `surname`, `email`, `password`, `img_url`, `role_id`, `phone`, `dateofBirth`, `city`, `district`, `neighborhood`, `address`, `service_type`, `type`, `description`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 'UserTest', 'Surname x', 'user@gmail.com', '123', '/assets/img/user/default.jpg', 1, '0555 551 55 58', '', 'il', '0555 551 55 58', 'mahalle', 'SADSAD', '', '', '', '2023-11-03 11:56:46', 1, 1, '2024-10-21 23:22:37', 1, 1, 0, NULL, NULL),
+(1, 'User', 'Surname', 'user@gmail.com', '123', '/assets/img/user/default.jpg', 1, '0551 032 05 01', '', 'il', '0555 551 55 58', 'mahalle', 'SADSAD', '', '', '', '2023-11-03 11:56:46', 1, 1, '2024-12-12 20:54:59', 1, 1, 0, NULL, NULL),
 (20, 'yildirimdev', 'soyad', 'info@yildirimdev.com', '123', '/assets/img/user/default.jpg', 2, '05510320501', '', 'Keçiören', '05510320501', 'Mahalle', 'Keçiören / Ankara', 'hizmet türü', 'Şahıs', 'Tanıtım', '2024-10-14 01:23:20', 1, 1, '2024-10-14 01:39:37', 1, 1, 0, NULL, NULL),
 (22, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', '123', '/assets/img/user/default.jpg', 2, '05510320501', '', 'Keçiören', 'Keçiören', 'Mahalle', 'Keçiören / Ankara', 'hizmet', 'tür', 'Acıklama', '2024-10-17 21:51:34', NULL, 1, '2024-10-18 19:40:02', 1, 0, 0, NULL, NULL),
-(30, 'deneme x', 'soy x', 'email@deneme.com', '123', '/assets/img/user/default.jpg', 1, '(551) 032-0501', '1995-03-17', '', '', '', '', '', '', '', '2024-10-23 20:21:49', 1, 1, '2024-10-23 20:32:24', 1, 1, 0, NULL, NULL);
+(34, 'Test', 'Soyad', 'test@gmail.com', '123', '/assets/img/user/default.jpg', 1, NULL, '', '', '', '', '', '', '', '', '2024-12-12 18:17:30', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `web_user_cart`
+--
+
+CREATE TABLE `web_user_cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_uid` int(11) DEFAULT NULL,
+  `product_quantity` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `web_user_cart`
+--
+
+INSERT INTO `web_user_cart` (`id`, `user_id`, `product_uid`, `product_quantity`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(116, 1, 1732231736, 1, '2024-12-11 21:45:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(117, 1, 1732231557, 1, '2024-12-15 19:28:03', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(118, 1, 1732231214, 1, '2024-12-15 19:28:05', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(119, 1, 1732228488, 1, '2024-12-15 19:28:08', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(120, 1, 1732231594, 1, '2024-12-15 19:28:13', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(121, 1, 1732231523, 1, '2024-12-15 19:28:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(122, 1, 1732231673, 1, '2024-12-15 19:37:09', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `web_user_order`
+--
+
+CREATE TABLE `web_user_order` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_uid` int(11) DEFAULT NULL,
+  `product_quantity` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `web_user_order`
+--
+
+INSERT INTO `web_user_order` (`id`, `uid`, `title`, `user_id`, `product_uid`, `product_quantity`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(114, 1733872683, 'yildirimdev', 1, 1732228310, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(115, 1733872683, 'yildirimdev', 1, 1732228488, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(116, 1733872683, 'yildirimdev', 1, 1732231673, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(117, 1733872683, 'yildirimdev', 1, 1732231736, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(118, 1733872683, 'yildirimdev', 1, 1732231557, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(119, 1733873124, 'enes yildirimdev', 1, 1732228310, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(120, 1733873124, 'enes yildirimdev', 1, 1732228488, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(121, 1733873124, 'enes yildirimdev', 1, 1732231673, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(122, 1733873124, 'enes yildirimdev', 1, 1732231736, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(123, 1733873124, 'enes yildirimdev', 1, 1732231557, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(124, 1733941106, 'adana kebab', 1, 1732230476, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(125, 1733941106, 'adana kebab', 1, 1732230369, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(126, 1733941106, 'adana kebab', 1, 1732229985, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(127, 1733941106, 'adana kebab', 1, 1732229874, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(128, 1733941106, 'adana kebab', 1, 1732231557, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(129, 1733941106, 'adana kebab', 1, 1732228310, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(130, 1733946534, 'deneme', 1, 1732231281, 10, '2024-12-11 19:49:03', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(131, 1733946656, 'test', 1, 1732231281, 18, '2024-12-11 19:51:06', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `web_user_wish`
+--
+
+CREATE TABLE `web_user_wish` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_uid` int(11) DEFAULT NULL,
+  `product_quantity` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `web_user_wish`
+--
+
+INSERT INTO `web_user_wish` (`id`, `user_id`, `product_uid`, `product_quantity`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(88, 1, 1732231736, 1, '2024-12-11 21:45:04', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(89, 1, 1732231523, 1, '2024-12-15 19:36:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(90, 1, 1732228310, 1, '2024-12-15 19:37:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(91, 1, 1732228310, 1, '2024-12-15 19:37:10', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(92, 1, 1732231058, 1, '2024-12-15 19:37:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(93, 1, 1732231594, 1, '2024-12-15 19:37:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(94, 1, 1732231281, 1, '2024-12-15 19:37:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -1574,6 +1775,12 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `faq_categories`
+--
+ALTER TABLE `faq_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `homesettings`
 --
 ALTER TABLE `homesettings`
@@ -1583,6 +1790,12 @@ ALTER TABLE `homesettings`
 -- Tablo için indeksler `institutional`
 --
 ALTER TABLE `institutional`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `institutional_references`
+--
+ALTER TABLE `institutional_references`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1688,6 +1901,24 @@ ALTER TABLE `web_users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `web_user_cart`
+--
+ALTER TABLE `web_user_cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `web_user_order`
+--
+ALTER TABLE `web_user_order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `web_user_wish`
+--
+ALTER TABLE `web_user_wish`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
@@ -1695,7 +1926,7 @@ ALTER TABLE `web_users`
 -- Tablo için AUTO_INCREMENT değeri `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `blogs_categories`
@@ -1731,13 +1962,13 @@ ALTER TABLE `company_categories`
 -- Tablo için AUTO_INCREMENT değeri `contact_message`
 --
 ALTER TABLE `contact_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `current_account`
 --
 ALTER TABLE `current_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `departmanlist`
@@ -1749,7 +1980,13 @@ ALTER TABLE `departmanlist`
 -- Tablo için AUTO_INCREMENT değeri `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `faq_categories`
+--
+ALTER TABLE `faq_categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `homesettings`
@@ -1764,6 +2001,12 @@ ALTER TABLE `institutional`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `institutional_references`
+--
+ALTER TABLE `institutional_references`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `meetings`
 --
 ALTER TABLE `meetings`
@@ -1773,7 +2016,7 @@ ALTER TABLE `meetings`
 -- Tablo için AUTO_INCREMENT değeri `multimenu`
 --
 ALTER TABLE `multimenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `orders`
@@ -1785,19 +2028,19 @@ ALTER TABLE `orders`
 -- Tablo için AUTO_INCREMENT değeri `orders_details`
 --
 ALTER TABLE `orders_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_comment`
@@ -1809,7 +2052,7 @@ ALTER TABLE `product_comment`
 -- Tablo için AUTO_INCREMENT değeri `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sabit`
@@ -1863,7 +2106,25 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `web_users`
 --
 ALTER TABLE `web_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `web_user_cart`
+--
+ALTER TABLE `web_user_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `web_user_order`
+--
+ALTER TABLE `web_user_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `web_user_wish`
+--
+ALTER TABLE `web_user_wish`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
