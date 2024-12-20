@@ -228,7 +228,6 @@ class Admin extends Controller
 
     } //! Giriş Kontrol Son
 
-
     //! Kayıt
     public function Register($site_lang="tr")
     {

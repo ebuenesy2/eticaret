@@ -2556,6 +2556,42 @@ class Web extends Controller
         }
 
     } //! Kullanıcı Sepet - Veri Silme Post Son
+    
+    //! Kullanıcı Sepet - Veri Tümü Sil
+    public function UserCartDeleteAll($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                //? Cookie Varmı
+                if(!isset($_COOKIE["web_userId"])) {
+                    echo "Cookie Kayıtlı Değil";
+                } 
+                else {
+                    $user_id=$_COOKIE["web_userId"];
+                    echo "UserId: ".$user_id;
+
+                    //! Veri Silme
+                    $DB_Status = DB::table("web_user_cart")->where('user_id',$user_id)->delete();
+
+                    if($DB_Status) {  $status="succes"; $message = "Silindi"; }
+                    else {  $status="error"; $message = "Silinemedi"; }
+
+                    return redirect('/'.__('admin.lang').'/user/cart')->with('status',$status)->with('msg',$message);
+                    
+                }
+               
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Kullanıcı Sepet - Veri Tümü Sil Son
 
     //! Kullanıcı Sepet - Veri Güncelleme Post
     public function UserCartEditPost(Request $request)

@@ -29,10 +29,17 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-
             <div class="page-content">
             	<div class="cart">
 	                <div class="container">
+
+					@if(session('status') == "succes")
+						<div class="alert alert-success " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
+					@elseif(session('status') == "error")
+						<div class="alert alert-danger " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
+					@endif	
+   
+
 	                	<div class="row">
 	                		<div class="col-lg-9">
 	                			<table class="table table-cart table-mobile">
@@ -100,7 +107,7 @@
 								<!-- Kart Buttonlar -->
 								<div class="cart-bottom">
 			            			<div class="cart-discount">
-									 <a href="/@lang('admin.lang')/product/list" class="btn btn-outline-dark-2 btn-block mb-3"><span>Alışverişe Devam Et</span></a>
+									 <a href="/@lang('admin.lang')/user/cart/delete/all" class="btn btn-outline-dark-2 btn-block mb-3"><span>Sepet Boşalt</span></a>
 			            			</div><!-- End  coupon -->
 
 			            			<a id="cartUpdate" style="cursor:pointer;" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
@@ -151,6 +158,11 @@
 
 
 	                			</div><!-- End .summary -->
+
+								<div class="cart-discount">
+									 <a href="/@lang('admin.lang')/product/list" class="btn btn-outline-dark-2 btn-block mb-3"><span>Alışverişe Devam Et</span></a>
+			            		</div><!-- End  coupon -->
+
 	                		</aside><!-- End .col-lg-3 -->
 	                	</div><!-- End .row -->
 	                </div><!-- End .container -->
