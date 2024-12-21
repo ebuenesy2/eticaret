@@ -6,14 +6,25 @@ var siteLang = $('html').attr('lang'); //! Site Dili
 
 try {
     
-    var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu Dil
+    var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu 
+    console.log("yildirimdevMultiLangJson:",yildirimdevMultiLangJson);
+
+    //undefined
+
+
     if(yildirimdevMultiLangJson == null || !yildirimdevMultiLangJson ) {  getLangData(siteLang); }
     else {
         var localLang = yildirimdevMultiLangJson?.lang; //! Local Dil
         if(siteLang != localLang ) { getLangData(siteLang); } //! Yoksa Ayarla
     }
  
-} catch (error) { console.log("siteLang:",siteLang); }
+} catch (error) { 
+    console.log("error:",error);
+   
+    getLangData(siteLang);
+    
+    
+}
 
 
 //! Dilleri Getir
