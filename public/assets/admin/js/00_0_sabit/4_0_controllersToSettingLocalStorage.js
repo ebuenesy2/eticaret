@@ -7,10 +7,7 @@ var siteLang = $('html').attr('lang'); //! Site Dili
 try {
     
     var yildirimdevMultiLangJson = JSON.parse(localStorage.getItem('yildirimdevMultiLang')); //! Çoklu 
-    console.log("yildirimdevMultiLangJson:",yildirimdevMultiLangJson);
-
-    //undefined
-
+    //console.log("yildirimdevMultiLangJson:",yildirimdevMultiLangJson);
 
     if(yildirimdevMultiLangJson == null || !yildirimdevMultiLangJson ) {  getLangData(siteLang); }
     else {
@@ -22,8 +19,6 @@ try {
     console.log("error:",error);
    
     getLangData(siteLang);
-    
-    
 }
 
 
