@@ -2395,6 +2395,109 @@ class Web extends Controller
         }
 
     } //! Kullanıcı İstek Listesi - Veri Silme Post Son
+        
+    //! Kullanıcı İstek Listesi - Veri Tümü Sil
+    public function UserWishAllDelete($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                //? Cookie Varmı
+                if(!isset($_COOKIE["web_userId"])) {
+                    echo "Cookie Kayıtlı Değil";
+                } 
+                else {
+                    $user_id=$_COOKIE["web_userId"];
+                    //echo "UserId: ".$user_id;
+
+                    //! Veri Silme
+                    $DB_Status = DB::table("web_user_wish")->where('user_id',$user_id)->delete();
+
+                    if($DB_Status) {  $status="success"; $message = "Silindi"; }
+                    else {  $status="error"; $message = "Silinemedi"; }
+
+                    return redirect('/'.__('admin.lang').'/user/wishlist')->with('status',$status)->with('msg',$message);
+                    
+                }
+               
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //!  Kullanıcı İstek Listesi - Veri Tümü Sil Son
+
+        
+    //! Kullanıcı İstek Listesi - Veri Tümü Sepette Ekle
+    public function UserWishAllCartAdd($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Sayfa Kontrol
+            if($site_lang == "admin") {  return redirect('/'.__('admin.lang').'/'.'admin/');  } //! Admin
+            else { 
+
+                //? Cookie Varmı
+                if(!isset($_COOKIE["web_userId"])) {
+                    echo "Cookie Kayıtlı Değil";
+                } 
+                else {
+
+                    //! Çoklu Veri Ekleme
+
+                    $user_id=$_COOKIE["web_userId"];
+                    //echo "UserId: ".$user_id;
+
+                    //! Veriler
+                    $DB_All = DB::table("web_user_wish")->where('user_id',$user_id)->get();
+                    //echo "<pre>"; print_r($DB_All);
+                   
+                    //! Eklenecek Veriler
+                    $DB_All_Add =[];
+                    for ($i=0; $i < count($DB_All) ; $i++) { 
+                        
+                        $DB_All_Add[] = array(
+                            'user_id' => $DB_All[$i]->user_id,
+                            'product_uid' => $DB_All[$i]->product_uid,
+                            'product_quantity' => $DB_All[$i]->product_quantity,
+                            'created_byId' => $user_id,
+                        );
+
+                    }
+                    //echo "<pre>"; print_r($DB_All_Add);
+                    //! Eklenecek Veriler Son
+                    
+                    //! Veri Ekleme
+                    $DbAddStatus = DB::table('web_user_cart')->insert($DB_All_Add);
+
+                    if($DbAddStatus) { 
+                    
+                        //! Veri Silme
+                        $DB_Status = DB::table("web_user_wish")->where('user_id',$user_id)->delete();
+
+                        return redirect('/'.__('admin.lang').'/user/cart')->with('status','success')->with('msg','Veriler Eklendi'); 
+                    }
+                    else { return redirect('/'.__('admin.lang').'/user/wishlist')->with('status','error')->with('msg','Veriler Eklenemedi'); }
+
+                 
+                    //! Çoklu Veri Ekleme Son
+                    
+                    
+                }
+               
+            } //! Web
+        
+        } catch (\Throwable $th) {  throw $th; }
+
+    } //! Kullanıcı İstek Listesi - Veri Tümü Sepette Ekle Son
 
     
     //************* Kullanıcı Sepet ***************** */
@@ -2580,7 +2683,7 @@ class Web extends Controller
                     //! Veri Silme
                     $DB_Status = DB::table("web_user_cart")->where('user_id',$user_id)->delete();
 
-                    if($DB_Status) {  $status="succes"; $message = "Silindi"; }
+                    if($DB_Status) {  $status="success"; $message = "Silindi"; }
                     else {  $status="error"; $message = "Silinemedi"; }
 
                     return redirect('/'.__('admin.lang').'/user/cart')->with('status',$status)->with('msg',$message);

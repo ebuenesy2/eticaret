@@ -32,6 +32,13 @@
 
             <div class="page-content">
             	<div class="container">
+
+			    	@if(session('status') == "success")
+						<div class="alert alert-success " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
+					@elseif(session('status') == "error")
+						<div class="alert alert-danger " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
+					@endif	
+
 					<table class="table table-wishlist table-mobile">
 						<thead>
 							<tr>
@@ -69,7 +76,20 @@
 							
 						</tbody>
 					</table><!-- End .table table-wishlist -->
-	            	
+
+					<div style="display: flex;justify-content: space-between;">
+
+						<div>
+							<a href="/@lang('admin.lang')/user/wishlist/all/delete" class="btn btn-outline-dark-2 btn-block mb-3" style="background-color: red;color: white;"><span>Listeyi Boşalt</span></a>
+						</div><!-- End  coupon -->
+						
+
+						<div>
+							<a href="/@lang('admin.lang')/user/wishlist/all/cart/add" class="btn btn-outline-dark-2 btn-block mb-3" style="background-color: green;color: white;"><span>Tümünü Sepete Ekle</span></a>
+						</div><!-- End  coupon -->
+
+					</div>
+                     				
             	</div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->

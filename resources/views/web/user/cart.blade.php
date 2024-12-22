@@ -33,7 +33,7 @@
             	<div class="cart">
 	                <div class="container">
 
-					@if(session('status') == "succes")
+					@if(session('status') == "success")
 						<div class="alert alert-success " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
 					@elseif(session('status') == "error")
 						<div class="alert alert-danger " role="alert" style="margin-bottom: 16px;"> {{session('msg')}}  </div>
@@ -107,7 +107,7 @@
 								<!-- Kart Buttonlar -->
 								<div class="cart-bottom">
 			            			<div class="cart-discount">
-									 <a href="/@lang('admin.lang')/user/cart/delete/all" class="btn btn-outline-dark-2 btn-block mb-3"><span>Sepet Boşalt</span></a>
+									 <a href="/@lang('admin.lang')/user/cart/delete/all" class="btn btn-outline-dark-2 btn-block mb-3" style="background-color: red;color: white;"><span>Sepet Boşalt</span></a>
 			            			</div><!-- End  coupon -->
 
 			            			<a id="cartUpdate" style="cursor:pointer;" class="btn btn-outline-dark-2"><span>Sepet Güncelle</span><i class="fa fa-refresh"></i></a>
