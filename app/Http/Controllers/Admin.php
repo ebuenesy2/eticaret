@@ -20383,7 +20383,68 @@ class Admin extends Controller
         
     } //! Ajax - Post Son
 
+    
+    //************* Export ***************** */
 
+    //! Export Pdf 
+    public function exportPdf($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+            
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+                    
+                //! Return
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/04_export/01_0_sabit_export',$DB); 
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Export Pdf Son
+
+    //! Export Pdf - Test
+    public function exportPdfTest($site_lang="tr")
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+            
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+                    
+                //! Return
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                return view('admin/04_export/01_1_sabit_export_test',$DB); 
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Export Pdf - Test Son
+    
     //************* Hata Sayfaları ***************** */
 
     //! errorAccountBlock

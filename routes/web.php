@@ -592,6 +592,12 @@ Route::post('/file/upload/multi/control', [Admin::class,'fileUploadMultiControl'
 Route::get('/ajax/example/get', [Admin::class,'ajaxFunctionExampleGet']) -> name("ajax.get");
 Route::post('/ajax/example/post', [Admin::class,'ajaxFunctionExamplePost']) -> name("ajax.post");
 
+//************* Export ve Import ***************** */
+
+//! Export - Pdf
+Route::get('/{lang}/admin/export/pdf', [Admin::class,'exportPdf']) -> name("admin.export.pdf"); //! Export Pdf
+Route::get('/{lang}/admin/export/pdf/test', [Admin::class,'exportPdfTest']) -> name("admin.export.pdf.test"); //! Export Pdf - Test
+
 
 //************* Hata Sayfaları ***************** */
 
