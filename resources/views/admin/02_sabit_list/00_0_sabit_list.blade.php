@@ -67,7 +67,18 @@
                       <div class="clearfix">
                          
                         <div style="display:flex;gap: 5px;flex-wrap: wrap;margin-bottom: 25px;" >
-                          
+
+                          <!-- Export -->
+                          <button class="btn btn-info" href="#exportModal" role="button" data-toggle="modal" >
+                            <i class="fa fa-download" aria-hidden="true"></i> Export
+                          </button>
+                          <!-- Export Son -->
+
+                          <!-- Import -->
+                          <button class="btn btn-warning" href="#importModal" id="importModalButton" role="button" data-toggle="modal" style="background-color: brown;" >
+                           <i class="fa fa-upload" aria-hidden="true"></i> Import
+                          </button>
+                          <!-- Import Son -->
 
                           <!-- Sayfa -->
                           <a href="/@lang('admin.lang'){{$listUrl}}/add"><button class="btn btn-warning">@lang('admin.newAdd') Sayfa <i class="fa fa-plus"></i></button></a>
@@ -175,7 +186,7 @@
                         <!------  Tablo ----->
                         <div class="table-container">
 
-                          <table>
+                          <table id="customers" >
                               <thead>
 
                                 <!---- Tümü Seç --->
@@ -295,56 +306,177 @@
 
   <!--************* Modal *********--->
 
-  <!----  Modal Arama -->
-  <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <!-- Export -->
+  <div id="exportModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="searchModalTitle" style="display: flex;" ><p>@lang('admin.search') #</p><p id="searchModalValueId">54</p> </h3>
-          <div id='loaderSearch' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+          <h3 id="exportModalTitle" style="display: flex;" ><p>Export</p></h3>
+          <div id='loaderSetting' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
       <div class="modal-body">
         <div class="row-fluid" >
-          <div class="span6">
+          <div class="span12">
               <div class="control-group">
-                  <label class="control-label">@lang('admin.name')</label>
+                  <label class="control-label">Export Dosya İsmi </label>
                   <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="nameSearch" id="nameSearch" placeholder="@lang('admin.name')" value="" >
+                      <input type="text" class="input-block-level" name="exportTitle" id="exportTitle" placeholder="Export İsmi" value="{{$listTitle}}" >
                   </div>
               </div>
           </div>
-          <div class="span6">
+        </div>
+        <div class="row-fluid" id="exportTableNamePanel" style="display:none" >
+          <div class="span12">
               <div class="control-group">
-                  <label class="control-label">@lang('admin.surname')</label>
+                  <label class="control-label">Tablo Adı - Sql</label>
                   <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="surnameSearch" id="surnameSearch" placeholder="@lang('admin.surname')" value="" >
+                      <input type="text" class="input-block-level" name="exportTableName" id="exportTableName" placeholder="Tablo Adı" value="test" >
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid" >
+          <div class="span12">
+              <div class="control-group">
+                  <label class="control-label">Export Türü</label>
+                  <div class="controls controls-row">
+                    <div class="col-12" style=" display: flex; gap: 10px;">
+                      
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_json" name="exportRadio" value="export_json" style="position: absolute; cursor:pointer;" checked >  
+                        <label for="exportRadio_json" style="margin-left: 15px;font-size: 12px;" >JSON</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_xml" name="exportRadio" value="export_xml" style="position: absolute; cursor:pointer;" >  
+                        <label for="exportRadio_xml" style="margin-left: 15px;font-size: 12px;" >XML</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_excel" name="exportRadio" value="export_excel" style="position: absolute; cursor:pointer;" >  
+                        <label for="exportRadio_excel" style="margin-left: 15px;font-size: 12px;" >EXCEL</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_sql" name="exportRadio" value="export_sql" style="position: absolute; cursor:pointer;"  >  
+                        <label for="exportRadio_sql" style="margin-left: 15px;font-size: 12px;" >SQL</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_pdf" name="exportRadio" value="export_pdf" style="position: absolute; cursor:pointer;"  >  
+                        <label for="exportRadio_pdf" style="margin-left: 15px;font-size: 12px;" >PDF</label>
+                      </div>
+                    </div>
                   </div>
               </div>
           </div>
         </div>
         <div class="row-fluid">
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">@lang('admin.email')</label>
-                  <div class="controls controls-row">
-                      <input type="email" class="input-block-level" name="emailSearch" id="emailSearch" placeholder="@lang('admin.email')" value="" >
-                  </div>
-              </div>
+          <div class="span12">
+            <div class="control-group" style="display:  flex;gap: 10px;" >
+                <label class="control-label">Sutunlar</label>
+                <div style="display: block;" >
+                  <input type="checkbox" id="exportColumnCheckAll" name="exportColumnCheckAll" data_checkTitle="list" style="position: absolute;"  > 
+                  <label for="exportColumnCheckAll" style="margin-left: 15px;font-size: 12px;" >Tümü Seç</label>
+                </div>
+            </div>
           </div>
-          <div class="span6">
+          <div class="span12" style="display: flex;gap: 5px;width: 100%;flex-wrap: wrap;" id="columnTableSetting" ></div> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+        <button class="btn btn-success" id="new_export" >Export</button>
+      </div>
+  </div>
+  <!-- Export Son -->
+  
+  <!-- Import -->
+  <div id="importModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="importModalTitle" style="display: flex;" ><p>Import</p></h3>
+          <div id='loaderSetting' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid" >
+          <div class="span12" style="border: 1px solid;padding-left: 15px;padding-top: 21px;margin-bottom: 18px;">
+
+            <!-- Dosya Yükleme ----->
+            <form method="POST" id="uploadForm" enctype="multipart/form-data">
+                <div style="display: flex;flex-direction: column;gap: 15px;margin-bottom: -41px;">
+
+                  <!-- Dosya Yükleme Bilgileri ----->
+                  <input type="hidden" name="fileDbSave" id="fileDbSave" value="true" >
+                  <input type="hidden" name="fileWhere" id="fileWhere" value="Sabit" >
+
+                  <!---  Loading --->
+                  <div id="LoadingFileUpload" style="display:none;" ><span class="d-flex align-items-center">
+                    <span class="spinner-border flex-shrink-0" role="status"></span>
+                    <span class="flex-grow-1 ms-2">@lang('admin.loading') </span>
+                  </span> </div>
+                  <div id="uploadStatus"></div>
+                  <!--- End Loading --->
+
+                  <input type="file" name="file" id="fileInput" style="display: flex; color: steelblue; margin-left: 10px; ">
+                  <div style="display: flex;gap: 10px;margin-bottom: -11px;margin-top: -11px;" ><p>Ext:</p><p id="fileExt"></p></div>
+                  <div style="display: flex;gap: 10px;margin-bottom: -22px;margin-top: -11px;" ><p>@lang('admin.fileUrl'):</p><p id="filePathUrl"></p></div>
+                  <button type="button" id="fileUploadClick" class="btn btn-success" style="cursor:pointer;background-image: linear-gradient(#04519b, #033c73 60%, #02325f);color: #ffffff;border-bottom: 1px solid #022241;padding: 12px;display: flex;gap:10px;justify-content: center;align-items: center;width: 100%;margin-left: -2px;">
+                    <i class="ri-folder-upload-line" style="margin-top: -8px;  margin-bottom: -8px; font-size: 24px;"></i> 
+                    <p style=" color: blanchedalmond; font-size: 14px; font-weight: bold; " > @lang('admin.fileUpload') </p>
+                  </button>
+                  
+                  <!-- ProgressBar ---->
+                  <div class="progress" style="height: max-content;margin-bottom: 33px;margin-right: 5px;">
+                    <div class="progress-bar" id="progressBarFileUpload" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: teal;color: rgb(255, 255, 255);border-radius: 6px;display: flex;justify-content: center;"></div>
+                  </div>
+                  <!-- ProgressBar Son ---->
+                    
+                </div>
+            </form>
+            <!-- Dosya Yükleme Son ---->
+
+          </div>
+        </div>
+        <div class="row-fluid" >
+          <div class="span12" style="border: 1px solid;padding: 15px;">
               <div class="control-group">
-                  <label class="control-label">@lang('admin.value')</label>
+                  <label class="control-label">Import Türü</label>
                   <div class="controls controls-row">
-                      <input type="number" class="input-block-level" name="valueSearch" id="valueSearch" placeholder="@lang('admin.value')" value="" >
+                    <div class="col-12" style=" display: flex; gap: 10px;" >
+                      
+                      <div style="display: block;" >
+                        <input type="radio" id="importRadio_choose" name="importRadio" value="import_choose" style="position: absolute; cursor:pointer;" checked  disabled="disabled">  
+                        <label for="importRadio_choose" style="margin-left: 15px;font-size: 12px;" >Dosya Seç</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="importRadio_json" name="importRadio" value="import_json" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                        <label for="importRadio_json" style="margin-left: 15px;font-size: 12px;" >JSON</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="importRadio_xml" name="importRadio" value="import_xml" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                        <label for="importRadio_xml" style="margin-left: 15px;font-size: 12px;" >XML</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="importRadio_excel" name="importRadio" value="import_excel" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                        <label for="importRadio_excel" style="margin-left: 15px;font-size: 12px;" >EXCEL</label>
+                      </div>
+
+                    </div>
                   </div>
               </div>
+
+              <!-- ProgressBar ---->
+              <div class="progress" style="height: max-content;margin-bottom: 33px;margin-right: 5px;">
+                <div class="progress-bar" id="progressImport" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color: teal;color: rgb(255, 255, 255);border-radius: 6px;display: flex;justify-content: center;"></div>
+              </div>
+              <!-- ProgressBar Son ---->
+
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+        <button class="btn btn-info" id="reset_import" >@lang('admin.reset')</button>
+        <button class="btn btn-success" id="new_import" >Import</button>
       </div>
   </div>
-  <!----  Modal Arama Son -->
+  <!-- Import Son -->
   
   <!----  Modal Ekleme -->
   <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -398,6 +530,57 @@
       </div>
   </div>
   <!----  Modal Ekleme Son -->
+  
+  <!----  Modal Arama -->
+  <div id="searchModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="searchModalTitle" style="display: flex;" ><p>@lang('admin.search') #</p><p id="searchModalValueId">54</p> </h3>
+          <div id='loaderSearch' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid" >
+          <div class="span6">
+              <div class="control-group">
+                  <label class="control-label">@lang('admin.name')</label>
+                  <div class="controls controls-row">
+                      <input type="text" class="input-block-level" name="nameSearch" id="nameSearch" placeholder="@lang('admin.name')" value="" >
+                  </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                  <label class="control-label">@lang('admin.surname')</label>
+                  <div class="controls controls-row">
+                      <input type="text" class="input-block-level" name="surnameSearch" id="surnameSearch" placeholder="@lang('admin.surname')" value="" >
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+              <div class="control-group">
+                  <label class="control-label">@lang('admin.email')</label>
+                  <div class="controls controls-row">
+                      <input type="email" class="input-block-level" name="emailSearch" id="emailSearch" placeholder="@lang('admin.email')" value="" >
+                  </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                  <label class="control-label">@lang('admin.value')</label>
+                  <div class="controls controls-row">
+                      <input type="number" class="input-block-level" name="valueSearch" id="valueSearch" placeholder="@lang('admin.value')" value="" >
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+      </div>
+  </div>
+  <!----  Modal Arama Son -->
 
   <!----  Modal Güncelle -->
   <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -462,12 +645,34 @@
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/01_action_list.js"></script>
+        
+    <!------- Export Js --->
+    <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/04_export_list.js"></script>
 
     <!--------- Jquery  Ajax -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <!-- Yıldırımdev Table JS -->
     <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
+
+    <!------- Import Js --->
+    <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/05_import_list.js"></script>
+
+    <!------- Export Modal Check Kontrol --->
+    <script>
+
+      function checkControl(){
+        
+        //! Checkleri Kontrol Sayısı
+        var checkboxLength = $("input[type=checkbox][name=exportColumnCheck]").length; //! Tüm Veriler Sayısı
+        var checkItemLength = $('input[type=checkbox][name=exportColumnCheck]:checked').length; //! Tüm Seçilenlerin Sayısı
+
+        if(checkboxLength == checkItemLength) { $("input[type=checkbox][id=exportColumnCheckAll]").prop('checked',true); }
+        else { $("input[type=checkbox][id=exportColumnCheckAll]").prop('checked',false); }
+      }
+
+    </script>
+    <!------- Export Modal Check Kontrol - Son --->
 
   </footer>
 
