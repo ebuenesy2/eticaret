@@ -598,6 +598,8 @@ Route::post('/ajax/example/post', [Admin::class,'ajaxFunctionExamplePost']) -> n
 Route::get('/{lang}/admin/export/pdf', [Admin::class,'exportPdf']) -> name("admin.export.pdf"); //! Export Pdf
 Route::get('/{lang}/admin/export/pdf/test', [Admin::class,'exportPdfTest']) -> name("admin.export.pdf.test"); //! Export Pdf - Test
 
+Route::get('/{lang}/admin/export/pdf/list', [Admin::class,'exportPdfList']) -> name("admin.export.pdf.list"); //! Export Pdf - List
+
 
 //************* Hata Sayfaları ***************** */
 

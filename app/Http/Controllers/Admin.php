@@ -20444,7 +20444,35 @@ class Admin extends Controller
         catch (\Throwable $th) {  throw $th; }
 
     } //! Export Pdf - Test Son
-    
+
+    //! Export Pdf - List
+    public function exportPdfList($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+            
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+                    
+                //! Return
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                return view('admin/04_export/02_0_exportList',$DB); 
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Export Pdf - List Son
+
     //************* Hata Sayfaları ***************** */
 
     //! errorAccountBlock

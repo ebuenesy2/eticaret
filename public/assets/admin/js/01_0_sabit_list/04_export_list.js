@@ -209,20 +209,20 @@ function tableConvertJson(tableFind,exportCheckList = []) {
 //! Export Json
 function exportJson(TableJson,exportFileName){
 
-    alert("exportJson");
-    console.log("TableJson:",TableJson);
-    console.log("exportFileName:",exportFileName);
+    // alert("exportJson");
+    // console.log("TableJson:",TableJson);
+    // console.log("exportFileName:",exportFileName);
 
-    // let dataStr = JSON.stringify(TableJson,undefined, 4); //! Json Düzgün Gösteriyor
-    // let dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
-    // let exportFileDefaultName = exportFileName + ".json"; //! İndirilen Dosya Adı
+    let dataStr = JSON.stringify(TableJson,undefined, 4); //! Json Düzgün Gösteriyor
+    let dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    let exportFileDefaultName = exportFileName + ".json"; //! İndirilen Dosya Adı
 
-    // //! İndirme
-    // let linkElement = document.createElement("a");
-    // linkElement.setAttribute("href", dataUri);
-    // linkElement.setAttribute("download", exportFileDefaultName);
-    // linkElement.click();
-    // //! İndirme son
+    //! İndirme
+    let linkElement = document.createElement("a");
+    linkElement.setAttribute("href", dataUri);
+    linkElement.setAttribute("download", exportFileDefaultName);
+    linkElement.click();
+    //! İndirme son
 
 } //! Export Json Son
 
@@ -460,12 +460,12 @@ function exportSql(TableHeader,TableJson,tableName,exportFileName){
 //! Export Pdf
 function exportPdf(TableJson,exportFileName){
 
-    // //alert("exportPdf");
-    // console.log("TableJson:",TableJson);
-    // console.log("exportFileName:",exportFileName);
+    //alert("exportPdf");
+    console.log("TableJson:",TableJson);
+    console.log("exportFileName:",exportFileName);
   
     var sqlHeader = Object.keys(TableJson[0]); //! Object - Key 
-    //console.log("sqlHeader: ",sqlHeader);
+    console.log("sqlHeader: ",sqlHeader);
   
     //! Tanım
     var new_window = document.getElementById("iFramePdf").contentWindow; //! İframe
@@ -521,10 +521,11 @@ function exportPdf(TableJson,exportFileName){
   
       { title: "tableFooterText", text : $('#editable-sample_info').html().trim() },
     ]
+
+    console.log("updateData:",updateData);
   
     updateData.map((u) => { if(new_windowDocument.querySelector('#'+u.title)) { new_windowDocument.querySelector('#'+u.title).innerHTML = u.text; } });
     //! Yazıları Değiştir -- Son
-    
   
     //! Print
     new_window.print();

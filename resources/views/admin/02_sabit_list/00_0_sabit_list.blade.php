@@ -638,6 +638,9 @@
 
 
   <footer>
+  
+    <!------  Iframe -->
+    <iframe id="iFramePdf" src="/@lang('admin.lang')/admin/export/pdf/list" style="display:none;"></iframe>
 
     <!------- Footer --->
     @include('admin.include.footer')
