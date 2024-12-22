@@ -25,7 +25,7 @@ var listUrl_Cart = "/user/cart"; //! List Adresi
 //! Sepete Ürün Ekle
 document.querySelectorAll("#userCartAdd").forEach((Item) => {
     Item.addEventListener("click", e => {
-
+        
         var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
         
@@ -85,36 +85,36 @@ document.querySelectorAll("#userCartAdd").forEach((Item) => {
                     console.log("response:", response);
                     // console.log("status:", response.status);
 
-                    if (response.status == "success") {
-                        // Swal.fire({
-                        //     position: "center",
-                        //     icon: "success",
-                        //     title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
-                        //     showConfirmButton: false,
-                        //     timer: 2000,
-                        // });
+                    // if (response.status == "success") {
+                    //     // Swal.fire({
+                    //     //     position: "center",
+                    //     //     icon: "success",
+                    //     //     title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                    //     //     showConfirmButton: false,
+                    //     //     timer: 2000,
+                    //     // });
 
-                        //! Buton Güncelleme
-                        document.querySelectorAll('[id="userCartAdd"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="none" }) 
-                        document.querySelectorAll('[id="userCartAdd_None"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="flex" })
+                    //     //! Buton Güncelleme
+                    //     document.querySelectorAll('[id="userCartAdd"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="none" }) 
+                    //     document.querySelectorAll('[id="userCartAdd_None"][data_productid="'+data_productid+'"]').forEach(function(el) { el.style.display="flex" })
 
 
-                        //! Sepet Listesi  Sayısı
-                        var cart_count = $('.cart-count').html(); //! Sayısını Alıyor
-                        var cart_count = Number(cart_count) + 1; //! Sayısını Artılıyor
-                        $('.cart-count').html(cart_count); //! Sayısını Gösteriyor
+                    //     //! Sepet Listesi  Sayısı
+                    //     var cart_count = $('.cart-count').html(); //! Sayısını Alıyor
+                    //     var cart_count = Number(cart_count) + 1; //! Sayısını Artılıyor
+                    //     $('.cart-count').html(cart_count); //! Sayısını Gösteriyor
 
-                        //! Sayfa Yenileme
-                        //window.location.reload();
-                    } else {
-                        Swal.fire({
-                            position: "center",
-                            icon: "error",
-                            title: yildirimdevMultiLangJsonReturnR.transactionFailed,
-                            showConfirmButton: false,
-                            timer: 2000,
-                        });
-                    }
+                    //     //! Sayfa Yenileme
+                    //     //window.location.reload();
+                    // } else {
+                    //     Swal.fire({
+                    //         position: "center",
+                    //         icon: "error",
+                    //         title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                    //         showConfirmButton: false,
+                    //         timer: 2000,
+                    //     });
+                    // }
                 },
                 error: function (error) {
                     Swal.fire({
