@@ -644,6 +644,9 @@
 
     <!------- Footer --->
     @include('admin.include.footer')
+    
+    <!---- xlsx --->
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
