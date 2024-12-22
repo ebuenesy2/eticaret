@@ -440,21 +440,26 @@
                   <div class="controls controls-row">
                     <div class="col-12" style=" display: flex; gap: 10px;" >
                       
-                      <div style="display: block;" >
+                      <div id="import_choose" data_import="none" >
                         <input type="radio" id="importRadio_choose" name="importRadio" value="import_choose" style="position: absolute; cursor:pointer;" checked  disabled="disabled">  
                         <label for="importRadio_choose" style="margin-left: 15px;font-size: 12px;" >Dosya Seç</label>
                       </div>
-                      <div style="display: block;" >
-                        <input type="radio" id="importRadio_json" name="importRadio" value="import_json" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                      <div id="import_choose" data_import="json"  >
+                        <input type="radio" id="importRadio_json" name="importRadio" value="json" style="position: absolute; cursor:pointer;" disabled="disabled">  
                         <label for="importRadio_json" style="margin-left: 15px;font-size: 12px;" >JSON</label>
                       </div>
-                      <div style="display: block;" >
-                        <input type="radio" id="importRadio_xml" name="importRadio" value="import_xml" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                      <div id="import_choose" data_import="xml"  >
+                        <input type="radio" id="importRadio_xml" name="importRadio" value="xml" style="position: absolute; cursor:pointer;" disabled="disabled">  
                         <label for="importRadio_xml" style="margin-left: 15px;font-size: 12px;" >XML</label>
                       </div>
-                      <div style="display: block;" >
-                        <input type="radio" id="importRadio_excel" name="importRadio" value="import_excel" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                      <div id="import_choose" data_import="excel" >
+                        <input type="radio" id="importRadio_excel" name="importRadio" value="excel" style="position: absolute; cursor:pointer;" disabled="disabled">  
                         <label for="importRadio_excel" style="margin-left: 15px;font-size: 12px;" >EXCEL</label>
+                      </div>
+
+                      <div id="import_choose" data_import="sql" >
+                        <input type="radio" id="importRadio_sql" name="importRadio" value="sql" style="position: absolute; cursor:pointer;" disabled="disabled">  
+                        <label for="importRadio_sql" style="margin-left: 15px;font-size: 12px;" >SQL</label>
                       </div>
 
                     </div>

@@ -23,12 +23,12 @@ $(function () {
     //! FileUpload
     $("#fileUploadClick").click(function (e) {
         e.preventDefault();
-        alert("fileUpload Import");
+        //alert("fileUpload Import");
 
         //! Dosya Yükleme
         const fileInput = document.querySelector("#fileInput");
         const fileInputFiles = fileInput.files;
-        console.log("fileInputFiles:",fileInputFiles);
+        //console.log("fileInputFiles:",fileInputFiles);
 
         //! Yeni Form Veriler
         var formData = new FormData();
@@ -103,9 +103,20 @@ $(function () {
                 //! Dosya Türü
                 //console.log("file_ext:",resp.file_ext);
 
-                //! Seçim
-                if(resp.file_ext == "json" ) { $("input[name='importRadio'][value='import_json']").prop('checked', true); }
-                else if(resp.file_ext == "xml" ) { $("input[name='importRadio'][value='import_xml']").prop('checked', true); }
+                //! Css
+                let nodeDisplay = document.querySelectorAll("[id=import_choose]");
+                for (let i = 0; i < nodeDisplay.length; i++) {  
+                    nodeDisplay[i].style.border=''; 
+                    nodeDisplay[i].style.padding = '0px';
+                };
+
+
+                //! Seçim Radio
+                $("input[name='importRadio'][value='"+resp.file_ext+"']").prop('checked', true);
+                
+                //! Seçim Css
+                document.querySelector("[id='import_choose'][data_import='"+resp.file_ext+"']").style.border='1px solid red';
+                document.querySelector("[id='import_choose'][data_import='"+resp.file_ext+"']").style.padding = '3px';
 
                 //! Button
                 document.getElementById("new_import").style.cursor = "pointer"; //! Cursor - Ok

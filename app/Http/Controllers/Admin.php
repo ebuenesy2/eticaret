@@ -20473,6 +20473,108 @@ class Admin extends Controller
 
     } //! Export Pdf - List Son
 
+    
+    //************* Import ***************** */
+
+    //! importFileUploadControl
+    public function importFileUploadControl(Request $request)
+    {
+        try {
+
+            //! Tanım
+            $request->validate(['file' => 'required']);
+            
+            //! Dosya Boyutu
+            $fileSize = $request->file('file')->getSize();  //kb - Boyutu
+            $fileSize_kb = round($fileSize/1024,2);
+            $fileSize_mb = round($fileSize/1024/1024,2);
+            $fileSize_gb = round($fileSize/1024/1024/1024,2);
+
+            $fileSizeTotal = 0;
+            $fileSizeTotalType = 'kb';
+
+            if($fileSize_gb >= 1) {  $fileSizeTotal = $fileSize_gb;  $fileSizeTotalType = 'gb';   }
+            else if($fileSize_gb < 1) {
+                if($fileSize_mb >= 1) {  $fileSizeTotal = $fileSize_mb;  $fileSizeTotalType = 'mb';   }
+                else if($fileSize_mb < 1) {  $fileSizeTotal = $fileSize_kb;  $fileSizeTotalType = 'kb';   }
+            }
+            //! Dosya Boyutu Son
+
+            //! Dosya Yükleme
+            $fileName = time().'.'.$request->file->getClientOriginalExtension(); //! Dosya Adı
+            $file_status= $request->file->move(public_path('upload/uploads'), $fileName); //! Dosya Yükleme Durumu
+
+            //! Dosya Türü
+            $fileExt = request()->file->getClientOriginalExtension(); //! Uzantısı
+            $fileType = $_FILES['file']['type']; //! Türü
+            $fileType = explode('/',$fileType)[0]; //! Türü Ayırma - > Image
+
+            //! Tanım
+            $uploadStatus = false;
+            if($file_status) {  $uploadStatus = true; }
+
+            //! Veri Tabanı Kayıt Yapma
+            $fileWhere = $request->fileWhere; 
+            $fileDbSaveCheck = $request->fileDbSave;
+            $fileDbSaveStatus = false;
+
+            if($fileDbSaveCheck == "true") { } //! Veri Tabanına Kayıt 
+            //! Veri Tabanı Kayıt Yapma Son
+
+            //! ************** Import *************
+
+            $data ='';
+            $fileUrl = "upload/uploads/".$fileName; //! Dosya yeri
+            $DB_importStatus = false;
+            $DB=[]; //! DB
+
+            if($file_status) {
+
+                if($fileExt == "json") {
+                    if(is_file($fileUrl)){ 
+                        $data = file_get_contents($fileUrl); //! Dosya Okuyor
+                        $DB = json_decode($data,true); //! Veri Json Çeviriyor
+                    }
+                }
+
+                elseif($fileExt == "xml") {
+                    if(is_file($fileUrl)){ 
+                        $data = file_get_contents($fileUrl); //! Dosya Okuyor
+                        $xmlObject = simplexml_load_string($data); //! Xml Dosyası Okuma
+                        $json = json_encode($xmlObject); //! Xml - > Json
+                        $DB = json_decode($json, true); //! Veri Json Çeviriyor ;
+                    }
+                }
+            }
+
+            $response = array(
+                'status' => $uploadStatus ? 'success' : 'error',
+                'userId' => (int)$request->created_byId || 0, 
+                'fileDbSaveCheck' => $fileDbSaveCheck,
+                'fileDbSaveStatus' => $fileDbSaveStatus,
+                'fileWhere' => $fileWhere,
+                'file_upload_status'=>$uploadStatus,
+                'file_path'=>url('upload/uploads/'.$fileName),
+                'file_name'=>$fileName,
+                'file_originName'=>request()->file->getClientOriginalName(),
+                'file_size'=>array(
+                    'sizeByte' => $fileSize,
+                    'sizeTotal' => $fileSizeTotal,
+                    'sizeTotalType' => $fileSizeTotalType
+                ),
+                'file_ext'=>$fileExt,
+                'file_type'=> $fileType,
+                'file_url'=>"upload/uploads/".$fileName,
+                'file_url_public'=>public_path('upload\uploads'),
+                'DB' => $DB
+            );
+
+            return response()->json($response);
+             
+        } catch (\Throwable $th) { throw $th; }
+
+    }  //! importFileUploadControl Son
+
     //************* Hata Sayfaları ***************** */
 
     //! errorAccountBlock
