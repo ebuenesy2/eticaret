@@ -8215,6 +8215,7 @@ class Admin extends Controller
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "userId", "table" => $table, "where" => "user_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "orderTitle", "table" => $table, "where" => "title", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
                 $searchData[] = array("params" => "productId", "table" => $table, "where" => "product_uid", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "productName", "table" => 'products', "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! Like
 
@@ -8384,7 +8385,7 @@ class Admin extends Controller
         //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
 
         try {
-        
+
             //! Veri Silme
             $DB_Status = DB::table('web_user_order')->whereIn('id',$request->ids)->delete();
 

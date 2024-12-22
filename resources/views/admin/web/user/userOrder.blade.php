@@ -93,6 +93,13 @@
                             <input type="number" placeholder="userId" class="" id="searchTable" searchName="userId" style="width: 120px;" >
                           </div>
                           <!------ Arama User ID Son----->
+
+                          <!------ Arama Sipariş Adı ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Sipariş Adı</p>
+                            <input type="text" placeholder="Sipariş Adı" class="" id="searchTable" searchName="orderTitle" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Sipariş Adı Son----->
                                                     
                           <!------ Arama Ürün ID ----->
                           <div style="display: flex;flex-direction: column;">
@@ -140,7 +147,7 @@
                                 <th class="table_title" exportName="id" >ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.user') ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.user') @lang('admin.name')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.title')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.order') @lang('admin.title')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.product') ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.image')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.product')</th>
@@ -362,7 +369,7 @@
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
-    <script src="{{asset('/assets/admin')}}/js/web/user/userCart.js"></script>
+    <script src="{{asset('/assets/admin')}}/js/web/user/userOrder.js"></script>
         
     <!-- Yıldırımdev Table JS -->
     <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
