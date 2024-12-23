@@ -574,6 +574,7 @@ Route::post('/admin/fixed_list/edit/active', [Admin::class,'FixedEditActive']) -
 Route::post('/admin/fixed_list/edit/multi/active', [Admin::class,'FixedEditMultiActive']) -> name("admin.fixed.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
 Route::post('/admin/fixed_list/clone', [Admin::class,'FixedEditClonePost']) -> name("admin.fixed.clone.post"); //! Veri Clone - Post
 Route::post('/admin/fixed_list/clone/multi', [Admin::class,'FixedEditClonePostMulti']) -> name("admin.fixed.clone.post.multi"); //! Çoklu Veri Clone - Post
+Route::post('/admin/fixed_list/import', [Admin::class,'FixedEditImport']) -> name("admin.fixed.import"); //! Import
 
 
 //************* Dosya Yükleme ***************** */

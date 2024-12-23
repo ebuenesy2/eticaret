@@ -435,6 +435,15 @@
         </div>
         <div class="row-fluid" >
           <div class="span12" style="border: 1px solid;padding: 15px;">
+
+              <!---  Loading --->
+              <div id="LoadingImport" style="z-index: 100;background-color: red;color: white;padding: 5px;display: none;justify-content: center;" ><span class="d-flex align-items-center">
+                <span class="spinner-border flex-shrink-0" role="status"></span>
+                <span class="flex-grow-1 ms-2" >@lang('admin.loading') </span>
+              </span> </div>
+              <div id="LoadingImportStatus"></div>
+              <!--- End Loading --->
+
               <div class="control-group">
                   <label class="control-label">Import Türü</label>
                   <div class="controls controls-row">

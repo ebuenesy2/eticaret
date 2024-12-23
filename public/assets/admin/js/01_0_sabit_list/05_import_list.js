@@ -64,7 +64,7 @@ $(function () {
                 //! ProgressBar
                 $("#progressBarFileUpload").width('0%');
 
-                //! Upload Durum
+                //! Loading Durum
                 $('#LoadingFileUpload').toggle();
                 $('#uploadStatus').hide();
 
@@ -76,7 +76,7 @@ $(function () {
                 alert("başarısız");
                 console.log("Hata oluştu error:", error);
 
-                //! Upload Durum
+                //! Loading Durum
                 $('#LoadingFileUpload').hide();
                 $('#uploadStatus').html('<p style="color:#EA4335;">File upload failed, please try again.</p>');
 
@@ -92,7 +92,7 @@ $(function () {
                 //! ProgressBar
                 $("#progressBarFileUpload").width('100%');
 
-                //! Upload Durum
+                //! Loading Durum
                 $('#LoadingFileUpload').hide();
                 $('#uploadStatus').hide();
 
@@ -164,6 +164,7 @@ $(function () {
         document.getElementById("new_import").style.cursor = "wait"; //! Cursor - Dönen
 
         if(filePathUrl == "") { 
+            
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -195,7 +196,11 @@ $(function () {
                     
                     //alert("xhr");
                     //console.log("xhr:",xhr);
-                    
+
+                    //! Loading Durum
+                    $('#LoadingImport').css('display','flex');
+                    $('#LoadingImportStatus').hide();
+                        
                     xhr.upload.addEventListener("progress", function (evt) {
                     if (evt.lengthComputable) {
                         var percentComplete = ((evt.loaded / evt.total) * 100);
@@ -224,6 +229,9 @@ $(function () {
                             timer: 2000,
                         });
 
+                        //! Loading Durum
+                        $('#LoadingImport').css('display','none');
+
                         //! Sayfa Yenileme
                         window.location.reload();
                         
@@ -235,6 +243,10 @@ $(function () {
                             showConfirmButton: false,
                             timer: 2000,
                         });
+
+                        //! Loading Durum
+                        $('#LoadingImport').css('display','none');
+                        $('#LoadingImportStatus').html('<p style="color:#EA4335;"> Hata oluştu</p>');
                     }
                 },
                 error: function (error) {
@@ -247,12 +259,7 @@ $(function () {
                     });
                     console.log("error:", error);
                 },
-                complete: function() {
-
-                    alert("Bitti");
-                    console.log("Bitti");
-
-                }
+                complete: function() { console.log("İmport Bitti"); }
             }); //! Ajax Post Son
 
         }

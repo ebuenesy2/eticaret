@@ -20090,7 +20090,102 @@ class Admin extends Controller
         }
 
     } //! Sabit - Çoklu Clone - Post Son
+    
+    //! Sabit - Import
+    public function FixedEditImport(Request $request)
+    {
+        
+        //! Tanım
+        $fileExt = $request->file_ext; //! Dosya Uzantısı [ xml]
+        $fileUrl = $request->file_url; //! dosya yeri
+        $errorStatus = "false"; //! Hata Kontrol
+        $DB_SaveStatus = false; //! Veri Tabanına Kayıt -  Durumu 
+        $DB = []; //! Veri
 
+        try { 
+
+            //! Json
+            if($fileExt == "json") { 
+
+              //! Dosya Kontrol ediyor 
+              if(is_file($fileUrl)){ 
+                $data = file_get_contents($fileUrl); //! Okuyor
+                $DB = json_decode($data,true); //! Veri Json Çeviriyor 
+              }
+              else { $errorStatus = __('admin.fileNotFound'); }
+            } 
+            //! Json Son
+
+            //! Xml
+            else if($fileExt == "xml") {
+
+                //! Dosya Kontrol ediyor 
+                if(is_file($fileUrl)){ 
+                  $data = file_get_contents($fileUrl); //! Okuyor
+                  $xmlObject = simplexml_load_string($data); //! Xml Dosyası Okuma
+                  $json = json_encode($xmlObject); 
+                  $DB = json_decode($json, true); //! Dosya Array Çevirme 
+                  $DB = $DB["Data"]; //! Array
+                }
+                else { $errorStatus = __('admin.fileNotFound'); }
+  
+            } 
+            //! Xml Son
+
+            $data_keys = array_keys($DB[0]);
+            //echo "<pre>"; print_r($data_keys); die();
+
+
+            //! Veri Tabanına Kayıt Yap
+            if($errorStatus == "false"){
+                
+                //! Veri Tabanı işlemleri
+                try {
+
+                    for ($i=0; $i < count($DB); $i++) { 
+
+                        //! Eklenecek Veriler
+                        $insertData =['created_byId' => (int)$_COOKIE["yildirimdev_userID"]]; 
+
+                        for ($k=0; $k < count($data_keys); $k++) { 
+                            if($data_keys[$k] != "id" && $data_keys[$k] != "created_byId") {
+                                $insertData[$data_keys[$k]] = $DB[$i][$data_keys[$k]];
+                            }
+                        }
+                        //echo "<pre>"; print_r($insertData); die();
+
+                        //! VeriTabanına Kayıt Yapıyor
+                        $DB_importStatus = DB::table('test')->insert($insertData); //! VeriTabanına Kayıt Yapıyor Son
+                    }
+
+                } catch (\Throwable $th) { throw $th; }
+                //! Veri Tabanı işlemleri Son
+
+            }
+            //! Veri Tabanına Kayıt Yap Son
+            
+            //! Return
+            $response = array(
+                'siteLang' => $request->siteLang,
+                'status' => $errorStatus == "false" ? 'success' : 'error',
+                'error' => $errorStatus == "false" ? null : $errorStatus,
+                'userId' => (int)$_COOKIE["yildirimdev_userID"],
+                'DB_SaveStatus' => $DB_SaveStatus,
+              
+                'file_ext' => $request->file_ext,
+                'file_url' => $request->file_url,
+                'DB' => $DB,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+
+            $response = array( 'status' => 'error', 'error' => $errorStatus );
+            return response()->json($response);
+        }
+        
+    } //! Sabit - Import -  Son
     
     //************* Dosya Yükleme ***************** */
 
