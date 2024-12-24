@@ -1151,7 +1151,7 @@ class Admin extends Controller
                 $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
                 //echo "<pre>"; print_r($DB_Find); die();
 
-                $DB_MenuFind = DB::table("multimenu")->where("parent_id",0)->get(); //! Menu
+                $DB_MenuFind = DB::table("multimenu")->where("parent_id",0)->orderBy('tr','asc')->get(); //! Menu
                 //echo "<pre>"; print_r($DB_MenuFind); die();
                     
                 //! Return
@@ -20477,8 +20477,260 @@ class Admin extends Controller
         }
         
     } //! Ajax - Post Son
-
     
+    //************* Api ***************** */
+    
+    //! Get Api
+    public function apiGet()
+    {
+
+        //url
+        //$url="http://localhost:3002/api/file/all";
+        $url = config('admin.Api_Url').'/version'; //! Api Adresi 
+        echo 'url:'; echo $url; echo "<br/>";
+
+        //aç
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+        // SSL important
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_POST, 0);
+
+
+        //veri okunuyor
+        $output = curl_exec($curl);
+
+        //sorun varsa
+        if($e=curl_error($curl)) { echo $e; }
+        else
+        {
+            // Json verisine dönüştür
+            //array oluştur
+            $decoded=json_decode($output,true);
+            echo "<pre>"; print_r($decoded);
+
+            //okuma * dönüştürme işlemleri
+            // $title=$decoded["Title"];
+            // $table=$decoded["table"];
+            // $status=$decoded["status"];
+            //$created_at=$decoded["created_at"];
+
+            //echo 'title:'; echo $title; echo "<br/>"; 
+            
+            //iç içe json
+            //echo "<br>"; print_r($decoded["DB"]);  echo "<br>";  echo "<br>";
+            //$data_sayisi=count($decoded["DB"]);
+            //$data_id=$decoded["DB"][0]["id"];
+            //$data_id=$decoded["DB"]["id"];
+
+            //Ekran Çıktısı
+            // echo  "Veri Çekiyor";
+            // echo "<br>";
+            // echo  "title: ".$title;
+            // echo "<br>";
+            // echo  "data - id : ".$data_id;
+        }
+
+        //kapat
+        curl_close($curl);
+
+    }   //! Get Api
+       
+    //! Post Api
+    public function apiPost()
+    {
+    
+        //url
+        //$url="http://localhost:3002/api/file/find_post";
+        $url = config('admin.Api_Url').'/token_create'; //! Api Adresi 
+        echo 'url:'; echo $url; echo "<br/>"; 
+
+        //Eklenecek Veriler
+        $data_array=array
+        (
+            'name' => "enes",
+            'surname' => "yildirim",
+        );
+
+        $data=http_build_query($data_array);
+        $headers = array("Content-Type" => "application/json");
+
+        $curl = curl_init();  //! Curl Başlatıyor
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+
+        curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+
+        $output = curl_exec($curl); //! Veri Okunuyor
+        //echo $output;  echo "<br>";   echo "<br>";   //! Curl Request
+
+        $decoded = "";
+
+        //sorun varsa
+        if($e=curl_error($curl)) { echo $e; }
+        else
+        {
+            // Json verisine dönüştür
+            //array oluştur
+            $decoded=json_decode($output,true);
+            echo "<pre>"; print_r($decoded); 
+
+            //okuma * dönüştürme işlemleri
+            //$title=$decoded["token"];
+            // $table=$decoded["table"];
+            // $status=$decoded["status"];
+            //$created_at=$decoded["created_at"];
+
+            //echo 'title:'; echo $title; echo "<br/>"; 
+
+            //iç içe json
+            //echo "<br>"; print_r($decoded["DB"]);  echo "<br>";  echo "<br>";
+            //$data_sayisi=count($decoded["DB"]);
+            //$data_id=$decoded["DB"][0]["id"];
+            //$data_id=$decoded["DB"]["id"];
+
+            //Ekran Çıktısı
+            // echo  "Veri Çekiyor";
+            // echo "<br>";
+            // echo  "title: ".$title;
+            // echo "<br>";
+            // echo  "data - id : ".$data_id;
+
+        }
+
+        //kapat
+        curl_close($curl);
+
+    }   //! Post Api   
+
+    //! Dosya Yükleme
+    public function apiFileUpload()
+    {
+        try { 
+            
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Return
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                return view('admin/03_0_api/00_0_fileUpload',$DB); 
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Dosya Yükleme Son
+
+    //! Dosya Yükleme - Kontrol
+    public function apiFileUploadControl(Request $request)
+    {
+       
+        //! Curl - File
+        if($_FILES['file']) { 
+           
+            //! Dosya Bilgileri
+            $file=$_FILES['file'];
+            $fileError=$_FILES['file']['error'];
+
+            //echo "<pre>"; print_r($file); die();
+            //echo "fileError:"; echo $fileError; die();
+
+            //url
+            //$url="http://localhost:3002/api/file/all";
+            $url = config('admin.Api_Url').'/file/upload'; //! Api Adresi 
+            //echo 'url:'; echo $url; echo "<br/>"; die();
+
+            //!------- Eklenecek Veriler ----------- 
+
+            $cFile = array();
+            if($fileError == 0 ) { $cFile = new CURLFile($_FILES['file']['tmp_name'],$_FILES['file']['type'],$_FILES['file']['name']); }
+            //else { echo "Dosya Yok"; die(); }
+
+            //! Gönderilen Veriler
+            $data_array = $_POST; //! Verileri Gönderiyor
+            unset($data_array["submit"]); //! Submit Verisini Siliyor
+            
+            //! Dosya Ekleme Yapıyor
+            if($fileError == 0 ) { $data_array["file"] = $cFile; }
+
+            //echo "<pre>"; print_r($data_array); die();
+
+            //! Bearer
+            $token ="yildirimdev01"; //! Token
+            $authorization = "Authorization: Bearer ".$token; // Header BearerToken
+            $headers = array("Content-Type" => "multipart/form-data" , $authorization );
+            //!------- Eklenecek Veriler Son ------- 
+
+            //! ----- Curl  ----------
+            $curl = curl_init();  //! Curl Başlatıyor
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30); //! Timeout
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data_array);
+
+            curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+            curl_setopt($curl, CURLOPT_TIMEOUT, 900); //! Timeout
+            //! ----- Curl Son  -----
+
+            //veri okunuyor
+            $output = curl_exec($curl);
+            $status = 0;
+            //echo "<pre>"; print_r($output); die();
+
+            //sorun varsa
+            if($e=curl_error($curl)) { echo $e; die(); }
+            else
+            {  
+                // Json verisine dönüştür
+                //array oluştur
+                $decoded=json_decode($output,true);
+                echo "<pre>"; print_r($decoded); die();
+
+                //okuma * dönüştürme işlemleri
+                $status=$decoded["status"];
+
+                //$DB_id=$decoded["DB"]["id"];
+                //$DB_id_cok=$decoded["file_size"][0]["id"];
+            
+                //Ekran Çıktısı
+                // echo "Veri Çekiyor";
+                // echo "<br>";
+                // echo "status: ".$status; 
+                
+            }
+
+            //kapat
+            curl_close($curl);
+
+            //! Return
+            $response = array( 'status' => $status == 1 ? 'success' : 'error' );
+                
+            //echo "<pre>"; print_r($response); 
+            return response()->json($response);
+
+        }
+        else { return response()->json(array( 'status' =>  'error' ));  }
+        //! Curl - File Son
+
+    } //! Dosya Yükleme - Kontrol Son
+
     //************* Export ***************** */
 
     //! Export Pdf 
