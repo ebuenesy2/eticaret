@@ -32,7 +32,7 @@ class Admin extends Controller
        
        try {
 
-            echo "test"; die();
+          echo "test"; die();
             
    
        } catch (\Throwable $th) {  throw $th; }
@@ -1767,7 +1767,7 @@ class Admin extends Controller
                 //$whereData[] = array( "table" => $table, "where" => "created_byId" , "data_item_object" => "=", "value" => 26 ); //! Arama
                 
                 $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
-                echo "<pre>"; print_r($DB_Find); die();
+                //echo "<pre>"; print_r($DB_Find); die();
                     
                 //! Return
                 $DB = $DB_Find;
