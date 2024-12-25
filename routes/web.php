@@ -143,6 +143,16 @@ Route::post('/admin/setting/menu/order/post', [Admin::class,'SettingMenuOrderPos
 Route::post('/admin/setting/menu/clone', [Admin::class,'SettingMenuClonePost']) -> name("settings.menu.clone.post"); //! Veri Clone - Post
 Route::post('/admin/setting/menu/clone/multi', [Admin::class,'SettingMenuClonePostMulti']) -> name("settings.menu.clone.post.multi"); //! Çoklu Veri Clone - Post
 
+//*************  Ayarlar - Log  ***************** */
+
+//! Ayarlar - Log
+Route::get('/{lang}/admin/setting/log', [Admin::class,'SettingLog']) -> name("settings.log");  //! Tüm Veriler
+Route::get('/{lang}/admin/setting/log/search/{id}', [Admin::class,'SettingLogSearchView']) -> name("settings.log.search.view");  //! Veri Arama - Sayfası
+Route::post('/admin/setting/log/search/post', [Admin::class,'SettingLogSearchPost']) -> name("settings.log.search.post"); //! Veri Arama - Post
+Route::get('/{lang}/admin/setting/log/add', [Admin::class,'SettingLogAddView']) -> name("settings.log.add");  //! Veri Ekleme - Sayfası
+Route::post('/admin/setting/log/delete/post', [Admin::class,'SettingLogDeletePost']) -> name("settings.log.delete.post"); //! Veri Silme
+Route::post('/admin/setting/log/delete/post/multi', [Admin::class,'SettingLogDeletePostMulti']) -> name("settings.log.delete.post.multi"); //! Veri Çoklu Silme - Post
+
 //************* Admin - Ayarlar - Role  ***************** */
 
 //! Ayarlar - Role

@@ -1725,7 +1725,292 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Ayarlar - Menu  - Çoklu Clone - Post Son
+    } //! Ayarlar - Menu  - Çoklu Clone - Post 
+    
+    //************* Ayarlar - Log  ***************** */
+
+    //! Log List
+    public function SettingLog($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+            
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "logs";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                $selectData = [];  //! Select
+                $selectDataRaw = [];  //! Select - Raw
+                $joinData = [];  //! Join
+                
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Status", "table" => $table, "where" => "isActive", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CreatedById", "table" => $table, "where" => "created_byId", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CreatedDate", "table" => $table, "where" => "created_at", "data_item_object" => "likeStart", "data_key_type" => "string", ); //! Başında Varsa
+                $searchData[] = array("params" => "CreatedDateBottom", "table" => $table, "where" => "created_at", "data_item_object" => ">=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "CreatedDateTop", "table" => $table, "where" => "created_at", "data_item_object" => "<=", "data_key_type" => "date", ); //! Zaman Küçük ve Eşit
+                $searchData[] = array("params" => "ServiceDbStart", "table" => $table, "where" => "serviceDb", "data_item_object" => "likeStart", "data_key_type" => "string", ); //! Başında Varsa
+                $searchData[] = array("params" => "LogServiceCode", "table" => $table, "where" => "serviceCode", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+                $searchData[] = array("params" => "LogStatus", "table" => $table, "where" => "status", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+                
+                $whereData = []; //! Where
+                //$whereData[] = array( "table" => $table, "where" => "created_byId" , "data_item_object" => "=", "value" => 26 ); //! Arama
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                echo "<pre>"; print_r($DB_Find); die();
+                    
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/settings/setting_logList',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Log List Son
+
+    //! Log - Arama Sayfası
+    public function SettingLogSearchView($site_lang="tr",$id)
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Arama
+                $DB_Find = DB::table('logs')->where('id',$id)->first(); //Tüm verileri çekiyor
+
+                if($DB_Find) {  
+                
+                    //! Return
+                    $DB["CookieData"] = $CookieControl["CookieDataList"];
+                    $DB["DB_Find"] =  $DB_Find;
+
+                    echo "<pre>"; print_r($DB); die();
+                    //return view('admin/04_sabit_log_list/00_2_sabit_list_view',$DB); 
+                }
+                else { return view('error404'); }                    
+                
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Log - Arama Sayfası Son
+
+    //! Log - Arama Post
+    public function SettingLogSearchPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $DB_Find = DB::table('logs')->where('id',$request->id)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'DB' =>  $DB_Find,
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'DB' =>  [],
+                    'error' => null, 
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'DB' =>  [],
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+    } //! Log - Arama Post Son
+
+    //! Log - Veri Ekleme Sayfası
+    public function SettingLogAddView($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+
+                //! Log Ekleme
+                $LogAddData = [];
+                $LogAddData["serviceName"] = "Kullanıcı"; //? Servis Adı [ Kullanıcı ]
+                $LogAddData["serviceDb"] = "users"; //? Kullanılan Veri Tabanı [ users ]
+                $LogAddData["serviceDb_Id"] = 1;  //? Kullanılan Veri Tabanı Id [ 16 ]
+                $LogAddData["serviceCode"] = "delete"; //? Servis Kodu [ list / add / delete / edit / view ]
+                $LogAddData["status"] = "success"; //? Durumlar [ success ]
+                $LogAddData["decription"] = "Kullanıcı Silindi"; //? Açıklama [ decription ]
+                $LogAddData["created_byId"] = $_COOKIE["yildirimdev_userID"]; //? İşlemi Yapan Kişi [ 1 ] 
+
+                //echo "<pre>"; print_r($LogAddData); die(); 
+
+                //! Fonksiyon Kullanımı
+                $LogAddFunction = LogAdd($LogAddData); //! Fonksiyon
+                echo "<pre>"; print_r($LogAddFunction); die();
+                //echo "status:"; echo $LogAddData["status"]; die();
+                //! Log Ekleme Son
+
+                /**
+                * [ serviceName ]  => Servis Adı [ Kullanıcı ]
+                * [ serviceDb ]  => Kullanılan Veri Tabanı [ users ]
+                * [ serviceDb_Id ]  => Kullanılan Veri Tabanı Id [ 16 ]
+                * [ serviceCode ]  =>  Servis Kodu [ list / add / delete / edit / view ]
+                * [ status ]  =>  Durumlar [ success / info / error ]
+                * [ decription ]  =>  Açıklama [ Veri Eklendi ]
+                * [ created_at ]  => İşlem Zamanı [ 1 ] 
+                * [ created_byId ]  => İşlemi Yapan Kişi [ 1 ] 
+                */
+                
+                //! Return
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //echo "<pre>"; print_r($DB); die();
+                //return view('admin/04_sabit_log_list/00_3_sabit_list_add',$DB); 
+                
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+            
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Log - Veri Ekleme Sayfası Son
+
+    //! Log - Veri Silme Post
+    public function SettingLogDeletePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $DB_Find = DB::table('logs')->where('id',$request->id)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Silme
+                $DB_Status = DB::table('logs')->where('id',$request->id)->delete();
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,  
+                );  
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Log - Veri Silme Post Son
+
+    //! Log - Veri Çoklu Silme Post
+    public function SettingLogDeletePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Silme
+            $DB_Status = DB::table('logs')->whereIn('id',$request->ids)->delete();
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+    } //! Log - Veri Çoklu Silme Post Son
 
     //************* Ayarlar - Role  ***************** */
 

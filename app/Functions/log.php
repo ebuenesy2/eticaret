@@ -1,5 +1,17 @@
 <?php
 
+//! Log Tüm Veriler
+function LogAll(){
+    
+    $dbAll= DB::table('logs')->get();
+    return $dbAll;
+    
+}
+//! Log Tüm Veriler Son
+
+
+//! Log Ara - Filtreleme
+
 //! Log Ekleme
 function LogAdd ($logAddData) {
      try {
@@ -27,3 +39,7 @@ function LogAdd ($logAddData) {
     } catch (\Throwable $th) { throw $th; }
 }
 //! Log Ekleme Son
+
+
+//! Log Sil
+//! Log Güncelle
