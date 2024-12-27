@@ -39,6 +39,21 @@ class Admin extends Controller
 
    } //! Test Son
 
+   //! Test 1
+   public function TestFirst($site_lang="tr")
+   {
+       \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+       
+       try {
+
+
+          echo "test first"; die();
+            
+   
+       } catch (\Throwable $th) {  throw $th; }
+
+   } //! Test 1 Son
+
    //! Test View
    public function TestView($site_lang="tr")
    {
