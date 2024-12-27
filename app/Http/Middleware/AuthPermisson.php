@@ -15,7 +15,11 @@ class AuthPermisson
      */
     public function handle(Request $request, Closure $next): Response
     {
-        echo "deneme"; die();
+        $role= "superAdmin";
+        //echo "role: "; echo $role; die();
+
+        
+        //echo "admin"; die();        
         return $next($request);
     }
 }
