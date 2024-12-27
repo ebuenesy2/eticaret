@@ -2012,6 +2012,170 @@ class Admin extends Controller
         }
     } //! Log - Veri Çoklu Silme Post Son
 
+    //! Log  -Clone - Post
+    public function SettingLogClonePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'logs';
+            $DB = DB::table($table)->where('id',$request->id); //VeriTabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) { 
+            
+                //! Verileri Ayarlıyor
+                unset($DB_Find->id); //! Veri Silme 
+                unset($DB_Find->created_at); //! Veri Silme 
+                unset($DB_Find->isUpdated); //! Veri Silme 
+                unset($DB_Find->updated_at); //! Veri Silme 
+                unset($DB_Find->updated_byId); //! Veri Silme 
+                unset($DB_Find->isActive); //! Veri Silme 
+                unset($DB_Find->isDeleted); //! Veri Silme 
+                unset($DB_Find->deleted_at); //! Veri Silme 
+                unset($DB_Find->deleted_byId); //! Veri Silme 
+
+                $DB_Find->created_byId = $request->created_byId; //! Veri Güncelle
+            
+                //! Tanım
+                $newData = array(); //! Eklenecek Veri 
+                $table_columns = array_keys(json_decode(json_encode($DB_Find), true));  //! Sutun Veriler
+            
+                //! Veriler
+                for ($i=0; $i < count($table_columns); $i++) { 
+                    $col=$table_columns[$i];
+                    $newData[$col] = $DB->pluck($col)[0];
+                }
+                //! Veriler Son
+
+                //$newData['img_url'] = config('admin.Default_UserImgUrl');
+                $newData['created_byId'] = $request->created_byId;
+
+                //! Veri Ekleme
+                $addNewId = DB::table($table)->insertGetId($newData); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'error' => null, 
+                    'addNewId' => $addNewId,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Log  - Clone - Post Son
+
+    //! Log  - Çoklu Clone - Post
+    public function SettingLogClonePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Arama
+            $table = 'logs';
+            $DB = DB::table($table)->whereIn('id',$request->ids);
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+            
+            if( count($DB_Find) > 0 ){ 
+
+                //! Tanım
+                $DB_FindInsert = []; //! Eklenecek Veri
+
+                for ($i=0; $i < count($DB_Find); $i++) { 
+
+                    //! Veri Silme
+                    unset($DB_Find[$i]->id); //! Veri Silme 
+                    unset($DB_Find[$i]->created_at); //! Veri Silme 
+                    unset($DB_Find[$i]->isUpdated); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_at); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_byId); //! Veri Silme 
+                    unset($DB_Find[$i]->isActive); //! Veri Silme 
+                    unset($DB_Find[$i]->isDeleted); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_at); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
+
+                    $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
+
+                    //! Yeni Data
+                    $newData = array(); //! Eklenecek Veri 
+                    $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
+                    
+                    //! Veriler
+                    for ($k=0; $k < count($table_columns); $k++) { 
+                        $col=$table_columns[$k];
+                        $newData[$col] = $DB_Find->pluck($col)[$i];
+                    }
+                    //! Veriler Son
+                
+                    $DB_FindInsert[] = $newData;
+                }
+
+                //! Veri Ekleme
+                $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => $addNewStatus ? 'success' : 'error',
+                    'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+
+            }
+            else {
+    
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.dataNotFound'),
+                'error' => null,
+            );
+    
+            return response()->json($response);
+            }
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Log  - Çoklu Clone - Post 
+
     //************* Ayarlar - Role  ***************** */
 
     //! Ayarlar - Role

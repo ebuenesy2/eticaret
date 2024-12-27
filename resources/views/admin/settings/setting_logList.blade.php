@@ -67,12 +67,6 @@
                          
                         <div style="display:flex;gap: 5px;flex-wrap: wrap;margin-bottom: 25px;" >
 
-                          <!-- Modal -->
-                          <button class="btn btn-success" href="#addModal" role="button" data-toggle="modal" >
-                            <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
-                          </button>
-                          <!-- Modal Son -->
-
                           <div id='loader' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
 
                         </div>                          
@@ -209,7 +203,6 @@
                                  
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
-                                    <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger" id="deleteItem" data_id="{{$dbFind[$i]->id}}"><i data_id="{{$dbFind[$i]->id}}" class="fa fa-trash "></i></button> 
                                   </td>
                               </tr>
@@ -281,117 +274,6 @@
       <!-- END PAGE -->
    </div>
    <!-- END CONTAINER -->
-
-  <!--************* Modal *********--->
-  <!----  Modal Ekleme -->
-  <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="addModalLabel">@lang('admin.newAdd')</h3>
-        <div id='loaderAdd' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
-      </div>
-      <div class="modal-body">
-        <div class="row-fluid">
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">Slug</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="slugAdd" id="slugAdd" placeholder="Slug" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1"  >
-                  </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">Route Name</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="routeNameAdd" id="routeNameAdd" placeholder="route.name" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
-                  </div>
-              </div>
-          </div>
-         
-        </div>
-        <div class="row-fluid">
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">TR</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="trAdd" id="trAdd" placeholder="TR" value="" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3"  >
-                  </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">EN</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="enAdd" id="enAdd" placeholder="EN" value="" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"  >
-                  </div>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
-        <button class="btn btn-info" id="reset_add" >@lang('admin.reset')</button>
-        <button class="btn btn-success" id="new_add" >@lang('admin.add')</button>
-      </div>
-  </div>
-  <!----  Modal Ekleme Son -->
-
-  <!----  Modal Güncelle -->
-  <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="editModalTitle" style="display: flex;" ><p>@lang('admin.edit') #</p><p id="editModalValueId">54</p> </h3>
-          <div id='loaderEdit' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
-      </div>
-      <div class="modal-body">
-        <div class="row-fluid">
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">Slug</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="slugEdit" id="slugEdit" placeholder="Slug" value="" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1"  >
-                  </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">Route Name</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="routeNameEdit" id="routeNameEdit" placeholder="route.name" value="" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="2" >
-                  </div>
-              </div>
-          </div>
-        
-        </div>
-        <div class="row-fluid">
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">TR</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="trEdit" id="trEdit" placeholder="TR" value="" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3"  >
-                  </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                  <label class="control-label">EN</label>
-                  <div class="controls controls-row">
-                      <input type="text" class="input-block-level" name="enEdit" id="enEdit" placeholder="EN" value="" focusType ="true" focusControl="edit" focusControl_Active="true" focusOrder="4" >
-                  </div>
-              </div>
-          </div>
-        </div>
-      
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
-        <button class="btn btn-success" id="edit_item">@lang('admin.edit')</button>
-      </div>
-  </div>
-  <!----  Modal Güncelle Son -->
-  <!--************* Modal Son *********--->
-
 
   <footer>
     <!-- Footer -->

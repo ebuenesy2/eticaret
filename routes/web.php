@@ -152,6 +152,8 @@ Route::post('/admin/setting/log/search/post', [Admin::class,'SettingLogSearchPos
 Route::get('/{lang}/admin/setting/log/add', [Admin::class,'SettingLogAddView']) -> name("settings.log.add");  //! Veri Ekleme - Sayfası
 Route::post('/admin/setting/log/delete/post', [Admin::class,'SettingLogDeletePost']) -> name("settings.log.delete.post"); //! Veri Silme
 Route::post('/admin/setting/log/delete/post/multi', [Admin::class,'SettingLogDeletePostMulti']) -> name("settings.log.delete.post.multi"); //! Veri Çoklu Silme - Post
+Route::post('/admin/setting/log/clone', [Admin::class,'SettingLogClonePost']) -> name("settings.log.clone.post"); //! Veri Clone - Post
+Route::post('/admin/setting/log/clone/multi', [Admin::class,'SettingLogClonePostMulti']) -> name("settings.log.clone.post.multi"); //! Çoklu Veri Clone - Post
 
 //************* Admin - Ayarlar - Role  ***************** */
 
