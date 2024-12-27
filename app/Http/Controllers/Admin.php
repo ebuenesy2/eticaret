@@ -32,6 +32,7 @@ class Admin extends Controller
        
        try {
 
+
           echo "test"; die();
             
    

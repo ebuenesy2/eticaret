@@ -11,6 +11,29 @@ function LogAll(){
 
 
 //! Log Ara - Filtreleme
+function LogFind($LogFindData){
+
+   try {
+ 
+     //echo "<pre>"; print_r($LogFindData); die();
+    
+     $dbFind= DB::table('logs')->where('created_byId',$LogFindData['created_byId'])->get();
+
+     //! Return
+     $DB["title"] =  "Log Ekleme";
+     $DB["status"] =  $dbFind ? "success" : "error";
+     $DB["DB"] =  $dbFind;
+     $DB["LogFindData"] =  $LogFindData;
+ 
+     //echo "<pre>"; print_r($DB); die();  
+     
+     return $DB;
+    
+   } catch (\Throwable $th) { throw $th; }
+    
+    
+}
+//! Log Ara - Filtreleme Son
 
 //! Log Ekleme
 function LogAdd ($logAddData) {
@@ -39,7 +62,3 @@ function LogAdd ($logAddData) {
     } catch (\Throwable $th) { throw $th; }
 }
 //! Log Ekleme Son
-
-
-//! Log Sil
-//! Log Güncelle
