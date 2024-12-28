@@ -22,13 +22,6 @@ include(app_path() . '/Functions/log.php'); //! Log
 class Admin extends Controller
 {
 
-    //! Başlangıçta çalışan
-    public function __construct()
-    {
-        $this->middleware('authPermisson');
-    }
-
-
    //************* Test ***************** */
 
    //! Test
@@ -52,9 +45,7 @@ class Admin extends Controller
        
        try {
 
-          echo "gelen role: "; echo $role; die();
-
-          echo "test first"; die();
+         echo "test first"; die();
             
    
        } catch (\Throwable $th) {  throw $th; }

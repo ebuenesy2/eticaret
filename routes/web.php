@@ -84,7 +84,7 @@ Route::get('/{lang}/user/checkout', [Web::class,'UserCheckout']) -> name("web.us
 //************* Admin Test  ***************** */
 
 //! Test
-Route::get('/{lang}/admin/test', [Admin::class,'Test']) -> name("admin.test")->withoutMiddleware('authPermisson'); //! Admin Test
+Route::get('/{lang}/admin/test', [Admin::class,'Test']) -> name("admin.test"); //! Admin Test
 Route::get('/{lang}/admin/test/1', [Admin::class,'TestFirst']) -> name("admin.test.first"); //! Admin Test 1
 
 Route::get('/{lang}/admin/test/view', [Admin::class,'TestView']) -> name("admin.test.view"); //! Admin Test View
