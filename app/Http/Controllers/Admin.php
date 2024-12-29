@@ -18,6 +18,7 @@ include(app_path() . '/Functions/functions.php'); //! Fonksiyonlar
 include(app_path() . '/Functions/levels.php'); //! Levels
 include(app_path() . '/Functions/list.php'); //! List
 include(app_path() . '/Functions/log.php'); //! Log
+include(app_path() . '\Functions\permissions.php'); //! Kullanım İzinleri
 
 class Admin extends Controller
 {
@@ -44,6 +45,20 @@ class Admin extends Controller
        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
        
        try {
+
+        //! Yetki Listesi
+        $dbFindData = [];
+        //$dbFindData["user_id"] = 2; //? Kullanıcı Id [ 1 ] 
+        $dbFindData["user_id"] = $_COOKIE["yildirimdev_userID"]; //? Kullanıcı Id [ 1 ] 
+        $dbFindData["role_id"] = $_COOKIE["yildirimdev_roleID"]; //? Role Id [ 1 ]  
+        $dbFindData["departman_id"] = $_COOKIE["yildirimdev_departmanID"]; //? Departman Id [ 1 ] 
+
+        //echo "<pre>"; print_r($dbFindData); die(); 
+
+        $permissionsListFunction = permissionsList($dbFindData); //! Fonksiyon
+        echo "<pre>"; print_r($permissionsListFunction); die();
+
+        //! Yetki Listesi Son
 
          echo "test first"; die();
             
