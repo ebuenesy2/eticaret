@@ -73,8 +73,8 @@ function permissionsUserList() {
 
         $arrayInFindexIndex  = array_search($dbFind_role[$i]->permission_id, array_column($dbFind_permissions, 'permission_id')); //! Veri Arıyor
         
-        if($arrayInFindexIndex != "" && $dbFind_role[$i]->status == 0  ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
-        if($arrayInFindexIndex == "") { $dbFind_permissions[] = $dbFind_role[$i];  }
+        if($arrayInFindexIndex != "" && $dbFind_role[$i]->status == 0 ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
+        if($arrayInFindexIndex == "" && $dbFind_role[$i]->status == 1 ) { $dbFind_permissions[] = $dbFind_role[$i];  }
     }
     
     $dbFind_permissions = array_diff_key($dbFind_permissions, array_flip($removeKeys)); //! Verileri Kaldırıyor
@@ -94,14 +94,13 @@ function permissionsUserList() {
 
         $arrayInFindexIndex  = array_search($dbFind_user[$i]->permission_id, array_column($dbFind_permissions, 'permission_id')); //! Veri Arıyor
 
-        if($arrayInFindexIndex != "" && $dbFind_user[$i]->status == 0  ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
-        if($arrayInFindexIndex == "") { $dbFind_permissions[] = $dbFind_user[$i];  }
+        if($arrayInFindexIndex != "" && $dbFind_user[$i]->status == 0 ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
+        if($arrayInFindexIndex == "" && $dbFind_user[$i]->status == 1 ) { $dbFind_permissions[] = $dbFind_user[$i];  }
     }
    
     $dbFind_permissions = array_diff_key($dbFind_permissions, array_flip($removeKeys)); //! Verileri Kaldırıyor
     $removeKeys = array(); //! Silinecek Verileri Sıfırlıyor
     //! User  - Kullanıcı Son
-
 
     //! Sıralama
     $key_values = array_column($dbFind_permissions, 'permission_id'); //! Sutun Verileri [permissionsId] verisine göre
@@ -174,8 +173,8 @@ function permissionsUserFind($dbFindData = []) {
 
         $arrayInFindexIndex  = array_search($dbFind_role[$i]->permission_id, array_column($dbFind_permissions, 'permission_id')); //! Veri Arıyor
         
-        if($arrayInFindexIndex != "" && $dbFind_role[$i]->status == 0  ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
-        if($arrayInFindexIndex == "") { $dbFind_permissions[] = $dbFind_role[$i];  }
+        if($arrayInFindexIndex != "" && $dbFind_role[$i]->status == 0 ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
+        if($arrayInFindexIndex == "" && $dbFind_role[$i]->status == 1 ) { $dbFind_permissions[] = $dbFind_role[$i];  }
     }
     
     $dbFind_permissions = array_diff_key($dbFind_permissions, array_flip($removeKeys)); //! Verileri Kaldırıyor
@@ -195,8 +194,8 @@ function permissionsUserFind($dbFindData = []) {
 
         $arrayInFindexIndex  = array_search($dbFind_user[$i]->permission_id, array_column($dbFind_permissions, 'permission_id')); //! Veri Arıyor
 
-        if($arrayInFindexIndex != "" && $dbFind_user[$i]->status == 0  ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
-        if($arrayInFindexIndex == "") { $dbFind_permissions[] = $dbFind_user[$i];  }
+        if($arrayInFindexIndex != "" && $dbFind_user[$i]->status == 0 ) { $removeKeys[] = $arrayInFindexIndex; } //! Veri Siliyor
+        if($arrayInFindexIndex == "" && $dbFind_user[$i]->status == 1 ) { $dbFind_permissions[] = $dbFind_user[$i];  }
     }
    
     $dbFind_permissions = array_diff_key($dbFind_permissions, array_flip($removeKeys)); //! Verileri Kaldırıyor

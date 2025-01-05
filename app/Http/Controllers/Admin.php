@@ -71,6 +71,15 @@ class Admin extends Controller
 
                 //! Return
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+               //! Yetki Listesi
+               $dbFindData = [];
+               $dbFindData["service"] = "test"; //! Aranacak Service
+               $permissionsUserFindFunction = permissionsUserFind($dbFindData); //! Fonksiyon - Tüm Veriler
+               $DB["permissions"] = $permissionsUserFindFunction["dbFind_permissions"]; //! Yetki Listesi
+               
+               $permissions = $permissionsUserFindFunction["dbFind_permissions"]; //! Yetki Listesi
+               //echo "<pre>"; print_r($permissions); die();
                 
                 //echo "<pre>"; print_r($DB); die();
                 
