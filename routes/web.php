@@ -433,6 +433,19 @@ Route::post('/admin/business/account/edit/post', [Admin::class,'BusinessAccountE
 Route::post('/admin/business/account/clone', [Admin::class,'BusinessAccountClonePost']) -> name("admin.web.business.account.list.clone.post"); //! Veri Clone - Post
 Route::post('/admin/business/account/clone/multi', [Admin::class,'BusinessAccountClonePostMulti']) -> name("admin.web.business.account.list.clone.post.multi"); //! Çoklu Veri Clone - Post
 
+//! Finans - Cari Hesap
+//! Finans - Cari Hesap - Extra
+
+//! Finans - Kasa Hesap
+Route::get('/{lang}/admin/safe/account', [Admin::class,'SafeAccount']) -> name("admin.web.safe.account.list");  //! Tüm Veriler
+Route::post('/admin/safe/account/search/post', [Admin::class,'SafeAccountSearchPost']) -> name("admin.web.safe.account.list.search.post"); //! Veri Arama - Post
+Route::post('/admin/safe/account/add/post', [Admin::class,'SafeAccountAddPost']) -> name("admin.web.safe.account.list.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/safe/account/delete/post', [Admin::class,'SafeAccountDeletePost']) -> name("admin.web.safe.account.list.delete.post"); //! Veri Silme
+Route::post('/admin/safe/account/delete/post/multi', [Admin::class,'SafeAccountDeletePostMulti']) -> name("admin.web.safe.account.list.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/safe/account/edit/post', [Admin::class,'SafeAccountEditPost']) -> name("admin.web.safe.account.list.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/safe/account/clone', [Admin::class,'SafeAccountClonePost']) -> name("admin.web.safe.account.list.clone.post"); //! Veri Clone - Post
+Route::post('/admin/safe/account/clone/multi', [Admin::class,'SafeAccountClonePostMulti']) -> name("admin.web.safe.account.list.clone.post.multi"); //! Çoklu Veri Clone - Post
+
 //! Cari Hesap
 Route::get('/{lang}/admin/current/account', [Admin::class,'CurrentAccount']) -> name("admin.web.current.account.list");  //! Tüm Veriler
 Route::post('/admin/current/account/search/post', [Admin::class,'CurrentAccountSearchPost']) -> name("admin.web.current.account.search.post"); //! Veri Arama - Post

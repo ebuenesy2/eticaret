@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <!-- Head -->
-<title> İşletme Hesap Kart | {{ config('admin.Admin_Title') }} </title>
+<title> Kasa | {{ config('admin.Admin_Title') }} </title>
 @include('admin.include.head')
 
 <!-- Tanım -->
 <?php $homeUrl = '/admin'; ?>
-<?php $listTitle = 'İşletme Hesap Kart'; ?>
+<?php $listTitle = 'Kasa'; ?>
 <?php $listUrl = "/admin/setting/menu";  ?>
 
 <!-- Yıldırımdev Table Css -->
@@ -136,10 +136,16 @@
                                 <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th class="table_title" exportName="id" >ID</th>
+                                <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.date')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.date') Full</th>
+
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.description')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.price')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.type')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.price')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.total')</th>
 
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
@@ -153,10 +159,17 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id}}</td>
+                                  <td data-cell="@lang('admin.date')">{{$dbFind[$i]->date_time}}</td>
+                                  <td data-cell="@lang('admin.date') Full">{{$dbFind[$i]->date_time_full}}</td>
+
                                   <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
                                   <td data-cell="@lang('admin.description')">{{$dbFind[$i]->description}}</td>
-                                  <td data-cell="@lang('admin.price')">{{$dbFind[$i]->price}}</td>
                                   <td data-cell="@lang('admin.type')">{{$dbFind[$i]->type}}</td>
+                                  <td data-cell="@lang('admin.price')">{{$dbFind[$i]->price}}</td>
+                                  <td data-cell="@lang('admin.quantity')">{{$dbFind[$i]->quantity}}</td>
+                                  <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
+                                 
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
@@ -216,9 +229,10 @@
                           </div>
                           <!------  Pagination Son -->
 
+
                         </div>
                         <!------ Tablo Alt Son -->
-
+                        
                         <p>** Hizmet = Gider olarak değerlendirecektir</p>
 
                     </div>
@@ -366,7 +380,7 @@
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
-    <script src="{{asset('/assets/admin')}}/js/finance/business_account.js"></script>
+    <script src="{{asset('/assets/admin')}}/js/finance/safe_account.js"></script>
         
     <!-- Yıldırımdev Table JS -->
     <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
