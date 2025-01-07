@@ -85,6 +85,7 @@
     'total' => 'Toplam',
     'amount' => 'Miktar',
     'unitPrice' => 'Birim Fiyat',
+    'price' => 'Fiyat',
 
     'orderDetail' => 'Satış Detayı',
     'orderDetails' => 'Satış Detayları',

@@ -422,6 +422,17 @@ Route::post('/admin/product/comment/clone/multi', [Admin::class,'ProductCommentC
 
 //************* Finans  ***************** */
 
+
+//! Finans - İşletme Hesap
+Route::get('/{lang}/admin/business/account', [Admin::class,'BusinessAccount']) -> name("admin.web.business.account.list");  //! Tüm Veriler
+Route::post('/admin/business/account/search/post', [Admin::class,'BusinessAccountSearchPost']) -> name("admin.web.business.account.list.search.post"); //! Veri Arama - Post
+Route::post('/admin/business/account/add/post', [Admin::class,'BusinessAccountAddPost']) -> name("admin.web.business.account.list.add.post"); //! Veri Ekleme - Post
+Route::post('/admin/business/account/delete/post', [Admin::class,'BusinessAccountDeletePost']) -> name("admin.web.business.account.list.delete.post"); //! Veri Silme
+Route::post('/admin/business/account/delete/post/multi', [Admin::class,'BusinessAccountDeletePostMulti']) -> name("admin.web.business.account.list.delete.post.multi"); //! Çoklu Veri Silme - Post
+Route::post('/admin/business/account/edit/post', [Admin::class,'BusinessAccountEditPost']) -> name("admin.web.business.account.list.edit.post"); //! Veri Güncelle - Post
+Route::post('/admin/business/account/clone', [Admin::class,'BusinessAccountClonePost']) -> name("admin.web.business.account.list.clone.post"); //! Veri Clone - Post
+Route::post('/admin/business/account/clone/multi', [Admin::class,'BusinessAccountClonePostMulti']) -> name("admin.web.business.account.list.clone.post.multi"); //! Çoklu Veri Clone - Post
+
 //! Cari Hesap
 Route::get('/{lang}/admin/current/account', [Admin::class,'CurrentAccount']) -> name("admin.web.current.account.list");  //! Tüm Veriler
 Route::post('/admin/current/account/search/post', [Admin::class,'CurrentAccountSearchPost']) -> name("admin.web.current.account.search.post"); //! Veri Arama - Post

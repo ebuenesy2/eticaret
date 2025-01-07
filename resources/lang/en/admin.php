@@ -85,6 +85,7 @@
     'total' => 'Total',
     'amount' => 'Amount',
     'unitPrice' => 'Unit Price',
+    'price' => 'Price',
 
     'orderDetail' => 'Order Detail',
     'orderDetails' => 'Order Details',
