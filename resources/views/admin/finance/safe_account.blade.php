@@ -258,12 +258,50 @@
         <div id='loaderAdd' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
       <div class="modal-body">
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.title')</label>
+                <label class="control-label">Cari Kart Id</label>
                 <div class="controls controls-row">
-                    <input type="text" class="input-block-level" name="titleAdd" id="titleAdd" placeholder="@lang('admin.title')" value="" focusType ="true" focusControl="add" focusControl_Active="true"  focusOrder="1"  >
+                    <input type="number" class="input-block-level" name="currentIdAdd" id="currentIdAdd" placeholder="0" value="0" focusType ="true" focusControl="add" focusControl_Active="true"  focusOrder="1"  >
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.date')</label>
+                <div class="controls controls-row">
+                  <input type="date" class="input-block-level" name="dateAdd" id="dateAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.date') Full</label>
+                <div class="controls controls-row">
+                  <input type="text" class="input-block-level" name="dateFullAdd" id="dateFullAdd" placeholder=""  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                <label class="control-label">İş Hizmet</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="businessAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="">@lang('admin.choose')</option>
+                        <option value="0" data_type_code="1" data_price="0" data_description="" >Diğer</option>
+                        @for ($i = 0; $i < count($DB_Business_Account); $i++)
+                        <option value="{{$DB_Business_Account[$i]->id}}" data_type_code="{{$DB_Business_Account[$i]->type_code}}" data_price="{{$DB_Business_Account[$i]->price}}" data_description="{{$DB_Business_Account[$i]->description}}"  >{{$DB_Business_Account[$i]->title}}</option>
+                        @endfor
+                      
+                    </select>
                 </div>
               </div>
           </div>
@@ -303,6 +341,25 @@
                 </div>
             </div>
         </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.purchaseAmount')</label>
+                <div class="controls controls-row">
+                  <input type="number" class="input-block-level" name="purchaseAmountAdd" id="purchaseAmountAdd" placeholder="1" value="1"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="5" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.total')</label>
+                <div class="controls controls-row">
+                  <input type="number" class="input-block-level" name="totalAdd" id="totalAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="6" >
+                </div>
+              </div>
+          </div>
+        </div> 
        
       </div>
       <div class="modal-footer">
@@ -321,16 +378,55 @@
           <div id='loaderEdit' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
       <div class="modal-body">
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.title')</label>
+                <label class="control-label">Cari Kart Id</label>
                 <div class="controls controls-row">
-                    <input type="text" class="input-block-level" name="titleEdit" id="titleEdit" placeholder="@lang('admin.title')" value="" focusType ="true" focusControl="edit" focusControl_Active="true"  focusOrder="1"  >
+                    <input type="number" class="input-block-level" name="currentIdEdit" id="currentIdEdit" placeholder="0" value="0" focusType ="true" focusControl="edit" focusControl_Active="true"  focusOrder="1"  >
                 </div>
               </div>
           </div>
         </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.date')</label>
+                <div class="controls controls-row">
+                  <input type="date" class="input-block-level" name="dateEdit" id="dateEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.date') Full</label>
+                <div class="controls controls-row">
+                  <input type="text" class="input-block-level" name="dateFullEdit" id="dateFullEdit" placeholder=""  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="2" >
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                <label class="control-label">İş Hizmet</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="businessEdit" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
+                        <option value="">@lang('admin.choose')</option>
+                        <option value="0" data_type_code="1" data_price="0" data_description="" >Diğer</option>
+                        @for ($i = 0; $i < count($DB_Business_Account); $i++)
+                        <option value="{{$DB_Business_Account[$i]->id}}" data_type_code="{{$DB_Business_Account[$i]->type_code}}" data_price="{{$DB_Business_Account[$i]->price}}" data_description="{{$DB_Business_Account[$i]->description}}"  >{{$DB_Business_Account[$i]->title}}</option>
+                        @endfor
+                      
+                    </select>
+                </div>
+              </div>
+          </div>
+        </div>
+        
         <div class="row-fluid">
             <div class="span12">
                 <div class="control-group">
@@ -364,6 +460,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="row-fluid">
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.purchaseAmount')</label>
+                <div class="controls controls-row">
+                  <input type="number" class="input-block-level" name="purchaseAmountEdit" id="purchaseAmountEdit" placeholder="1" value="1"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="5" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.total')</label>
+                <div class="controls controls-row">
+                  <input type="number" class="input-block-level" name="totalEdit" id="totalEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="6" >
+                </div>
+              </div>
+          </div>
+        </div> 
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>

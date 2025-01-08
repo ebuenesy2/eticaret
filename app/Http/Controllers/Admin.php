@@ -14001,6 +14001,12 @@ class Admin extends Controller
                 $DB = $DB_Find;
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
 
+                //! İş Hesapları
+                $DB_Business_Account = DB::table('finance_business_account')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Business_Account); die();
+
+                $DB["DB_Business_Account"] = $DB_Business_Account; //! Return 
+
                 //echo "<pre>"; print_r($DB); die();
                 
                 return view('admin/finance/safe_account',$DB);
@@ -14073,11 +14079,17 @@ class Admin extends Controller
          
             //! Veri Ekleme
             DB::table('finance_safe_account')->insert([
+                'current_id' => $request->current_id,
+                'date_time' => $request->date_time,
+                'date_time_full' => $request->date_time_full,
+                'finance_business_account_id' => $request->finance_business_account_id,
                 'title' => $request->title,
                 'description' => $request->description,
-                'price' => $request->price,
                 'type' => $request->type,
                 'type_code' => $request->type_code,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'total' => $request->total,
                 'created_byId'=>$request->created_byId,
             ]); //! Veri Ekleme Son
 
@@ -14202,11 +14214,17 @@ class Admin extends Controller
 
                 //! Veri Güncelle
                 $DB_Status = $DB->update([            
+                    'current_id' => $request->current_id,
+                    'date_time' => $request->date_time,
+                    'date_time_full' => $request->date_time_full,
+                    'finance_business_account_id' => $request->finance_business_account_id,
                     'title' => $request->title,
                     'description' => $request->description,
-                    'price' => $request->price,
                     'type' => $request->type,
                     'type_code' => $request->type_code,
+                    'price' => $request->price,
+                    'quantity' => $request->quantity,
+                    'total' => $request->total,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,

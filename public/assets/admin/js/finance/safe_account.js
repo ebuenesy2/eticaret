@@ -49,21 +49,59 @@ $("#new_add").click(function (e) {
     //! Loading - Veri Yüklendi Son
 
     //! Veriler
-    var titleAdd = $('#titleAdd').val();
+    var currentIdAdd = $('#currentIdAdd').val();
+    var dateAdd = $('#dateAdd').val();
+    var dateFullAdd = $('#dateFullAdd').val();
+    var businessAdd = $('#businessAdd').val();
     var typeAdd = $('#typeAdd').val();
 
-    if(titleAdd == '') { 
+    if(currentIdAdd == '') { 
 
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Başlık Yazılmadı",
+            title: "Cari Kart Seçilmedi",
             showConfirmButton: false,
             timer: 2000,
         });
 
         loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(dateAdd == '') { 
 
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Tarih Yazılmadı",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(dateFullAdd == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Tarih Full Yazılmadı",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(businessAdd == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "İş Hizmet Seçilmedi",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
     }
     else {
 
@@ -74,11 +112,17 @@ $("#new_add").click(function (e) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
-                title: $('#titleAdd').val(),
+                current_id: $('#currentIdAdd').val(),
+                date_time:dateAdd,
+                date_time_full:dateFullAdd,
+                finance_business_account_id: $('#businessAdd').val(),
+                title: $('#businessAdd option[value="'+businessAdd+'"]').html(),
                 description: $('#descriptionAdd').val(),
-                price: $('#priceAdd').val(),
                 type: $('#typeAdd option[value="'+typeAdd+'"]').html(),
                 type_code: $('#typeAdd').val(),
+                price: $('#priceAdd').val(),
+                quantity: $('#purchaseAmountAdd').val(),
+                total: $('#totalAdd').val(),
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -132,6 +176,43 @@ $("#reset_add").click(function (e) {
     $('#addModal input,textarea,select').val('').prop("checked", ""); //! Inputları Sıfırlıyor
  
 }); //! Reset Son
+
+//! Değisiklik Olursa
+$('#businessAdd').change(function (e) {
+    e.preventDefault();
+    
+    var valueCode = $('#businessAdd').val(); //! Okuma Value => [0]
+    var valueText = $('#businessAdd option[value="'+valueCode +'"]').html(); //! Okuma Html => [ Diğer ]
+    var valueAttr_TypeCode = $('#businessAdd option[value="'+valueCode +'"]').attr('data_type_code'); //! Okuma Attr => [typeCode]
+    var valueAttr_Description = $('#businessAdd option[value="'+valueCode +'"]').attr('data_description'); //! Okuma Attr => [description]
+    var valueAttr_Price = $('#businessAdd option[value="'+valueCode +'"]').attr('data_price'); //! Okuma Attr => [price]
+
+    //! Return
+    $('#typeAdd option[value="'+valueAttr_TypeCode+'"]').prop('selected', true); //! Seçim yap
+    $('#descriptionAdd').html(valueAttr_Description);
+    $('#priceAdd').val(valueAttr_Price);
+    $('#purchaseAmountAdd').val(1);
+    $('#totalAdd').val(valueAttr_Price);
+    
+}); //! Değisiklik Olursa Son
+
+//! Ekle - Toplam Hesaplama
+document.querySelector('#purchaseAmountAdd').addEventListener('keyup', e => { resutAdd(); }); 
+document.querySelector('#priceAdd').addEventListener('keyup', e => { resutAdd(); }); 
+
+function resutAdd(){
+    var purchaseAmount = $('#purchaseAmountAdd').val(); //! Alış Miktarı
+    purchaseAmount = Number(purchaseAmount.replace(',','.')).toFixed(3); //! Sayı Dönüştür
+
+    var purchaseUnitPrice = $('#priceAdd').val(); //!  Alış Birim Fiyatı
+    purchaseUnitPrice = Number(purchaseUnitPrice.replace(',','.')).toFixed(3); //! Sayı Dönüştür
+
+    var result = purchaseAmount*purchaseUnitPrice; //! Hesaplama
+    result = result.toFixed(2); //! Sayı Dönüştür
+
+    $('#totalAdd').val(result); 
+}
+//! Ekle - Toplam Hesaplama Son
 
 //! ************ Ekleme Son  ***************
 
@@ -262,10 +343,17 @@ document.querySelectorAll("#editItem").forEach((Item) => {
                 if(response.status == "success") {
 
                     //! Veriler
-                    $('#titleEdit').val(response.DB.title);
+                    $('#currentIdEdit').val(response.DB.current_id);
+                    $('#dateEdit').val(response.DB.date_time);
+                    $('#dateFullEdit').val(response.DB.date_time_full);
+
+                    $('#businessEdit option[value="'+response.DB.finance_business_account_id+'"]').prop('selected', true); //! Seçim yap
                     $('#descriptionEdit').html(response.DB.description);
                     $('#typeEdit option[value="'+response.DB.type_code+'"]').prop('selected', true); //! Seçim yap
+                    
                     $('#priceEdit').val(response.DB.price);
+                    $('#purchaseAmountEdit').val(response.DB.quantity);
+                    $('#totalEdit').val(response.DB.total);
 
                     //! Loading - Veri Yüklendi
                     $('#loaderEdit').hide(); //! Laoding Gizle
@@ -311,27 +399,65 @@ $("#edit_item").click(function (e) {
         document.getElementById("edit_item").style.cursor = "pointer"; //! Cursor - Ok
     }
     //! Loading - Veri Yüklendi Son
-
+   
     //! Veriler
-    var titleEdit = $('#titleEdit').val();
+    var currentIdEdit = $('#currentIdEdit').val(); 
+    var dateEdit = $('#dateEdit').val();
+    var dateFullEdit = $('#dateFullEdit').val();
+    var businessEdit = $('#businessEdit').val();
     var typeEdit = $('#typeEdit').val();
 
-    if(titleEdit == '') { 
+    if(currentIdEdit == '') { 
 
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Başlık Yazılmadı",
+            title: "Cari Kart Seçilmedi",
             showConfirmButton: false,
             timer: 2000,
         });
 
         loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(dateEdit == '') { 
 
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Tarih Yazılmadı",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(dateFullEdit == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Tarih Full Yazılmadı",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(businessEdit == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "İş Hizmet Seçilmedi",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
     }
     else {
 
-        //! Ajax  Post
+        //! Ajax  Post // Edit
         $.ajax({
             url: listUrl + "/edit/post",
             type: "post",
@@ -339,11 +465,19 @@ $("#edit_item").click(function (e) {
             data: {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
                 id:Number(data_id),
-                title: $('#titleEdit').val(),
+
+                current_id: $('#currentIdEdit').val(),
+                date_time:dateEdit,
+                date_time_full:dateFullEdit,
+                finance_business_account_id: $('#businessEdit').val(),
+                title: $('#businessEdit option[value="'+businessEdit+'"]').html(),
                 description: $('#descriptionEdit').val(),
-                price: $('#priceEdit').val(),
                 type: $('#typeEdit option[value="'+typeEdit+'"]').html(),
                 type_code: $('#typeEdit').val(),
+                price: $('#priceEdit').val(),
+                quantity: $('#purchaseAmountEdit').val(),
+                total: $('#totalEdit').val(),
+               
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -388,6 +522,44 @@ $("#edit_item").click(function (e) {
     }
 
 }); //! Güncelle Son
+
+//! Değisiklik Olursa
+$('#businessEdit').change(function (e) {
+    e.preventDefault();
+    
+    var valueCode = $('#businessEdit').val(); //! Okuma Value => [0]
+    var valueText = $('#businessEdit option[value="'+valueCode +'"]').html(); //! Okuma Html => [ Diğer ]
+    var valueAttr_TypeCode = $('#businessEdit option[value="'+valueCode +'"]').attr('data_type_code'); //! Okuma Attr => [typeCode]
+    var valueAttr_Description = $('#businessEdit option[value="'+valueCode +'"]').attr('data_description'); //! Okuma Attr => [description]
+    var valueAttr_Price = $('#businessEdit option[value="'+valueCode +'"]').attr('data_price'); //! Okuma Attr => [price]
+
+    //! Return
+    $('#typeEdit option[value="'+valueAttr_TypeCode+'"]').prop('selected', true); //! Seçim yap
+    $('#descriptionEdit').html(valueAttr_Description);
+    $('#priceEdit').val(valueAttr_Price);
+    $('#purchaseAmountEdit').val(1);
+    $('#totalEdit').val(valueAttr_Price);
+    
+}); //! Değisiklik Olursa Son
+
+
+//! Güncelle - Toplam Hesaplama
+document.querySelector('#purchaseAmountEdit').addEventListener('keyup', e => { resutEdit(); }); 
+document.querySelector('#priceEdit').addEventListener('keyup', e => { resutEdit(); }); 
+
+function resutEdit(){
+    var purchaseAmount = $('#purchaseAmountEdit').val(); //! Alış Miktarı
+    purchaseAmount = Number(purchaseAmount.replace(',','.')).toFixed(3); //! Sayı Dönüştür
+
+    var purchaseUnitPrice = $('#priceEdit').val(); //!  Alış Birim Fiyatı
+    purchaseUnitPrice = Number(purchaseUnitPrice.replace(',','.')).toFixed(3); //! Sayı Dönüştür
+
+    var result = purchaseAmount*purchaseUnitPrice; //! Hesaplama
+    result = result.toFixed(2); //! Sayı Dönüştür
+
+    $('#totalEdit').val(result); 
+}
+//! Güncelle - Toplam Hesaplama Son
 
 //! ************ Güncelle Son  ***************
 
