@@ -310,9 +310,9 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.date')</label>
+                <label class="control-label">@lang('admin.title')</label>
                 <div class="controls controls-row">
-                  <input type="datetime-local" class="input-block-level" name="dateEdit" id="dateEdit" placeholder="0" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1" >
+                  <input type="text" class="input-block-level" name="titleEdit" id="titleEdit"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>
@@ -320,37 +320,45 @@
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.deposited')</label>
+                <label class="control-label">@lang('admin.phone')</label>
                 <div class="controls controls-row">
-                  <input type="number" class="input-block-level" name="depositedEdit" id="depositedEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="2" >
+                  <input type="text" class="input-block-level" name="phoneEdit" id="phoneEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.withdrawn')</label>
+                <label class="control-label">@lang('admin.email')</label>
                 <div class="controls controls-row">
-                  <input type="number" class="input-block-level" name="withdrawnEdit" id="withdrawnEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
+                  <input type="email" class="input-block-level" name="emailEdit" id="emailEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
                 </div>
               </div>
           </div>
-        </div> 
+        </div>
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.result')</label>
+                <label class="control-label">@lang('admin.address')</label>
                 <div class="controls controls-row">
-                  <label class="control-label" name="resultEdit" id="resultEdit" >0</label>
+                  <textarea class="span12" name="addressEdit" id="addressEdit"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"></textarea>
                 </div>
               </div>
           </div>
-        </div>      
+        </div>
         <div class="row-fluid">
-          <div class="span12">
+          <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.description')</label>
+                <label class="control-label">IBAN</label>
                 <div class="controls controls-row">
-                  <textarea class="span12" name="descriptionEdit" id="descriptionEdit"  rows="3" cols="80" focusType ="true" focusControl="edit" focusControl_Active="true" focusOrder="4"></textarea>
+                  <input type="text" class="input-block-level" name="ibanEdit" id="ibanEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">IBAN @lang('admin.name')</label>
+                <div class="controls controls-row">
+                  <input type="text" class="input-block-level" name="ibanNameEdit" id="ibanNameEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
                 </div>
               </div>
           </div>

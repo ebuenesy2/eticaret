@@ -14071,11 +14071,12 @@ class Admin extends Controller
          
             //! Veri Ekleme
             DB::table('finance_current_account')->insert([
-                'date_time' => $request->date_time,
-                'deposited' => $request->deposited ? $request->deposited : 0,
-                'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
-                'result' => $request->result,
-                'description' => $request->description,
+                'title' => $request->title,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'address' => $request->address,
+                'iban' => $request->iban,
+                'iban_name' => $request->iban_name,
                 'created_byId'=>$request->created_byId,
             ]); //! Veri Ekleme Son
 
@@ -14200,11 +14201,12 @@ class Admin extends Controller
 
                 //! Veri Güncelle
                 $DB_Status = $DB->update([            
-                    'date_time' => $request->date_time,
-                    'deposited' => $request->deposited ? $request->deposited : 0,
-                    'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
-                    'result' => $request->result,
-                    'description' => $request->description,
+                    'title' => $request->title,
+                    'phone' => $request->phone,
+                    'email' => $request->email,
+                    'address' => $request->address,
+                    'iban' => $request->iban,
+                    'iban_name' => $request->iban_name,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,

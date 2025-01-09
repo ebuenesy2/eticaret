@@ -49,14 +49,14 @@ $("#new_add").click(function (e) {
     //! Loading - Veri Yüklendi Son
 
     //! Veriler
-    var dateAdd = $('#dateAdd').val();
+    var titleAdd = $('#titleAdd').val();
 
-    if(dateAdd == '') { 
+    if(titleAdd == '') { 
 
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Tarih Yazılmadı",
+            title: "Başlık Yazılmadı",
             showConfirmButton: false,
             timer: 2000,
         });
@@ -72,11 +72,12 @@ $("#new_add").click(function (e) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
-                date_time:dateAdd,
-                deposited: $('#depositedAdd').val(),
-                withdrawn: $('#withdrawnAdd').val(),
-                result: $('#resultAdd').html(),
-                description: $('#descriptionAdd').val(),
+                title:titleAdd,
+                phone: $('#phoneAdd').val(),
+                email: $('#emailAdd').val(),
+                address: $('#addressAdd').val(),
+                iban: $('#ibanAdd').val(),
+                iban_name: $('#ibanNameAdd').val(),
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -260,11 +261,12 @@ document.querySelectorAll("#editItem").forEach((Item) => {
                 if(response.status == "success") {
 
                     //! Veriler
-                    $('#dateEdit').val(response.DB.date_time);
-                    $('#depositedEdit').val(response.DB.deposited);
-                    $('#withdrawnEdit').val(response.DB.withdrawn);
-                    $('#resultEdit').html(response.DB.result);
-                    $('#descriptionEdit').html(response.DB.description);
+                    $('#titleEdit').val(response.DB.title);
+                    $('#phoneEdit').val(response.DB.phone);
+                    $('#emailEdit').val(response.DB.email);
+                    $('#addressEdit').val(response.DB.address);
+                    $('#ibanEdit').val(response.DB.iban);
+                    $('#ibanNameEdit').val(response.DB.iban_name);
 
                     //! Loading - Veri Yüklendi
                     $('#loaderEdit').hide(); //! Laoding Gizle
@@ -312,14 +314,14 @@ $("#edit_item").click(function (e) {
     //! Loading - Veri Yüklendi Son
 
     //! Veriler
-    var dateEdit = $('#dateEdit').val();
+    var titleEdit = $('#titleEdit').val(); 
 
-    if(dateEdit == '') { 
+    if(titleEdit == '') { 
 
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Tarih Yazılmadı",
+            title: "Başlık Yazılmadı",
             showConfirmButton: false,
             timer: 2000,
         });
@@ -336,11 +338,14 @@ $("#edit_item").click(function (e) {
             data: {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
                 id:Number(data_id),
-                date_time:dateEdit,
-                deposited: $('#depositedEdit').val(),
-                withdrawn: $('#withdrawnEdit').val(),
-                result: $('#resultEdit').html(),
-                description: $('#descriptionEdit').val(),
+
+                title:titleEdit,
+                phone: $('#phoneEdit').val(), 
+                email: $('#emailEdit').val(),
+                address: $('#addressEdit').val(),
+                iban: $('#ibanEdit').val(),
+                iban_name: $('#ibanNameEdit').val(), 
+
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -387,44 +392,6 @@ $("#edit_item").click(function (e) {
 }); //! Güncelle Son
 
 //! ************ Güncelle Son  ***************
-
-//! ************ İşlemler *******************
-
-//! Ekle - Sonuc Hesaplama
-document.querySelector('#depositedAdd').addEventListener('keyup', e => { resutAdd(); }); 
-document.querySelector('#withdrawnAdd').addEventListener('keyup', e => { resutAdd(); }); 
-
-function resutAdd(){
-    var deposited = $('#depositedAdd').val(); //! Yatırılan
-    deposited = Number(deposited.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var withdrawn = $('#withdrawnAdd').val(); //! Çekilen
-    withdrawn = Number(withdrawn.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var result = deposited-withdrawn; //! Hesaplama
-    result = result.toFixed(2); //! Sayı Dönüştür
-
-    $('#resultAdd').html(result); 
-}
-
-//! Güncelleme - Sonuc Hesaplama
-document.querySelector('#depositedEdit').addEventListener('keyup', e => { resutEdit(); }); 
-document.querySelector('#withdrawnEdit').addEventListener('keyup', e => { resutEdit(); }); 
-
-function resutEdit(){
-    var deposited = $('#depositedEdit').val(); //! Yatırılan
-    deposited = Number(deposited.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var withdrawn = $('#withdrawnEdit').val(); //! Çekilen
-    withdrawn = Number(withdrawn.replace(',','.')).toFixed(2); //! Sayı Dönüştür
-
-    var result = deposited-withdrawn; //! Hesaplama
-    result = result.toFixed(2); //! Sayı Dönüştür
-
-    $('#resultEdit').html(result); 
-}
-
-//! ************ İşlemler Son ***************
 
 //! ************ Çoklu İşlemler ***************
 
