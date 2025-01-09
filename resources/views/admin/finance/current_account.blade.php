@@ -96,39 +96,7 @@
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
-                        
-                        <!------  Tablo Üst - Sonucları Gösterme --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;" >
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Toplam Yatırılan</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->totalDepositedTotal}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Toplam Çekilen</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->totalWithdrawnTotal}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Kasa Durumu</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->totalTotal}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Bu Yıl Durum</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->yearTotal}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Bu Ay Durum</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->monthTotal}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Bu Hafta Durum</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->last7Total}}</p>
-                          </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Bugün Durum</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$dbDashboard->dayTotal}}</p>
-                          </div>
-                        </div>
-                        <!------  Tablo Üst - Sonucları Gösterme Son ----->
+                       
 
                         <!------ Tablo Ayarları -->
                         <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
@@ -157,11 +125,12 @@
                                 <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th class="table_title" exportName="id" >ID</th>
-                                <th class="table_title" exportName="id" >@lang('admin.date')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.deposited')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.withdrawn')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.result')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.description')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.title')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.phone')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.email')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.address')</th>
+                                <th class="table_title" exportName="id" >IBAN</th>
+                                <th class="table_title" exportName="id" >IBAN @lang('admin.name')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -174,11 +143,12 @@
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
                                   <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
-                                  <td data-cell="@lang('admin.date')" >{{\Carbon\Carbon::parse($dbFind[$i]->date_time)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</td>
-                                  <td data-cell="@lang('admin.deposited')" >{{$dbFind[$i]->deposited}}</td>
-                                  <td data-cell="@lang('admin.withdrawn')" >{{$dbFind[$i]->withdrawn}}</td>
-                                  <td data-cell="@lang('admin.result')" >{{$dbFind[$i]->result}}</td>
-                                  <td data-cell="@lang('admin.description')" >{{$dbFind[$i]->description}}</td>
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->title}}</td>
+                                  <td data-cell="@lang('admin.phone')" >{{$dbFind[$i]->phone}}</td>
+                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
+                                  <td data-cell="@lang('admin.address')" >{{$dbFind[$i]->address}}</td>
+                                  <td data-cell="IBAN" >{{$dbFind[$i]->iban}}</td>
+                                  <td data-cell="IBAN @lang('admin.name')" >{{$dbFind[$i]->iban_name}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
@@ -267,9 +237,9 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.date')</label>
+                <label class="control-label">@lang('admin.title')</label>
                 <div class="controls controls-row">
-                  <input type="datetime-local" class="input-block-level" name="dateAdd" id="dateAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
+                  <input type="text" class="input-block-level" name="titleAdd" id="titleAdd"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>
@@ -277,37 +247,45 @@
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.deposited')</label>
+                <label class="control-label">@lang('admin.phone')</label>
                 <div class="controls controls-row">
-                  <input type="number" class="input-block-level" name="depositedAdd" id="depositedAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="text" class="input-block-level" name="phoneAdd" id="phoneAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.withdrawn')</label>
+                <label class="control-label">@lang('admin.email')</label>
                 <div class="controls controls-row">
-                  <input type="number" class="input-block-level" name="withdrawnAdd" id="withdrawnAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                  <input type="email" class="input-block-level" name="emailAdd" id="emailAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
                 </div>
               </div>
           </div>
-        </div> 
+        </div>
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.result')</label>
+                <label class="control-label">@lang('admin.address')</label>
                 <div class="controls controls-row">
-                  <label class="control-label" name="resultAdd" id="resultAdd" >0</label>
+                  <textarea class="span12" name="addressAdd" id="addressAdd"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"></textarea>
                 </div>
               </div>
           </div>
-        </div>      
+        </div>
         <div class="row-fluid">
-          <div class="span12">
+          <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.description')</label>
+                <label class="control-label">IBAN</label>
                 <div class="controls controls-row">
-                  <textarea class="span12" name="descriptionAdd" id="descriptionAdd"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"></textarea>
+                  <input type="text" class="input-block-level" name="ibanAdd" id="ibanAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                </div>
+              </div>
+          </div>
+          <div class="span6">
+              <div class="control-group">
+                <label class="control-label">IBAN @lang('admin.name')</label>
+                <div class="controls controls-row">
+                  <input type="text" class="input-block-level" name="ibanNameAdd" id="ibanNameAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
                 </div>
               </div>
           </div>

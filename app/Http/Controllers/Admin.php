@@ -13960,6 +13960,452 @@ class Admin extends Controller
 
     } //! Finans - İşletme Hesap  - Çoklu Clone - Post Son
     
+    //*************  Cari Hesap  ***************** */
+
+    //! Cari Hesap
+    public function CurrentAccount($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "finance_current_account";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                $selectData = [];  //! Select
+                $selectDataRaw = [];  //! Select - Raw
+                $joinData = [];  //! Join
+
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Date", "table" => $table, "where" => "date_time", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
+                
+                $whereData = []; //! Where
+                //$whereData[] = array( "table" => $table, "where" => "created_byId" , "data_item_object" => "=", "value" => 26 ); //! Arama
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+                
+
+                //echo "<pre>"; print_r($DB); die();
+                return view('admin/finance/current_account',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Cari Hesap Son
+
+    //! Cari Hesap Arama Post
+    public function CurrentAccountSearchPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Arama
+            $DB_Find = DB::table('finance_current_account')->where('id',$request->id)->first(); //Tüm verileri çekiyor
+   
+            if($DB_Find) {
+   
+               $response = array(
+                  'status' => 'success',
+                  'msg' => __('admin.transactionSuccessful'),
+                  'DB' =>  $DB_Find,
+                  'error' => null,
+               );
+
+               return response()->json($response);
+            }
+   
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'DB' =>  [],
+                  'error' => null, 
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'DB' =>  [],
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Arama Post Son
+
+    //! Cari Hesap - Veri Ekleme Post
+    public function CurrentAccountAddPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Ekleme
+            DB::table('finance_current_account')->insert([
+                'date_time' => $request->date_time,
+                'deposited' => $request->deposited ? $request->deposited : 0,
+                'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
+                'result' => $request->result,
+                'description' => $request->description,
+                'created_byId'=>$request->created_byId,
+            ]); //! Veri Ekleme Son
+
+            $response = array(
+                'status' => 'success',
+                'msg' => __('admin.transactionSuccessful'),
+                'error' => null, 
+            );
+
+             return response()->json($response);
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Veri Ekleme Post Son
+
+    //! Cari Hesap - Veri Silme Post
+    public function CurrentAccountDeletePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'finance_current_account';
+            $DB_Find = DB::table($table)->where('id',$request->id)->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Silme
+                $DB_Status = DB::table($table)->where('id',$request->id)->delete();
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,  
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,  
+                );  
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Veri Silme Post Son
+
+    //! Cari Hesap - Veri Çoklu Silme Post
+    public function CurrentAccountDeletePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Silme
+            $DB_Status = DB::table('finance_current_account')->whereIn('id',$request->ids)->delete();
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Veri Çoklu Silme Post Son
+
+    //! Cari Hesap - Veri Güncelleme Post
+    public function CurrentAccountEditPost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+         
+            //! Veri Arama
+            $DB = DB::table('finance_current_account')->where('id',$request->id); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'date_time' => $request->date_time,
+                    'deposited' => $request->deposited ? $request->deposited : 0,
+                    'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
+                    'result' => $request->result,
+                    'description' => $request->description,
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Veri Güncelleme Post Son
+    
+    //! Cari Hesap - Clone - Post
+    public function CurrentAccountClonePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $table = 'finance_current_account';
+            $DB = DB::table($table)->where('id',$request->id); //VeriTabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) { 
+            
+                //! Verileri Ayarlıyor
+                unset($DB_Find->id); //! Veri Silme 
+                unset($DB_Find->created_at); //! Veri Silme 
+                unset($DB_Find->isUpdated); //! Veri Silme 
+                unset($DB_Find->updated_at); //! Veri Silme 
+                unset($DB_Find->updated_byId); //! Veri Silme 
+                unset($DB_Find->isActive); //! Veri Silme 
+                unset($DB_Find->isDeleted); //! Veri Silme 
+                unset($DB_Find->deleted_at); //! Veri Silme 
+                unset($DB_Find->deleted_byId); //! Veri Silme 
+
+                $DB_Find->created_byId = $request->created_byId; //! Veri Güncelle
+            
+                //! Tanım
+                $newData = array(); //! Eklenecek Veri 
+                $table_columns = array_keys(json_decode(json_encode($DB_Find), true));  //! Sutun Veriler
+            
+                //! Veriler
+                for ($i=0; $i < count($table_columns); $i++) { 
+                    $col=$table_columns[$i];
+                    $newData[$col] = $DB->pluck($col)[0];
+                }
+                //! Veriler Son
+
+                //$newData['img_url'] = config('admin.Default_UserImgUrl');
+                $newData['created_byId'] = $request->created_byId;
+
+                //! Veri Ekleme
+                $addNewId = DB::table($table)->insertGetId($newData); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => 'success',
+                    'msg' => __('admin.transactionSuccessful'),
+                    'error' => null, 
+                    'addNewId' => $addNewId,
+                );
+
+                return response()->json($response);
+            }
+            else {
+
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.dataNotFound'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+            'status' => 'error',
+            'msg' => __('admin.transactionFailed'),
+            'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Clone - Post Son
+
+    //! Cari Hesap - Çoklu Clone - Post
+    public function CurrentAccountClonePostMulti(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Arama
+            $table = 'finance_current_account';
+            $DB = DB::table($table)->whereIn('id',$request->ids);
+            $DB_Find = $DB->get(); //Tüm verileri çekiyor
+            //echo "<pre>"; print_r($DB_Find); die();
+            
+            if( count($DB_Find) > 0 ){ 
+
+                //! Tanım
+                $DB_FindInsert = []; //! Eklenecek Veri
+
+                for ($i=0; $i < count($DB_Find); $i++) { 
+
+                    //! Veri Silme
+                    unset($DB_Find[$i]->id); //! Veri Silme 
+                    unset($DB_Find[$i]->created_at); //! Veri Silme 
+                    unset($DB_Find[$i]->isUpdated); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_at); //! Veri Silme 
+                    unset($DB_Find[$i]->updated_byId); //! Veri Silme 
+                    unset($DB_Find[$i]->isActive); //! Veri Silme 
+                    unset($DB_Find[$i]->isDeleted); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_at); //! Veri Silme 
+                    unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
+
+                    $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
+
+                    //! Yeni Data
+                    $newData = array(); //! Eklenecek Veri 
+                    $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
+                    
+                    //! Veriler
+                    for ($k=0; $k < count($table_columns); $k++) { 
+                        $col=$table_columns[$k];
+                        $newData[$col] = $DB_Find->pluck($col)[$i];
+                    }
+                    //! Veriler Son
+                 
+                    $DB_FindInsert[] = $newData;
+                }
+
+                //! Veri Ekleme
+                $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
+
+                $response = array(
+                    'status' => $addNewStatus ? 'success' : 'error',
+                    'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+
+            }
+            else {
+    
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+    
+               return response()->json($response);
+            }
+    
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+    
+            return response()->json($response);
+        }
+
+    } //! Cari Hesap - Çoklu Clone - Post Son
         
     //************* Finans - Kasa Hesap  ***************** */
 
@@ -14427,480 +14873,6 @@ class Admin extends Controller
 
     } //! Finans - İşletme Hesap  - Çoklu Clone - Post Son
 
-
-    //*************  Cari Hesap  ***************** */
-
-    //! Cari Hesap
-    public function CurrentAccount($site_lang="tr")
-    {
-        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try { 
-
-            //! Cookie Fonksiyon Kullanımı
-            $CookieControl =  cookieControl(); //! Çerez Kontrol
-            //echo "<pre>"; print_r($CookieControl); die();
-
-            if($CookieControl['isCookie']) {  
-                //echo "Çerez var"; die();
-
-                //! Tanım
-                $table = "finance_current_account";
-                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
-                $groupData = []; //! GroupData
-                $selectData = [];  //! Select
-                $selectDataRaw = [];  //! Select - Raw
-                $joinData = [];  //! Join
-
-                //! Arama
-                $searchData = [];
-                $searchData[] = array("params" => "Date", "table" => $table, "where" => "date_time", "data_item_object" => "=", "data_key_type" => "string", ); //! Eşit
-                
-                $whereData = []; //! Where
-                //$whereData[] = array( "table" => $table, "where" => "created_byId" , "data_item_object" => "=", "value" => 26 ); //! Arama
-                
-                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
-                //echo "<pre>"; print_r($DB_Find); die();
-
-                //! Return
-                $DB = $DB_Find;
-                $DB["CookieData"] = $CookieControl["CookieDataList"];
-
-                //! Dashboard
-                $dbDashboard= DB::select('SELECT 
-                totalCurrent.depositedTotal as totalDepositedTotal,
-                totalCurrent.withdrawnTotal as totalWithdrawnTotal,
-                totalCurrent.total as totalTotal,
-                yearCurrent.depositedTotal as yearDepositedTotal,
-                yearCurrent.withdrawnTotal as yearWithdrawnTotal,
-                yearCurrent.total as yearTotal,
-                monthCurrent.depositedTotal as monthDepositedTotal,
-                monthCurrent.withdrawnTotal as monthWithdrawnTotal,
-                monthCurrent.total as monthTotal,
-                last7Current.depositedTotal as last7DepositedTotal,
-                last7Current.withdrawnTotal as last7WithdrawnTotal,
-                last7Current.total as last7Total,
-                dayCurrent.depositedTotal as dayDepositedTotal,
-                dayCurrent.withdrawnTotal as dayWithdrawnTotal,
-                dayCurrent.total as dayTotal
-                FROM 
-                ( SELECT SUM(deposited) as depositedTotal, SUM(withdrawn) as withdrawnTotal, ( SUM(deposited) - SUM(withdrawn)) as total FROM `finance_current_account` ) as totalCurrent,
-                ( SELECT SUM(deposited) as depositedTotal, SUM(withdrawn) as withdrawnTotal, ( SUM(deposited) - SUM(withdrawn)) as total FROM `finance_current_account` WHERE YEAR(NOW()) = YEAR(date_time)) as yearCurrent,
-                ( SELECT SUM(deposited) as depositedTotal, SUM(withdrawn) as withdrawnTotal, ( SUM(deposited) - SUM(withdrawn)) as total FROM `finance_current_account` WHERE YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) as monthCurrent,
-                ( SELECT SUM(deposited) as depositedTotal, SUM(withdrawn) as withdrawnTotal, ( SUM(deposited) - SUM(withdrawn)) as total FROM `finance_current_account` WHERE date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now()) as last7Current,
-                ( SELECT SUM(deposited) as depositedTotal, SUM(withdrawn) as withdrawnTotal, ( SUM(deposited) - SUM(withdrawn)) as total FROM `finance_current_account` WHERE (DATE_FORMAT(now(),"%Y-%m-%d")) = date_time) as dayCurrent');
-                //echo "<pre>"; print_r($dbDashboard); die();
-                $DB["dbDashboard"] = $dbDashboard[0];
-                //! Dashboard Son
-                
-
-                //echo "<pre>"; print_r($DB); die();
-                return view('admin/finance/current_account',$DB);
-            }
-            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
-            //! Cookie Fonksiyon Kullanımı Son
-        }  
-        catch (\Throwable $th) {  throw $th; }
-
-    } //! Cari Hesap Son
-
-    //! Cari Hesap Arama Post
-    public function CurrentAccountSearchPost(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-         
-            //! Veri Arama
-            $DB_Find = DB::table('finance_current_account')->where('id',$request->id)->first(); //Tüm verileri çekiyor
-   
-            if($DB_Find) {
-   
-               $response = array(
-                  'status' => 'success',
-                  'msg' => __('admin.transactionSuccessful'),
-                  'DB' =>  $DB_Find,
-                  'error' => null,
-               );
-
-               return response()->json($response);
-            }
-   
-            else {
-   
-               $response = array(
-                  'status' => 'error',
-                  'msg' => __('admin.dataNotFound'),
-                  'DB' =>  [],
-                  'error' => null, 
-               );
-   
-               return response()->json($response);
-            }
-   
-        } catch (\Throwable $th) {
-            
-            $response = array(
-               'status' => 'error',
-               'msg' => __('admin.transactionFailed'),
-               'DB' =>  [],
-               'error' => $th,            
-            );
-   
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Arama Post Son
-
-    //! Cari Hesap - Veri Ekleme Post
-    public function CurrentAccountAddPost(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-         
-            //! Veri Ekleme
-            DB::table('finance_current_account')->insert([
-                'date_time' => $request->date_time,
-                'deposited' => $request->deposited ? $request->deposited : 0,
-                'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
-                'result' => $request->result,
-                'description' => $request->description,
-                'created_byId'=>$request->created_byId,
-            ]); //! Veri Ekleme Son
-
-            $response = array(
-                'status' => 'success',
-                'msg' => __('admin.transactionSuccessful'),
-                'error' => null, 
-            );
-
-             return response()->json($response);
-   
-        } catch (\Throwable $th) {
-            
-            $response = array(
-               'status' => 'error',
-               'msg' => __('admin.transactionFailed'),
-               'error' => $th,            
-            );
-   
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Veri Ekleme Post Son
-
-    //! Cari Hesap - Veri Silme Post
-    public function CurrentAccountDeletePost(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-        
-            //! Veri Arama
-            $table = 'finance_current_account';
-            $DB_Find = DB::table($table)->where('id',$request->id)->first(); //Tüm verileri çekiyor
-
-            if($DB_Find) {
-
-                //! Veri Silme
-                $DB_Status = DB::table($table)->where('id',$request->id)->delete();
-
-                $response = array(
-                    'status' => $DB_Status ? 'success' : 'error',
-                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
-                    'error' => null,  
-                );
-
-                return response()->json($response);
-            }
-            else {
-
-                $response = array(
-                    'status' => 'error',
-                    'msg' => __('admin.dataNotFound'),
-                    'error' => null,  
-                );  
-
-                return response()->json($response);
-            }
-
-        } catch (\Throwable $th) {
-            
-            $response = array(
-                'status' => 'error',
-                'msg' => __('admin.transactionFailed'),
-                'error' => $th,            
-            );
-
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Veri Silme Post Son
-
-    //! Cari Hesap - Veri Çoklu Silme Post
-    public function CurrentAccountDeletePostMulti(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-        
-            //! Veri Silme
-            $DB_Status = DB::table('finance_current_account')->whereIn('id',$request->ids)->delete();
-
-            $response = array(
-                'status' => $DB_Status ? 'success' : 'error',
-                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
-                'error' => null,
-            );
-
-            return response()->json($response);
-
-        } catch (\Throwable $th) {
-            
-            $response = array(
-                'status' => 'error',
-                'msg' => __('admin.transactionFailed'),
-                'error' => $th,            
-            );
-
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Veri Çoklu Silme Post Son
-
-    //! Cari Hesap - Veri Güncelleme Post
-    public function CurrentAccountEditPost(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-         
-            //! Veri Arama
-            $DB = DB::table('finance_current_account')->where('id',$request->id); //Veri Tabanı
-            $DB_Find = $DB->first(); //Tüm verileri çekiyor
-
-            if($DB_Find) {
-
-                //! Veri Güncelle
-                $DB_Status = $DB->update([            
-                    'date_time' => $request->date_time,
-                    'deposited' => $request->deposited ? $request->deposited : 0,
-                    'withdrawn' => $request->withdrawn ? $request->withdrawn : 0,
-                    'result' => $request->result,
-                    'description' => $request->description,
-                    'isUpdated'=>true,
-                    'updated_at'=>Carbon::now(),
-                    'updated_byId'=>$request->updated_byId,
-                ]);
-
-                $response = array(
-                    'status' => $DB_Status ? 'success' : 'error',
-                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
-                    'error' => null,
-                );
-
-                return response()->json($response);
-            }
-
-            else {
-   
-               $response = array(
-                  'status' => 'error',
-                  'msg' => __('admin.dataNotFound'),
-                  'error' => null,
-               );
-   
-               return response()->json($response);
-            }
-   
-        } catch (\Throwable $th) {
-            
-            $response = array(
-               'status' => 'error',
-               'msg' => __('admin.transactionFailed'),
-               'error' => $th,            
-            );
-   
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Veri Güncelleme Post Son
-    
-    //! Cari Hesap - Clone - Post
-    public function CurrentAccountClonePost(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-        
-            //! Veri Arama
-            $table = 'finance_current_account';
-            $DB = DB::table($table)->where('id',$request->id); //VeriTabanı
-            $DB_Find = $DB->first(); //Tüm verileri çekiyor
-
-            if($DB_Find) { 
-            
-                //! Verileri Ayarlıyor
-                unset($DB_Find->id); //! Veri Silme 
-                unset($DB_Find->created_at); //! Veri Silme 
-                unset($DB_Find->isUpdated); //! Veri Silme 
-                unset($DB_Find->updated_at); //! Veri Silme 
-                unset($DB_Find->updated_byId); //! Veri Silme 
-                unset($DB_Find->isActive); //! Veri Silme 
-                unset($DB_Find->isDeleted); //! Veri Silme 
-                unset($DB_Find->deleted_at); //! Veri Silme 
-                unset($DB_Find->deleted_byId); //! Veri Silme 
-
-                $DB_Find->created_byId = $request->created_byId; //! Veri Güncelle
-            
-                //! Tanım
-                $newData = array(); //! Eklenecek Veri 
-                $table_columns = array_keys(json_decode(json_encode($DB_Find), true));  //! Sutun Veriler
-            
-                //! Veriler
-                for ($i=0; $i < count($table_columns); $i++) { 
-                    $col=$table_columns[$i];
-                    $newData[$col] = $DB->pluck($col)[0];
-                }
-                //! Veriler Son
-
-                //$newData['img_url'] = config('admin.Default_UserImgUrl');
-                $newData['created_byId'] = $request->created_byId;
-
-                //! Veri Ekleme
-                $addNewId = DB::table($table)->insertGetId($newData); //! Veri Ekleme Son
-
-                $response = array(
-                    'status' => 'success',
-                    'msg' => __('admin.transactionSuccessful'),
-                    'error' => null, 
-                    'addNewId' => $addNewId,
-                );
-
-                return response()->json($response);
-            }
-            else {
-
-            $response = array(
-                'status' => 'error',
-                'msg' => __('admin.dataNotFound'),
-                'error' => null,
-            );
-
-            return response()->json($response);
-            }
-
-        } catch (\Throwable $th) {
-            
-            $response = array(
-            'status' => 'error',
-            'msg' => __('admin.transactionFailed'),
-            'error' => $th,            
-            );
-
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Clone - Post Son
-
-    //! Cari Hesap - Çoklu Clone - Post
-    public function CurrentAccountClonePostMulti(Request $request)
-    {
-        $siteLang= $request->siteLang; //! Çoklu Dil
-        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
-        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
-
-        try {
-
-            //! Veri Arama
-            $table = 'finance_current_account';
-            $DB = DB::table($table)->whereIn('id',$request->ids);
-            $DB_Find = $DB->get(); //Tüm verileri çekiyor
-            //echo "<pre>"; print_r($DB_Find); die();
-            
-            if( count($DB_Find) > 0 ){ 
-
-                //! Tanım
-                $DB_FindInsert = []; //! Eklenecek Veri
-
-                for ($i=0; $i < count($DB_Find); $i++) { 
-
-                    //! Veri Silme
-                    unset($DB_Find[$i]->id); //! Veri Silme 
-                    unset($DB_Find[$i]->created_at); //! Veri Silme 
-                    unset($DB_Find[$i]->isUpdated); //! Veri Silme 
-                    unset($DB_Find[$i]->updated_at); //! Veri Silme 
-                    unset($DB_Find[$i]->updated_byId); //! Veri Silme 
-                    unset($DB_Find[$i]->isActive); //! Veri Silme 
-                    unset($DB_Find[$i]->isDeleted); //! Veri Silme 
-                    unset($DB_Find[$i]->deleted_at); //! Veri Silme 
-                    unset($DB_Find[$i]->deleted_byId); //! Veri Silme 
-
-                    $DB_Find[$i]->created_byId = $request->created_byId; //! Veri Güncelle
-
-                    //! Yeni Data
-                    $newData = array(); //! Eklenecek Veri 
-                    $table_columns = array_keys(json_decode(json_encode($DB_Find[$i]), true));  //! Sutun Veriler
-                    
-                    //! Veriler
-                    for ($k=0; $k < count($table_columns); $k++) { 
-                        $col=$table_columns[$k];
-                        $newData[$col] = $DB_Find->pluck($col)[$i];
-                    }
-                    //! Veriler Son
-                 
-                    $DB_FindInsert[] = $newData;
-                }
-
-                //! Veri Ekleme
-                $addNewStatus = DB::table($table)->insert($DB_FindInsert); //! Veri Ekleme Son
-
-                $response = array(
-                    'status' => $addNewStatus ? 'success' : 'error',
-                    'msg' => $addNewStatus ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
-                    'error' => null,
-                );
-
-                return response()->json($response);
-
-            }
-            else {
-    
-               $response = array(
-                  'status' => 'error',
-                  'msg' => __('admin.dataNotFound'),
-                  'error' => null,
-               );
-    
-               return response()->json($response);
-            }
-    
-        } catch (\Throwable $th) {
-            
-            $response = array(
-               'status' => 'error',
-               'msg' => __('admin.transactionFailed'),
-               'error' => $th,            
-            );
-    
-            return response()->json($response);
-        }
-
-    } //! Cari Hesap - Çoklu Clone - Post Son
 
     //*************  Satış  ***************** */
 
