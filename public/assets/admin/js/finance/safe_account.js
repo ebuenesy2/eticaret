@@ -343,7 +343,7 @@ document.querySelectorAll("#editItem").forEach((Item) => {
                 if(response.status == "success") {
 
                     //! Veriler
-                    $('#currentIdEdit').val(response.DB.current_id);
+                    $('#currentIdEdit option[value="'+response.DB.current_id+'"]').prop('selected', true); //! Seçim yap
                     $('#dateEdit').val(response.DB.date_time);
                     $('#dateFullEdit').val(response.DB.date_time_full);
 

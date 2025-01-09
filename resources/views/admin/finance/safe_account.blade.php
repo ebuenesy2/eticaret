@@ -136,6 +136,7 @@
                                 <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th class="table_title" exportName="id" >ID</th>
+                                <th class="table_title" exportName="id" >@lang('admin.currentAccount') Code</th>
                                 <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.date')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.date') Full</th>
@@ -160,6 +161,7 @@
 
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
                                   <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id}}</td>
+                                  <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id ? $dbFind[$i]->finance_current_account_title : "Kasa Hesap"}}</td>
                                   <td data-cell="@lang('admin.date')">{{$dbFind[$i]->date_time}}</td>
                                   <td data-cell="@lang('admin.date') Full">{{$dbFind[$i]->date_time_full}}</td>
 
@@ -262,9 +264,15 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">Cari Kart Id</label>
+                <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
-                    <input type="number" class="input-block-level" name="currentIdAdd" id="currentIdAdd" placeholder="0" value="0" focusType ="true" focusControl="add" focusControl_Active="true"  focusOrder="1"  >
+                    <select class="" style="cursor: pointer;width: 100%;" id="currentIdAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="">@lang('admin.choose')</option>
+                        <option value="0" >( #0 ) Kasa Hesap</option>
+                        @for ($i = 0; $i < count($DB_Current_Account); $i++)
+                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>
@@ -300,7 +308,6 @@
                         @for ($i = 0; $i < count($DB_Business_Account); $i++)
                         <option value="{{$DB_Business_Account[$i]->id}}" data_type_code="{{$DB_Business_Account[$i]->type_code}}" data_price="{{$DB_Business_Account[$i]->price}}" data_description="{{$DB_Business_Account[$i]->description}}"  >{{$DB_Business_Account[$i]->title}}</option>
                         @endfor
-                      
                     </select>
                 </div>
               </div>
@@ -382,9 +389,15 @@
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">Cari Kart Id</label>
+                <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
-                    <input type="number" class="input-block-level" name="currentIdEdit" id="currentIdEdit" placeholder="0" value="0" focusType ="true" focusControl="edit" focusControl_Active="true"  focusOrder="1"  >
+                    <select class="" style="cursor: pointer;width: 100%;" id="currentIdEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="">@lang('admin.choose')</option>
+                        <option value="0" >( #0 ) Kasa Hesap</option>
+                        @for ($i = 0; $i < count($DB_Current_Account); $i++)
+                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>

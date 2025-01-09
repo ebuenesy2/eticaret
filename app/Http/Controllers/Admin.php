@@ -14430,9 +14430,16 @@ class Admin extends Controller
                 $table = "finance_safe_account";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
-                $selectData = [];  //! Select
+                
+                  //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => 'finance_current_account', "parametre" => "title", "name" => "finance_current_account_title", );
+                
                 $selectDataRaw = [];  //! Select - Raw
+
                 $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "finance_current_account" , "value" => "id", "refTable" => $table, "refValue" => "current_id", ); //! Join Veri Ekleme
                 
                 //! Arama
                 $searchData = [];
@@ -14449,11 +14456,17 @@ class Admin extends Controller
                 $DB = $DB_Find;
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
 
+                //! Cari Hesaplar
+                $DB_Current_Account = DB::table('finance_current_account')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Current_Account); die();
+                $DB["DB_Current_Account"] = $DB_Current_Account;
+                //! Cari Hesaplar Son 
+
                 //! İş Hesapları
                 $DB_Business_Account = DB::table('finance_business_account')->get(); //Tüm verileri çekiyor
                 //echo "<pre>"; print_r($DB_Business_Account); die();
-
-                $DB["DB_Business_Account"] = $DB_Business_Account; //! Return 
+                $DB["DB_Business_Account"] = $DB_Business_Account;
+                //! İş Hesapları Son 
 
                 //echo "<pre>"; print_r($DB); die();
                 
