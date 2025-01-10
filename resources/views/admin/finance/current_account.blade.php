@@ -126,11 +126,16 @@
 
                                 <th class="table_title" exportName="id" >ID</th>
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.phone')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.email')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.address')</th>
-                                <th class="table_title" exportName="id" >IBAN</th>
-                                <th class="table_title" exportName="id" >IBAN @lang('admin.name')</th>
+                               
+                                <th class="table_title" exportName="id" >Toplam Gelir Miktarı</th>
+                                <th class="table_title" exportName="id" >Toplam Gelir Tutarı</th>
+
+                                <th class="table_title" exportName="id" >Toplam Gider Miktarı</th>
+                                <th class="table_title" exportName="id" >Toplam Gider Tutarı</th>
+
+                                <th class="table_title" exportName="id" >Toplam Bakiye Miktarı</th>
+                                <th class="table_title" exportName="id" >Toplam Bakiye Tutarı</th>
+                                
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -144,11 +149,15 @@
 
                                   <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
                                   <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->title}}</td>
-                                  <td data-cell="@lang('admin.phone')" >{{$dbFind[$i]->phone}}</td>
-                                  <td data-cell="@lang('admin.email')" >{{$dbFind[$i]->email}}</td>
-                                  <td data-cell="@lang('admin.address')" >{{$dbFind[$i]->address}}</td>
-                                  <td data-cell="IBAN" >{{$dbFind[$i]->iban}}</td>
-                                  <td data-cell="IBAN @lang('admin.name')" >{{$dbFind[$i]->iban_name}}</td>
+                                  
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGelirMiktari}}</td>
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGelirTutar}}</td>
+
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGiderMiktari}}</td>
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGiderTutar}}</td>
+
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeMiktari}}</td>
+                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeTutar}}</td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>

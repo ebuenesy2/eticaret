@@ -13980,10 +13980,29 @@ class Admin extends Controller
                 //! Tanım
                 $table = "finance_current_account";
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+              
+                //! Group
                 $groupData = []; //! GroupData
+                $groupData[]= "finance_current_account.id"; //! Ekleme
+                
                 $selectData = [];  //! Select
-                $selectDataRaw = [];  //! Select - Raw
-                $joinData = [];  //! Join
+
+                //! Select - Raw
+                $selectDataRaw = [];
+                $selectDataRaw[] = "finance_current_account.*";
+
+                $selectDataRaw[] = "SUM(CASE WHEN finance_safe_account.type_code = 1  THEN finance_safe_account.quantity ELSE 0 END) as ToplamGelirMiktari";
+                $selectDataRaw[] = "SUM(CASE WHEN finance_safe_account.type_code = 1  THEN finance_safe_account.total ELSE 0 END) as ToplamGelirTutar";
+
+                $selectDataRaw[] = "SUM(CASE WHEN finance_safe_account.type_code = 2 OR finance_safe_account.type_code = 3 THEN finance_safe_account.quantity ELSE 0 END) as ToplamGiderMiktari";
+                $selectDataRaw[] = "SUM(CASE WHEN finance_safe_account.type_code = 2 OR finance_safe_account.type_code = 3 THEN finance_safe_account.total ELSE 0 END) as ToplamGiderTutar";
+
+                $selectDataRaw[] = "(SUM(CASE WHEN finance_safe_account.type_code = 1  THEN finance_safe_account.quantity ELSE 0 END) - SUM(CASE WHEN finance_safe_account.type_code = 2 OR finance_safe_account.type_code = 3 THEN finance_safe_account.quantity ELSE 0 END) ) as ToplamBakiyeMiktari";
+                $selectDataRaw[] = "(SUM(CASE WHEN finance_safe_account.type_code = 1  THEN finance_safe_account.total ELSE 0 END) - SUM(CASE WHEN finance_safe_account.type_code = 2 OR finance_safe_account.type_code = 3 THEN finance_safe_account.total ELSE 0 END) ) as ToplamBakiyeTutar";
+                
+                //! Join
+                $joinData = [];
+                $joinData[] = array( "type" => "LEFT", "table" => "finance_safe_account" , "value" => "current_id", "refTable" => $table, "refValue" => "id", ); //! Join Veri Ekleme
 
                 //! Arama
                 $searchData = [];
