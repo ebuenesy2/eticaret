@@ -87,6 +87,26 @@
                           </div>
                           <!------ Arama ID Son----->
 
+                          <!------ Arama Cari Hesap Kodu ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>Cari Hesap Kodu</p>
+                            <input type="number" placeholder="0" class="" id="searchTable" searchName="CurrentCode" style="width: 120px;" >
+                          </div>
+                          <!------ Arama Cari Hesap Kodu Son----->
+
+                          <!------ Arama Cari Hesap ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> Cari Hesap</p>
+                            <select class="" style="cursor: pointer; width: max-content;" id="searchTable" searchName="CurrentName"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="0" >( #0 ) Kasa Hesap</option>
+                                @for ($i = 0; $i < count($DB_Current_Account); $i++)
+                                <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                                @endfor
+                            </select>
+                          </div>
+                          <!------ Arama Cari Hesap Son----->
+
                           <!------ Arama Başlık ----->
                           <div style="display: flex;flex-direction: column;">
                             <p>@lang('admin.title')</p>
