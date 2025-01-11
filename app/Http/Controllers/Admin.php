@@ -14427,6 +14427,87 @@ class Admin extends Controller
         }
 
     } //! Cari Hesap - Çoklu Clone - Post Son
+
+    //*************  Cari Hesap Extra  ***************** */
+    
+    //! Cari Hesap - Extra Sayfası
+    public function CurrentAccountFind($site_lang="tr",$id)
+    {
+        
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "finance_safe_account";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                
+                  //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => 'finance_current_account', "parametre" => "title", "name" => "finance_current_account_title", );
+                
+                $selectDataRaw = [];  //! Select - Raw
+
+                $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "finance_current_account" , "value" => "id", "refTable" => $table, "refValue" => "current_id", ); //! Join Veri Ekleme
+                
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
+                $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                //! Where
+                $whereData = [];
+                $whereData[] = array( "table" => $table, "where" => "current_id" , "data_item_object" => "=", "value" => $id );
+                    
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["id"] = $id;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //! Cari Hesaplar
+                $DB_Current_Account = DB::table('finance_current_account')->where('id',$id)->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Current_Account); die();
+                $DB["DB_Current_Account"] = $DB_Current_Account;
+                //! Cari Hesaplar Son 
+
+                $title = count($DB_Current_Account) > 0 ? $DB_Current_Account[0]->title : '';
+                $DB["title"] = $id > 0 ? $title : 'Kasa Hesap';
+                //echo "<pre>"; print_r($DB); die();
+
+                //! İş Hesapları
+                $DB_Business_Account = DB::table('finance_business_account')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Business_Account); die();
+                $DB["DB_Business_Account"] = $DB_Business_Account;
+                //! İş Hesapları Son 
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/finance/current_account_extra',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+           
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Cari Hesap - Extra Sayfası Son
         
     //************* Finans - Kasa Hesap  ***************** */
 

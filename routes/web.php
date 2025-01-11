@@ -444,6 +444,7 @@ Route::post('/admin/current/account/clone', [Admin::class,'CurrentAccountClonePo
 Route::post('/admin/current/account/clone/multi', [Admin::class,'CurrentAccountClonePostMulti']) -> name("admin.web.current.account.clone.post.multi"); //! Çoklu Veri Clone - Post
 
 //! Finans - Cari Hesap - Extra
+Route::get('/{lang}/admin/current/account/{id}', [Admin::class,'CurrentAccountFind']) -> name("admin.web.current.account.find");  //! Veri Arama - Sayfa
 
 //! Finans - Kasa Hesap
 Route::get('/{lang}/admin/safe/account', [Admin::class,'SafeAccount']) -> name("admin.web.safe.account.list");  //! Tüm Veriler

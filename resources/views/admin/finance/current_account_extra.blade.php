@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <!-- Head -->
-<title> @lang('admin.currentAccount') | {{ config('admin.Admin_Title') }} </title>
+<title> @lang('admin.currentAccount') Extra (#{{$id}}) {{$title}} | {{ config('admin.Admin_Title') }} </title>
 @include('admin.include.head')
 
 <!-- Tanım -->
 <?php $homeUrl = '/admin'; ?>
-<?php $listTitle = __('admin.currentAccount'); ?>
-<?php $listUrl = "/admin/current/account";  ?>
+<?php $listTitle = 'Cari Hesap Extra #'.$id." ".$title; ?>
+<?php $listUrl = "/admin/setting/menu";  ?>
 
 <!-- Yıldırımdev Table Css -->
 <link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
@@ -87,16 +87,27 @@
                           </div>
                           <!------ Arama ID Son----->
 
-                          <!------ Arama Takvim ----->
-                          <div style="display: flex;flex-direction: column;" >
-                            <p>@lang('admin.date')</p>
-                            <input type="date" class="" style="cursor: pointer; width: 120px; cursor: pointer;"  id="searchTable" searchName="Date" >
+                          <!------ Arama Başlık ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>@lang('admin.title')</p>
+                            <input type="text" class="" style="width: 120px;"   id="searchTable" searchName="Title" >
                           </div>
-                          <!------ Arama Takvim Son----->
+                          <!------ Arama Başlık Son----->
+                          
+                          <!------ Arama Tür ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> @lang('admin.type')</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Type"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="1" >Gelir</option>
+                                <option value="2" >Gider</option>
+                                <option value="3" >Hizmet</option>
+                            </select>
+                          </div>
+                          <!------ Arama Tür Son----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
-                       
 
                         <!------ Tablo Ayarları -->
                         <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
@@ -125,17 +136,18 @@
                                 <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
                                 <th class="table_title" exportName="id" >ID</th>
+                                <th class="table_title" exportName="id" >@lang('admin.currentAccount') Code</th>
+                                <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.date')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.date') Full</th>
+
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
-                               
-                                <th class="table_title" exportName="id" >Toplam Gelir Miktarı</th>
-                                <th class="table_title" exportName="id" >Toplam Gelir Tutarı</th>
+                                <th class="table_title" exportName="id" >@lang('admin.description')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.type')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.price')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
+                                <th class="table_title" exportName="id" >@lang('admin.total')</th>
 
-                                <th class="table_title" exportName="id" >Toplam Gider Miktarı</th>
-                                <th class="table_title" exportName="id" >Toplam Gider Tutarı</th>
-
-                                <th class="table_title" exportName="id" >Toplam Bakiye Miktarı</th>
-                                <th class="table_title" exportName="id" >Toplam Bakiye Tutarı</th>
-                                
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -147,22 +159,23 @@
                                   <!---- Seç --->
                                   <td data-cell="Seç"  class="c-table__cell"><input type="checkbox" id="checkItem" data_check_id="{{$dbFind[$i]->id}}" > </td>
 
-                                  <td data-cell="ID" >{{$dbFind[$i]->id}}</td>
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->title}}</td>
-                                  
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGelirMiktari}}</td>
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGelirTutar}}</td>
+                                  <td data-cell="ID">{{$dbFind[$i]->id}}</td>
+                                  <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id}}</td>
+                                  <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id ? $dbFind[$i]->finance_current_account_title : "Kasa Hesap"}}</td>
+                                  <td data-cell="@lang('admin.date')">{{$dbFind[$i]->date_time}}</td>
+                                  <td data-cell="@lang('admin.date') Full">{{$dbFind[$i]->date_time_full}}</td>
 
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGiderMiktari}}</td>
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamGiderTutar}}</td>
-
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeMiktari}}</td>
-                                  <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeTutar}}</td>
+                                  <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
+                                  <td data-cell="@lang('admin.description')">{{$dbFind[$i]->description}}</td>
+                                  <td data-cell="@lang('admin.type')">{{$dbFind[$i]->type}}</td>
+                                  <td data-cell="@lang('admin.price')">{{$dbFind[$i]->price}}</td>
+                                  <td data-cell="@lang('admin.quantity')">{{$dbFind[$i]->quantity}}</td>
+                                  <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
+                                 
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-pencil"></i></button>
-                                    <a href="/@lang('admin.lang'){{$listUrl}}/{{$dbFind[$i]->id}}" title="order detail" ><button class="btn btn-warning" ><i class="fa fa-sitemap"></i></button></a>
                                     <button class="btn btn-danger" id="deleteItem" data_id="{{$dbFind[$i]->id}}"><i data_id="{{$dbFind[$i]->id}}" class="fa fa-trash "></i></button>
                                   </td>
                               </tr>
@@ -218,8 +231,11 @@
                           </div>
                           <!------  Pagination Son -->
 
+
                         </div>
                         <!------ Tablo Alt Son -->
+                        
+                        <p>** Hizmet = Gider olarak değerlendirecektir</p>
 
                     </div>
                   </div>
@@ -244,62 +260,113 @@
         <div id='loaderAdd' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
       <div class="modal-body">
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.title')</label>
+                <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="titleAdd" id="titleAdd"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
+                    <select class="" style="cursor: pointer;width: 100%;" id="currentIdAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        @if($id==0)  <option value="0" >( #0 ) Kasa Hesap</option> @endif
+                        @for ($i = 0; $i < count($DB_Current_Account); $i++)
+                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>
         </div>
+
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.phone')</label>
+                <label class="control-label">@lang('admin.date')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="phoneAdd" id="phoneAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="date" class="input-block-level" name="dateAdd" id="dateAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.email')</label>
+                <label class="control-label">@lang('admin.date') Full</label>
                 <div class="controls controls-row">
-                  <input type="email" class="input-block-level" name="emailAdd" id="emailAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                  <input type="text" class="input-block-level" name="dateFullAdd" id="dateFullAdd" placeholder=""  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
                 </div>
               </div>
           </div>
         </div>
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.address')</label>
+                <label class="control-label">İş Hizmet</label>
                 <div class="controls controls-row">
-                  <textarea class="span12" name="addressAdd" id="addressAdd"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"></textarea>
+                    <select class="" style="cursor: pointer;width: 100%;" id="businessAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="">@lang('admin.choose')</option>
+                        <option value="0" data_type_code="1" data_price="0" data_description="" >Diğer</option>
+                        @for ($i = 0; $i < count($DB_Business_Account); $i++)
+                        <option value="{{$DB_Business_Account[$i]->id}}" data_type_code="{{$DB_Business_Account[$i]->type_code}}" data_price="{{$DB_Business_Account[$i]->price}}" data_description="{{$DB_Business_Account[$i]->description}}"  >{{$DB_Business_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>
         </div>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                <label class="control-label">@lang('admin.description')</label>
+                <div class="controls controls-row">
+                  <textarea class="span12" name="descriptionAdd" id="descriptionAdd"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="2"></textarea>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+           <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.type')</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="typeAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="1" >Gelir</option>
+                        <option value="2" >Gider</option>
+                        <option value="3" >Hizmet</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">@lang('admin.price')</label>
+                    <div class="controls controls-row">
+                        <input type="number" class="input-block-level" name="priceAdd" id="priceAdd" placeholder="@lang('admin.price')" value="" focusType ="true" focusControl="add" focusControl_Active="true"  focusOrder="3"  >
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">IBAN</label>
+                <label class="control-label">@lang('admin.purchaseAmount')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="ibanAdd" id="ibanAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="number" class="input-block-level" name="purchaseAmountAdd" id="purchaseAmountAdd" placeholder="1" value="1"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="5" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">IBAN @lang('admin.name')</label>
+                <label class="control-label">@lang('admin.total')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="ibanNameAdd" id="ibanNameAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                  <input type="number" class="input-block-level" name="totalAdd" id="totalAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="6" >
                 </div>
               </div>
           </div>
-        </div>
+        </div> 
+       
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
@@ -317,62 +384,110 @@
           <div id='loaderEdit' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
       <div class="modal-body">
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.title')</label>
+                <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="titleEdit" id="titleEdit"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
+                    <select class="" style="cursor: pointer;width: 100%;" id="currentIdEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        @if($id==0)  <option value="0" >( #0 ) Kasa Hesap</option> @endif
+                        @for ($i = 0; $i < count($DB_Current_Account); $i++)
+                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>
         </div>
+
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.phone')</label>
+                <label class="control-label">@lang('admin.date')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="phoneEdit" id="phoneEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="date" class="input-block-level" name="dateEdit" id="dateEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.email')</label>
+                <label class="control-label">@lang('admin.date') Full</label>
                 <div class="controls controls-row">
-                  <input type="email" class="input-block-level" name="emailEdit" id="emailEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                  <input type="text" class="input-block-level" name="dateFullEdit" id="dateFullEdit" placeholder=""  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="2" >
                 </div>
               </div>
           </div>
         </div>
+
         <div class="row-fluid">
           <div class="span12">
               <div class="control-group">
-                <label class="control-label">@lang('admin.address')</label>
+                <label class="control-label">İş Hizmet</label>
                 <div class="controls controls-row">
-                  <textarea class="span12" name="addressEdit" id="addressEdit"  rows="3" cols="80" focusType ="true" focusControl="add" focusControl_Active="true" focusOrder="4"></textarea>
+                    <select class="" style="cursor: pointer;width: 100%;" id="businessEdit" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
+                        @for ($i = 0; $i < count($DB_Business_Account); $i++)
+                        <option value="{{$DB_Business_Account[$i]->id}}" data_type_code="{{$DB_Business_Account[$i]->type_code}}" data_price="{{$DB_Business_Account[$i]->price}}" data_description="{{$DB_Business_Account[$i]->description}}"  >{{$DB_Business_Account[$i]->title}}</option>
+                        @endfor
+                    </select>
                 </div>
               </div>
           </div>
         </div>
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                <label class="control-label">@lang('admin.description')</label>
+                <div class="controls controls-row">
+                  <textarea class="span12" name="descriptionEdit" id="descriptionEdit"  rows="3" cols="80" focusType ="true" focusControl="edit" focusControl_Active="true" focusOrder="2"></textarea>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+           <div class="span6">
+              <div class="control-group">
+                <label class="control-label">@lang('admin.type')</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="typeEdit" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
+                        <option value="1" >Gelir</option>
+                        <option value="2" >Gider</option>
+                        <option value="3" >Hizmet</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">@lang('admin.price')</label>
+                    <div class="controls controls-row">
+                        <input type="number" class="input-block-level" name="priceEdit" id="priceEdit" placeholder="@lang('admin.price')" value="" focusType ="true" focusControl="edit" focusControl_Active="true"  focusOrder="3"  >
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">IBAN</label>
+                <label class="control-label">@lang('admin.purchaseAmount')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="ibanEdit" id="ibanEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="number" class="input-block-level" name="purchaseAmountEdit" id="purchaseAmountEdit" placeholder="1" value="1"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="5" >
                 </div>
               </div>
           </div>
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">IBAN @lang('admin.name')</label>
+                <label class="control-label">@lang('admin.total')</label>
                 <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="ibanNameEdit" id="ibanNameEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                  <input type="number" class="input-block-level" name="totalEdit" id="totalEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="6" >
                 </div>
               </div>
           </div>
-        </div>
+        </div> 
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
@@ -389,7 +504,7 @@
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
-    <script src="{{asset('/assets/admin')}}/js//finance/current_account.js"></script>
+    <script src="{{asset('/assets/admin')}}/js/finance/safe_account.js"></script>
         
     <!-- Yıldırımdev Table JS -->
     <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
