@@ -14644,7 +14644,6 @@ class Admin extends Controller
             DB::table('finance_safe_account')->insert([
                 'current_id' => $request->current_id,
                 'date_time' => $request->date_time,
-                'date_time_full' => $request->date_time_full,
                 'finance_business_account_id' => $request->finance_business_account_id,
                 'title' => $request->title,
                 'description' => $request->description,
@@ -14779,7 +14778,6 @@ class Admin extends Controller
                 $DB_Status = $DB->update([            
                     'current_id' => $request->current_id,
                     'date_time' => $request->date_time,
-                    'date_time_full' => $request->date_time_full,
                     'finance_business_account_id' => $request->finance_business_account_id,
                     'title' => $request->title,
                     'description' => $request->description,

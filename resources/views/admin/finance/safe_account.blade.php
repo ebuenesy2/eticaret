@@ -72,13 +72,6 @@
                             <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
                           </button>
                           <!-- Modal Son -->
-
-                           <!-- Modal -->
-                          <button class="btn btn-success" href="#addModalNew" role="button" data-toggle="modal" >
-                            <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
-                          </button>
-                          <!-- Modal Son -->
-
                           
 
                           <div id='loader' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
@@ -169,8 +162,7 @@
                                 <th class="table_title" exportName="id" >@lang('admin.currentAccount') Code</th>
                                 <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.date')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.date') Full</th>
-
+                          
                                 <th class="table_title" exportName="id" >@lang('admin.title')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.description')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.type')</th>
@@ -193,9 +185,8 @@
                                   <td data-cell="ID">{{$dbFind[$i]->id}}</td>
                                   <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id}}</td>
                                   <td data-cell="@lang('admin.currentAccount')">{{$dbFind[$i]->current_id ? $dbFind[$i]->finance_current_account_title : "Kasa Hesap"}}</td>
-                                  <td data-cell="@lang('admin.date')">{{$dbFind[$i]->date_time}}</td>
-                                  <td data-cell="@lang('admin.date') Full">{{$dbFind[$i]->date_time_full}}</td>
-
+                                  <td data-cell="@lang('admin.date')" >{{\Carbon\Carbon::parse($dbFind[$i]->date_time)->isoFormat('Do MMMM YYYY, HH:mm:ss')}}</td>
+                                  
                                   <td data-cell="@lang('admin.title')">{{$dbFind[$i]->title}}</td>
                                   <td data-cell="@lang('admin.description')">{{$dbFind[$i]->description}}</td>
                                   <td data-cell="@lang('admin.type')">{{$dbFind[$i]->type}}</td>
@@ -315,19 +306,11 @@
         </div>
 
         <div class="row-fluid">
-          <div class="span6">
+          <div class="span12">
               <div class="control-group">
                 <label class="control-label">@lang('admin.date')</label>
                 <div class="controls controls-row">
-                  <input type="date" class="input-block-level" name="dateAdd" id="dateAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
-                </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                <label class="control-label">@lang('admin.date') Full</label>
-                <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="dateFullAdd" id="dateFullAdd" placeholder=""  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="2" >
+                  <input type="datetime-local" class="input-block-level" name="dateAdd" id="dateAdd" placeholder="0"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>
@@ -440,19 +423,11 @@
         </div>
 
         <div class="row-fluid">
-          <div class="span6">
+          <div class="span12">
               <div class="control-group">
                 <label class="control-label">@lang('admin.date')</label>
                 <div class="controls controls-row">
-                  <input type="date" class="input-block-level" name="dateEdit" id="dateEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1" >
-                </div>
-              </div>
-          </div>
-          <div class="span6">
-              <div class="control-group">
-                <label class="control-label">@lang('admin.date') Full</label>
-                <div class="controls controls-row">
-                  <input type="text" class="input-block-level" name="dateFullEdit" id="dateFullEdit" placeholder=""  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="2" >
+                  <input type="datetime-local" class="input-block-level" name="dateEdit" id="dateEdit" placeholder="0"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="1" >
                 </div>
               </div>
           </div>

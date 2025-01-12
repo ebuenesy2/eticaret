@@ -138,7 +138,6 @@ $("#new_add").click(function (e) {
     //! Veriler
     var currentIdAdd = $('#currentIdAdd').val();
     var dateAdd = $('#dateAdd').val();
-    var dateFullAdd = $('#dateFullAdd').val();
     var businessAdd = $('#businessAdd').val();
     var typeAdd = $('#typeAdd').val();
 
@@ -160,18 +159,6 @@ $("#new_add").click(function (e) {
             position: "center",
             icon: "error",
             title: "Tarih Yazılmadı",
-            showConfirmButton: false,
-            timer: 2000,
-        });
-
-        loadingYuklendi(); //! Fonksiyon Çalıştır
-    }
-    else if(dateFullAdd == '') { 
-
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Tarih Full Yazılmadı",
             showConfirmButton: false,
             timer: 2000,
         });
@@ -201,7 +188,6 @@ $("#new_add").click(function (e) {
                 siteLang: yildirimdevMultiLangJsonReturnR.lang,
                 current_id: $('#currentIdAdd').val(),
                 date_time:dateAdd,
-                date_time_full:dateFullAdd,
                 finance_business_account_id: $('#businessAdd').val(),
                 title: $('#businessAdd option[value="'+businessAdd+'"]').html(),
                 description: $('#descriptionAdd').val(),
@@ -486,7 +472,6 @@ $("#edit_item").click(function (e) {
     //! Veriler
     var currentIdEdit = $('#currentIdEdit').val(); 
     var dateEdit = $('#dateEdit').val();
-    var dateFullEdit = $('#dateFullEdit').val();
     var businessEdit = $('#businessEdit').val();
     var typeEdit = $('#typeEdit').val();
 
@@ -508,18 +493,6 @@ $("#edit_item").click(function (e) {
             position: "center",
             icon: "error",
             title: "Tarih Yazılmadı",
-            showConfirmButton: false,
-            timer: 2000,
-        });
-
-        loadingYuklendi(); //! Fonksiyon Çalıştır
-    }
-    else if(dateFullEdit == '') { 
-
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Tarih Full Yazılmadı",
             showConfirmButton: false,
             timer: 2000,
         });
@@ -551,7 +524,6 @@ $("#edit_item").click(function (e) {
 
                 current_id: $('#currentIdEdit').val(),
                 date_time:dateEdit,
-                date_time_full:dateFullEdit,
                 finance_business_account_id: $('#businessEdit').val(),
                 title: $('#businessEdit option[value="'+businessEdit+'"]').html(),
                 description: $('#descriptionEdit').val(),
