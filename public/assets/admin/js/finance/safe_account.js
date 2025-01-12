@@ -301,10 +301,6 @@ document.querySelectorAll("#deleteItem").forEach((Item) => {
 
 //! ************ Güncelle  *******************
 
-//! Modal Kontrol
-$("#editModal").modal({ keyboard: true, backdrop: "static",  show: false, })
-.on("show.bs.modal", function(event){ var data_id = $('#editModalValueId').html();  $('#topMenuEdit option[value="'+data_id+'"]').css('display','none'); }) //! Modal Açıldı
-.on("hide.bs.modal", function (event) { var data_id = $('#editModalValueId').html();  $('#topMenuEdit option[value="'+data_id+'"]').css('display','block');  }); //! Modal Kapandı
 
 //! Güncelle Verileri Gösterme
 document.querySelectorAll("#editItem").forEach((Item) => {
@@ -542,7 +538,6 @@ $('#businessEdit').change(function (e) {
     
 }); //! Değisiklik Olursa Son
 
-
 //! Güncelle - Toplam Hesaplama
 document.querySelector('#purchaseAmountEdit').addEventListener('keyup', e => { resutEdit(); }); 
 document.querySelector('#priceEdit').addEventListener('keyup', e => { resutEdit(); }); 
@@ -562,6 +557,290 @@ function resutEdit(){
 //! Güncelle - Toplam Hesaplama Son
 
 //! ************ Güncelle Son  ***************
+
+
+//! ************ Dosya Yükleme  *******************
+
+//! Verileri Gösterme
+document.querySelectorAll("#editFileUpload").forEach((Item) => {
+    Item.addEventListener("click", e => {
+
+        var data_id = e.target.getAttribute("data_id"); //! id
+        //console.log("data_id:", data_id);
+
+        var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+        //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+        //! Gösterme
+        $('#editFileUploadModalValueId').html(data_id); //! Veriyi Gösterme
+
+        //! Loading - Veri Yükleniyor
+        $('#loaderEditFileUpload').show(); //! Laoding Göster
+        $('#editFileUploadModal .modal-body input').attr('disabled','disabled'); //! Gizleme
+        $('#new_save_file').attr('disabled','disabled'); //! Button Gizleme
+        document.getElementById("new_save_file").style.cursor = "wait"; //! Cursor - Dönen
+
+        //! Ajax  Post
+        $.ajax({
+            url: listUrl + "/search/post",
+            type: "post",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                id:Number(data_id)
+            },
+            beforeSend: function() { console.log("Başlangıc"); },
+            success: function (response) {
+                // alert("başarılı");
+                console.log("response:", response);
+                // console.log("status:", response.status);
+
+                if(response.status == "success") {
+
+                    //! Veriler
+                    $('#fileUploadName').val(response.DB.file_name);
+                     
+                    //! Dosya Yükleme
+                    if(response.DB.file_name == "" || response.DB.file_name == null ){ $('#file_download').css('display','none'); }
+                    else { $('#file_download').css('display','block'); }
+                    
+                    $('#file_download').attr("href",response.DB.file_url);
+                    $('#file_download').attr("download",response.DB.file_name);
+
+                    //! Loading - Veri Yüklendi
+                    $('#loaderEditFileUpload').hide(); //! Laoding Gizle
+                    $('#editFileUploadModal .modal-body input').removeAttr('disabled'); //! İnputları Aç
+                    $('#new_save_file').removeAttr('disabled'); //! //! Button Göster
+                    document.getElementById("new_save_file").style.cursor = "pointer"; //! Cursor - Ok
+
+                }
+                else { toastr.error(yildirimdevMultiLangJsonReturnR.dataNotFound); }
+            },
+            error: function (error) { console.log("search error:", error); },
+            complete: function() {  console.log("Search Ajax Bitti"); }
+        }); //! Ajax Post Son
+
+        console.log("edit item");
+
+    })
+}) //! Verileri Gösterme Son
+
+//! Dosya Yükleme
+$("#fileUploadClick").click(function (e) {
+    e.preventDefault();
+    //alert("fileUploadClick");
+
+    var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+    //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+    //! Dosya Yükleme
+    const fileInput = document.querySelector("#fileInput");
+    const fileInputFiles = fileInput.files;
+    //console.log("fileInputFiles:",fileInputFiles);
+
+    //! Yeni Form Veriler
+    var formData = new FormData();
+    formData.append("file", fileInputFiles[0]);
+    formData.append("fileDbSave", $('#fileDbSave').val());
+    formData.append("fileWhere", $('#fileWhere').val());
+
+    $.ajax({
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = ((evt.loaded / evt.total) * 100);
+                    console.log("Dosya Yükleme Durumu: %", percentComplete);
+
+                    $("#progressBarFileUpload").width(percentComplete + '%');
+                    $("#progressBarFileUpload").html(percentComplete+'%');
+                    
+                }
+            }, false);
+            return xhr;
+        },
+        url: "/file/upload/control",
+        type: "post",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData:false,
+        beforeSend: function () {
+            console.log("Dosya yükleme başladı");
+
+            //! ProgressBar
+            $("#progressBarFileUpload").width('0%');
+
+            //! Upload Durum
+            $('#LoadingFileUpload').toggle();
+            $('#uploadStatus').hide();
+
+            //! Upload Url
+            $('#filePathUrl').html("");
+        },
+        error: function (error) {
+            alert("başarısız");
+            console.log("Hata oluştu error:", error);
+
+            //! Upload Durum
+            $('#LoadingFileUpload').hide();
+            $('#uploadStatus').html('<p style="color:#EA4335;">File upload failed, please try again.</p>');
+
+            //! Upload Url
+            $('#filePathUrl').html("");
+
+            //! Alert
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                showConfirmButton: false,
+                timer: 2000,
+            });  //! Alert Son
+
+        },
+        success: function (resp) {
+            //alert("Başarılı");
+            console.log("file resp:", resp);
+
+            //! ProgressBar
+            $("#progressBarFileUpload").width('100%');
+
+            //! Upload Durum
+            $('#LoadingFileUpload').hide();
+            $('#uploadStatus').hide();
+
+            //! Dosya Yükleme
+            $('#fileUploadName').val(resp.file_originName_Only);
+            $('#filePathUrl').html(resp.file_url);
+
+            $('#file_download').css('display','block');
+            $('#file_download').attr("href","/"+resp.file_url);
+            $('#file_download').attr("download",resp.file_originName_Only);
+
+        }
+    }); //! Ajax
+
+});
+//! Dosya Yükleme Son
+
+
+//! Güncelle
+$("#new_save_file").click(function (e) {
+    e.preventDefault();
+
+    var data_id = $('#editFileUploadModalValueId').html(); //! id
+    //console.log("data_id:", data_id);
+
+    var yildirimdevMultiLangJsonReturnR = yildirimdevMultiLangJsonReturn();
+    //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
+
+    //! Loading - Veri Yükleniyor
+    $('#loaderEditFileUpload').show(); //! Laoding Göster
+    $('#editFileUploadModal .modal-body input,textarea,select').attr('disabled','disabled'); //! İnputları Gizleme
+    $('#editFileUploadModal .modal-body button').attr('disabled','disabled'); //! Buttonları Gizleme
+    $('#edit_item').attr('disabled','disabled'); //! Button Gizleme
+    document.getElementById("edit_item").style.cursor = "wait"; //! Cursor - Dönen
+
+    //! Loading - Veri Yüklendi
+    function loadingYuklendi(){
+        $('#loaderEditFileUpload').hide(); //! Laoding Gizle
+        $('#editFileUploadModal .modal-body input,textarea,select').removeAttr('disabled'); //! İnputları Aç
+        $('#editFileUploadModal .modal-body button').removeAttr('disabled'); //! Buttonları Aç
+        $('#edit_item').removeAttr('disabled'); //! //! Button Göster
+        document.getElementById("edit_item").style.cursor = "pointer"; //! Cursor - Ok
+    }
+    //! Loading - Veri Yüklendi Son
+   
+    //! Veriler
+    var fileUploadName =  $('#fileUploadName').val();
+    var file_download_href =  $('#file_download').attr("href");
+
+    if(fileUploadName == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Dosya Bilgileri Eksik",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else if(file_download_href == '') { 
+
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Dosya Yüklenilmedi",
+            showConfirmButton: false,
+            timer: 2000,
+        });
+
+        loadingYuklendi(); //! Fonksiyon Çalıştır
+    }
+    else {
+
+        //! Ajax  Post // Edit
+        $.ajax({
+            url: listUrl + "/edit/file/post",
+            type: "post",
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            data: {
+                siteLang: yildirimdevMultiLangJsonReturnR.lang,
+                id:Number(data_id),
+                
+                fileUploadName:fileUploadName,
+                file_download_href:file_download_href,
+                
+                updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
+            },
+            beforeSend: function() { console.log("Başlangıc"); },
+            success: function (response) {
+                // alert("başarılı");
+                console.log("response:", response);
+                // console.log("status:", response.status);
+
+                if (response.status == "success") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: yildirimdevMultiLangJsonReturnR.transactionSuccessful,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+
+                    //! Sayfa Yenileme
+                    window.location.reload();
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                }
+            },
+            error: function (error) {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: yildirimdevMultiLangJsonReturnR.transactionFailed,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+                console.log("error:", error);
+            },
+            complete: function() { loadingYuklendi();  }
+        }); //! Ajax Post Son
+    }
+
+}); //! Güncelle Son
+
+//! ************ Dosya Yükleme Son  *******************
 
 //! ************ Çoklu İşlemler ***************
 

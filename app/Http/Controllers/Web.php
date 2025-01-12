@@ -84,7 +84,6 @@ class Web extends Controller
     //! Index
     public function Index($site_lang="tr")
     {
-        
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
         //echo "Dil:"; echo $site_lang;  echo "<br/>"; die();
 

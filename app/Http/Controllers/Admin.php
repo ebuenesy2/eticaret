@@ -14826,6 +14826,63 @@ class Admin extends Controller
 
     } //! Finans - İşletme Hesap - Veri Güncelleme Post Son
 
+    //! Finans - İşletme Hesap - Veri Dosya Güncelleme Post
+    public function SafeAccountEditFilePost(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+
+            //! Veri Arama
+            $DB = DB::table('finance_safe_account')->where('id',$request->id); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'file_name' => $request->fileUploadName,
+                    'file_url' => $request->file_download_href,
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+   
+               $response = array(
+                  'status' => 'error',
+                  'msg' => __('admin.dataNotFound'),
+                  'error' => null,
+               );
+   
+               return response()->json($response);
+            }
+   
+        } catch (\Throwable $th) {
+            
+            $response = array(
+               'status' => 'error',
+               'msg' => __('admin.transactionFailed'),
+               'error' => $th,            
+            );
+   
+            return response()->json($response);
+        }
+
+    } //! Finans - İşletme Hesap - Veri Güncelleme Post Son
+
     //! Finans - İşletme Hesap  -Clone - Post
     public function SafeAccountClonePost(Request $request)
     {
@@ -21724,7 +21781,8 @@ class Admin extends Controller
             //! Dosya Boyutu Son
 
             //! Dosya Yükleme
-            $fileName = time().'.'.$request->file->getClientOriginalExtension(); //! Dosya Adı
+            $fileName_Only=time();
+            $fileName = $fileName_Only.'.'.$request->file->getClientOriginalExtension(); //! Dosya Adı
             $file_status= $request->file->move(public_path('upload/uploads'), $fileName); //! Dosya Yükleme Durumu
 
             //! Dosya Türü
@@ -21752,7 +21810,9 @@ class Admin extends Controller
                 'fileWhere' => $fileWhere,
                 'file_upload_status'=>$uploadStatus,
                 'file_path'=>url('upload/uploads/'.$fileName),
+                'file_name_only'=>$fileName_Only,
                 'file_name'=>$fileName,
+                'file_originName_Only'=>explode('.',request()->file->getClientOriginalName())[0],
                 'file_originName'=>request()->file->getClientOriginalName(),
                 'file_size'=>array(
                     'sizeByte' => $fileSize,
