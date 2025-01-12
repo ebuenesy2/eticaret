@@ -115,6 +115,8 @@
                           <!-- Tablo İşlemi -->
                           <select  style="cursor: pointer;width: max-content;" id="tableSettings" >
                             <option value="delete" selected>@lang('admin.delete')</option>
+                            <option value="edit_active" >@lang('admin.active')</option>
+                            <option value="edit_passive" >@lang('admin.passive')</option>
                             <option value="multi_createClone" >@lang('admin.createClone')</option>
                           </select>
                           <!-- Tablo İşlemi Son -->
@@ -148,6 +150,7 @@
                                 <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.total')</th>
 
+                                <th class="table_title" exportName="id" >@lang('admin.status')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -172,8 +175,12 @@
                                   <td data-cell="@lang('admin.quantity')">{{$dbFind[$i]->quantity}}</td>
                                   <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
                                  
+                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
+                                  </td>
 
                                   <td data-cell="@lang('admin.actions')" >
+                                    <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-pencil"></i></button>
                                     <button class="btn btn-warning" title="modal fileupload"  id="editFileUpload" href="#editFileUploadModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-file"></i></button>

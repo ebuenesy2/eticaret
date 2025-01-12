@@ -14883,6 +14883,101 @@ class Admin extends Controller
 
     } //! Finans - İşletme Hesap - Veri Güncelleme Post Son
 
+    //! Finans - İşletme Hesap - Veri Durum Güncelleme Post
+    public function SafeAccountEditActive(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Arama
+            $DB = DB::table('finance_safe_account')->where('id',$request->id); //Veri Tabanı
+            $DB_Find = $DB->first(); //Tüm verileri çekiyor
+
+            if($DB_Find) {
+
+                //! Veri Güncelle
+                $DB_Status = $DB->update([            
+                    'isActive'=>$request->active == "true" ? true : false,
+                    'isUpdated'=>true,
+                    'updated_at'=>Carbon::now(),
+                    'updated_byId'=>$request->updated_byId,
+                ]);
+
+                $response = array(
+                    'status' => $DB_Status ? 'success' : 'error',
+                    'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+            else {
+
+                $response = array(
+                    'status' => 'error',
+                    'msg' => __('admin.dataNotFound'),
+                    'error' => null,
+                );
+
+                return response()->json($response);
+            }
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Finans - İşletme Hesap - Veri Durum Güncelleme Post Son
+
+    //! Finans - İşletme Hesap - Çoklu Veri Durum Güncelle - Post
+    public function SafeAccountEditMultiActive(Request $request)
+    {
+        $siteLang= $request->siteLang; //! Çoklu Dil
+        \Illuminate\Support\Facades\App::setLocale($siteLang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try {
+        
+            //! Veri Güncelleme
+            $DB_Status = DB::table('finance_safe_account')->whereIn('id',$request->ids)
+            ->update([  
+                'isActive'=>$request->active == "true" ? true : false,
+                'isUpdated'=>true,
+                'updated_at'=>Carbon::now(),
+                'updated_byId'=>$request->updated_byId,
+            ]);
+
+            $response = array(
+                'status' => $DB_Status ? 'success' : 'error',
+                'msg' =>  $DB_Status ? __('admin.transactionSuccessful') : __('admin.transactionFailed'),
+                'error' => null,
+            );
+
+            return response()->json($response);
+
+        } catch (\Throwable $th) {
+            
+            $response = array(
+                'status' => 'error',
+                'msg' => __('admin.transactionFailed'),
+                'error' => $th,            
+            );
+
+            return response()->json($response);
+        }
+
+    } //! Finans - İşletme Hesap- Çoklu Veri Durum Güncelle - Post Son
+
     //! Finans - İşletme Hesap  -Clone - Post
     public function SafeAccountClonePost(Request $request)
     {

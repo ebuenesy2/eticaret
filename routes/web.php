@@ -454,6 +454,8 @@ Route::post('/admin/safe/account/delete/post', [Admin::class,'SafeAccountDeleteP
 Route::post('/admin/safe/account/delete/post/multi', [Admin::class,'SafeAccountDeletePostMulti']) -> name("admin.web.safe.account.list.delete.post.multi"); //! Çoklu Veri Silme - Post
 Route::post('/admin/safe/account/edit/post', [Admin::class,'SafeAccountEditPost']) -> name("admin.web.safe.account.list.edit.post"); //! Veri Güncelle - Post
 Route::post('/admin/safe/account/edit/file/post', [Admin::class,'SafeAccountEditFilePost']) -> name("admin.web.safe.account.list.edit.file.post"); //! Veri Güncelle - Post
+Route::post('/admin/safe/account/edit/active', [Admin::class,'SafeAccountEditActive']) -> name("admin.web.safe.account.edit.active"); //! Veri Durum Güncelle - Post
+Route::post('/admin/safe/account/edit/multi/active', [Admin::class,'SafeAccountEditMultiActive']) -> name("admin.web.safe.account.edit.multi.active"); //! Çoklu Veri Durum Güncelle - Post
 Route::post('/admin/safe/account/clone', [Admin::class,'SafeAccountClonePost']) -> name("admin.web.safe.account.list.clone.post"); //! Veri Clone - Post
 Route::post('/admin/safe/account/clone/multi', [Admin::class,'SafeAccountClonePostMulti']) -> name("admin.web.safe.account.list.clone.post.multi"); //! Çoklu Veri Clone - Post
 

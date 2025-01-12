@@ -274,7 +274,7 @@
                                 <th class="table_title" exportName="id" >@lang('admin.total')</th>
 
                                 <th class="table_title" exportName="id" >@lang('admin.profit_loss')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.profit_loss') - @lang('admin.status') <th>
+                                <th class="table_title" exportName="id" >@lang('admin.profit_loss') - @lang('admin.status') </th>
                                 <th class="table_title" exportName="id" >@lang('admin.percent')</th>
 
                                 <th class="table_title" exportName="id" >@lang('admin.status')</th>
