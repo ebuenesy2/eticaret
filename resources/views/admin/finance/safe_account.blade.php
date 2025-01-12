@@ -371,7 +371,7 @@
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.purchaseAmount')</label>
+                <label class="control-label">@lang('admin.quantity')</label>
                 <div class="controls controls-row">
                   <input type="number" class="input-block-level" name="purchaseAmountAdd" id="purchaseAmountAdd" placeholder="1" value="1"  focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="5" >
                 </div>
@@ -488,7 +488,7 @@
         <div class="row-fluid">
           <div class="span6">
               <div class="control-group">
-                <label class="control-label">@lang('admin.purchaseAmount')</label>
+                <label class="control-label">@lang('admin.quantity')</label>
                 <div class="controls controls-row">
                   <input type="number" class="input-block-level" name="purchaseAmountEdit" id="purchaseAmountEdit" placeholder="1" value="1"  focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="5" >
                 </div>
