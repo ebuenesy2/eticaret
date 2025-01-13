@@ -130,6 +130,100 @@
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
+                         
+                        <!------  Tablo Üst - Sonucları Gösterme --------->
+                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice}}</p>
+                          </div>
+                        </div>
+                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Yıl - Toplam İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Year}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Yıl - Toplam Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Year}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Yıl - Toplam Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Year}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Yıl - Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Year}}</p>
+                          </div>
+                        </div>
+                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Ay - Toplam İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Month}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Ay - Toplam Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Month}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Ay - Toplam Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Month}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Ay - Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Month}}</p>
+                          </div>
+                        </div>
+                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Hafta - Toplam İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Week}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Hafta - Toplam Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Week}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Hafta - Toplam Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Week}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bu Hafta - Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Week}}</p>
+                          </div>
+                        </div>
+                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bugün - Toplam İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Today}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bugün - Toplam Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Today}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bugün - Toplam Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Today}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Bugün - Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Today}}</p>
+                          </div>
+                        </div>
+                        <!------  Tablo Üst - Sonucları Gösterme Son ----->
+
                         <!------ Tablo Ayarları -->
                         <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
                         
