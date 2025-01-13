@@ -14685,6 +14685,7 @@ class Admin extends Controller
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'total' => $request->total,
+                'isActive' => $request->isActive == 1 ? true : false,
                 'created_byId'=>$request->created_byId,
             ]); //! Veri Ekleme Son
 
@@ -14819,6 +14820,7 @@ class Admin extends Controller
                     'price' => $request->price,
                     'quantity' => $request->quantity,
                     'total' => $request->total,
+                    'isActive' => $request->isActive == 1 ? true : false,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,

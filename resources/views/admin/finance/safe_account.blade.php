@@ -264,7 +264,7 @@
                                 <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.total')</th>
                                
-                                <th class="table_title" exportName="id" >@lang('admin.status')</th>
+                                <th class="table_title" exportName="id" >İşlem Durumu</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -289,7 +289,7 @@
                                   <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
 
                                   <td data-cell="@lang('admin.status')" style="display: flex;" >
-                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
+                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? 'Tamamlandı' : 'Planlı'  }}</span>
                                   </td>
 
                                   <td data-cell="@lang('admin.actions')" >
@@ -393,6 +393,20 @@
                         @for ($i = 0; $i < count($DB_Current_Account); $i++)
                         <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
                         @endfor
+                    </select>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                <label class="control-label">İşlem Durumu</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="isActiveAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="1" >Tamamlandı</option>
+                        <option value="2" >Planlı</option>
                     </select>
                 </div>
               </div>
@@ -510,6 +524,20 @@
                         @for ($i = 0; $i < count($DB_Current_Account); $i++)
                         <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
                         @endfor
+                    </select>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+              <div class="control-group">
+                <label class="control-label">İşlem Durumu</label>
+                <div class="controls controls-row">
+                    <select class="" style="cursor: pointer;width: 100%;" id="isActiveEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
+                        <option value="1" >Tamamlandı</option>
+                        <option value="0" >Planlı</option>
                     </select>
                 </div>
               </div>

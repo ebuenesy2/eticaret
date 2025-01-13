@@ -45,7 +45,7 @@ document.querySelectorAll("#statusItem").forEach((Item) => {
             cancelButtonColor: '#514747',
             cancelButtonText: yildirimdevMultiLangJsonReturnR.no,
             confirmButtonColor: data_isActive == 1 ? '#d33' : '#38d918',
-            confirmButtonText: data_isActive == 1 ? yildirimdevMultiLangJsonReturnR.makePassive : yildirimdevMultiLangJsonReturnR.activate,
+            confirmButtonText: data_isActive == 1 ? "Planlı" : "Tamamlandı",
         }).then((result) => {
             if (result.isConfirmed) {
                 //alert("oldu");
@@ -196,6 +196,7 @@ $("#new_add").click(function (e) {
                 price: $('#priceAdd').val(),
                 quantity: $('#purchaseAmountAdd').val(),
                 total: $('#totalAdd').val(),
+                isActive: Number($('#isActiveAdd').val()),
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -413,8 +414,8 @@ document.querySelectorAll("#editItem").forEach((Item) => {
 
                     //! Veriler
                     $('#currentIdEdit option[value="'+response.DB.current_id+'"]').prop('selected', true); //! Seçim yap
+                    $('#isActiveEdit option[value="'+response.DB.isActive+'"]').prop('selected', true); //! Seçim yap
                     $('#dateEdit').val(response.DB.date_time);
-                    $('#dateFullEdit').val(response.DB.date_time_full);
 
                     $('#businessEdit option[value="'+response.DB.finance_business_account_id+'"]').prop('selected', true); //! Seçim yap
                     $('#descriptionEdit').html(response.DB.description);
@@ -531,6 +532,7 @@ $("#edit_item").click(function (e) {
                 type_code: $('#typeEdit').val(),
                 price: $('#priceEdit').val(),
                 quantity: $('#purchaseAmountEdit').val(),
+                isActive: Number($('#isActiveEdit').val()),
                 total: $('#totalEdit').val(),
                
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
