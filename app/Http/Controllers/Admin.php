@@ -14577,11 +14577,21 @@ class Admin extends Controller
                 Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
                 Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
 
+                COUNT(CASE WHEN finance_safe_account.isActive = 1 THEN 1 END) as totalActiveCount,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalActivePrice,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 AND (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice,
+
+                COUNT(CASE WHEN finance_safe_account.isActive = 0 THEN 1 END) as totalPasiveCount,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPasivePrice,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 AND (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice,
+
                 COUNT(CASE WHEN YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN 1 END) as totalCount_Year,
                 Format(ROUND(SUM(CASE WHEN YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Year,
                 Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Year,
                 Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" AND YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Year,
-
+                
                 COUNT(CASE WHEN YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN 1 END) as totalCount_Month,
                 Format(ROUND(SUM(CASE WHEN YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Month,
                 Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Month,

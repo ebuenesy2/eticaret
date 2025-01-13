@@ -146,10 +146,47 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
-                             <p>Bakiye</p>
+                             <p>Toplam Bakiye</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice}}</p>
                           </div>
+
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Tamamlanan İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Tamamlanan Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Tamamlanan Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Tamamlanan Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice}}</p>
+                          </div>
+
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Planan İşlem</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Planan Gelir</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Planan Gider</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice}}</p>
+                          </div>
+                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                             <p>Toplam Planan Bakiye</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice}}</p>
+                          </div>
                         </div>
+
+                        <hr/>
+                        
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam İşlem</p>
@@ -168,6 +205,9 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Year}}</p>
                           </div>
                         </div>
+                        
+                        <hr/>
+
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam İşlem</p>
@@ -186,6 +226,9 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Month}}</p>
                           </div>
                         </div>
+
+                        <hr/>
+
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam İşlem</p>
@@ -204,6 +247,9 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Week}}</p>
                           </div>
                         </div>
+
+                        <hr/>
+                        
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam İşlem</p>
