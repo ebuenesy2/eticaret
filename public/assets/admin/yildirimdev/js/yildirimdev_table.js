@@ -1,4 +1,4 @@
-c$(document).ready(function () {
+$(document).ready(function () {
 
     // alert("yildirimdev table");
     // console.log("yildirimdev table");

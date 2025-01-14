@@ -126,6 +126,19 @@
                             </select>
                           </div>
                           <!------ Arama Tür Son----->
+
+
+                          <!------ Arama - İşlem Durumu ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> İşlem Durumu</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="ActiveType"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="1" >Tamamlandı</option>
+                                <option value="2" >Planlandırıldı</option>
+                                <option value="3" >Tekliflendirildi</option>
+                            </select>
+                          </div>
+                          <!------ Arama - İşlem Durumu Son ----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
@@ -276,9 +289,11 @@
                           <!-- Tablo İşlemi -->
                           <select  style="cursor: pointer;width: max-content;" id="tableSettings" >
                             <option value="delete" selected>@lang('admin.delete')</option>
-                            <option value="edit_active" >@lang('admin.active')</option>
-                            <option value="edit_passive" >@lang('admin.passive')</option>
                             <option value="multi_createClone" >@lang('admin.createClone')</option>
+                            <option value="edit_action_complete" >Tamamlandı</option>
+                            <option value="edit_action_plan" >Planlandırıldı</option>
+                            <option value="edit_action_offer" >Tekliflendirildi</option>
+                            
                           </select>
                           <!-- Tablo İşlemi Son -->
 
@@ -337,12 +352,12 @@
                                   <td data-cell="@lang('admin.actions') @lang('admin.status')"  >
                                     @if($dbFind[$i]->action_type == 1)<span style="margin: auto;padding: 10px;" class="alert-success" data_value="{{$dbFind[$i]->action_type}}" >Tamamlandı</span>
                                     @elseif($dbFind[$i]->action_type == 2)<span style="margin: auto;padding: 10px;" class="alert-error" data_value="{{$dbFind[$i]->action_type}}" >Planlandırıldı</span>
-                                    @elseif($dbFind[$i]->action_type == 3)<span style="margin: auto;padding: 10px;" class="alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tekliflendirildi</span>
+                                    @elseif($dbFind[$i]->action_type == 3)<span style="margin: auto;padding: 10px;" class="alert alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tekliflendirildi</span>
                                     @endif
                                   </td>
 
                                   <td data-cell="@lang('admin.actions')" >
-                                    <button class="btn {{$dbFind[$i]->isActive ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  ><i data_id="{{$dbFind[$i]->id}}" data_isActive="{{$dbFind[$i]->isActive}}"  class="{{$dbFind[$i]->isActive ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
+                                    <button class="btn {{$dbFind[$i]->action_type == 1 ? 'btn-success ' : 'btn-danger '}}" id="statusItem" data_id="{{$dbFind[$i]->id}}" data_action_type="{{$dbFind[$i]->action_type}}"  ><i data_id="{{$dbFind[$i]->id}}" data_action_type="{{$dbFind[$i]->action_type}}"  class="{{$dbFind[$i]->action_type == 1 ? 'icon-eye-open' : ' icon-eye-close'}}"></i></button>
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
                                     <button class="btn btn-primary" title="modal edit"  id="editItem" href="#editModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-pencil"></i></button>
                                     <button class="btn btn-warning" title="modal fileupload"  id="editFileUpload" href="#editFileUploadModal" data-toggle="modal" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class="fa fa-file"></i></button>

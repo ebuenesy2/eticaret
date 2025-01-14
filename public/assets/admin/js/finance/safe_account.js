@@ -33,19 +33,19 @@ document.querySelectorAll("#statusItem").forEach((Item) => {
         //console.log("lang:",yildirimdevMultiLangJsonReturnR.lang);
 
         var data_id = e.target.getAttribute("data_id"); //! Target ATTR
-        var data_isActive = e.target.getAttribute("data_isActive"); //! Target ATTR
+        var data_action_type = e.target.getAttribute("data_action_type"); //! Target ATTR
         console.log("data_id:", data_id);
-        console.log("data_isActive:", data_isActive);
+        console.log("data_action_type:", data_action_type);
 
         //! Alert
         Swal.fire({
-            title: yildirimdevMultiLangJsonReturnR.statusSelect+" #"+data_id,
+            title: "İşlem Durumu Seç"+" #"+data_id,
             icon: 'warning',
             showCancelButton: true,
             cancelButtonColor: '#514747',
             cancelButtonText: yildirimdevMultiLangJsonReturnR.no,
-            confirmButtonColor: data_isActive == 1 ? '#d33' : '#38d918',
-            confirmButtonText: data_isActive == 1 ? "Planlı" : "Tamamlandı",
+            confirmButtonColor: data_action_type == 1 ? '#d33' : '#38d918',
+            confirmButtonText: data_action_type == 1 ? "Planlandırıldı" : "Tamamlandı",
         }).then((result) => {
             if (result.isConfirmed) {
                 //alert("oldu");
@@ -58,7 +58,7 @@ document.querySelectorAll("#statusItem").forEach((Item) => {
                     data: {
                         siteLang: yildirimdevMultiLangJsonReturnR.lang,
                         id:Number(data_id),
-                        active: data_isActive == 1 ? 'false' : 'true',
+                        action_type: data_action_type == 1 ? 2 : 1,
                         updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
                     },              
                     beforeSend: function() { console.log("Başlangıc"); },
@@ -193,10 +193,10 @@ $("#new_add").click(function (e) {
                 description: $('#descriptionAdd').val(),
                 type: $('#typeAdd option[value="'+typeAdd+'"]').html(),
                 type_code: $('#typeAdd').val(),
+                action_type: Number($('#isActiveAdd').val()),
                 price: $('#priceAdd').val(),
                 quantity: $('#purchaseAmountAdd').val(),
                 total: $('#totalAdd').val(),
-                isActive: Number($('#isActiveAdd').val()),
                 created_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
             },
             beforeSend: function() { console.log("Başlangıc"); },
@@ -414,7 +414,7 @@ document.querySelectorAll("#editItem").forEach((Item) => {
 
                     //! Veriler
                     $('#currentIdEdit option[value="'+response.DB.current_id+'"]').prop('selected', true); //! Seçim yap
-                    $('#isActiveEdit option[value="'+response.DB.isActive+'"]').prop('selected', true); //! Seçim yap
+                    $('#isActiveEdit option[value="'+response.DB.action_type+'"]').prop('selected', true); //! Seçim yap
                     $('#dateEdit').val(response.DB.date_time);
 
                     $('#businessEdit option[value="'+response.DB.finance_business_account_id+'"]').prop('selected', true); //! Seçim yap
@@ -530,9 +530,9 @@ $("#edit_item").click(function (e) {
                 description: $('#descriptionEdit').val(),
                 type: $('#typeEdit option[value="'+typeEdit+'"]').html(),
                 type_code: $('#typeEdit').val(),
+                action_type: Number($('#isActiveEdit').val()),
                 price: $('#priceEdit').val(),
                 quantity: $('#purchaseAmountEdit').val(),
-                isActive: Number($('#isActiveEdit').val()),
                 total: $('#totalEdit').val(),
                
                 updated_byId: document.cookie.split(';').find((row) => row.startsWith(' yildirimdev_userID='))?.split('=')[1]
@@ -990,8 +990,12 @@ $("#multiAction").click(function (e) {
 
     //! Çoklu İşlemleri
     if(multiActionStatus == "delete") { multiDelete(); }  //! Çoklu Sil
-    else if(multiActionStatus == "edit_active" || multiActionStatus == "edit_passive") { 
-        //console.log("çoklu güncelle"); 
+    else if(multiActionStatus == "edit_action_complete" || multiActionStatus == "edit_action_plan" || multiActionStatus == "edit_action_offer" ) { 
+      
+        var action_type = 1;
+        if(multiActionStatus == "edit_action_complete") { action_type =1; }
+        else if(multiActionStatus == "edit_action_plan") { action_type =2; }
+        else if(multiActionStatus == "edit_action_offer") { action_type =3; }
 
         //! Ajax  Post
         $.ajax({
@@ -1001,7 +1005,7 @@ $("#multiAction").click(function (e) {
             data: {
                 siteLang: yildirimdevMultiLangJson.lang,
                 ids: $('#showAllRows').attr('data_value').split(','),
-                active: multiActionStatus == "edit_passive" ?  "false" : "true"
+                action_type: action_type
             },              
             beforeSend: function() { console.log("Başlangıc"); },
             success: function (response) {

@@ -14547,6 +14547,7 @@ class Admin extends Controller
                 $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
                 $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "ActiveType", "table" => $table, "where" => "action_type", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
 
                 $whereData = []; //! Where
                 
@@ -14692,10 +14693,10 @@ class Admin extends Controller
                 'description' => $request->description,
                 'type' => $request->type,
                 'type_code' => $request->type_code,
+                'action_type' => $request->action_type,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'total' => $request->total,
-                'isActive' => $request->isActive == 1 ? true : false,
                 'created_byId'=>$request->created_byId,
             ]); //! Veri Ekleme Son
 
@@ -14827,10 +14828,10 @@ class Admin extends Controller
                     'description' => $request->description,
                     'type' => $request->type,
                     'type_code' => $request->type_code,
+                    'action_type' => $request->action_type,
                     'price' => $request->price,
                     'quantity' => $request->quantity,
                     'total' => $request->total,
-                    'isActive' => $request->isActive == 1 ? true : false,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,
@@ -14943,7 +14944,7 @@ class Admin extends Controller
 
                 //! Veri Güncelle
                 $DB_Status = $DB->update([            
-                    'isActive'=>$request->active == "true" ? true : false,
+                    'action_type' => $request->action_type,
                     'isUpdated'=>true,
                     'updated_at'=>Carbon::now(),
                     'updated_byId'=>$request->updated_byId,
@@ -14994,7 +14995,7 @@ class Admin extends Controller
             //! Veri Güncelleme
             $DB_Status = DB::table('finance_safe_account')->whereIn('id',$request->ids)
             ->update([  
-                'isActive'=>$request->active == "true" ? true : false,
+                'action_type' => $request->action_type,
                 'isUpdated'=>true,
                 'updated_at'=>Carbon::now(),
                 'updated_byId'=>$request->updated_byId,
