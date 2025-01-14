@@ -204,7 +204,7 @@
                                   <td data-cell="Route Name">{{$dbFind[$i]->route_name}}</td>
                                   <td data-cell="TR">{{$dbFind[$i]->tr}}</td>
                                   <td data-cell="EN">{{$dbFind[$i]->en}}</td>
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

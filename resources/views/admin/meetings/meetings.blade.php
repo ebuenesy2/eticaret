@@ -170,7 +170,7 @@
                                     @elseif($dbFind[$i]->businessStatus == 2 ) <span class="alert alert-info"  >{{ __('admin.pending')  }}</span>
                                     @endif
                                   </td>
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

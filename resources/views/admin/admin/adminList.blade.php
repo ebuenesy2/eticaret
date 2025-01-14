@@ -227,7 +227,7 @@
                                   <td data-cell="@lang('admin.role')">{{$dbFind[$i]->roleTitle}}</td>
                                   <td data-cell="@lang('admin.department')">{{$dbFind[$i]->departmanTitle}}</td>
                                   <td data-cell="@lang('admin.createdDate')">{{$dbFind[$i]->created_at}}</td>
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}">{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 

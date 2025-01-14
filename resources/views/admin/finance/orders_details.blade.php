@@ -306,7 +306,7 @@
                                   <td data-cell="@lang('admin.percent')" >{{ $dbFind[$i]->type == 'S' ? $dbFind[$i]->orderDetailPercent.'%' : '-'}}</td>
                                  
 
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

@@ -196,7 +196,7 @@
                                   <td data-cell="@lang('admin.productFloor')" > {{$dbFind[$i]->floor_place}}</td>
                                   <td data-cell="@lang('admin.productFloorPlace')" > {{$dbFind[$i]->place}}</td>
 
-                                  <td style="display: flex;" data-cell="@lang('admin.status')" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
 

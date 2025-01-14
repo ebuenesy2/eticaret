@@ -148,7 +148,7 @@
                                   <td data-cell="@lang('admin.name')" >{{$dbFind[$i]->name}}</td>
                                   <td data-cell="@lang('admin.surname')" >{{$dbFind[$i]->surname}}</td>
                                   <td data-cell="@lang('admin.role')" >{{$dbFind[$i]->role}}</td>
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
+                                  <td data-cell="@lang('admin.status')">
                                     <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                  
