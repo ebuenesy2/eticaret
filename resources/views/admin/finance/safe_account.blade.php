@@ -334,8 +334,11 @@
                                   <td data-cell="@lang('admin.quantity')">{{$dbFind[$i]->quantity}}</td>
                                   <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
 
-                                  <td data-cell="@lang('admin.status')" style="display: flex;" >
-                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? 'Tamamlandı' : 'Planlı'  }}</span>
+                                  <td data-cell="@lang('admin.actions') @lang('admin.status')"  >
+                                    @if($dbFind[$i]->action_type == 1)<span style="margin: auto;padding: 10px;" class="alert-success" data_value="{{$dbFind[$i]->action_type}}" >Tamamlandı</span>
+                                    @elseif($dbFind[$i]->action_type == 2)<span style="margin: auto;padding: 10px;" class="alert-error" data_value="{{$dbFind[$i]->action_type}}" >Planlandırıldı</span>
+                                    @elseif($dbFind[$i]->action_type == 3)<span style="margin: auto;padding: 10px;" class="alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tekliflendirildi</span>
+                                    @endif
                                   </td>
 
                                   <td data-cell="@lang('admin.actions')" >
@@ -451,8 +454,9 @@
                 <label class="control-label">İşlem Durumu</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="isActiveAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
-                        <option value="1" >Tamamlandı</option>
-                        <option value="2" >Planlı</option>
+                      <option value="1" >Tamamlandı</option>
+                      <option value="2" >Planlandırıldı</option>
+                      <option value="3" >Tekliflendirildi</option>
                     </select>
                 </div>
               </div>
@@ -582,8 +586,9 @@
                 <label class="control-label">İşlem Durumu</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="isActiveEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
-                        <option value="1" >Tamamlandı</option>
-                        <option value="0" >Planlı</option>
+                      <option value="1" >Tamamlandı</option>
+                      <option value="2" >Planlandırıldı</option>
+                      <option value="3" >Tekliflendirildi</option>
                     </select>
                 </div>
               </div>
