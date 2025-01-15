@@ -199,6 +199,8 @@
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme Son ----->
 
+                        <hr>
+
                         <!------ Tablo Ayarları -->
                         <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
                         

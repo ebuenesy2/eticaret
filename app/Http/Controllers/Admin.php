@@ -14574,9 +14574,12 @@ class Admin extends Controller
                 $DB_Find_Dashboard= DB::table('finance_safe_account')
                 ->selectRaw('
                     COUNT(finance_safe_account.id) as totalCount,
-                    Format(ROUND(SUM( CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE -(finance_safe_account.price * finance_safe_account.quantity) END )),3,"#,##0.000") as totalPrice,
+                    Format(ROUND(SUM( CASE 
+                    WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                    WHEN finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                    ELSE 0 END )),3,"#,##0.000") as totalPrice,
                     Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
-                    Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
 
                     COUNT(CASE WHEN finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount,
                     Format(ROUND(SUM( CASE 
