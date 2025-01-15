@@ -14570,15 +14570,33 @@ class Admin extends Controller
                 $DB["DB_Business_Account"] = $DB_Business_Account;
                 //! İş Hesapları Son 
 
-
                 //! Dashboard
-                $DB_Find_Dashboard= DB::select('SELECT 
-                COUNT(finance_safe_account.id) as totalCount,
-                Format(ROUND(SUM( CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE -(finance_safe_account.price * finance_safe_account.quantity) END )),3,"#,##0.000") as totalPrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice
+                $DB_Find_Dashboard= DB::table('finance_safe_account')
+                ->selectRaw('
+                    COUNT(finance_safe_account.id) as totalCount,
+                    Format(ROUND(SUM( CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE -(finance_safe_account.price * finance_safe_account.quantity) END )),3,"#,##0.000") as totalPrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
+                    Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
 
-                FROM `finance_safe_account`;');
+                    COUNT(CASE WHEN finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice,
+
+                    COUNT(CASE WHEN finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice
+
+                ')
+                ->where($DB_Find['where'])
+                ->get();
                 //echo "<pre>"; print_r($DB_Find_Dashboard[0]); die();
 
                 $DB["DB_Find_Dashboard"] =  $DB_Find_Dashboard[0];
