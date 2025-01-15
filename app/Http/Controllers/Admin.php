@@ -14572,43 +14572,13 @@ class Admin extends Controller
 
 
                 //! Dashboard
-                $DB_Find_Dashboard= DB::select('SELECT
+                $DB_Find_Dashboard= DB::select('SELECT 
                 COUNT(finance_safe_account.id) as totalCount,
-                Format(ROUND(SUM(finance_safe_account.price * finance_safe_account.quantity),3),3,"#,##0.000") as totalPrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
+                Format(ROUND(SUM( CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE -(finance_safe_account.price * finance_safe_account.quantity) END )),3,"#,##0.000") as totalPrice,
                 Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
+                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice
 
-                COUNT(CASE WHEN finance_safe_account.isActive = 1 THEN 1 END) as totalActiveCount,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalActivePrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 AND (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice,
-
-                COUNT(CASE WHEN finance_safe_account.isActive = 0 THEN 1 END) as totalPasiveCount,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPasivePrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 AND (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.isActive = 0 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice,
-
-                COUNT(CASE WHEN YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN 1 END) as totalCount_Year,
-                Format(ROUND(SUM(CASE WHEN YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Year,
-                Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Year,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" AND YEAR(NOW()) = YEAR(finance_safe_account.date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Year,
-                
-                COUNT(CASE WHEN YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN 1 END) as totalCount_Month,
-                Format(ROUND(SUM(CASE WHEN YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Month,
-                Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Month,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" AND YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Month,
-
-                COUNT(CASE WHEN date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() THEN 1 END) as totalCount_Week,
-                Format(ROUND(SUM(CASE WHEN date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Week,
-                Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Week,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" AND (date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now()) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Week,
-
-                COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d")) = DATE_FORMAT(date_time,"%Y-%m-%d") THEN 1 END) as totalCount_Today,
-                Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d")) = DATE_FORMAT(date_time,"%Y-%m-%d") THEN finance_safe_account.price * finance_safe_account.quantity END),3),3,"#,##0.000") as totalPrice_Today,
-                Format(ROUND(SUM(CASE WHEN (finance_safe_account.type = "Gider" OR finance_safe_account.type = "Hizmet") AND ( (DATE_FORMAT(now(),"%Y-%m-%d")) = DATE_FORMAT(date_time,"%Y-%m-%d") ) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Today,
-                Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" AND ( (DATE_FORMAT(now(),"%Y-%m-%d")) = DATE_FORMAT(date_time,"%Y-%m-%d") ) THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Today 
-
-                FROM finance_safe_account;');
+                FROM `finance_safe_account`;');
                 //echo "<pre>"; print_r($DB_Find_Dashboard[0]); die();
 
                 $DB["DB_Find_Dashboard"] =  $DB_Find_Dashboard[0];
