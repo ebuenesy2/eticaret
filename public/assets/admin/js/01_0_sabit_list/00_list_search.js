@@ -123,3 +123,18 @@ function searchTableControl(){
 } //! Arama Tablo Kontrol Son
 
 //! ************ Arama Son ***************
+
+
+    
+//! ************ Filtreleme Temizleme  ***************
+//! Filtreleme Temizleme 
+$("#filter_delete_all").click(function (e) {
+    e.preventDefault();
+
+    searchJsonData = []; //! Filtreleme Temizle
+    JsonHtml_Controller();
+
+    searchTableControl();
+
+}); //! Filtreleme Temizleme  Son
+//! ************ Filtreleme Temizleme  Son  ***************

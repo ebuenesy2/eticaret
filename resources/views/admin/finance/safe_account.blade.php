@@ -88,6 +88,70 @@
                           </div>
                           <!------ Arama ID Son----->
 
+                          <!-- Arama Takvim Arası -->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p>Tarih Başlangıç</p>
+                            <input type="date" class="" style="cursor: pointer; width: 120px; cursor: pointer;"  id="searchTable" searchName="DateStart" >
+                          </div>
+                          
+                          <div style="display: flex;flex-direction: column;" >
+                            <p>Tarih Bitiş</p>
+                            <input type="date" class="" style="cursor: pointer; width: 120px; cursor: pointer;"  id="searchTable" searchName="DateFinish" >
+                          </div>
+                          <!-- Arama Takvim Arası Son -->
+                          
+                          <!------ Arama Tür ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> @lang('admin.type')</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Type"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="1" >Gelir</option>
+                                <option value="2" >Gider</option>
+                                <option value="3" >Hizmet</option>
+                            </select>
+                          </div>
+                          <!------ Arama Tür Son----->
+
+                          <!------ Arama İş Hizmet ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> İş Hizmet</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="BusinessAccount"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="0" >Diğer</option>
+                                @for ($i = 0; $i < count($DB_Business_Account); $i++)
+                                <option value="{{$DB_Business_Account[$i]->id}}" >{{$DB_Business_Account[$i]->title}}</option>
+                                @endfor
+                            </select>
+                          </div>
+                          <!------ Arama İş Hizmet Son----->
+                          
+                          <!------ Arama Başlık ----->
+                          <div style="display: flex;flex-direction: column;">
+                            <p>İş Hizmet Başlık</p>
+                            <input type="text" class="" style="width: 120px;"   id="searchTable" searchName="Title" >
+                          </div>
+                          <!------ Arama Başlık Son----->
+
+                          <!------ Arama - İşlem Durumu ----->
+                          <div style="display: flex;flex-direction: column;" >
+                            <p> İşlem Durumu</p>
+                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="ActiveType"  >
+                                <option value="">@lang('admin.all')</option>
+                                <option value="1" >Tamamlandı</option>
+                                <option value="2" >Planlandırıldı</option>
+                                <option value="3" >Tekliflendirildi</option>
+                            </select>
+                          </div>
+                          <!------ Arama - İşlem Durumu Son ----->
+                          
+                        </div>
+                        <!------  Tablo Üst -Arama Son ----->
+
+                        <hr>
+                        
+                        <!------  Tablo Üst - Arama ----->
+                        <div class="row-fluid" style="margin-top:10px;display: flex;gap: 5px;flex-wrap: wrap;" >
+
                           <!------ Arama Cari Hesap Kodu ----->
                           <div style="display: flex;flex-direction: column;">
                             <p>Cari Hesap Kodu</p>
@@ -107,44 +171,18 @@
                             </select>
                           </div>
                           <!------ Arama Cari Hesap Son----->
-
-                          <!------ Arama Başlık ----->
-                          <div style="display: flex;flex-direction: column;">
-                            <p>@lang('admin.title')</p>
-                            <input type="text" class="" style="width: 120px;"   id="searchTable" searchName="Title" >
-                          </div>
-                          <!------ Arama Başlık Son----->
-                          
-                          <!------ Arama Tür ----->
-                          <div style="display: flex;flex-direction: column;" >
-                            <p> @lang('admin.type')</p>
-                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Type"  >
-                                <option value="">@lang('admin.all')</option>
-                                <option value="1" >Gelir</option>
-                                <option value="2" >Gider</option>
-                                <option value="3" >Hizmet</option>
-                            </select>
-                          </div>
-                          <!------ Arama Tür Son----->
-
-
-                          <!------ Arama - İşlem Durumu ----->
-                          <div style="display: flex;flex-direction: column;" >
-                            <p> İşlem Durumu</p>
-                            <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="ActiveType"  >
-                                <option value="">@lang('admin.all')</option>
-                                <option value="1" >Tamamlandı</option>
-                                <option value="2" >Planlandırıldı</option>
-                                <option value="3" >Tekliflendirildi</option>
-                            </select>
-                          </div>
-                          <!------ Arama - İşlem Durumu Son ----->
                           
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
+                          <!-- Filtreleme Temizle -->
+                          <button class="btn btn-danger" id="filter_delete_all" > <i class="fa fa-trash  icon-white"></i> Filtreleme Temizle </button>
+                          <!-- Filtreleme Temizle Son -->
+
                         <hr>
+
                         
+
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
@@ -493,7 +531,7 @@
                                 <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.date')</th>
                           
-                                <th class="table_title" exportName="id" >@lang('admin.title')</th>
+                                <th class="table_title" exportName="id" >İş Hizmet</th>
                                 <th class="table_title" exportName="id" >@lang('admin.description')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.type')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.price')</th>

@@ -14543,6 +14543,10 @@ class Admin extends Controller
                 //! Arama
                 $searchData = [];
                 $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "DateStart", "table" => $table, "where" => "date_time", "data_item_object" => ">=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "DateFinish", "table" => $table, "where" => "date_time", "data_item_object" => "<=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "BusinessAccount", "table" => $table, "where" => "finance_business_account_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit   
+
                 $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
@@ -14565,7 +14569,7 @@ class Admin extends Controller
                 //! Cari Hesaplar Son 
 
                 //! İş Hesapları
-                $DB_Business_Account = DB::table('finance_business_account')->get(); //Tüm verileri çekiyor
+                $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
                 //echo "<pre>"; print_r($DB_Business_Account); die();
                 $DB["DB_Business_Account"] = $DB_Business_Account;
                 //! İş Hesapları Son 
