@@ -143,7 +143,8 @@
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
-                         
+                        <hr>
+                        
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
