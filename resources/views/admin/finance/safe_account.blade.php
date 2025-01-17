@@ -175,13 +175,11 @@
                         </div>
                         <!------  Tablo Üst -Arama Son ----->
 
-                          <!-- Filtreleme Temizle -->
-                          <button class="btn btn-danger" id="filter_delete_all" > <i class="fa fa-trash  icon-white"></i> Filtreleme Temizle </button>
-                          <!-- Filtreleme Temizle Son -->
+                        <!-- Filtreleme Temizle -->
+                        <button class="btn btn-danger" id="filter_delete_all" > <i class="fa fa-trash  icon-white"></i> Filtreleme Temizle </button>
+                        <!-- Filtreleme Temizle Son -->
 
                         <hr>
-
-                        
 
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
