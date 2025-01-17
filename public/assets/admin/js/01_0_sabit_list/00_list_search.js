@@ -74,9 +74,12 @@ JsonHtml_Controller();
 
 //! Arama
 document.querySelectorAll("#searchTable").forEach((searchTable) => {
-    searchTable.addEventListener("keyup", e => { searchFunction(e); }),
-    searchTable.addEventListener("change", e =>{ searchFunction(e); })
-}) //! Arama Son
+    //searchTable.addEventListener("keyup", e => { searchFunction(e); }), //! Yazılınca
+    searchTable.addEventListener("change", e =>{ searchFunction(e); }) //! Değişince
+}) 
+
+$("#searchTable").keydown(function(event) { if (event.keyCode == 13) { searchFunction(); } }); //! Enter
+//! Arama Son
 
 //! Arama Fonksiyon
 function searchFunction (e) {

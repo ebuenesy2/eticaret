@@ -14546,12 +14546,12 @@ class Admin extends Controller
                 $searchData[] = array("params" => "DateStart", "table" => $table, "where" => "date_time", "data_item_object" => ">=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
                 $searchData[] = array("params" => "DateFinish", "table" => $table, "where" => "date_time", "data_item_object" => "<=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
                 $searchData[] = array("params" => "BusinessAccount", "table" => $table, "where" => "finance_business_account_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit   
-
-                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
-                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
                 $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "ActiveType", "table" => $table, "where" => "action_type", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
 
                 $whereData = []; //! Where
                 
