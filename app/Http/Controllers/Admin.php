@@ -17,8 +17,7 @@ include(app_path() . '/Functions/cookie.php'); //! Cookie
 include(app_path() . '/Functions/functions.php'); //! Fonksiyonlar
 include(app_path() . '/Functions/levels.php'); //! Levels
 include(app_path() . '/Functions/list.php'); //! List
-include(app_path() . '/Functions/log.php'); //! Log
-include(app_path() . '\Functions\permissions.php'); //! Kullanım İzinleri
+
 
 class Admin extends Controller
 {
