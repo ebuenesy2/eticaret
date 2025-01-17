@@ -564,6 +564,7 @@
                                     @if($dbFind[$i]->action_type == 1)<span style="margin: auto;padding: 10px;" class="alert-success" data_value="{{$dbFind[$i]->action_type}}" >Tamamlandı</span>
                                     @elseif($dbFind[$i]->action_type == 2)<span style="margin: auto;padding: 10px;" class="alert-error" data_value="{{$dbFind[$i]->action_type}}" >Planlandırıldı</span>
                                     @elseif($dbFind[$i]->action_type == 3)<span style="margin: auto;padding: 10px;" class="alert alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tekliflendirildi</span>
+                                    @else<span style="margin: auto;padding: 10px;" class="alert alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tamamlanmadı</span>
                                     @endif
                                   </td>
 

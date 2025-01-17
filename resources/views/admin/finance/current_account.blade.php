@@ -135,7 +135,8 @@
 
                                 <th class="table_title" exportName="id" >Toplam Bakiye Miktarı</th>
                                 <th class="table_title" exportName="id" >Toplam Bakiye Tutarı</th>
-                                
+                                 
+                                <th class="table_title" exportName="id" exportName="isActive" exportType="number" >@lang('admin.status')</th>
                                 <th class="table_title" exportName="id" >@lang('admin.actions')</th>
 
                               </thead>
@@ -158,6 +159,12 @@
 
                                   <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeMiktari}}</td>
                                   <td data-cell="@lang('admin.title')" >{{$dbFind[$i]->ToplamBakiyeTutar}}</td>
+
+                                  <td data-cell="@lang('admin.status')"  >
+                                    @if($dbFind[$i]->ToplamBakiyeTutar >= 0 )<span style="margin: auto;padding: 10px;" class="alert-success"  >Kapalı</span>
+                                    @else<span style="margin: auto;padding: 10px;" class="alert alert-error" >Açık</span>
+                                    @endif
+                                  </td>
 
                                   <td data-cell="@lang('admin.actions')" >
                                     <button class="btn btn-success" title="clone" id="cloneItem" data_id="{{$dbFind[$i]->id}}" ><i data_id="{{$dbFind[$i]->id}}" class=" icon-copy"></i></button>
