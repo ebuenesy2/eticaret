@@ -657,7 +657,7 @@
         <h3 id="addModalLabel">@lang('admin.newAdd')</h3>
         <div id='loaderAdd' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 600px;" >
 
         <div class="row-fluid">
           <div class="span12">
@@ -789,7 +789,7 @@
           <h3 id="editModalTitle" style="display: flex;" ><p>@lang('admin.edit') #</p><p id="editModalValueId">54</p> </h3>
           <div id='loaderEdit' style="display: flex;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="max-height: 600px;" >
 
         <div class="row-fluid">
           <div class="span12">
