@@ -67,6 +67,13 @@
                          
                         <div style="display:flex;gap: 5px;flex-wrap: wrap;margin-bottom: 25px;" >
 
+                        
+                          <!-- Export -->
+                          <button class="btn btn-info" href="#exportModal" role="button" data-toggle="modal" >
+                            <i class="fa fa-download" aria-hidden="true"></i> Export
+                          </button>
+                          <!-- Export Son -->
+
                           <!-- Modal -->
                           <button class="btn btn-success" href="#addModal" role="button" data-toggle="modal" >
                             <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
@@ -518,28 +525,28 @@
                         <!------  Tablo ----->
                         <div class="table-container">
                             
-                          <table>
-                              <thead>
-                                
-                                <!---- Tümü Seç --->
-                                <th data-cell="Tümü Seç" style="margin: auto;"><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
+                          <table id="customers" >
+                            <thead>
+                              
+                              <!---- Tümü Seç --->
+                              <th data-cell="Tümü Seç" style="margin: auto;" exportName="check" exportViewDisplay="false"  ><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
-                                <th class="table_title" exportName="id" >ID</th>
-                                <th class="table_title" exportName="id" >@lang('admin.currentAccount') Code</th>
-                                <th class="table_title" exportName="id" >@lang('admin.currentAccount')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.date')</th>
-                          
-                                <th class="table_title" exportName="id" >İş Hizmet</th>
-                                <th class="table_title" exportName="id" >@lang('admin.description')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.type')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.price')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.quantity')</th>
-                                <th class="table_title" exportName="id" >@lang('admin.total')</th>
-                               
-                                <th class="table_title" exportName="id" >İşlem Durumu</th>
-                                <th class="table_title" exportName="id" >@lang('admin.actions')</th>
+                              <th class="table_title" exportName="id" exportType="number" exportViewDisplay="true" >ID</th>
+                              <th class="table_title" exportName="current_id" exportType="number" exportViewDisplay="true" >@lang('admin.currentAccount') Code</th>
+                              <th class="table_title" exportName="finance_current_account_title" exportType="text" exportViewDisplay="true" >@lang('admin.currentAccount')</th>
+                              <th class="table_title" exportName="date_time" >@lang('admin.date')</th>
+                        
+                              <th class="table_title" exportName="title" exportType="text" exportViewDisplay="true" >İş Hizmet</th>
+                              <th class="table_title" exportName="description" exportType="text" exportViewDisplay="true" >@lang('admin.description')</th>
+                              <th class="table_title" exportName="type" exportType="text" exportViewDisplay="true" >@lang('admin.type')</th>
+                              <th class="table_title" exportName="price" exportType="text" exportViewDisplay="true" >@lang('admin.price')</th>
+                              <th class="table_title" exportName="quantity" exportType="text" exportViewDisplay="true" >@lang('admin.quantity')</th>
+                              <th class="table_title" exportName="total" exportType="text" exportViewDisplay="true" >@lang('admin.total')</th>
+                              
+                              <th class="table_title" exportName="isActive" exportType="text" exportViewDisplay="true" >İşlem Durumu</th>
+                              <th class="table_title" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
 
-                              </thead>
+                            </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
                             
                               @for ($i = 0; $i < count($dbFind); $i++)
@@ -649,6 +656,87 @@
    <!-- END CONTAINER -->
 
   <!--************* Modal *********--->
+  
+  <!-- Export -->
+  <div id="exportModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="exportModalTitle" style="display: flex;" ><p>Export</p></h3>
+          <div id='loaderSetting' style="display: none;width: 20px;"><img src="/upload/images/loader.gif" alt=""></div>
+      </div>
+      <div class="modal-body">
+        <div class="row-fluid" >
+          <div class="span12">
+              <div class="control-group">
+                  <label class="control-label">Export Dosya İsmi </label>
+                  <div class="controls controls-row">
+                      <input type="text" class="input-block-level" name="exportTitle" id="exportTitle" placeholder="Export İsmi" value="{{$listTitle}}" >
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid" id="exportTableNamePanel" style="display:none" >
+          <div class="span12">
+              <div class="control-group">
+                  <label class="control-label">Tablo Adı - Sql</label>
+                  <div class="controls controls-row">
+                      <input type="text" class="input-block-level" name="exportTableName" id="exportTableName" placeholder="Tablo Adı" value="test" >
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid" >
+          <div class="span12">
+              <div class="control-group">
+                  <label class="control-label">Export Türü</label>
+                  <div class="controls controls-row">
+                    <div class="col-12" style=" display: flex; gap: 10px;">
+                      
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_json" name="exportRadio" value="export_json" style="position: absolute; cursor:pointer;" checked >  
+                        <label for="exportRadio_json" style="margin-left: 15px;font-size: 12px;" >JSON</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_xml" name="exportRadio" value="export_xml" style="position: absolute; cursor:pointer;" >  
+                        <label for="exportRadio_xml" style="margin-left: 15px;font-size: 12px;" >XML</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_excel" name="exportRadio" value="export_excel" style="position: absolute; cursor:pointer;" >  
+                        <label for="exportRadio_excel" style="margin-left: 15px;font-size: 12px;" >EXCEL</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_sql" name="exportRadio" value="export_sql" style="position: absolute; cursor:pointer;"  >  
+                        <label for="exportRadio_sql" style="margin-left: 15px;font-size: 12px;" >SQL</label>
+                      </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_pdf" name="exportRadio" value="export_pdf" style="position: absolute; cursor:pointer;"  >  
+                        <label for="exportRadio_pdf" style="margin-left: 15px;font-size: 12px;" >PDF</label>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="control-group" style="display:  flex;gap: 10px;" >
+                <label class="control-label">Sutunlar</label>
+                <div style="display: block;" >
+                  <input type="checkbox" id="exportColumnCheckAll" name="exportColumnCheckAll" data_checkTitle="list" style="position: absolute;"  > 
+                  <label for="exportColumnCheckAll" style="margin-left: 15px;font-size: 12px;" >Tümü Seç</label>
+                </div>
+            </div>
+          </div>
+          <div class="span12" style="display: flex;gap: 5px;width: 100%;flex-wrap: wrap;" id="columnTableSetting" ></div> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">@lang('admin.close')</button>
+        <button class="btn btn-success" id="new_export" >Export</button>
+      </div>
+  </div>
+  <!-- Export Son -->
+
   <!----  Modal Ekleme -->
   <div id="addModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
       <div class="modal-header">
@@ -1010,6 +1098,9 @@
   <footer>
     <!-- Footer -->
     @include('admin.include.footer')
+       
+    <!---- xlsx --->
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
     <!------- JS --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/00_list_search.js"></script>
@@ -1017,6 +1108,9 @@
         
     <!-- Yıldırımdev Table JS -->
     <script src="{{asset('/assets/admin/yildirimdev')}}/js/yildirimdev_table.js"></script>
+            
+    <!------- Export Js --->
+    <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/04_export_list.js"></script>
 
   </footer>
 
