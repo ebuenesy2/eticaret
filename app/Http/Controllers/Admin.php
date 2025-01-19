@@ -14700,8 +14700,16 @@ class Admin extends Controller
 
                 //! Return
                 $DB = $DB_Find;
-                $DB["dashboardview"] = true; //! Dashboard Görünümü
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                //! Dashboard Görünümü
+                $parameter_dashboardview = request('dashboardview');
+                if( request('dashboardview') == null ) { $parameter_dashboardview = 1; }
+                else { $parameter_dashboardview = request('dashboardview'); }
+                //echo "parameter_dashboardview:"; echo $parameter_dashboardview; die();
+                
+                $DB["dashboardview"] = $parameter_dashboardview;
+                //! Dashboard Görünümü Son
 
                 //! Cari Hesaplar
                 $DB_Current_Account = DB::table('finance_current_account')->get(); //Tüm verileri çekiyor

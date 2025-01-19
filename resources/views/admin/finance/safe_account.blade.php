@@ -189,31 +189,35 @@
                         <hr>
 
                         <!-- Dashboard Gösterme -->
-                        <button class="btn btn-success" id="view_dashboard" > <i class="icon-eye-open  icon-white"></i> Dashboard Göster </button>
+                        <button class="btn {{$dashboardview == 1 ? 'btn-danger' : 'btn-success' }}" value="{{$dashboardview ? 0 : 1}}" 
+                            id="searchTableButton" searchName="dashboardview" > 
+                              <i class="{{$dashboardview == 0 ? 'icon-eye-open' : ' icon-eye-close' }}  icon-white"></i>  
+                              {{$dashboardview == 1 ? 'Dashboard Gizle' : 'Dashboard Göster'  }} 
+                        </button>
                         <!-- Dashboard Gösterme Son -->
 
                         <hr>
 
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }}; gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount" >{{$DB_Find_Dashboard->totalCount}}</p>
                           </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                          <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Gelir</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice" >{{$DB_Find_Dashboard->totalIncomePrice}}</p>
                           </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                          <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Gider</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice" >{{$DB_Find_Dashboard->totalExpensePrice}}</p>
                           </div>
-                          <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
+                          <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Bakiye</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice" >{{$DB_Find_Dashboard->totalPrice}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Tamamlanan - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount}}</p>
@@ -231,7 +235,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Devam Eden - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount}}</p>
@@ -254,7 +258,7 @@
                         <hr>
 
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Yıl --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->YEAR_NOW}}</p>
@@ -276,7 +280,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Year}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Tamamlanan - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Year}}</p>
@@ -294,7 +298,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Year}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Devam Eden - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Year}}</p>
@@ -317,7 +321,7 @@
                         <hr>
                         
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Ay --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->MONTH_NOW}}</p>
@@ -339,7 +343,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Month}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Tamamlanan - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Month}}</p>
@@ -357,7 +361,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Month}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Devam Eden - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Month}}</p>
@@ -380,7 +384,7 @@
                         <hr>
                                                 
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Hafta --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->WEEK_BEFORE_7DAY}}</p>
@@ -404,7 +408,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Week}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Tamamlanan - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Week}}</p>
@@ -422,7 +426,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Week}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Devam Eden - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Week}}</p>
@@ -445,7 +449,7 @@
                         <hr>
                                                 
                         <!------  Tablo Üst - Sonucları Gösterme - Bugün --------->
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->DAY_NOW}}</p>
@@ -467,7 +471,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Today}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Tamamlanan - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Today}}</p>
@@ -485,7 +489,7 @@
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Today}}</p>
                           </div>
                         </div>
-                        <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
+                        <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Devam Eden - İşlem</p>
                              <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Today}}</p>

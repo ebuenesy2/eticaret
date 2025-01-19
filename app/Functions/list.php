@@ -34,6 +34,7 @@
             if($data_key_item == "page") { $isCheck = false; $page = $data_item-1; if($page <= 0) { $page = 0; } $newUrl["page"] = $page;  }
             else if($data_key_item == "rowcount") { $isCheck = false;  $newUrl["rowcount"] = $data_item; } 
             else if($data_key_item == "order") { $isCheck = false;  $newUrl["order"] = $data_item; }
+            else if($data_key_item == "dashboardview") { $isCheck = false;  $newUrl["dashboardview"] = $data_item; }
             else { $isCheck = true; $newUrl[$data_key_item] = $data_item; }
             //! Sayfalandırmak için yeni url oluşturuyor SON
 

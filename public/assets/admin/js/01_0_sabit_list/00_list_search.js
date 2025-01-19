@@ -20,7 +20,7 @@ function Info() {
         {  searchName : 'dashboardview', text : $('#listInfoData').attr('dashboardView') }
     ]; //! Eklenecek Veriler Son
 
-    console.log("newData:",newData);
+    //console.log("newData:",newData);
     searchJsonData = newData; //! Başlangıçtaki Eşitliyor
 
 } //! Başlangıç Son
@@ -81,6 +81,17 @@ document.querySelectorAll("#searchTable").forEach((searchTable) => {
 
 $("#searchTable").keydown(function(event) { if (event.keyCode == 13) { searchFunction(); } }); //! Enter
 //! Arama Son
+
+//! Arama Button
+document.querySelectorAll('#searchTableButton').forEach(function (i) {
+    i.addEventListener('click', function (e) {
+        // document.querySelector('.msg').innerHTML = i.id;
+
+        searchFunction(e);
+   
+    });
+});
+//! Arama Button Son
 
 //! Arama Fonksiyon
 function searchFunction (e) {
