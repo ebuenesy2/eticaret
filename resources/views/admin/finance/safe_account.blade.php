@@ -531,20 +531,20 @@
                               <!---- Tümü Seç --->
                               <th data-cell="Tümü Seç" style="margin: auto;" exportName="check" exportViewDisplay="false"  ><input type="checkbox" id="showAllRows" value="all"  data_count="0"  data_value=""  ></th>
 
-                              <th class="table_title" exportName="id" exportType="number" exportViewDisplay="true" >ID</th>
-                              <th class="table_title" exportName="current_id" exportType="number" exportViewDisplay="true" >@lang('admin.currentAccount') Code</th>
-                              <th class="table_title" exportName="finance_current_account_title" exportType="text" exportViewDisplay="true" >@lang('admin.currentAccount')</th>
-                              <th class="table_title" exportName="date_time" >@lang('admin.date')</th>
+                              <th class="table_title" exportName="id" exportTitle="ID" exportType="number" exportViewDisplay="true" >ID</th>
+                              <th class="table_title" exportName="current_id" exportTitle="@lang('admin.currentAccount') Kodu" exportType="number" exportViewDisplay="true" >@lang('admin.currentAccount') Kodu</th>
+                              <th class="table_title" exportName="finance_current_account_title" exportTitle="@lang('admin.currentAccount')" exportType="text" exportViewDisplay="true" >@lang('admin.currentAccount')</th>
+                              <th class="table_title" exportName="date_time" exportTitle="@lang('admin.date')" >@lang('admin.date')</th>
                         
-                              <th class="table_title" exportName="title" exportType="text" exportViewDisplay="true" >İş Hizmet</th>
-                              <th class="table_title" exportName="description" exportType="text" exportViewDisplay="true" >@lang('admin.description')</th>
-                              <th class="table_title" exportName="type" exportType="text" exportViewDisplay="true" >@lang('admin.type')</th>
-                              <th class="table_title" exportName="price" exportType="text" exportViewDisplay="true" >@lang('admin.price')</th>
-                              <th class="table_title" exportName="quantity" exportType="text" exportViewDisplay="true" >@lang('admin.quantity')</th>
-                              <th class="table_title" exportName="total" exportType="text" exportViewDisplay="true" >@lang('admin.total')</th>
+                              <th class="table_title" exportName="title" exportTitle="İş Hizmet" exportType="text"  exportViewDisplay="true" >İş Hizmet</th>
+                              <th class="table_title" exportName="description" exportTitle="@lang('admin.description')" exportType="text" exportViewDisplay="true" >@lang('admin.description')</th>
+                              <th class="table_title" exportName="type" exportTitle="@lang('admin.type')" exportType="text" exportViewDisplay="true" >@lang('admin.type')</th>
+                              <th class="table_title" exportName="price" exportTitle="@lang('admin.price')" exportType="text" exportViewDisplay="true" >@lang('admin.price')</th>
+                              <th class="table_title" exportName="quantity" exportTitle="@lang('admin.quantity')" exportType="text" exportViewDisplay="true" >@lang('admin.quantity')</th>
+                              <th class="table_title" exportName="total" exportTitle="@lang('admin.total')" exportType="text" exportViewDisplay="true" >@lang('admin.total')</th>
                               
-                              <th class="table_title" exportName="isActive" exportType="text" exportViewDisplay="true" >İşlem Durumu</th>
-                              <th class="table_title" exportName="actions"  exportViewDisplay="false" >@lang('admin.actions')</th>
+                              <th class="table_title" exportName="isActive" exportTitle="İşlem Durumu" exportType="text" exportViewDisplay="true" >İşlem Durumu</th>
+                              <th class="table_title" exportName="actions"  exportTitle="@lang('admin.currentAccount')" exportViewDisplay="false" >@lang('admin.actions')</th>
 
                             </thead>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -1092,8 +1092,8 @@
 
   <!--************* Modal Son *********--->
 
-
-
+  <!------  Iframe -->
+  <iframe id="iFramePdf" src="/@lang('admin.lang')/admin/export/pdf/list" style="display:none;"></iframe>
 
   <footer>
     <!-- Footer -->

@@ -86,13 +86,13 @@ $("#new_export").click(function (e) {
 
     //! Tablo Json
     var TableJson = tableConvertJson("customers",exportCheckList); //! Tablo Json Oluşturuyor
-    //console.log("TableJson:",TableJson);
+    console.log("TableJson:",TableJson);
 
     if(exportType == "export_json") {exportJson(TableJson.dataExport,exportTitle); }  //! Export Json
     else if(exportType == "export_xml") { exportXml(TableJson.dataExport,exportTitle);  } //! Export Xml
     else if(exportType == "export_excel") { exportExcel(TableJson.dataExport,exportTitle);  }  //! Export Excel
     else if(exportType == "export_sql") { exportSql(TableJson.header,TableJson.dataExport,exportTableName,exportTitle);   }  //! Export Sql
-    else if(exportType == "export_pdf") { exportPdf(TableJson.dataExport,exportTitle) }  //! Export Pdf
+    else if(exportType == "export_pdf") { exportPdf(TableJson.dataExport_TableTitle,exportTitle) }  //! Export Pdf
     else { alert("seçilmedi"); }
 
 }); //! Export - Button Son
@@ -107,7 +107,7 @@ function tableConvertJson(tableFind,exportCheckList = []) {
  
     //! Tanım
     var tableFind = tableFind; //! Tablo Adı 
-    var tableInfo = { title: tableFind, header:[], data: [], dataExport:[], exportCheckList:exportCheckList }; //! Tablo Bilgileri
+    var tableInfo = { title: tableFind, header:[], data: [], dataExport:[], dataExport_TableTitle:[], exportCheckList:exportCheckList }; //! Tablo Bilgileri
 
     //! Satır
     var rows = document.getElementById(tableFind).rows; //! Tüm Satır
@@ -130,6 +130,10 @@ function tableConvertJson(tableFind,exportCheckList = []) {
         var exportNameControl = headerData[index]['attributes']['exportName']; //! exportName="isActive" 
         var exportNameValue = exportNameControl ? exportNameControl.nodeValue  : ""; //! isActive
 
+        //! Export Title
+        var exportTitleControl = headerData[index]['attributes']['exportTitle']; //! exportTitle="@lang('admin.actions')" 
+        var exportTitleValue = exportTitleControl ? exportTitleControl.nodeValue : header_data_text; //! Tablodaki Ad [ Durum ]
+
         //! Export Durumu
         var exportviewdisplayControl = headerData[index]['attributes']['exportviewdisplay']; //! exportViewDisplay="true"
         var exportviewdisplayStatus = exportviewdisplayControl ? exportviewdisplayControl.nodeValue  == "false" ? false : true : true; //! Görünürlük - false
@@ -139,7 +143,7 @@ function tableConvertJson(tableFind,exportCheckList = []) {
         var exportTypeValue = exportTypeControl ? exportTypeControl.nodeValue  : "text"; //! number
         
         //! Data
-        var dataHeader={title:header_data_text, exportName:exportNameValue , exportStatus:exportviewdisplayStatus , type:exportTypeValue } //! Veriler
+        var dataHeader={title:header_data_text, exportName:exportNameValue , exportName_TableTitle:exportTitleValue , exportStatus:exportviewdisplayStatus , type:exportTypeValue } //! Veriler
         tableInfo.header.push(dataHeader); //! Ekleme
         
         //console.log("dataHeader:",dataHeader); 
@@ -147,7 +151,7 @@ function tableConvertJson(tableFind,exportCheckList = []) {
     }
     //! Header Son
 
-    // console.log("tableInfo:",tableInfo);
+    //console.log("tableInfo:",tableInfo);
     // console.log("tableInfo header:",tableInfo.header);
 
     //! Satır Veri Al
@@ -158,13 +162,21 @@ function tableConvertJson(tableFind,exportCheckList = []) {
         //! Satır Verileri
         var dataRow={};
         var dataRowExport={};
+        var dataRowExport_TableTitle={};
 
         //! Sutundan Veri Al
         for (let indexCell = 1; indexCell < elementRow.length; indexCell++) {
 
+            const header_data_text = headerData[indexCell].innerHTML.trim(); //! ID
+            //console.log("header_data_text:",header_data_text);
+
             //! Header -  Export Name
             var exportNameControl = headerData[indexCell]['attributes']['exportName']; //! exportName="isActive" 
             var exportNameValue = exportNameControl ? exportNameControl.nodeValue.trim()  : ""; //! isActive
+            
+            //! Export Title
+            var exportTitleControl = headerData[indexCell]['attributes']['exportTitle']; //! exportTitle="@lang('admin.actions')" 
+            var exportTitleValue = exportTitleControl ? exportTitleControl.nodeValue : header_data_text; //! Tablodaki Ad [ Durum ]
             
             //! Header -  Export Durumu
             var exportviewdisplayControl = headerData[indexCell]['attributes']['exportviewdisplay']; //! exportViewDisplay="true"
@@ -190,14 +202,15 @@ function tableConvertJson(tableFind,exportCheckList = []) {
             
             //! Return
             dataRow[exportNameValue] = elementCell_val; //! Tüm Veriler
-            if(exportviewdisplayStatus == true && exportCheckList.length > 0 && exportCheckList.includes(exportNameValue)) { dataRowExport[exportNameValue] = elementCell_val; } //! Export
-            else if(exportviewdisplayStatus == true && exportCheckList.length == 0 ) { dataRowExport[exportNameValue] = elementCell_val; } //! Export
+            if(exportviewdisplayStatus == true && exportCheckList.length > 0 && exportCheckList.includes(exportNameValue)) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_val; } //! Export
+            else if(exportviewdisplayStatus == true && exportCheckList.length == 0 ) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_val; } //! Export
         }
         //! Sutundan Veri Al -- Son
 
         //! Veriler
         tableInfo.data.push(dataRow); //! Ekleme
         tableInfo.dataExport.push(dataRowExport); //! Ekleme - Export
+        tableInfo.dataExport_TableTitle.push(dataRowExport_TableTitle); //! Ekleme - Export
     }
     //! Satır Veri Al -- Son
 
