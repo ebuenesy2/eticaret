@@ -14700,6 +14700,7 @@ class Admin extends Controller
 
                 //! Return
                 $DB = $DB_Find;
+                $DB["dashboardview"] = true; //! Dashboard Görünümü
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
 
                 //! Cari Hesaplar

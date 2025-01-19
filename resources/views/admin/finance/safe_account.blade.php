@@ -13,7 +13,7 @@
 <link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />
 
 <!-- BEGIN BODY -->
-<body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}} > 
+<body class="fixed-top" id="listInfoData" page={{$page}} rowCountData={{$rowcount}} orderData={{$order}} dashboardView={{$dashboardview}} > 
     
     <!-- Header -->
     @include('admin.include.header')
@@ -188,23 +188,29 @@
 
                         <hr>
 
+                        <!-- Dashboard Gösterme -->
+                        <button class="btn btn-success" id="view_dashboard" > <i class="icon-eye-open  icon-white"></i> Dashboard Göster </button>
+                        <!-- Dashboard Gösterme Son -->
+
+                        <hr>
+
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount" >{{$DB_Find_Dashboard->totalCount}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice" >{{$DB_Find_Dashboard->totalIncomePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice" >{{$DB_Find_Dashboard->totalExpensePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice" >{{$DB_Find_Dashboard->totalPrice}}</p>
                           </div>
                         </div>
                         <div style="display: flex;gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
@@ -721,7 +727,7 @@
               </div>
           </div>
         </div>
-        <div class="row-fluid">
+        <div class="row-fluid" id="exportColumnCheck_Data" >
           <div class="span12">
             <div class="control-group" style="display:  flex;gap: 10px;" >
                 <label class="control-label">Sutunlar</label>
@@ -1116,6 +1122,22 @@
             
     <!------- Export Js --->
     <script src="{{asset('/assets/admin')}}/js/01_0_sabit_list/04_export_list.js"></script>
+    
+    <!------- Export Modal Check Kontrol --->
+    <script>
+
+      function checkControl(){
+        
+        //! Checkleri Kontrol Sayısı
+        var checkboxLength = $("input[type=checkbox][name=exportColumnCheck]").length; //! Tüm Veriler Sayısı
+        var checkItemLength = $('input[type=checkbox][name=exportColumnCheck]:checked').length; //! Tüm Seçilenlerin Sayısı
+
+        if(checkboxLength == checkItemLength) { $("input[type=checkbox][id=exportColumnCheckAll]").prop('checked',true); }
+        else { $("input[type=checkbox][id=exportColumnCheckAll]").prop('checked',false); }
+      }
+
+    </script>
+    <!------- Export Modal Check Kontrol - Son --->
 
   </footer>
 

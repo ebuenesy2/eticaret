@@ -52,9 +52,19 @@ $('input[type="checkbox"][name="exportColumnCheckAll"]').click(function () {
 //! Export Türü Seç
 $('input[type="radio"][name="exportRadio"]').click(function (e) {
     $oku_val= $("input[type='radio'][name='exportRadio']:checked").val(); //! seçili
-
+    
+    //! Export Tablo Adı
     if($oku_val == "export_sql") { $('#exportTableNamePanel').css('display','block'); } 
     else { $('#exportTableNamePanel').css('display','none'); } 
+
+    //! Export Tablo Adı
+    if($oku_val == "export_pdf" || $oku_val == "export_pdf_report" ) { 
+        $('#exportColumnCheck_Data').css('display','none'); //! Gizle
+        $("input[type=checkbox][id=exportColumnCheckAll]").prop('checked',true); //! Tümü Seç
+        $("input[type=checkbox][name=exportColumnCheck]").prop('checked', true); //! Tümü Seç
+    } 
+    else { $('#exportColumnCheck_Data').css('display','block'); } 
+
 }); //! Export Türü Seç - Son
 
 //! Export - Button
@@ -540,7 +550,7 @@ function exportPdf(TableJson,exportFileName){
       { title: "tableFooterText", text : $('#editable-sample_info').html().trim() },
     ]
 
-    console.log("updateData:",updateData);
+    //console.log("updateData:",updateData);
   
     updateData.map((u) => { if(new_windowDocument.querySelector('#'+u.title)) { new_windowDocument.querySelector('#'+u.title).innerHTML = u.text; } });
     //! Yazıları Değiştir -- Son
@@ -554,7 +564,7 @@ function exportPdf(TableJson,exportFileName){
 function exportPdfReport(TableJson,exportFileName){
 
     //alert("exportPdfReport");
-    //console.log("TableJson:",TableJson);
+    console.log("TableJson:",TableJson);
     //console.log("exportFileName:",exportFileName);
   
     var sqlHeader = Object.keys(TableJson[0]); //! Object - Key 
@@ -582,23 +592,26 @@ function exportPdfReport(TableJson,exportFileName){
     new_windowDocument.querySelectorAll('[exportviewdisplay=false]').forEach((e) => { e.style.display='none' }); //! Gizle
   
     //! Yazıları Değiştir
-  
-    //! TabloHeader   Ayarlama
-    var TabloHeader = '';
-  
-    for (let index = 0; index < sqlHeader.length; index++) {
-      var TabloHeader = TabloHeader + '<td class="c28" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+sqlHeader[index]+'</span></p></td>';
-    }
-    //! TabloHeader   Ayarlama Son
-    
+
+    //! Tarih
+    var date_now = new Date();
+    var date1 = date_now.toISOString().slice(0, 10); // 2022-12-06
+    var date2 = date_now.toISOString().slice(11, 19); // 01:10:10
+    var date_new = date1 + " / " + date2;
+    //console.log("date_new:", date_new); // 2022-12-06 / 01:10:10
   
     //! Body - Veriler
+    var ExportTableHeader = ["Tarih","Cari Hesap","Açıklama","Tür","Miktar","Fiyat","Toplam"];
+
     var TabloBody = '';
     for (let indexBody = 0; indexBody < TableJson.length; indexBody++) {
-      var TabloBody = TabloBody +'<tr class="c33">';
-        
-      for (let index = 0; index < sqlHeader.length; index++) {
-        var TabloBody = TabloBody + '<td class="c7" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+TableJson[indexBody][sqlHeader[index]]+'</span></p></td>';
+      var TabloBody = TabloBody +'<tr class="c16">';
+    
+      var TabloBody = TabloBody + '<td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+(indexBody+1)+'</span></p></td>';
+
+      for (let index = 0; index < ExportTableHeader.length; index++) { 
+        if([ExportTableHeader[index]] =="Fiyat" || [ExportTableHeader[index]] =="Toplam"  ) { var TabloBody = TabloBody + '<td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+TableJson[indexBody][ExportTableHeader[index]]+" TL"+'</span></p></td>'; }
+        else { var TabloBody = TabloBody + '<td class="c9" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+TableJson[indexBody][ExportTableHeader[index]]+'</span></p></td>'; }
       }
   
       var TabloBody = TabloBody + '</tr>';
@@ -608,11 +621,12 @@ function exportPdfReport(TableJson,exportFileName){
     //! Değişicek Veriler
     var updateData = [
       { title: "exportTableTitle", text : exportFileName },
-  
-      { title: "exportTableHeader", text : TabloHeader },
+      { title: "exportTableDate", text : "Tarih: "+date_new },      
       { title: "exportTableBody", text : TabloBody },
   
-      { title: "tableFooterText", text : $('#editable-sample_info').html().trim() },
+      { title: "exportTableDashboard_totalIncomePrice", text : $('#DB_Find_Dashboard_totalIncomePrice').html().trim() + " TL" },
+      { title: "exportTableDashboard_totalExpensePrice", text : $('#DB_Find_Dashboard_totalExpensePrice').html().trim() + " TL" },
+      { title: "exportTableDashboard_totalPrice", text : $('#DB_Find_Dashboard_totalPrice').html().trim() + " TL" },
     ]
 
     console.log("updateData:",updateData);

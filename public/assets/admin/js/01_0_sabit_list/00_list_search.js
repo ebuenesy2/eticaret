@@ -16,10 +16,11 @@ function Info() {
     var newData = [
         {  searchName : 'page', text : 1 },
         {  searchName : 'rowcount', text : $('#listInfoData').attr('rowCountData') },
-        {  searchName : 'order', text : $('#listInfoData').attr('orderData') }
+        {  searchName : 'order', text : $('#listInfoData').attr('orderData') },
+        {  searchName : 'dashboardview', text : $('#listInfoData').attr('dashboardView') }
     ]; //! Eklenecek Veriler Son
 
-    //console.log("newData:",newData);
+    console.log("newData:",newData);
     searchJsonData = newData; //! Başlangıçtaki Eşitliyor
 
 } //! Başlangıç Son
@@ -60,7 +61,7 @@ function JsonHtml_Controller () {
 
     //! Json Verilerini Alıyor
     searchJsonData.map(function(data){
-       if(data.searchName != 'page' && data.searchName != 'nogroup' ) {  document.querySelector('[id=searchTable][searchName='+data.searchName+']').value = data.text; }
+       if(data.searchName != 'page' && data.searchName != 'nogroup' && data.searchName != 'dashboardview' ) {  document.querySelector('[id=searchTable][searchName='+data.searchName+']').value = data.text; }
     }); //! Json Verilerini Alıyor Son
 
 } //! //! Json Html Kontrol Son
@@ -126,7 +127,6 @@ function searchTableControl(){
 } //! Arama Tablo Kontrol Son
 
 //! ************ Arama Son ***************
-
 
     
 //! ************ Filtreleme Temizleme  ***************
