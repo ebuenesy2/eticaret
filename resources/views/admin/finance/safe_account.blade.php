@@ -73,7 +73,7 @@
                             <i class="fa fa-download" aria-hidden="true"></i> Export
                           </button>
                           <!-- Export Son -->
-
+                         
                           <!-- Modal -->
                           <button class="btn btn-success" href="#addModal" role="button" data-toggle="modal" >
                             <i class="fa fa-plus icon-white"></i> @lang('admin.newAdd')  
@@ -712,6 +712,10 @@
                         <input type="radio" id="exportRadio_pdf" name="exportRadio" value="export_pdf" style="position: absolute; cursor:pointer;"  >  
                         <label for="exportRadio_pdf" style="margin-left: 15px;font-size: 12px;" >PDF</label>
                       </div>
+                      <div style="display: block;" >
+                        <input type="radio" id="exportRadio_pdf_report" name="exportRadio" value="export_pdf_report" style="position: absolute; cursor:pointer;"  >  
+                        <label for="exportRadio_pdf_report" style="margin-left: 15px;font-size: 12px;" >PDF Rapor</label>
+                      </div>
                     </div>
                   </div>
               </div>
@@ -1094,6 +1098,7 @@
 
   <!------  Iframe -->
   <iframe id="iFramePdf" src="/@lang('admin.lang')/admin/export/pdf/list" style="display:none;"></iframe>
+  <iframe id="iFramePdfReport" src="/@lang('admin.lang')/admin/export/pdf/list/safe" style="display:none;"></iframe>
 
   <footer>
     <!-- Footer -->

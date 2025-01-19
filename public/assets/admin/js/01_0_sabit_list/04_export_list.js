@@ -93,6 +93,7 @@ $("#new_export").click(function (e) {
     else if(exportType == "export_excel") { exportExcel(TableJson.dataExport,exportTitle);  }  //! Export Excel
     else if(exportType == "export_sql") { exportSql(TableJson.header,TableJson.dataExport,exportTableName,exportTitle);   }  //! Export Sql
     else if(exportType == "export_pdf") { exportPdf(TableJson.dataExport_TableTitle,exportTitle) }  //! Export Pdf
+    else if(exportType == "export_pdf_report") { exportPdfReport(TableJson.dataExport_TableTitle,exportTitle) }  //! Export Pdf Rapor
     else { alert("seçilmedi"); }
 
 }); //! Export - Button Son
@@ -548,3 +549,78 @@ function exportPdf(TableJson,exportFileName){
     new_window.print();
   
 } //! Export Pdf Son
+
+//! Export Pdf Rapor
+function exportPdfReport(TableJson,exportFileName){
+
+    //alert("exportPdfReport");
+    //console.log("TableJson:",TableJson);
+    //console.log("exportFileName:",exportFileName);
+  
+    var sqlHeader = Object.keys(TableJson[0]); //! Object - Key 
+    //console.log("sqlHeader: ",sqlHeader);
+  
+    //! Tanım
+    var new_window = document.getElementById("iFramePdfReport").contentWindow; //! İframe
+    var new_windowDocument = new_window.document; //! Veri
+  
+    //! Sayfa Css Ayarlama
+    var styleCss = '<style type="text/css" media="print">';
+    styleCss = styleCss+"@page {";
+    //styleCss = styleCss+"size: portrait;"; //! Dikey
+    styleCss = styleCss+"size: landscape;"; //! Yatay
+    //styleCss = styleCss+"margin: 5mm;";
+    styleCss = styleCss+"margin-top: 5mm;";
+    styleCss = styleCss+"}";
+    styleCss = styleCss+"</style>";
+  
+    $("body",new_windowDocument).append(styleCss); //! Ekran Ekleme
+    //! Sayfa Css Ayarlama -- Son
+  
+    //! Görünürlük Ayarlama
+    new_windowDocument.querySelectorAll('[exportviewdisplay=true]').forEach((e) => { e.style.display='' }); //! Göster
+    new_windowDocument.querySelectorAll('[exportviewdisplay=false]').forEach((e) => { e.style.display='none' }); //! Gizle
+  
+    //! Yazıları Değiştir
+  
+    //! TabloHeader   Ayarlama
+    var TabloHeader = '';
+  
+    for (let index = 0; index < sqlHeader.length; index++) {
+      var TabloHeader = TabloHeader + '<td class="c28" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+sqlHeader[index]+'</span></p></td>';
+    }
+    //! TabloHeader   Ayarlama Son
+    
+  
+    //! Body - Veriler
+    var TabloBody = '';
+    for (let indexBody = 0; indexBody < TableJson.length; indexBody++) {
+      var TabloBody = TabloBody +'<tr class="c33">';
+        
+      for (let index = 0; index < sqlHeader.length; index++) {
+        var TabloBody = TabloBody + '<td class="c7" colspan="1" rowspan="1"><p class="c1"><span class="c0"  >'+TableJson[indexBody][sqlHeader[index]]+'</span></p></td>';
+      }
+  
+      var TabloBody = TabloBody + '</tr>';
+    }
+    //! Body - Veriler -- Son
+  
+    //! Değişicek Veriler
+    var updateData = [
+      { title: "exportTableTitle", text : exportFileName },
+  
+      { title: "exportTableHeader", text : TabloHeader },
+      { title: "exportTableBody", text : TabloBody },
+  
+      { title: "tableFooterText", text : $('#editable-sample_info').html().trim() },
+    ]
+
+    console.log("updateData:",updateData);
+  
+    updateData.map((u) => { if(new_windowDocument.querySelector('#'+u.title)) { new_windowDocument.querySelector('#'+u.title).innerHTML = u.text; } });
+    //! Yazıları Değiştir -- Son
+  
+    //! Print
+    new_window.print();
+  
+} //! Export Pdf Rapor Son

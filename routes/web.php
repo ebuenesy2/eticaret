@@ -652,6 +652,7 @@ Route::get('/{lang}/admin/export/pdf', [Admin::class,'exportPdf']) -> name("admi
 Route::get('/{lang}/admin/export/pdf/test', [Admin::class,'exportPdfTest']) -> name("admin.export.pdf.test"); //! Export Pdf - Test
 
 Route::get('/{lang}/admin/export/pdf/list', [Admin::class,'exportPdfList']) -> name("admin.export.pdf.list"); //! Export Pdf - List
+Route::get('/{lang}/admin/export/pdf/list/safe', [Admin::class,'exportPdfListSafe']) -> name("admin.export.pdf.list.safe"); //! Export Pdf - Kasa Listesi
 
 //! Import
 Route::post('/import/file/upload/control', [Admin::class,'importFileUploadControl']) -> name("import.file.upload.control"); //! Import - File Upload

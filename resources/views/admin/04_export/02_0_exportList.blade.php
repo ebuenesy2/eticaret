@@ -167,12 +167,6 @@
         <!----- Tablo Son ----------->
 
         <div class="c19" ><p class="c1" id="tableFooter" ><span class="c2" id="tableFooterText">Veri Sayısı: 15/40</span></p></div>
-
-        <br>
-        <p id="exportView"  exportViewDisplay="true"  >Export - Göster</p>
-        <p id="exportView"  exportViewDisplay="true" >Export - Göster 2</p>
-        <p id="exportView"  exportViewDisplay="false" >Export - Gizle</p>
-        <p id="exportView"  exportViewDisplay="false" >Export - Gizle 2</p>
         
     </body>
 
