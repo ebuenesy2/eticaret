@@ -478,11 +478,11 @@ function exportSql(TableHeader,TableJson,tableName,exportFileName){
 function exportPdf(TableJson,exportFileName){
 
     //alert("exportPdf");
-    console.log("TableJson:",TableJson);
-    console.log("exportFileName:",exportFileName);
+    //console.log("TableJson:",TableJson);
+    //console.log("exportFileName:",exportFileName);
   
     var sqlHeader = Object.keys(TableJson[0]); //! Object - Key 
-    console.log("sqlHeader: ",sqlHeader);
+    //console.log("sqlHeader: ",sqlHeader);
   
     //! Tanım
     var new_window = document.getElementById("iFramePdf").contentWindow; //! İframe

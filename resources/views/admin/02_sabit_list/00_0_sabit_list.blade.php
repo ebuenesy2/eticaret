@@ -221,7 +221,7 @@
                                   <td data-cell="@lang('admin.user')" >{{$dbFind[$i]->created_byId}}</td>
                                   <td data-cell="@lang('admin.createdDate')" >{{$dbFind[$i]->created_at}}</td>
                                   <td data-cell="@lang('admin.status')">
-                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
+                                    <span style="margin: auto;" class="alert {{$dbFind[$i]->isActive ? 'alert-success' : 'alert-error' }}" data_value="{{$dbFind[$i]->isActive}}" exportTitle="{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}" >{{$dbFind[$i]->isActive ? __('admin.active') : __('admin.passive')  }}</span>
                                   </td>
                                 
                                   <td data-cell="@lang('admin.actions')"  exportViewDisplay="false" >
