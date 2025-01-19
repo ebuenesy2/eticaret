@@ -540,10 +540,10 @@
                               <th class="table_title" exportName="description" exportTitle="@lang('admin.description')" exportType="text" exportViewDisplay="true" >@lang('admin.description')</th>
                               <th class="table_title" exportName="type" exportTitle="@lang('admin.type')" exportType="text" exportViewDisplay="true" >@lang('admin.type')</th>
                               <th class="table_title" exportName="price" exportTitle="@lang('admin.price')" exportType="text" exportViewDisplay="true" >@lang('admin.price')</th>
-                              <th class="table_title" exportName="quantity" exportTitle="@lang('admin.quantity')" exportType="text" exportViewDisplay="true" >@lang('admin.quantity')</th>
+                              <th class="table_title" exportName="quantity" exportTitle="@lang('admin.quantity')" exportType="number" exportViewDisplay="true" >@lang('admin.quantity')</th>
                               <th class="table_title" exportName="total" exportTitle="@lang('admin.total')" exportType="text" exportViewDisplay="true" >@lang('admin.total')</th>
                               
-                              <th class="table_title" exportName="isActive" exportTitle="İşlem Durumu" exportType="text" exportViewDisplay="true" >İşlem Durumu</th>
+                              <th class="table_title" exportName="isActive" exportTitle="İşlem Durumu" exportType="number" exportViewDisplay="true" >İşlem Durumu</th>
                               <th class="table_title" exportName="actions"  exportTitle="@lang('admin.currentAccount')" exportViewDisplay="false" >@lang('admin.actions')</th>
 
                             </thead>
@@ -565,9 +565,9 @@
                                   <td data-cell="@lang('admin.type')">{{$dbFind[$i]->type}}</td>
                                   <td data-cell="@lang('admin.price')">{{$dbFind[$i]->price}}</td>
                                   <td data-cell="@lang('admin.quantity')">{{$dbFind[$i]->quantity}}</td>
-                                  <td data-cell="@lang('admin.total')">{{$dbFind[$i]->total}}</td>
+                                  <td data-cell="@lang('admin.total')" exportTitle="{{$dbFind[$i]->total}}" >{{$dbFind[$i]->total}}</td>
 
-                                  <td data-cell="@lang('admin.actions') @lang('admin.status')"  >
+                                  <td data-cell="@lang('admin.actions') @lang('admin.status')" exportTitle="{{$dbFind[$i]->action_type == 1 ? 'Tamamlandı': ( $dbFind[$i]->action_type == 2 ? 'Planlandırıldı': ( $dbFind[$i]->action_type == 3 ? 'Tekliflendirildi': 'Tamamlanmadı' ) ) }}" >
                                     @if($dbFind[$i]->action_type == 1)<span style="margin: auto;padding: 10px;" class="alert-success" data_value="{{$dbFind[$i]->action_type}}" >Tamamlandı</span>
                                     @elseif($dbFind[$i]->action_type == 2)<span style="margin: auto;padding: 10px;" class="alert-error" data_value="{{$dbFind[$i]->action_type}}" >Planlandırıldı</span>
                                     @elseif($dbFind[$i]->action_type == 3)<span style="margin: auto;padding: 10px;" class="alert alert-warning" data_value="{{$dbFind[$i]->action_type}}" >Tekliflendirildi</span>

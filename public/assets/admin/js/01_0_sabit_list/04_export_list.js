@@ -186,24 +186,28 @@ function tableConvertJson(tableFind,exportCheckList = []) {
             var exportTypeControl = headerData[indexCell]['attributes']['exportType']; //! exportType="number"
             var exportTypeValue = exportTypeControl ? exportTypeControl.nodeValue  : "text"; //! number
 
-            //console.log("exportTypeValue:", exportTypeValue);
-          
-
             //! Row
             var elementCell = elementRow[indexCell];  //! <td class="" exportname="id" exportviewdisplay="true">35</td>
             var elementCell_val = elementRow[indexCell].innerHTML.trim(); //! 35
+            //console.log("elementCell_val:",elementCell_val);
 
+            //! Row - Export Title
+            var elementCell_exportTitleControl = elementRow[indexCell]['attributes']['exportTitle']; //! exportTitle="{{$dbFind[$i]->total}}"
+            var elementCell_exportTitleValue = elementCell_exportTitleControl ? elementCell_exportTitleControl.nodeValue : elementCell_val; //! Tablodaki Görünen [ Durum ]
+            //console.log("elementCell_exportTitleControl:",elementCell_exportTitleControl);
+            //console.log("elementCell_exportTitleValue:",elementCell_exportTitleValue);
+
+            
             //! Row - Status
             if(exportNameValue == "isActive") {  var elementCell_val = elementRow[indexCell].childNodes[1]["attributes"]["data_value"].nodeValue.trim() }
 
-            //! Value
-            if(exportTypeValue == "number") { var elementCell_val = Number(elementCell_val); }
-            
+            //! Tür
+            if(exportTypeValue == "number") { var elementCell_val = Number(elementCell_val); }            
             
             //! Return
-            dataRow[exportNameValue] = elementCell_val; //! Tüm Veriler
-            if(exportviewdisplayStatus == true && exportCheckList.length > 0 && exportCheckList.includes(exportNameValue)) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_val; } //! Export
-            else if(exportviewdisplayStatus == true && exportCheckList.length == 0 ) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_val; } //! Export
+            dataRow[exportNameValue] = elementCell_exportTitleValue; //! Tüm Veriler
+            if(exportviewdisplayStatus == true && exportCheckList.length > 0 && exportCheckList.includes(exportNameValue)) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_exportTitleValue; } //! Export
+            else if(exportviewdisplayStatus == true && exportCheckList.length == 0 ) { dataRowExport[exportNameValue] = elementCell_val; dataRowExport_TableTitle[exportTitleValue] = elementCell_exportTitleValue; } //! Export
         }
         //! Sutundan Veri Al -- Son
 
