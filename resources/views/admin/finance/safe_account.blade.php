@@ -197,6 +197,8 @@
                         <!-- Dashboard Gösterme Son -->
 
                         <hr>
+                        
+                        <div style="display: {{$dashboardview == 1 ? '' : 'none' }}; "> 
 
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların --------->
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }}; gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
@@ -510,6 +512,8 @@
                         <!------  Tablo Üst - Sonucları Gösterme - Bugün Son ----->
 
                         <hr>
+
+                        </div>
 
                         <!------ Tablo Ayarları -->
                         <div id="choosedPanel" class="row-fluid"  style="margin-top:10px;display: none;gap: 5px;flex-wrap: wrap;" >
