@@ -17,7 +17,7 @@ function Info() {
         {  searchName : 'page', text : 1 },
         {  searchName : 'rowcount', text : $('#listInfoData').attr('rowCountData') },
         {  searchName : 'order', text : $('#listInfoData').attr('orderData') },
-        {  searchName : 'dashboardview', text : $('#listInfoData').attr('dashboardView') }
+        //{  searchName : 'dashboardview', text : $('#listInfoData').attr('dashboardView') }
     ]; //! Eklenecek Veriler Son
 
     //console.log("newData:",newData);
