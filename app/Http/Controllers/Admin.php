@@ -14427,11 +14427,10 @@ class Admin extends Controller
     } //! Cari Hesap - Çoklu Clone - Post Son
 
     //*************  Cari Hesap Extra  ***************** */
-    
-    //! Cari Hesap - Extra Sayfası
+        
+    //! Cari Hesap - Extra Sayfası Son
     public function CurrentAccountFind($site_lang="tr",$id)
     {
-        
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
         //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
 
@@ -14469,27 +14468,38 @@ class Admin extends Controller
                 $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
                 $searchData[] = array("params" => "ActiveType", "table" => $table, "where" => "action_type", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
 
+                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
                 //! Where
                 $whereData = [];
                 $whereData[] = array( "table" => $table, "where" => "current_id" , "data_item_object" => "=", "value" => $id );
-                    
+                
                 $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
                 //echo "<pre>"; print_r($DB_Find); die();
 
                 //! Return
                 $DB = $DB_Find;
-                $DB["id"] = $id;
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
+                $DB["DB_Find_Type"] = "All";
+                $DB["DB_Find_Finance_Current_Account"] = $id;
+
+                //! Dashboard Görünümü
+                $parameter_dashboardview = request('dashboardview');
+                if( request('dashboardview') == null ) { $parameter_dashboardview = 0; }
+                else { $parameter_dashboardview = request('dashboardview'); }
+                //echo "parameter_dashboardview:"; echo $parameter_dashboardview; die();
+                
+                $DB["dashboardview"] = $parameter_dashboardview;
+                //! Dashboard Görünümü Son
 
                 //! Cari Hesaplar
                 $DB_Current_Account = DB::table('finance_current_account')->where('id',$id)->get(); //Tüm verileri çekiyor
                 //echo "<pre>"; print_r($DB_Current_Account); die();
+                
+                $DB["DB_Find_Title"] = count($DB_Current_Account) > 0 ? "Cari Hesap Extra (#".$DB_Current_Account[0]->id.") - ".$DB_Current_Account[0]->title : "Cari Hesap Extra - Veri Bulunmadı";
                 $DB["DB_Current_Account"] = $DB_Current_Account;
                 //! Cari Hesaplar Son 
-
-                $title = count($DB_Current_Account) > 0 ? $DB_Current_Account[0]->title : '';
-                $DB["title"] = $id > 0 ? $title : 'Kasa Hesap';
-                //echo "<pre>"; print_r($DB); die();
 
                 //! İş Hesapları
                 $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
@@ -14497,7 +14507,6 @@ class Admin extends Controller
                 $DB["DB_Business_Account"] = $DB_Business_Account;
                 //! İş Hesapları Son 
 
-                
                 //! Dashboard
                 $DB_Find_Dashboard= DB::table('finance_safe_account')
                 ->selectRaw('
@@ -14638,15 +14647,14 @@ class Admin extends Controller
 
                 //echo "<pre>"; print_r($DB); die();
                 
-                return view('admin/finance/current_account_extra',$DB);
+                return view('admin/finance/safe_account',$DB);
             }
             else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
             //! Cookie Fonksiyon Kullanımı Son
-           
         }  
         catch (\Throwable $th) {  throw $th; }
 
-    } //! Cari Hesap - Extra Sayfası Son
+    } //! Finans - İşletme Hesap - Gider Son
         
     //************* Finans - Kasa Hesap  ***************** */
 
@@ -14704,6 +14712,7 @@ class Admin extends Controller
 
                 $DB["DB_Find_Title"] = "Kasa - Tüm Liste";
                 $DB["DB_Find_Type"] = "All";
+                $DB["DB_Find_Finance_Current_Account"] = "All";
 
                 //! Dashboard Görünümü
                 $parameter_dashboardview = request('dashboardview');
@@ -15495,6 +15504,7 @@ class Admin extends Controller
 
                 $DB["DB_Find_Title"] = "Kasa - Gelir Listesi";
                 $DB["DB_Find_Type"] = "Income";
+                $DB["DB_Find_Finance_Current_Account"] = "All";
 
                 //! Dashboard Görünümü
                 $parameter_dashboardview = request('dashboardview');
@@ -15722,6 +15732,7 @@ class Admin extends Controller
 
                 $DB["DB_Find_Title"] = "Kasa - Gider Listesi";
                 $DB["DB_Find_Type"] = "Expense";
+                $DB["DB_Find_Finance_Current_Account"] = "All";
 
                 //! Dashboard Görünümü
                 $parameter_dashboardview = request('dashboardview');

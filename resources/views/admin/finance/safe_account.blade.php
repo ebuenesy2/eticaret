@@ -170,10 +170,12 @@
                           <div style="display: flex;flex-direction: column;" >
                             <p> Cari Hesap</p>
                             <select class="" style="cursor: pointer; width: max-content;" id="searchTable" searchName="CurrentName"  >
-                                <option value="">@lang('admin.all')</option>
-                                <option value="0" >( #0 ) Kasa Hesap</option>
+                                @if( $DB_Find_Finance_Current_Account == "All" )<option value="">@lang('admin.all')</option> @endif
+                                @if( $DB_Find_Finance_Current_Account == "All" )<option value="0" >( #0 ) Kasa Hesap</option> @endif
                                 @for ($i = 0; $i < count($DB_Current_Account); $i++)
-                                <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                                  @if( $DB_Find_Finance_Current_Account == "All" || $DB_Find_Finance_Current_Account == $DB_Current_Account[$i]->id )
+                                    <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option> 
+                                  @endif
                                 @endfor
                             </select>
                           </div>
@@ -770,10 +772,12 @@
                 <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="currentIdAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
-                        <option value="">@lang('admin.choose')</option>
-                        <option value="0" >( #0 ) Kasa Hesap</option>
+                        @if( $DB_Find_Finance_Current_Account == "All" )<option value="">@lang('admin.choose')</option>  @endif
+                        @if( $DB_Find_Finance_Current_Account == "All" )<option value="0" >( #0 ) Kasa Hesap</option> @endif
                         @for ($i = 0; $i < count($DB_Current_Account); $i++)
-                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                          @if( $DB_Find_Finance_Current_Account == "All" || $DB_Find_Finance_Current_Account == $DB_Current_Account[$i]->id )
+                            <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option> 
+                          @endif
                         @endfor
                     </select>
                 </div>
@@ -902,10 +906,12 @@
                 <label class="control-label">Cari Kart</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="currentIdEdit" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
-                        <option value="">@lang('admin.choose')</option>
-                        <option value="0" >( #0 ) Kasa Hesap</option>
+                        @if( $DB_Find_Finance_Current_Account == "All" )<option value="">@lang('admin.choose')</option>  @endif
+                        @if( $DB_Find_Finance_Current_Account == "All" )<option value="0" >( #0 ) Kasa Hesap</option> @endif
                         @for ($i = 0; $i < count($DB_Current_Account); $i++)
-                        <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option>
+                          @if( $DB_Find_Finance_Current_Account == "All" || $DB_Find_Finance_Current_Account == $DB_Current_Account[$i]->id )
+                            <option value="{{$DB_Current_Account[$i]->id}}" > ( #{{$DB_Current_Account[$i]->id}} )  {{$DB_Current_Account[$i]->title}}</option> 
+                          @endif
                         @endfor
                     </select>
                 </div>
