@@ -841,9 +841,9 @@
                 <label class="control-label">@lang('admin.type')</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="typeAdd" focusType ="true" focusControl="add" focusControl_Active="false" focusOrder="3" >
-                        <option value="1" >Gelir</option>
-                        <option value="2" >Gider</option>
-                        <option value="3" >Hizmet</option>
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Income" ) <option value="1" >Gelir</option>  @endif
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="2" >Gider</option>  @endif
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="3" >Hizmet</option> @endif
                     </select>
                 </div>
               </div>
@@ -973,9 +973,9 @@
                 <label class="control-label">@lang('admin.type')</label>
                 <div class="controls controls-row">
                     <select class="" style="cursor: pointer;width: 100%;" id="typeEdit" focusType ="true" focusControl="edit" focusControl_Active="false" focusOrder="3" >
-                        <option value="1" >Gelir</option>
-                        <option value="2" >Gider</option>
-                        <option value="3" >Hizmet</option>
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Income" ) <option value="1" >Gelir</option>  @endif
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="2" >Gider</option>  @endif
+                      @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="3" >Hizmet</option> @endif
                     </select>
                 </div>
               </div>

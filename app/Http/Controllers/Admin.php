@@ -15512,7 +15512,7 @@ class Admin extends Controller
                 //! Cari Hesaplar Son 
 
                 //! İş Hesapları
-                $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
+                $DB_Business_Account = DB::table('finance_business_account')->where('type_code','1')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
                 //echo "<pre>"; print_r($DB_Business_Account); die();
                 $DB["DB_Business_Account"] = $DB_Business_Account;
                 //! İş Hesapları Son 
@@ -15739,7 +15739,7 @@ class Admin extends Controller
                 //! Cari Hesaplar Son 
 
                 //! İş Hesapları
-                $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
+                $DB_Business_Account = DB::table('finance_business_account')->where('type_code',[2,3])->orderBy('title','asc')->get(); //Tüm verileri çekiyor
                 //echo "<pre>"; print_r($DB_Business_Account); die();
                 $DB["DB_Business_Account"] = $DB_Business_Account;
                 //! İş Hesapları Son 
