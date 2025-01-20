@@ -779,6 +779,9 @@
                     <td class="c14" colspan="1" rowspan="1">
                         <p class="c20"><span class="c0">Toplam Fiyat</span></p>
                     </td>
+                    <td class="c14" colspan="1" rowspan="1">
+                        <p class="c20"><span class="c0">İşlem Durumu</span></p>
+                    </td>
                 </tr>
             </thead>
             <tbody id="exportTableBody" >
@@ -807,6 +810,9 @@
                     <td class="c14" colspan="1" rowspan="1">
                         <p class="c1"><span class="c0">6000 TL</span></p>
                     </td>
+                    <td class="c14" colspan="1" rowspan="1">
+                        <p class="c1"><span class="c0">Tamamlandı</span></p>
+                    </td>
                 </tr>
                 <tr class="c16">
                     <td class="c9" colspan="1" rowspan="1">
@@ -832,6 +838,9 @@
                     </td>
                     <td class="c14" colspan="1" rowspan="1">
                         <p class="c1"><span class="c0">-300 TL</span></p>
+                    </td>
+                    <td class="c14" colspan="1" rowspan="1">
+                        <p class="c1"><span class="c0">Tamamlandı</span></p>
                     </td>
                 </tr>
             </tbody>  
@@ -890,7 +899,7 @@
                     <p class="c1"><span class="c0">Toplam Gelir</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Toplam Gider</span></p>
+                    <p class="c1"><span class="c0">Toplam Gider & Hizmet</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Toplam Fiyat</span></p>
@@ -901,19 +910,19 @@
                     <p class="c1"><span class="c0">T&uuml;m Zamanlar</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Tamamlanan</span></p>
+                    <p class="c1"><span class="c0">Tüm</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">14</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount" >14</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1350 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice" >1350 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1000 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice" >1000 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">350 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice" >350 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
@@ -924,16 +933,16 @@
                     <p class="c1"><span class="c0">Tamamlanan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">10</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Active" >10</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1150 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Active" >1150 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">900 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Active" >900 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">250 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Active" >250 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
@@ -944,263 +953,262 @@
                     <p class="c1"><span class="c0">Tamamlanmayan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">4</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Passive" >4</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">200 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Passive" >200 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Passive" >100 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Passive" >100 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Year" >2025</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">T&uuml;m</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">12</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Year" >12</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1000 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Year" >1000 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">250 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Year" >250 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">750 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Year" >750 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Active_Year" >2025</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">8</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Active_Year" >8</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">800 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Active_Year" >800 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">150 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Active_Year" >150 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">650 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Active_Year" >650 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Passive_Year" >2025</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanmayan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">4</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Passive_Year" >4</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">200 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Passive_Year" >200 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Passive_Year" >100 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Passive_Year" >100 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Ocak</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Month" >Ocak</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">T&uuml;m</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">12</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Month" >12</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1000 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Month" >1000 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">250 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Month" >250 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">750 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Month" >750 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Ocak</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Active_Month" >Ocak</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">8</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Active_Month" >8</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">800 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Active_Month" >800 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">150 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Active_Month" >150 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">650 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Active_Month" >650 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Ocak</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Passive_Month" >Ocak</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanmayan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">4</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Passive_Month" >4</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">200 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Passive_Month" >200 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Passive_Month" >100 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Passive_Month" >100 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Bu Hafta</span></p>
-                    <p class="c1"><span class="c0">2025-01-12 / 2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Week" >2025-01-12 / 2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">T&uuml;m</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">12</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Week" >12</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1000 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Week" >1000 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">250 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Week" >250 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">750 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Week" >750 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Bu Hafta</span></p>
-                    <p class="c1"><span class="c0">2025-01-12 / 2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Active_Week" >2025-01-12 / 2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Tamamlanan</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Active_Month" >Tamamlanan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">8</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Active_Week" >8</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">800 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Active_Week" >800 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">150 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Active_Week" >150 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">650 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Active_Week" >650 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Bu Hafta</span></p>
-                    <p class="c1"><span class="c0">2025-01-12 / 2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Passive_Week" >2025-01-12 / 2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanmayan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">4</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Passive_Week" >4</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">200 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Passive_Week" >200 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Passive_Week" >100 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Passive_Week" >100 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Now" >2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">T&uuml;m</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">12</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Now" >12</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">1000 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Now" >1000 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">250 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Now" >250 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">750 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Now" >750 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Active_Now" >2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">Tamamlanan</span></p>
+                    <p class="c1"><span class="c0" >Tamamlanan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">8</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Active_Now" >8</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">800 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Active_Now" >800 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">150 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Active_Now" >150 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">650 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Active_Now">650 TL</span></p>
                 </td>
             </tr>
             <tr class="c16">
                 <td class="c6" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">2025-01-19</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_Passive_Now" >2025-01-19</span></p>
                 </td>
                 <td class="c15" colspan="1" rowspan="1">
                     <p class="c1"><span class="c0">Tamamlanmayan</span></p>
                 </td>
                 <td class="c2" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">4</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalCount_Passive_Now" >4</span></p>
                 </td>
                 <td class="c8" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">200 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalIncomePrice_Passive_Now" >200 TL</span></p>
                 </td>
                 <td class="c5" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalExpensePrice_Passive_Now" >100 TL</span></p>
                 </td>
                 <td class="c7" colspan="1" rowspan="1">
-                    <p class="c1"><span class="c0">100 TL</span></p>
+                    <p class="c1"><span class="c0" id="exportTableDashboard_List_totalPrice_Passive_Now" >100 TL</span></p>
                 </td>
             </tr>
         </table>
-        <p class="c10"><span class="c0"></span></p>
     </body>
 
 </div>

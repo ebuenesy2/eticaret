@@ -222,37 +222,37 @@
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Tamamlanan - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Active" >{{$DB_Find_Dashboard->totalActiveCount}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Tamamlanan - Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Active" >{{$DB_Find_Dashboard->totalIncomeActivePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Tamamlanan - Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Active" >{{$DB_Find_Dashboard->totalExpenseActivePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Tamamlanan - Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Active" >{{$DB_Find_Dashboard->totalActivePrice}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Devam Eden - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Passive" >{{$DB_Find_Dashboard->totalPasiveCount}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Devam Eden -  Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Passive" >{{$DB_Find_Dashboard->totalIncomePasivePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Devam Eden -  Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Passive" >{{$DB_Find_Dashboard->totalExpensePasivePrice}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Toplam - Devam Eden -  Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Passive" >{{$DB_Find_Dashboard->totalPasivePrice}}</p>
                           </div>
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme - Tüm Zamanların  Son ----->
@@ -263,59 +263,59 @@
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->YEAR_NOW}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_Year" >{{$DB_Find_Dashboard->YEAR_NOW}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Year" >{{$DB_Find_Dashboard->totalCount_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Year" >{{$DB_Find_Dashboard->totalIncomePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Year" >{{$DB_Find_Dashboard->totalExpensePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Year" >{{$DB_Find_Dashboard->totalPrice_Year}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Tamamlanan - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Active_Year" >{{$DB_Find_Dashboard->totalActiveCount_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Tamamlanan - Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Active_Year" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Tamamlanan - Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Active_Year" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Tamamlanan - Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Active_Year" >{{$DB_Find_Dashboard->totalActivePrice_Year}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Devam Eden - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Passive_Year" >{{$DB_Find_Dashboard->totalPasiveCount_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Devam Eden -  Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Passive_Year" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Devam Eden -  Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Passive_Year" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Year}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Yıl - Toplam - Devam Eden -  Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice_Year}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Passive_Year" >{{$DB_Find_Dashboard->totalPasivePrice_Year}}</p>
                           </div>
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Yıl Son ----->
@@ -326,59 +326,59 @@
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->MONTH_NOW}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_Month" >{{$DB_Find_Dashboard->MONTH_NOW}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Month" >{{$DB_Find_Dashboard->totalCount_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Month" >{{$DB_Find_Dashboard->totalIncomePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Month" >{{$DB_Find_Dashboard->totalExpensePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Month" >{{$DB_Find_Dashboard->totalPrice_Month}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Tamamlanan - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Active_Month" >{{$DB_Find_Dashboard->totalActiveCount_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Tamamlanan - Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Active_Month" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Tamamlanan - Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Active_Month" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Tamamlanan - Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Active_Month" >{{$DB_Find_Dashboard->totalActivePrice_Month}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Devam Eden - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Passive_Month" >{{$DB_Find_Dashboard->totalPasiveCount_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Devam Eden -  Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Passive_Month" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Devam Eden -  Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Passive_Month" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Month}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Ay - Toplam - Devam Eden -  Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice_Month}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Passive_Month" >{{$DB_Find_Dashboard->totalPasivePrice_Month}}</p>
                           </div>
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Ay Son ----->
@@ -389,61 +389,61 @@
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->WEEK_BEFORE_7DAY}}</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->DAY_NOW}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_Week" >{{$DB_Find_Dashboard->WEEK_BEFORE_7DAY}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_Week_Now" >{{$DB_Find_Dashboard->DAY_NOW}}</p>
                           </div>
 
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Week" >{{$DB_Find_Dashboard->totalCount_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Week" >{{$DB_Find_Dashboard->totalIncomePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Week" >{{$DB_Find_Dashboard->totalExpensePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Week" >{{$DB_Find_Dashboard->totalPrice_Week}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Tamamlanan - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Active_Week" >{{$DB_Find_Dashboard->totalActiveCount_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Tamamlanan - Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Active_Week" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Tamamlanan - Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Active_Week" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Tamamlanan - Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Active_Week" >{{$DB_Find_Dashboard->totalActivePrice_Week}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Devam Eden - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Passive_Week" >{{$DB_Find_Dashboard->totalPasiveCount_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Devam Eden -  Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Passive_Week" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Devam Eden -  Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Passive_Week" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Week}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bu Hafta - Toplam - Devam Eden -  Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice_Week}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Passive_Week" >{{$DB_Find_Dashboard->totalPasivePrice_Week}}</p>
                           </div>
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme - Bu Hafta Son ----->
@@ -454,59 +454,59 @@
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->DAY_NOW}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_Now" >{{$DB_Find_Dashboard->DAY_NOW}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalCount_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Now" >{{$DB_Find_Dashboard->totalCount_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Now" >{{$DB_Find_Dashboard->totalIncomePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Now" >{{$DB_Find_Dashboard->totalExpensePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Now" >{{$DB_Find_Dashboard->totalPrice_Today}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Tamamlanan - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActiveCount_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Active_Now" >{{$DB_Find_Dashboard->totalActiveCount_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Tamamlanan - Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Active_Now" >{{$DB_Find_Dashboard->totalIncomeActivePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Tamamlanan - Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Active_Now" >{{$DB_Find_Dashboard->totalExpenseActivePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Tamamlanan - Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalActivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Active_Now" >{{$DB_Find_Dashboard->totalActivePrice_Today}}</p>
                           </div>
                         </div>
                         <div style="display: {{$dashboardview == 1 ? 'flex' : 'none' }};gap: 5px;flex-wrap: wrap;margin-bottom:10px;" >
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Devam Eden - İşlem</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasiveCount_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalCount_Passive_Now" >{{$DB_Find_Dashboard->totalPasiveCount_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Devam Eden -  Gelir</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalIncomePrice_Passive_Now" >{{$DB_Find_Dashboard->totalIncomePasivePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Devam Eden -  Gider</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalExpensePrice_Passive_Now" >{{$DB_Find_Dashboard->totalExpensePasivePrice_Today}}</p>
                           </div>
                           <div style="display: flex;flex-direction: column;width: fit-content;padding: 10px;border: 1px solid;font-size: 12px;" >
                              <p>Bugün - Toplam - Devam Eden -  Bakiye</p>
-                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" >{{$DB_Find_Dashboard->totalPasivePrice_Today}}</p>
+                             <p style="margin-bottom: -9px;margin-right: auto;margin-left: auto;font-weight: bold;" id="DB_Find_Dashboard_totalPrice_Passive_Now" >{{$DB_Find_Dashboard->totalPasivePrice_Today}}</p>
                           </div>
                         </div>
                         <!------  Tablo Üst - Sonucları Gösterme - Bugün Son ----->

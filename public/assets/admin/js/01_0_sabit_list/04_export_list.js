@@ -601,7 +601,7 @@ function exportPdfReport(TableJson,exportFileName){
     //console.log("date_new:", date_new); // 2022-12-06 / 01:10:10
   
     //! Body - Veriler
-    var ExportTableHeader = ["Tarih","Cari Hesap","Açıklama","Tür","Miktar","Fiyat","Toplam"];
+    var ExportTableHeader = ["Tarih","Cari Hesap","Açıklama","Tür","Miktar","Fiyat","Toplam","İşlem Durumu"];
 
     var TabloBody = '';
     for (let indexBody = 0; indexBody < TableJson.length; indexBody++) {
@@ -627,6 +627,109 @@ function exportPdfReport(TableJson,exportFileName){
       { title: "exportTableDashboard_totalIncomePrice", text : $('#DB_Find_Dashboard_totalIncomePrice').html().trim() + " TL" },
       { title: "exportTableDashboard_totalExpensePrice", text : $('#DB_Find_Dashboard_totalExpensePrice').html().trim() + " TL" },
       { title: "exportTableDashboard_totalPrice", text : $('#DB_Find_Dashboard_totalPrice').html().trim() + " TL" },
+
+      // Tablo List
+      { title: "exportTableDashboard_List_totalCount", text : $('#DB_Find_Dashboard_totalCount').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice", text : $('#DB_Find_Dashboard_totalIncomePrice').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice", text : $('#DB_Find_Dashboard_totalExpensePrice').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice", text : $('#DB_Find_Dashboard_totalPrice').html().trim() + " TL" },
+
+      // Tablo List - Aktif
+      { title: "exportTableDashboard_List_totalCount_Active", text : $('#DB_Find_Dashboard_totalCount_Active').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Active", text : $('#DB_Find_Dashboard_totalIncomePrice_Active').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Active", text : $('#DB_Find_Dashboard_totalExpensePrice_Active').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Active", text : $('#DB_Find_Dashboard_totalPrice_Active').html().trim() + " TL" },
+
+      // Tablo List - Pasif
+      { title: "exportTableDashboard_List_totalCount_Passive", text : $('#DB_Find_Dashboard_totalCount_Passive').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Passive", text : $('#DB_Find_Dashboard_totalIncomePrice_Passive').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Passive", text : $('#DB_Find_Dashboard_totalExpensePrice_Passive').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Passive", text : $('#DB_Find_Dashboard_totalPrice_Passive').html().trim() + " TL" },
+      
+      // Tablo List - Yıl
+      { title: "exportTableDashboard_List_Year", text : $('#DB_Find_Dashboard_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Year", text : $('#DB_Find_Dashboard_totalCount_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Year", text : $('#DB_Find_Dashboard_totalIncomePrice_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Year", text : $('#DB_Find_Dashboard_totalExpensePrice_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Year", text : $('#DB_Find_Dashboard_totalPrice_Year').html().trim() + " TL" },
+            
+      // Tablo List - Aktif - Yıl
+      { title: "exportTableDashboard_List_Active_Year", text : $('#DB_Find_Dashboard_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Active_Year", text : $('#DB_Find_Dashboard_totalCount_Active_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Active_Year", text : $('#DB_Find_Dashboard_totalIncomePrice_Active_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Active_Year", text : $('#DB_Find_Dashboard_totalExpensePrice_Active_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Active_Year", text : $('#DB_Find_Dashboard_totalPrice_Active_Year').html().trim() + " TL" },
+            
+      // Tablo List - Pasif - Yıl
+      { title: "exportTableDashboard_List_Passive_Year", text : $('#DB_Find_Dashboard_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Passive_Year", text : $('#DB_Find_Dashboard_totalCount_Passive_Year').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Passive_Year", text : $('#DB_Find_Dashboard_totalIncomePrice_Passive_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Passive_Year", text : $('#DB_Find_Dashboard_totalExpensePrice_Passive_Year').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Passive_Year", text : $('#DB_Find_Dashboard_totalPrice_Passive_Year').html().trim() + " TL" },
+
+      // Tablo List - Ay
+      { title: "exportTableDashboard_List_Month", text : $('#DB_Find_Dashboard_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Month", text : $('#DB_Find_Dashboard_totalCount_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Month", text : $('#DB_Find_Dashboard_totalIncomePrice_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Month", text : $('#DB_Find_Dashboard_totalExpensePrice_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Month", text : $('#DB_Find_Dashboard_totalPrice_Month').html().trim() + " TL" },
+            
+      // Tablo List - Aktif - Ay
+      { title: "exportTableDashboard_List_Active_Month", text : $('#DB_Find_Dashboard_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Active_Month", text : $('#DB_Find_Dashboard_totalCount_Active_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Active_Month", text : $('#DB_Find_Dashboard_totalIncomePrice_Active_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Active_Month", text : $('#DB_Find_Dashboard_totalExpensePrice_Active_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Active_Month", text : $('#DB_Find_Dashboard_totalPrice_Active_Month').html().trim() + " TL" },
+            
+      // Tablo List - Pasif - Ay
+      { title: "exportTableDashboard_List_Passive_Month", text : $('#DB_Find_Dashboard_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Passive_Month", text : $('#DB_Find_Dashboard_totalCount_Passive_Month').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Passive_Month", text : $('#DB_Find_Dashboard_totalIncomePrice_Passive_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Passive_Month", text : $('#DB_Find_Dashboard_totalExpensePrice_Passive_Month').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Passive_Month", text : $('#DB_Find_Dashboard_totalPrice_Passive_Month').html().trim() + " TL" },
+      
+      // Tablo List - Hafta
+      { title: "exportTableDashboard_List_Week", text : $('#DB_Find_Dashboard_Week').html().trim() + " / " + $('#DB_Find_Dashboard_Week_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Week", text : $('#DB_Find_Dashboard_totalCount_Week').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Week", text : $('#DB_Find_Dashboard_totalIncomePrice_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Week", text : $('#DB_Find_Dashboard_totalExpensePrice_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Week", text : $('#DB_Find_Dashboard_totalPrice_Week').html().trim() + " TL" },
+            
+      // Tablo List - Aktif - Hafta
+      { title: "exportTableDashboard_List_Active_Week", text : $('#DB_Find_Dashboard_Week').html().trim() + " / " + $('#DB_Find_Dashboard_Week_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Active_Week", text : $('#DB_Find_Dashboard_totalCount_Active_Week').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Active_Week", text : $('#DB_Find_Dashboard_totalIncomePrice_Active_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Active_Week", text : $('#DB_Find_Dashboard_totalExpensePrice_Active_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Active_Week", text : $('#DB_Find_Dashboard_totalPrice_Active_Week').html().trim() + " TL" },
+            
+      // Tablo List - Pasif - Hafta
+      { title: "exportTableDashboard_List_Passive_Week", text : $('#DB_Find_Dashboard_Week').html().trim() + " / " + $('#DB_Find_Dashboard_Week_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Passive_Week", text : $('#DB_Find_Dashboard_totalCount_Passive_Week').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Passive_Week", text : $('#DB_Find_Dashboard_totalIncomePrice_Passive_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Passive_Week", text : $('#DB_Find_Dashboard_totalExpensePrice_Passive_Week').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Passive_Week", text : $('#DB_Find_Dashboard_totalPrice_Passive_Week').html().trim() + " TL" },
+
+      // Tablo List - Gün
+      { title: "exportTableDashboard_List_Now", text : $('#DB_Find_Dashboard_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Now", text : $('#DB_Find_Dashboard_totalCount_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Now", text : $('#DB_Find_Dashboard_totalIncomePrice_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Now", text : $('#DB_Find_Dashboard_totalExpensePrice_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Now", text : $('#DB_Find_Dashboard_totalPrice_Now').html().trim() + " TL" },
+            
+      // Tablo List - Aktif - Gün
+      { title: "exportTableDashboard_List_Active_Now", text : $('#DB_Find_Dashboard_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Active_Now", text : $('#DB_Find_Dashboard_totalCount_Active_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Active_Now", text : $('#DB_Find_Dashboard_totalIncomePrice_Active_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Active_Now", text : $('#DB_Find_Dashboard_totalExpensePrice_Active_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Active_Now", text : $('#DB_Find_Dashboard_totalPrice_Active_Now').html().trim() + " TL" },
+            
+      // Tablo List - Pasif - Gün
+      { title: "exportTableDashboard_List_Passive_Now", text : $('#DB_Find_Dashboard_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalCount_Passive_Now", text : $('#DB_Find_Dashboard_totalCount_Passive_Now').html().trim() },
+      { title: "exportTableDashboard_List_totalIncomePrice_Passive_Now", text : $('#DB_Find_Dashboard_totalIncomePrice_Passive_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalExpensePrice_Passive_Now", text : $('#DB_Find_Dashboard_totalExpensePrice_Passive_Now').html().trim() + " TL" },
+      { title: "exportTableDashboard_List_totalPrice_Passive_Now", text : $('#DB_Find_Dashboard_totalPrice_Passive_Now').html().trim() + " TL" },
+
     ]
 
     console.log("updateData:",updateData);
