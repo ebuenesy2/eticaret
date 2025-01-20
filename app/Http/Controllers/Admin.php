@@ -14702,6 +14702,9 @@ class Admin extends Controller
                 $DB = $DB_Find;
                 $DB["CookieData"] = $CookieControl["CookieDataList"];
 
+                $DB["DB_Find_Title"] = "Kasa - Tüm Liste";
+                $DB["DB_Find_Type"] = "All";
+
                 //! Dashboard Görünümü
                 $parameter_dashboardview = request('dashboardview');
                 if( request('dashboardview') == null ) { $parameter_dashboardview = 1; }
@@ -15432,6 +15435,463 @@ class Admin extends Controller
         }
 
     } //! Finans - İşletme Hesap  - Çoklu Clone - Post Son
+
+            
+    //************* Finans - Kasa Hesap - Tür  ***************** */
+
+    //! Finans - İşletme Hesap - Gelir
+    public function SafeAccountIncome($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "finance_safe_account";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                
+                  //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => 'finance_current_account', "parametre" => "title", "name" => "finance_current_account_title", );
+                
+                $selectDataRaw = [];  //! Select - Raw
+
+                $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "finance_current_account" , "value" => "id", "refTable" => $table, "refValue" => "current_id", ); //! Join Veri Ekleme
+                
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "DateStart", "table" => $table, "where" => "date_time", "data_item_object" => ">=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "DateFinish", "table" => $table, "where" => "date_time", "data_item_object" => "<=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "BusinessAccount", "table" => $table, "where" => "finance_business_account_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit   
+                $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
+                $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "ActiveType", "table" => $table, "where" => "action_type", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                //! Where
+                $whereData = [];
+                $whereData[] = array( "table" => $table, "where" => "type_code" , "data_item_object" => "=", "value" => 1 );
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                $DB["DB_Find_Title"] = "Kasa - Gelir Listesi";
+                $DB["DB_Find_Type"] = "Income";
+
+                //! Dashboard Görünümü
+                $parameter_dashboardview = request('dashboardview');
+                if( request('dashboardview') == null ) { $parameter_dashboardview = 0; }
+                else { $parameter_dashboardview = request('dashboardview'); }
+                //echo "parameter_dashboardview:"; echo $parameter_dashboardview; die();
+                
+                $DB["dashboardview"] = $parameter_dashboardview;
+                //! Dashboard Görünümü Son
+
+                //! Cari Hesaplar
+                $DB_Current_Account = DB::table('finance_current_account')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Current_Account); die();
+                $DB["DB_Current_Account"] = $DB_Current_Account;
+                //! Cari Hesaplar Son 
+
+                //! İş Hesapları
+                $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Business_Account); die();
+                $DB["DB_Business_Account"] = $DB_Business_Account;
+                //! İş Hesapları Son 
+
+                //! Dashboard
+                $DB_Find_Dashboard= DB::table('finance_safe_account')
+                ->selectRaw('
+                    COUNT(finance_safe_account.id) as totalCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
+
+                    COUNT(CASE WHEN finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice,
+
+                    COUNT(CASE WHEN finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice,
+
+                    YEAR(NOW()) AS YEAR_NOW,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) THEN 1 END) as totalCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Year,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Year,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Year,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Year,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Year,
+
+                    MONTH(NOW()) AS MONTH_NOW,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) THEN 1 END) as totalCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Month,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Month,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Month,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Month,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Month,
+
+                    DATE_FORMAT(date_add(now(), INTERVAL -7 DAY),"%Y-%m-%d") AS WEEK_BEFORE_7DAY,
+                    DATE_FORMAT(now(),"%Y-%m-%d") AS DAY_NOW,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) THEN 1 END) as totalCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Week,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Week,
+                        Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Week,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Week,
+                        Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Week,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) THEN 1 END) as totalCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Today,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Today,
+                        Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Today,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Today,
+                        Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Today
+
+                ')
+                ->where($DB_Find['where'])
+                ->get();
+                //echo "<pre>"; print_r($DB_Find_Dashboard[0]); die();
+
+                $DB["DB_Find_Dashboard"] =  $DB_Find_Dashboard[0];
+                //! Dashboard Son
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/finance/safe_account',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Finans - İşletme Hesap - Gelir Son
+    
+    //! Finans - İşletme Hesap - Gider
+    public function SafeAccountExpense($site_lang="tr")
+    {
+        \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
+        //echo "Dil:"; echo $site_lang;  echo "<br/>";  die();
+
+        try { 
+
+            //! Cookie Fonksiyon Kullanımı
+            $CookieControl =  cookieControl(); //! Çerez Kontrol
+            //echo "<pre>"; print_r($CookieControl); die();
+
+            if($CookieControl['isCookie']) {  
+                //echo "Çerez var"; die();
+
+                //! Tanım
+                $table = "finance_safe_account";
+                $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
+                $groupData = []; //! GroupData
+                
+                  //! Select
+                $selectData = [];
+                $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
+                $selectData[] = array( "table" => 'finance_current_account', "parametre" => "title", "name" => "finance_current_account_title", );
+                
+                $selectDataRaw = [];  //! Select - Raw
+
+                $joinData = [];  //! Join
+                $joinData[] = array( "type" => "LEFT", "table" => "finance_current_account" , "value" => "id", "refTable" => $table, "refValue" => "current_id", ); //! Join Veri Ekleme
+                
+                //! Arama
+                $searchData = [];
+                $searchData[] = array("params" => "Id", "table" => $table, "where" => "id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "DateStart", "table" => $table, "where" => "date_time", "data_item_object" => ">=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "DateFinish", "table" => $table, "where" => "date_time", "data_item_object" => "<=", "data_key_type" => "date", ); //! Zaman Büyük ve Eşit
+                $searchData[] = array("params" => "BusinessAccount", "table" => $table, "where" => "finance_business_account_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit   
+                $searchData[] = array("params" => "Title", "table" => $table, "where" => "title", "data_item_object" => "likeBoth", "data_key_type" => "string", ); //! %A%
+                $searchData[] = array("params" => "Type", "table" => $table, "where" => "type_code", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "ActiveType", "table" => $table, "where" => "action_type", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                $searchData[] = array("params" => "CurrentCode", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+                $searchData[] = array("params" => "CurrentName", "table" => $table, "where" => "current_id", "data_item_object" => "=", "data_key_type" => "int", ); //! Eşit
+
+                //! Where
+                $whereData = [];
+                $whereData[] = array( "table" => $table, "where" => "type_code" , "data_item_object" => "multi", "value" => "2,3" );
+                
+                $DB_Find =  List_Function($table,$infoData, $groupData, $selectData,$selectDataRaw,$joinData,$searchData,$whereData); //! View Tablo Kullanımı
+                //echo "<pre>"; print_r($DB_Find); die();
+
+                //! Return
+                $DB = $DB_Find;
+                $DB["CookieData"] = $CookieControl["CookieDataList"];
+
+                $DB["DB_Find_Title"] = "Kasa - Gider Listesi";
+                $DB["DB_Find_Type"] = "Expense";
+
+                //! Dashboard Görünümü
+                $parameter_dashboardview = request('dashboardview');
+                if( request('dashboardview') == null ) { $parameter_dashboardview = 0; }
+                else { $parameter_dashboardview = request('dashboardview'); }
+                //echo "parameter_dashboardview:"; echo $parameter_dashboardview; die();
+                
+                $DB["dashboardview"] = $parameter_dashboardview;
+                //! Dashboard Görünümü Son
+
+                //! Cari Hesaplar
+                $DB_Current_Account = DB::table('finance_current_account')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Current_Account); die();
+                $DB["DB_Current_Account"] = $DB_Current_Account;
+                //! Cari Hesaplar Son 
+
+                //! İş Hesapları
+                $DB_Business_Account = DB::table('finance_business_account')->orderBy('title','asc')->get(); //Tüm verileri çekiyor
+                //echo "<pre>"; print_r($DB_Business_Account); die();
+                $DB["DB_Business_Account"] = $DB_Business_Account;
+                //! İş Hesapları Son 
+
+                //! Dashboard
+                $DB_Find_Dashboard= DB::table('finance_safe_account')
+                ->selectRaw('
+                    COUNT(finance_safe_account.id) as totalCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice,
+
+                    COUNT(CASE WHEN finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice,
+
+                    COUNT(CASE WHEN finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount,
+                    Format(ROUND(SUM( CASE 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice,
+                        Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice,
+                    Format(ROUND(SUM(CASE WHEN finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice,
+
+                    YEAR(NOW()) AS YEAR_NOW,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) THEN 1 END) as totalCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Year,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Year,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Year,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Year,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Year,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Year,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(finance_safe_account.date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Year,
+
+                    MONTH(NOW()) AS MONTH_NOW,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) THEN 1 END) as totalCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Month,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Month,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Month,
+
+                    COUNT(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Month,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Month,
+                        Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Month,
+                    Format(ROUND(SUM(CASE WHEN (YEAR(NOW()) = YEAR(date_time) AND MONTH(NOW()) = MONTH(date_time)) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Month,
+
+                    DATE_FORMAT(date_add(now(), INTERVAL -7 DAY),"%Y-%m-%d") AS WEEK_BEFORE_7DAY,
+                    DATE_FORMAT(now(),"%Y-%m-%d") AS DAY_NOW,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) THEN 1 END) as totalCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Week,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Week,
+                        Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Week,
+
+                    COUNT(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Week,
+                    Format(ROUND(SUM( CASE 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Week,
+                        Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Week,
+                    Format(ROUND(SUM(CASE WHEN ( date_time BETWEEN date_add(now(), INTERVAL -7 DAY) AND now() ) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Week,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) THEN 1 END) as totalCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePrice_Today,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 THEN 1 END) as totalActiveCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalActivePrice_Today,
+                        Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomeActivePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type = 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpenseActivePrice_Today,
+
+                    COUNT(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 THEN 1 END) as totalPasiveCount_Today,
+                    Format(ROUND(SUM( CASE 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) 
+                        WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN  -(finance_safe_account.price * finance_safe_account.quantity) 
+                        ELSE 0 END )),3,"#,##0.000") as totalPasivePrice_Today,
+                        Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type = "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalIncomePasivePrice_Today,
+                    Format(ROUND(SUM(CASE WHEN (DATE_FORMAT(now(),"%Y-%m-%d") = DATE_FORMAT(date_time,"%Y-%m-%d")) AND finance_safe_account.action_type != 1 AND finance_safe_account.type != "Gelir" THEN (finance_safe_account.price * finance_safe_account.quantity) ELSE 0 END),3),3,"#,##0.000") as totalExpensePasivePrice_Today
+
+                ')
+                ->where($DB_Find['where'])
+                ->get();
+                //echo "<pre>"; print_r($DB_Find_Dashboard[0]); die();
+
+                $DB["DB_Find_Dashboard"] =  $DB_Find_Dashboard[0];
+                //! Dashboard Son
+
+                //echo "<pre>"; print_r($DB); die();
+                
+                return view('admin/finance/safe_account',$DB);
+            }
+            else { return redirect('/'.__('admin.lang').'/'.'admin/login/'); }
+            //! Cookie Fonksiyon Kullanımı Son
+        }  
+        catch (\Throwable $th) {  throw $th; }
+
+    } //! Finans - İşletme Hesap - Gider Son
     
     //************* Firma - Kategori  ***************** */
 

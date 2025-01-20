@@ -6,7 +6,8 @@
         //! Tanım
         $parameter_all = request()->all(); //! Tüm Params Veriler
         $data_keys = array_keys($parameter_all); //! Tüm Params Keys
-        $data_all= []; //! Tüm Eklenecek
+        $data_all= []; //! Tüm Arama
+        $data_all_in= []; //! Tüm Arama
         $dataTime_all= []; //! Tüm Zaman Eklenecek
         $newUrl=[]; //! Yeni Url
         $data_count = count(request()->all()); //! Params Sayısı
@@ -84,24 +85,49 @@
             $data_search_key = []; //! Arama Data
             $data_key_item = $whereDataList[$k]["table"].".".$whereDataList[$k]["where"]; //! [ test.created_at ]
             $data_item_object = $whereDataList[$k]["data_item_object"]; //! [=]
+            $data_item_value = $whereDataList[$k]["value"]; //! [56]
+            //echo "<pre>"; print_r($whereDataList); die();
 
             //! Json Filter
             $results = [];
+            
+            //! Veri Varmı Kontrol Ediyor ve Ekliyor
             foreach ($data_all as $item) {  
                 if ($item[0] == $data_key_item && $item[1] == $data_item_object ) { $results[] = $item; }
             }
 
             //! Ekleme Yapıyor
-            if(count($results) == 0 ) {
+            if(count($results) == 0 && $data_item_object != "multi" ) {
                 array_push($data_search_key,$data_key_item); //! [ test.created_at ]
-                array_push($data_search_key,$whereDataList[$k]["data_item_object"]); //! [=]
-                array_push($data_search_key,$whereDataList[$k]["value"]); //1
+                array_push($data_search_key,$data_item_value); //1
 
                 //! Arama Yapılacak Verileri Ekliyor
                 $data_all[] = $data_search_key;
             }
             //! Ekleme Yapıyor Son
+
+            //! Json Filter
+            $results_IN = [];
+
+            //! IN - Veri Varmı Kontrol Ediyor ve Ekliyor
+            foreach ($data_all_in as $item) {  
+                if ($item[0] == $data_key_item && $item[1] == $data_item_object ) { $results_IN[] = $item; }
+            }
+
+            //! IN - Ekleme Yapıyor
+            if(count($results) == 0 && $data_item_object == "multi" ) {
+
+                $ids = explode(",", $data_item_value);
+
+                array_push($data_search_key,$data_key_item); //! [ test.created_at ]
+                array_push($data_search_key,$ids); //! Array
+
+                //! Arama Yapılacak Verileri Ekliyor
+                $data_all_in[] = $data_search_key;
+            }
+            //! IN - Ekleme Yapıyor Son
         }
+        //echo "<pre>"; print_r($data_all_in); die();
         //echo "<pre>"; print_r($data_all); die();
         //! Where Son
 
@@ -132,6 +158,11 @@
         //! Where
         if(count($selectDb) > 0) { $db = $db->select(DB::raw(join(',',$selectDb))); } //! Select
         $db = $db->where($data_all); //! Arama
+
+        //! Where - Çoklu
+        for ($i=0; $i <count($data_all_in) ; $i++) {  $db = $db->whereIn($data_all_in[$i][0], $data_all_in[$i][1]); }
+        
+        //die();
         
         //! Where - Tarih
         for ($i=0; $i <count($dataTime_all) ; $i++) { $db = $db->whereDate($dataTime_all[$i][0],$dataTime_all[$i][1],$dataTime_all[$i][2]);  }

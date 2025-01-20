@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <!-- Head -->
-<title> Kasa | {{ config('admin.Admin_Title') }} </title>
+<title> {{$DB_Find_Title}} | {{ config('admin.Admin_Title') }} </title>
 @include('admin.include.head')
 
 <!-- Tanım -->
 <?php $homeUrl = '/admin'; ?>
-<?php $listTitle = 'Kasa'; ?>
+<?php $listTitle = $DB_Find_Title; ?>
 <?php $listUrl = "/admin/setting/menu";  ?>
 
 <!-- Yıldırımdev Table Css -->
@@ -112,9 +112,9 @@
                             <p> @lang('admin.type')</p>
                             <select class="" style="cursor: pointer; width: 120px;" id="searchTable" searchName="Type"  >
                                 <option value="">@lang('admin.all')</option>
-                                <option value="1" >Gelir</option>
-                                <option value="2" >Gider</option>
-                                <option value="3" >Hizmet</option>
+                                @if( $DB_Find_Type == "All" || $DB_Find_Type == "Income" ) <option value="1" >Gelir</option>  @endif
+                                @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="2" >Gider</option>  @endif
+                                @if( $DB_Find_Type == "All" || $DB_Find_Type == "Expense" ) <option value="3" >Hizmet</option> @endif
                             </select>
                           </div>
                           <!------ Arama Tür Son----->

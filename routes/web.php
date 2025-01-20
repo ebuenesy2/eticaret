@@ -459,6 +459,10 @@ Route::post('/admin/safe/account/edit/multi/active', [Admin::class,'SafeAccountE
 Route::post('/admin/safe/account/clone', [Admin::class,'SafeAccountClonePost']) -> name("admin.web.safe.account.list.clone.post"); //! Veri Clone - Post
 Route::post('/admin/safe/account/clone/multi', [Admin::class,'SafeAccountClonePostMulti']) -> name("admin.web.safe.account.list.clone.post.multi"); //! Çoklu Veri Clone - Post
 
+//! Finans - Kasa Hesap - Tür
+Route::get('/{lang}/admin/safe/account/income', [Admin::class,'SafeAccountIncome']) -> name("admin.web.safe.account.list.income");  //! Finans - Kasa Hesap - Gelir
+Route::get('/{lang}/admin/safe/account/expense', [Admin::class,'SafeAccountExpense']) -> name("admin.web.safe.account.list.expense");  //! Finans - Kasa Hesap - Gider
+
 
 //! Satış - Yapılan Satışlar
 Route::get('/{lang}/admin/order', [Admin::class,'OrderList']) -> name("admin.web.order.list");  //! Tüm Veriler
