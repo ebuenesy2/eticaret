@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 17 Ara 2024, 22:30:37
+-- Üretim Zamanı: 21 Oca 2025, 00:56:28
 -- Sunucu sürümü: 10.4.24-MariaDB
 -- PHP Sürümü: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Veritabanı: `yildirimdev_admin_v2`
+-- Veritabanı: `yildirimdev_eticaret`
 --
 
 -- --------------------------------------------------------
@@ -226,7 +226,8 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `category`, `company_name`, `description`, `authorized_person`, `authorized_person_role`, `authorized_person_tel`, `authorized_person_whatsap`, `authorized_person_mail`, `web_address1`, `web_address2`, `tel1`, `tel2`, `fax1`, `fax2`, `email`, `email2`, `country`, `city`, `district`, `neighborhood`, `post_code`, `address`, `billing_address`, `tax_administration`, `tax_number`, `ref_person`, `ref_phone`, `ref_role`, `ref_email`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(48, '1726932788', 'Firma Adı', 'Açıklama', 'Yetkili Kişi', 'Yetkili Kişi Görevi', 'Yetkili Telefon', NULL, 'Yetkili Kişi Maili', 'Web Adres 1', 'Web Adres 2', 'Telefon', 'Telefon 2', NULL, NULL, 'Email', 'Email 2', 'Ülke', 'İl', 'İlçe', 'Mahalle', NULL, 'Adres', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-03 10:53:55', 1, 1, '2024-11-03 11:01:27', 1, 1, 0, NULL, NULL);
+(48, '1726932788', 'Firma Adı', 'Açıklama', 'Yetkili Kişi', 'Yetkili Kişi Görevi', 'Yetkili Telefon', NULL, 'Yetkili Kişi Maili', 'Web Adres 1', 'Web Adres 2', 'Telefon', 'Telefon 2', NULL, NULL, 'Email', 'Email 2', 'Ülke', 'İl', 'İlçe', 'Mahalle', NULL, 'Adres', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-03 10:53:55', 1, 1, '2024-11-03 11:01:27', 1, 1, 0, NULL, NULL),
+(49, '87', 'yigit cafe', 'ssdsadasjdasd', 'yigit', 'müdür', '54', NULL, 'dsa@demne.com', 'Keçiören / Ankara', 'Keçiören / Ankara', NULL, NULL, NULL, NULL, 'ebuenesy2@gmail.com', 'ebuenesy2@gmail.com', 'Türkiye', 'Keçiören', 'Keçiören', NULL, NULL, 'Keçiören / Ankara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-29 17:21:21', 1, 1, '2024-12-29 17:22:16', 1, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,7 +261,10 @@ INSERT INTO `company_categories` (`id`, `lang`, `uid`, `title`, `imgUrl`, `creat
 (2, 'tr', '1726932789', 'Firma Kategorisi 2', '', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (3, 'tr', '1726932790', 'Firma Kategorisi 3', '', '2022-11-16 12:38:22', NULL, 1, '2024-10-15 03:01:19', 1, 1, 0, NULL, NULL),
 (4, 'tr', '1726932791', 'Firma Kategorisi 4', '', '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(82, 'tr', '1729729071', 'Firma Kategorisi 5', '', '2024-10-24 00:17:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(82, 'tr', '1729729071', 'Firma Kategorisi 5', '', '2024-10-24 00:17:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(87, 'tr', '1735492727', 'satış', '', '2024-12-29 17:18:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(88, 'en', '1735492727', 'sales', '', '2024-12-29 17:18:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(89, 'de', '1735492727', 'sales de', '', '2024-12-29 17:18:47', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,81 +302,6 @@ INSERT INTO `contact_message` (`id`, `name`, `surname`, `email`, `phone`, `subje
 (17, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', NULL, 'konu', 'Mesaj', '2024-11-09 20:48:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (18, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', 'tel', 'Konu', 'Mesaj', '2024-11-24 19:52:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (20, 'ebuenes', 'yıldırım', 'ebuenesy2@gmail.com', '053', 'Konu', 'mesaj', '2024-11-24 19:56:57', 1, 1, '2024-11-24 19:58:28', 1, 1, 0, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `current_account`
---
-
-CREATE TABLE `current_account` (
-  `id` int(11) NOT NULL,
-  `date_time` text NOT NULL,
-  `deposited` text DEFAULT NULL,
-  `withdrawn` text DEFAULT '\'0\'',
-  `result` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `created_byId` int(11) DEFAULT NULL,
-  `isUpdated` int(11) NOT NULL DEFAULT 0,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `updated_byId` int(11) DEFAULT NULL,
-  `isActive` int(11) NOT NULL DEFAULT 1,
-  `isDeleted` int(11) NOT NULL DEFAULT 0,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `deleted_byId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `current_account`
---
-
-INSERT INTO `current_account` (`id`, `date_time`, `deposited`, `withdrawn`, `result`, `description`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, '2024-08-28', '30000', '0', '30000', 'Maaş Yattı', '2023-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(2, '2024-08-29', '0', '650', '-650', 'Ödeme Yapıldı', '2023-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(3, '2024-08-31', '0', '850', '-850', 'Ev Kirası Ödendi', '2023-11-16 12:38:22', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(4, '2024-09-05', '2350', '850', '1500', 'AlışVeriş Yapıldı', '2024-10-25 23:52:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(5, '2024-10-26', '60', '5', '55', 'Acıklama 1', '2024-10-26 00:44:20', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(6, '2024-10-20', '0', '75', '-75', 'Aciklama güncelleme', '2024-10-26 00:46:58', 1, 1, '2024-10-26 01:08:51', 1, 1, 0, NULL, NULL),
-(11, '2023-01-01', '60', '5', '55', 'Acıklama 1', '2024-10-26 01:32:04', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(12, '2023-08-28', '0', '75', '-75', 'Aciklama güncelleme', '2024-10-26 01:32:04', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(13, '2023-10-26', '150', '65', '85', 'Acıklama', '2024-10-26 01:35:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(14, '2024-10-11', '50', '87', '-37', 'Ac', '2024-10-26 01:35:46', 1, 1, '2024-10-26 04:31:03', 1, 1, 0, NULL, NULL),
-(16, '2024-10-25', '100', '0', '100', NULL, '2024-10-26 07:42:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(17, '2024-10-24', '24', '0', '24', NULL, '2024-10-26 07:43:10', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(18, '2024-10-26', '69', '10', '59', NULL, '2024-10-26 07:43:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(19, '2024-10-23', '150', '0', '150', NULL, '2024-10-26 07:43:42', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(20, '2024-10-22', '85', '0', '85', NULL, '2024-10-26 07:43:53', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(21, '2024-10-01', '50', '0', '50', NULL, '2024-10-26 07:44:04', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(22, '2024-10-18', '10', '5', '5', NULL, '2024-10-26 07:44:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(23, '2024-10-19', '19', '3', '16', NULL, '2024-10-26 07:46:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(24, '2024-10-20', '20', '10', '10', NULL, '2024-10-26 07:47:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(25, '2024-09-16', '850', '25', '825', NULL, '2024-10-26 07:57:27', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(26, '2024-09-20', '50', '3', '47', NULL, '2024-10-26 07:57:40', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(27, '2024-09-23', '15', '2', '13', NULL, '2024-10-26 08:00:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(28, '2024-09-04', '43', '0', '43', NULL, '2024-10-26 08:03:39', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(29, '2024-10-02', '10', '0', '10', NULL, '2024-10-26 08:05:31', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(30, '2024-10-12', '14', '0', '14', NULL, '2024-10-26 08:05:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(31, '2024-09-12', '36.6', '0', '37', NULL, '2024-10-26 08:06:54', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(32, '2024-09-05', '95', '0', '95', 'para yattı', '2024-10-26 08:10:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(33, '2024-10-16', '65', '0', '65', NULL, '2024-10-26 08:14:24', 1, 1, '2024-10-26 08:19:46', 1, 1, 0, NULL, NULL),
-(34, '2024-10-15', '45', '0', '45', NULL, '2024-10-26 08:17:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(35, '2024-10-12', '0', '65', '-65', NULL, '2024-10-26 08:19:39', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(36, '2024-09-30', '65', '0', '65', NULL, '2024-10-26 08:52:50', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(37, '2024-09-01', '0', '150', '-150', NULL, '2024-10-26 08:53:02', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(38, '2024-10-01', '10', '0', '10', NULL, '2024-10-26 08:53:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(39, '2024-01-27', '123', '0', '123', NULL, '2024-10-26 08:56:38', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(40, '2024-01-01', '100', '0', '100', NULL, '2024-10-26 08:57:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(41, '2023-12-31', '950', '0', '950', NULL, '2024-10-26 08:58:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(44, '2024-10-25', '65', '0', '65.00', NULL, '2024-10-26 13:32:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(45, '2024-10-23', '15', '10', '5.00', 'aciklama', '2024-10-26 20:07:38', 1, 1, '2024-10-26 20:07:49', 1, 1, 0, NULL, NULL),
-(46, '2024-10-27', '150', '50', '100.00', 'Para yatırıldı x', '2024-10-27 13:03:04', 1, 1, '2024-10-29 14:06:30', 1, 1, 0, NULL, NULL),
-(47, '2024-11-16T23:39', '150', '0', '150.00', NULL, '2024-11-16 19:40:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(48, '2024-11-16', '150', '50', '100.00', 'Yeni', '2024-11-16 19:43:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(49, '2024-11-16T22:46', '165', '15', '150.00', 'test', '2024-11-16 19:47:05', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(50, '2024-11-12T06:52', '70', '5', '65.00', '12 11 2024 - 06 52', '2024-11-16 19:47:35', 1, 1, '2024-11-16 19:48:34', 1, 1, 0, NULL, NULL),
-(51, '2024-11-12T06:52', '70', '5', '65.00', '12 11 2024 - 06 52', '2024-11-16 19:49:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(52, '2024-12-10T21:37', '150', '10', '140.00', 'sadsad', '2024-12-10 18:38:06', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,6 +402,130 @@ INSERT INTO `faq_categories` (`id`, `lang`, `uid`, `img_url`, `title`, `seo_url`
 (82, 'tr', '1732458974', '/assets/img/default/default.jpg', 'Genel', 'genel', NULL, '2024-11-24 14:36:14', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (83, 'tr', '1732458982', '/assets/img/default/default.jpg', 'Ödeme İşlemleri', 'odeme-islemleri', NULL, '2024-11-24 14:36:22', 1, 1, '2024-11-24 14:36:51', 1, 1, 0, NULL, NULL),
 (84, 'tr', '1732459002', '/assets/img/default/default.jpg', 'İade İşlemleri', 'iade-islemleri', NULL, '2024-11-24 14:36:42', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `finance_business_account`
+--
+
+CREATE TABLE `finance_business_account` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` text NOT NULL,
+  `type` text NOT NULL,
+  `type_code` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `finance_business_account`
+--
+
+INSERT INTO `finance_business_account` (`id`, `title`, `description`, `price`, `type`, `type_code`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(54, 'Maaş', 'Her Ayın 15 maaş yatar', '45000', 'Gelir', 1, '2025-01-07 18:50:16', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(55, 'Yazılım Hizmeti', 'Yapılan Yazılım', '2000', 'Hizmet', 3, '2025-01-07 18:50:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(56, 'Elektrik Faturası', 'Elektrik Gider', '150', 'Gider', 2, '2025-01-07 18:50:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(57, 'Su Faturası', 'Su Gider', '300', 'Gider', 2, '2025-01-07 18:50:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(58, 'Doğalgaz Faturası', 'Doğalgaz Gideri', '250', 'Gider', 2, '2025-01-07 18:50:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(59, 'Video Düzenleme', 'Video Editör İşlemleri', '3500', 'Hizmet', 3, '2025-01-07 18:50:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(70, 'Dekupe', 'dekupe', '3000', 'Hizmet', 3, '2025-01-09 18:57:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(71, 'Dekupe 1', 'dekupe 1', '250', 'Hizmet', 3, '2025-01-09 18:57:38', 1, 1, '2025-01-09 18:57:57', 1, 1, 0, NULL, NULL),
+(72, 'Video Hizmeti', '7 sn video çekimi', '7500', 'Hizmet', 3, '2025-01-09 19:10:53', 1, 1, '2025-01-09 19:11:06', 1, 1, 0, NULL, NULL),
+(73, 'enes yemek günlük', 'enes yemek maastads', '150', 'Gider', 2, '2025-01-09 19:27:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `finance_current_account`
+--
+
+CREATE TABLE `finance_current_account` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `phone` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `iban` text DEFAULT NULL,
+  `iban_name` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `finance_current_account`
+--
+
+INSERT INTO `finance_current_account` (`id`, `title`, `phone`, `email`, `address`, `iban`, `iban_name`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 'Burak Plastik', '0551 045 65 74', 'deneme@test.com', 'Mamak / Ankara', 'TR05 1111 0111 111 1897 544', 'Ahmet Yakar', '2023-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'Birikim Hesabı', '0551 045 65 74', 'deneme@test.com', 'Mamak / Ankara', 'TR05 1111 0111 111 1897 544', 'Ahmet Yakar', '2023-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(56, 'Banka Hesabı', '0551 045 65 74', 'deneme@test.com', 'Keçiören / Ankara', 'TR05 1111 0111 111 1897 544', 'Ahmet Yakar', '2025-01-09 03:34:23', 1, 1, '2025-01-09 17:37:34', 1, 1, 0, NULL, NULL),
+(59, 'Yourhome', '54', 'homw@esada.com', 'sadas', 'iban', 'iban ad', '2025-01-09 18:59:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(61, 'Metro Fırça', '5498', 'metro@firca.com', 'adres', 'iban', 'iban ad', '2025-01-09 19:04:26', 1, 1, '2025-01-09 19:04:54', 1, 1, 0, NULL, NULL),
+(62, 'Zİraat BankasI Hesap', '05510320501', 'ebuenesy2@gmail.com', 'Keçiören / Ankara', 'iban', 'cemal xx', '2025-01-09 19:56:32', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(63, 'Deneme', '05510320501', 'info@yildirimdev.com', 'adres / yildirimdev', 'iban', 'ibanAd', '2025-01-10 23:09:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `finance_safe_account`
+--
+
+CREATE TABLE `finance_safe_account` (
+  `id` int(11) NOT NULL,
+  `current_id` int(11) DEFAULT NULL,
+  `date_time` text DEFAULT NULL,
+  `finance_business_account_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text DEFAULT NULL,
+  `type` text NOT NULL,
+  `type_code` int(11) NOT NULL,
+  `action_type` int(11) DEFAULT 1,
+  `price` text NOT NULL,
+  `quantity` text DEFAULT NULL,
+  `total` text DEFAULT NULL,
+  `file_name` text DEFAULT NULL,
+  `file_url` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `finance_safe_account`
+--
+
+INSERT INTO `finance_safe_account` (`id`, `current_id`, `date_time`, `finance_business_account_id`, `title`, `description`, `type`, `type_code`, `action_type`, `price`, `quantity`, `total`, `file_name`, `file_url`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(88, 56, '2025-01-14T04:26', 55, 'Yazılım Hizmeti', 'Yapılan Yazılım', 'Hizmet', 3, 3, '850', '1', '850', NULL, NULL, '2025-01-13 01:26:36', 1, 1, '2025-01-19 18:22:15', 1, 1, 0, NULL, NULL),
+(92, 2, '2025-02-15T21:38', 54, 'Maaş', 'Her Ayın 15 maaş yatar', 'Gelir', 1, 1, '45000', '1', '45000', NULL, NULL, '2025-01-15 18:38:15', 1, 1, '2025-01-19 18:22:01', 1, 1, 0, NULL, NULL),
+(93, 0, '2025-01-15T21:38', 57, 'Su Faturası', 'Su Gider', 'Gider', 2, 2, '300', '1', '300', NULL, NULL, '2025-01-15 18:38:42', 1, 1, '2025-01-19 18:02:11', 1, 1, 0, NULL, NULL),
+(107, 62, '2025-01-19T21:52', 0, 'Diğer', 'Gelen Para', 'Gelir', 1, 1, '980', '1', '980.00', NULL, NULL, '2025-01-19 18:53:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(108, 63, '2025-01-17T01:52', 0, 'Diğer', 'Gelir Beklenilmiyor', 'Gelir', 1, 2, '150', '1', '150.00', NULL, NULL, '2025-01-19 22:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(109, 2, '2025-01-20T03:08', 0, 'Diğer', 'Gelir Diğer', 'Gelir', 1, 2, '150', '1', '150.00', NULL, NULL, '2025-01-20 00:09:04', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(110, 56, '2025-01-17T04:32', 56, 'Elektrik Faturası', 'Elektrik Gider', 'Gider', 2, 1, '150', '1', '150', NULL, NULL, '2025-01-20 01:33:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(111, 63, '2025-01-10T06:48', 58, 'Doğalgaz Faturası', 'Doğalgaz Gideri', 'Gider', 2, 1, '250', '1', '250', NULL, NULL, '2025-01-20 03:48:31', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -591,6 +644,44 @@ INSERT INTO `institutional_references` (`id`, `img_url`, `title`, `site_url`, `c
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `serviceName` text NOT NULL,
+  `serviceDb` text NOT NULL,
+  `serviceDb_Id` int(11) NOT NULL,
+  `serviceCode` text NOT NULL,
+  `status` text NOT NULL,
+  `decription` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `logs`
+--
+
+INSERT INTO `logs` (`id`, `serviceName`, `serviceDb`, `serviceDb_Id`, `serviceCode`, `status`, `decription`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 'test', 'test', 49, 'add', 'Info', 'Test Veri Eklendi', '2023-09-19 13:08:18', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'test', 'test', 7, 'edit', 'Info', 'Test Veri Güncellendi', '2023-09-19 13:08:27', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 'test', 'test', 51, 'delete', 'Info', 'Test Veri Silindi', '2023-09-19 13:09:11', 10, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 'Kullanıcı', 'users', 1, 'login', 'success', 'Kullanıcı Giriş Yapıldı', '2023-11-29 21:16:53', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(91, 'Kullanıcı', 'users', 1, 'login', 'success', 'Kullanıcı Giriş Yapıldı', '2024-12-27 19:28:10', 10, 0, NULL, NULL, 1, 0, NULL, NULL),
+(92, 'Kullanıcı', 'users', 1, 'login', 'success', 'Kullanıcı Giriş Yapıldı', '2024-12-27 19:28:18', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(93, 'Kullanıcı', 'users', 1, 'delete', 'success', 'Kullanıcı Silindi', '2024-12-27 19:36:31', 10, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `meetings`
 --
 
@@ -619,7 +710,8 @@ CREATE TABLE `meetings` (
 INSERT INTO `meetings` (`id`, `date`, `time`, `interviewee`, `businessStatus`, `description`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
 (1, '1.10.2024', '15:20', 'Karizma Yazılım', '1', 'Arama Yapıldı', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (16, '2024-11-01', '04:50', 'Görüşme Yapılan Kişi', '0', 'Firma Ret Etti', '2024-11-01 01:51:00', 1, 1, '2024-11-01 02:37:49', NULL, 1, 0, NULL, NULL),
-(17, '2024-11-05', '06:28', 'Görüşme Yapılan Kişi', '2', 'bekleme güncelleme', '2024-11-01 02:27:51', 1, 1, '2024-11-01 02:30:18', 1, 0, 0, NULL, NULL);
+(17, '2024-11-05', '06:28', 'Görüşme Yapılan Kişi', '2', 'bekleme güncelleme', '2024-11-01 02:27:51', 1, 1, '2024-11-01 02:30:18', 1, 0, 0, NULL, NULL),
+(19, '2024-12-29', '21:22', 'ömn', '0', 'malzeme uygun', '2024-12-29 17:23:08', 1, 1, '2024-12-29 17:23:39', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -654,27 +746,27 @@ CREATE TABLE `multimenu` (
 --
 
 INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_name`, `tr`, `en`, `de`, `ru`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 1, NULL, 0, NULL, 'settings', 'Ayarlar', 'Settings', NULL, NULL, '2024-01-18 01:41:24', 0, 1, '2024-10-22 03:28:41', 1, 1, 0, NULL, NULL),
+(1, 1, '', 0, NULL, 'settings', 'Ayarlar', 'Settings', NULL, NULL, '2024-01-18 01:41:24', 0, 1, '2024-10-22 03:28:41', 1, 1, 0, NULL, NULL),
 (2, 2, '/admin/setting/menu', 1, NULL, 'settings.menu', 'Menu Ayarları', 'Menu Settings', NULL, NULL, '2024-01-18 01:42:31', 0, 1, '2024-10-22 03:26:48', 1, 1, 0, NULL, NULL),
-(4, 7, NULL, 0, NULL, 'admin.fixed', 'Sabit', 'Fixed', NULL, NULL, '2024-01-18 02:07:35', 0, 1, '2024-10-22 03:28:21', 1, 1, 0, NULL, NULL),
+(4, 25, '', 0, NULL, 'admin.fixed', 'Sabit', 'Fixed', NULL, NULL, '2024-01-18 02:07:35', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (5, 5, '/admin/fixed', 4, NULL, 'admin.fixed.page', 'Sabit Sayfa', 'Fixed Page', NULL, NULL, '2024-01-18 02:09:09', 0, 1, '2024-01-18 02:09:34', 1, 1, 0, NULL, NULL),
 (6, 6, '/admin/fixed/form', 4, NULL, 'admin.fixed.form', 'Sabit Form', 'Fixed Form', NULL, NULL, '2024-01-18 02:12:36', 0, 1, '2024-01-18 02:12:42', 1, 1, 0, NULL, NULL),
-(7, 15, NULL, 0, NULL, 'admin.fixed.list.view', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:16:57', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 38, '', 0, NULL, 'admin.fixed.list.view', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:16:57', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (8, 8, '/admin/fixed_list/list', 7, NULL, 'admin.fixed.list', 'Sabit Liste', 'Fixed List', NULL, NULL, '2024-01-18 02:18:21', 0, 1, '2024-01-18 14:37:52', 1, 1, 0, NULL, NULL),
 (9, 9, '/admin/fixed_list/search/1', 7, NULL, 'admin.fixed.search.view', 'Sabit Liste - Arama', 'Fixed List - Search', NULL, NULL, '2024-01-18 02:21:13', 0, 1, '2024-01-18 14:38:55', 1, 1, 0, NULL, NULL),
 (10, 10, '/admin/fixed_list/add', 7, NULL, 'admin.fixed.add', 'Sabit Liste - Ekle', 'Fixed List - Add', NULL, NULL, '2024-01-18 03:24:45', 0, 1, '2024-01-18 14:39:04', 1, 1, 0, NULL, NULL),
 (11, 11, '/admin/fixed_list/edit/1', 7, NULL, 'admin.fixed.edit.view', 'Sabit Liste - Düzenle', 'Fixed List - Edit', NULL, NULL, '2024-01-18 03:26:05', 0, 1, '2024-01-18 14:39:13', 1, 1, 0, NULL, NULL),
-(15, 18, NULL, 0, NULL, 'admin.test', 'Test', 'Test', NULL, NULL, '2024-01-18 03:32:44', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
+(15, 18, '', 0, NULL, 'admin.test', 'Test', 'Test', NULL, NULL, '2024-01-18 03:32:44', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (16, 16, '/admin/test', 15, NULL, 'admin.test', 'Test', 'Test', NULL, NULL, '2024-01-18 03:33:19', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
 (17, 17, '/admin/test/view', 15, NULL, 'admin.test.page', 'Test Sayfa', 'Test Page', NULL, NULL, '2024-01-18 03:34:43', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(18, 4, NULL, 0, NULL, 'fixed.file', 'Dosya', 'File', NULL, NULL, '2024-01-18 03:37:58', 0, 1, '2024-10-22 09:07:03', 1, 1, 0, NULL, NULL),
+(18, 4, '', 0, NULL, 'fixed.file', 'Dosya', 'File', NULL, NULL, '2024-01-18 03:37:58', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (19, 19, '/file/upload', 18, NULL, 'fixed.file.upload', 'Dosya Yükleme', 'File Upload', NULL, NULL, '2024-01-18 03:38:45', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
 (20, 20, '/file/upload/multi', 18, NULL, 'fixed.file.upload.multi', 'Dosya Yükleme - Çoklu', 'File Upload - Multiple', NULL, NULL, '2024-01-18 03:41:02', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(21, 21, NULL, 0, NULL, 'error', 'Hata', 'Error', NULL, NULL, '2024-01-18 03:59:36', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
+(21, 21, '', 0, NULL, 'error', 'Hata', 'Error', NULL, NULL, '2024-01-18 03:59:36', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (22, 22, '/sfdsf/dsf', 21, NULL, 'error.error404', 'Hata - 404', 'Error - 404', NULL, NULL, '2024-01-18 04:03:14', 0, 1, '2024-01-18 04:04:47', 1, 1, 0, NULL, NULL),
 (23, 23, '/error/500', 21, NULL, 'error.error500', 'Hata - 500', 'Error - 500', NULL, NULL, '2024-01-18 04:04:53', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
 (24, 24, '/error/account/block', 21, NULL, 'error.passive.screen', 'Hata - Pasif Ekranı', 'Error - Passive Screen', NULL, NULL, '2024-01-18 04:06:46', 0, 1, '2024-01-18 16:25:26', 1, 1, 0, NULL, NULL),
-(25, 25, NULL, 0, NULL, 'admin', 'Admin', 'Admin', NULL, NULL, '2024-01-18 04:10:37', 0, 1, '2024-09-29 09:07:09', 1, 1, 0, NULL, NULL),
+(25, 40, '', 0, NULL, 'admin', 'Admin', 'Admin', NULL, NULL, '2024-01-18 04:10:37', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
 (26, 26, '/admin/list', 25, NULL, 'admin.list', 'Admin Listesi', 'Admin List', NULL, NULL, '2024-01-18 04:11:51', 0, 1, '2024-01-18 19:18:22', 1, 1, 0, NULL, NULL),
 (27, 27, '/admin/info/1', 25, NULL, 'admin.info', 'Admin Bilgisi', 'Admin Information', NULL, NULL, '2024-01-18 04:13:58', 0, 1, '2024-01-18 04:48:52', 1, 1, 0, NULL, NULL),
 (29, 29, '/admin/login', 25, NULL, 'admin.login', 'Admin Giriş', 'Admin Login', NULL, NULL, '2024-01-18 04:19:18', 0, 1, '2024-01-18 17:01:10', 1, 1, 0, NULL, NULL),
@@ -682,11 +774,11 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (31, 31, '/admin/forgot/password', 25, NULL, 'admin.forgot.password', 'Admin Şifremi Unuttum', 'Admin Forgot Password', NULL, NULL, '2024-01-18 04:52:42', 0, 1, '2024-01-18 17:01:37', 1, 1, 0, NULL, NULL),
 (32, 32, '/admin/reset/password', 25, NULL, 'admin.reset.password', 'Admin Şifremi Yenile', 'Admin Reset Password', NULL, NULL, '2024-01-18 04:55:32', 0, 1, '2024-01-18 17:01:27', 1, 1, 0, NULL, NULL),
 (33, 33, '/admin', 25, NULL, 'admin.index', 'Admin', 'Admin', NULL, NULL, '2024-01-20 12:01:21', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(36, 36, '/admin/setting/role', 1, NULL, 'settings.role', 'Role Ayarları', 'Role Settings', NULL, NULL, '2024-01-22 02:22:24', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(37, 37, '/admin/setting/department', 1, NULL, 'settings.department', 'Departman Ayarları', 'Department Settings', NULL, NULL, '2024-01-22 02:23:28', 0, 0, NULL, NULL, 1, 0, NULL, NULL),
-(38, 38, NULL, 0, NULL, 'web', 'Web', 'Web', 'Web', NULL, '2024-10-12 17:19:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(36, 37, '/admin/setting/role', 1, NULL, 'settings.role', 'Role Ayarları', 'Role Settings', NULL, NULL, '2024-01-22 02:22:24', 0, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
+(37, 118, '/admin/setting/department', 1, NULL, 'settings.department', 'Departman Ayarları', 'Department Settings', NULL, NULL, '2024-01-22 02:23:28', 0, 1, '2025-01-20 23:08:12', NULL, 1, 0, NULL, NULL),
+(38, 48, '', 0, NULL, 'web', 'Web', 'Web', 'Web', NULL, '2024-10-12 17:19:52', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (39, 39, '/admin/web/settings', 38, NULL, 'admin.web.settings', 'Web Ayarları', 'Web Settings', 'Webeinstellungen', NULL, '2024-10-12 17:21:33', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(40, 40, NULL, 0, NULL, 'admin.web.institutional', 'Web - Kurumsal', 'Web - Institutional', 'Web - Institutionell', NULL, '2024-10-12 21:52:24', 1, 1, '2024-10-12 22:00:04', 1, 1, 0, NULL, NULL),
+(40, 50, '', 0, NULL, 'admin.web.institutional', 'Web - Kurumsal', 'Web - Institutional', 'Web - Institutionell', NULL, '2024-10-12 21:52:24', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (41, 41, '/admin/institutional/about', 40, NULL, 'admin.web.institutional.about', 'Hakkımızda', 'About', 'Um', NULL, '2024-10-12 21:54:59', 1, 1, '2024-10-29 03:32:36', 1, 1, 0, NULL, NULL),
 (42, 42, '/admin/institutional/cookiePolicy', 40, NULL, 'admin.web.institutional.cookiePolicy', 'Çerez Politikası', 'Cookie Policy', 'Cookie-Richtlinie', NULL, '2024-10-12 22:09:41', 1, 1, '2024-10-29 03:34:49', 1, 1, 0, NULL, NULL),
 (43, 43, '/admin/institutional/termsOfUse', 40, NULL, 'admin.web.institutional.termsOfUse', 'Kullanım Koşulları', 'Terms of Use', 'Nutzungsbedingungen', NULL, '2024-10-12 22:11:56', 1, 1, '2024-10-29 03:35:20', 1, 1, 0, NULL, NULL),
@@ -694,77 +786,84 @@ INSERT INTO `multimenu` (`id`, `orderId`, `slug`, `parent_id`, `icon`, `route_na
 (45, 45, '/admin/institutional/privacyPolicy', 40, NULL, 'admin.web.institutional.privacyPolicy', 'Gizlilik Politikası', 'Privacy Policy', 'Datenschutzrichtlinie', NULL, '2024-10-12 22:16:48', 1, 1, '2024-10-29 03:38:26', 1, 1, 0, NULL, NULL),
 (46, 46, '/admin/institutional/personalDataProtectionLaw', 40, NULL, 'admin.web.institutional.personalDataProtectionLaw', 'Kişisel Verilerin Korunma Kanunu', 'Personal Data Protection Law', 'Gesetz zum Schutz personenbezogener Daten', NULL, '2024-10-12 22:18:15', 1, 1, '2024-10-29 03:38:56', 1, 1, 0, NULL, NULL),
 (47, 49, '/admin/faq/list', 48, NULL, 'admin.web.faq.list', 'Sıkça Sorulan Sorular', 'Frequently Asked Questions', 'Häufig gestellte Fragen', NULL, '2024-10-12 23:50:18', 1, 1, '2024-10-13 00:05:53', 1, 1, 0, NULL, NULL),
-(48, 50, NULL, 0, NULL, 'web.faq.listx', 'Web - SSS', 'Web - FAQ', 'Web - FAQ', NULL, '2024-10-12 23:51:05', 1, 1, '2024-12-15 12:43:58', 1, 1, 0, NULL, NULL),
+(48, 61, '', 0, NULL, 'web.faq.listx', 'Web - SSS', 'Web - FAQ', 'Web - FAQ', NULL, '2024-10-12 23:51:05', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (49, 81, '/admin/faq/add', 48, NULL, 'admin.web.faq.add', 'SSS - Ekle', 'FAQ - Add', 'Häufig gestellte Fragen – Hinzufügen', NULL, '2024-10-13 00:05:32', 1, 1, '2024-10-28 20:22:39', 1, 1, 0, NULL, NULL),
-(50, 61, NULL, 0, NULL, 'admin.web.blog.listx', 'Web - Blog', 'Web - Blog', 'Web - Blog', NULL, '2024-10-13 14:02:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(50, 77, '', 0, NULL, 'admin.web.blog.listx', 'Web - Blog', 'Web - Blog', 'Web - Blog', NULL, '2024-10-13 14:02:34', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (51, 51, '/admin/blog/category', 50, NULL, 'admin.web.blog.category.list', 'Blog Kategori', 'Blog Category', 'Blog-Kategorie', NULL, '2024-10-13 14:05:06', 1, 1, '2024-11-01 00:13:03', 1, 1, 0, NULL, NULL),
 (53, 53, '/admin/blog/list', 50, NULL, 'admin.web.blog.list', 'Blog Listesi', 'Blog List', 'Blog-Liste', NULL, '2024-10-13 14:40:39', 1, 1, '2024-10-13 14:41:03', 1, 1, 0, NULL, NULL),
 (54, 54, '/admin/blog/add', 50, NULL, 'admin.web.blog.add', 'Blog Ekle', 'Blog - Add', 'Blog – Hinzufügen', NULL, '2024-10-13 14:43:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (55, 83, '/admin/blog/comment', 50, NULL, 'admin.web.blog.comment.list', 'Blog Yorumları', 'Blog Comments', 'Blog-Kommentare', NULL, '2024-10-16 21:18:39', 1, 1, '2024-11-01 00:13:59', 1, 1, 0, NULL, NULL),
 (56, 56, '/admin/contact/message', 38, NULL, 'admin.web.contact.message', 'İletişim Mesajı', 'Contact Message', 'Kontaktnachricht', NULL, '2024-10-17 16:08:05', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(57, 48, NULL, 0, NULL, 'admin.web.user', 'Web - Kullanıcı', 'Web - User', 'Web - Benutzer', NULL, '2024-10-18 20:19:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(57, 57, '', 0, NULL, 'admin.web.user', 'Web - Kullanıcı', 'Web - User', 'Web - Benutzer', NULL, '2024-10-18 20:19:13', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (58, 58, '/admin/web/user/list', 57, NULL, 'admin.web.user.list', 'Kullanıcı Listesi', 'User List', 'Benutzerliste', NULL, '2024-10-18 20:20:14', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (59, 59, '/admin/web/user/info/1', 57, NULL, 'admin.web.user.info', 'Kullanıcı Bilgileri', 'User Information', 'Benutzerinformationen', NULL, '2024-10-18 20:21:37', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (60, 60, '/admin/subscribe', 38, NULL, 'admin.web.subscribe', 'Abone Ol', 'Subscribe', 'Abonnieren', NULL, '2024-10-21 23:42:16', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(61, 57, NULL, 0, NULL, 'admin.web.slider', 'Web - Slider', 'Web - Slider', 'Slider', NULL, '2024-10-21 23:53:21', 1, 1, '2024-10-28 03:48:45', 1, 1, 0, NULL, NULL),
+(61, 72, '', 0, NULL, 'admin.web.slider', 'Web - Slider', 'Web - Slider', 'Slider', NULL, '2024-10-21 23:53:21', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (62, 62, '/admin/slider/list', 61, NULL, 'admin.web.slider.list', 'Slider', 'Slider', 'Slider', NULL, '2024-10-21 23:53:57', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (71, 63, '/admin/slider/add', 61, NULL, 'admin.web.slider.add', 'Slider – Ekle', 'Slider – Add', 'Slider – Hinzufügen', NULL, '2024-10-22 22:30:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(72, 72, NULL, 0, NULL, 'admin.web.product.listx', 'Web - Ürün', 'Web - Product', NULL, NULL, '2024-10-23 23:47:28', 1, 1, '2024-10-23 23:53:14', 1, 1, 0, NULL, NULL),
+(72, 85, '', 0, NULL, 'admin.web.product.listx', 'Web - Ürün', 'Web - Product', NULL, NULL, '2024-10-23 23:47:28', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (73, 73, '/admin/product/category', 72, NULL, 'admin.web.product.category.list', 'Ürün Kategorisi', 'Product Category', NULL, NULL, '2024-10-24 00:03:36', 1, 1, '2024-10-24 00:54:40', 1, 1, 0, NULL, NULL),
 (74, 74, '/admin/product/list', 72, NULL, 'admin.web.product.list', 'Ürün Listesi', 'Product List', NULL, NULL, '2024-10-24 00:49:50', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (75, 75, '/admin/product/add', 72, NULL, 'admin.web.product.add', 'Ürün - Ekleme', 'Product  - Add', NULL, NULL, '2024-10-24 00:57:13', 1, 1, '2024-10-28 20:28:06', 1, 1, 0, NULL, NULL),
 (76, 84, '/admin/product/comment', 72, NULL, 'admin.web.product.comment.list', 'Urun Yorumları', 'Product Comments', NULL, NULL, '2024-10-24 18:46:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(77, 77, NULL, 0, NULL, 'admin.web.current.account.listx', 'Finans', 'Finance', NULL, NULL, '2024-10-26 13:11:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(78, 78, '/admin/current/account', 77, NULL, 'admin.web.current.account.list', 'Cari Hesap', 'Current Account', NULL, NULL, '2024-10-26 13:12:11', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(79, 79, '/admin/order', 77, NULL, 'admin.web.order.list', 'Satışlar', 'Orders', NULL, NULL, '2024-10-26 20:11:02', 1, 1, '2024-10-29 17:20:09', 1, 1, 0, NULL, NULL),
-(80, 80, '/admin/order/53/detail', 77, NULL, 'admin.web.order.detail.list', 'Satışlar Detay', 'Order Detail', NULL, NULL, '2024-10-27 00:35:34', 1, 1, '2024-10-29 17:20:16', 1, 1, 0, NULL, NULL),
+(77, 90, '', 0, NULL, 'admin.web.current.account.listx', 'Finans', 'Finance', NULL, NULL, '2024-10-26 13:11:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(78, 79, '/admin/current/account', 77, NULL, 'admin.web.current.account.list', 'Cari Hesap', 'Current Account', NULL, NULL, '2024-10-26 13:12:11', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (81, 105, '/admin/faq/edit/1', 48, NULL, 'admin.web.faq.edit.view', 'SSS - Güncelle', 'FAQ - Edit', NULL, NULL, '2024-10-28 20:20:49', 1, 1, '2024-10-28 20:25:25', 1, 1, 0, NULL, NULL),
 (82, 82, '/admin/slider/edit/1', 61, NULL, 'admin.web.slider.edit.view', 'Slider – Güncelle', 'Slider – Edit', NULL, NULL, '2024-10-28 20:24:37', 1, 1, '2024-10-28 20:25:11', 1, 1, 0, NULL, NULL),
 (83, 55, '/admin/blog/edit/1', 50, NULL, 'admin.web.blog.edit.view', 'Blog - Güncelle', 'Blog - Edit', NULL, NULL, '2024-10-28 20:26:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (84, 76, '/admin/product/edit/1', 72, NULL, 'admin.web.product.edit.view', 'Ürün - Güncelleme', 'Product - Edit', NULL, NULL, '2024-10-28 20:27:53', 1, 1, '2024-11-03 15:16:31', 1, 1, 0, NULL, NULL),
-(85, 85, NULL, 0, NULL, 'admin.company', 'Firma', 'Company', NULL, NULL, '2024-10-29 15:52:54', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(85, 96, '', 0, NULL, 'admin.company', 'Firma', 'Company', NULL, NULL, '2024-10-29 15:52:54', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (86, 87, '/admin/company', 85, NULL, 'admin.company.list', 'Firma', 'Company', NULL, NULL, '2024-10-29 15:53:35', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (87, 88, '/admin/company/add', 85, NULL, 'admin.company.add', 'Firma - Ekle', 'Company - Add', NULL, NULL, '2024-10-29 15:54:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (88, 89, '/admin/company/edit/1', 85, NULL, 'admin.company.edit.view', 'Firma - Güncelleme', 'Company - Edit', NULL, NULL, '2024-10-29 15:54:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (89, 86, '/admin/company/category', 85, NULL, 'admin.web.company.category.list', 'Firma Kategori', 'Company Category', NULL, NULL, '2024-11-01 00:12:04', 1, 1, '2024-11-01 00:14:34', 1, 1, 0, NULL, NULL),
 (90, 90, '/admin/meetings', 91, NULL, 'admin.meetings', 'Toplantılar', 'Meetings', NULL, NULL, '2024-11-01 00:51:18', 1, 1, '2024-11-01 02:32:59', 1, 1, 0, NULL, NULL),
-(91, 90, NULL, 0, NULL, 'admin.meetingsx', 'Toplantılar', 'Meetings', NULL, NULL, '2024-11-01 00:51:52', 1, 1, '2024-11-01 02:33:19', 1, 1, 0, NULL, NULL),
-(92, 92, NULL, 0, NULL, 'admin.web.service.listx', 'Web - Servis - Hizmet', 'Web - Service', NULL, NULL, '2024-11-03 13:06:02', 1, 1, '2024-11-03 15:24:43', 1, 1, 0, NULL, NULL),
+(91, 100, '', 0, NULL, 'admin.meetingsx', 'Toplantılar', 'Meetings', NULL, NULL, '2024-11-01 00:51:52', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
+(92, 107, '', 0, NULL, 'admin.web.service.listx', 'Web - Servis - Hizmet', 'Web - Service', NULL, NULL, '2024-11-03 13:06:02', 1, 1, '2025-01-20 23:08:03', NULL, 1, 0, NULL, NULL),
 (93, 93, '/admin/service/category', 92, NULL, 'admin.web.service.category.list', 'Servis - Kategorisi', 'Service Category', NULL, NULL, '2024-11-03 13:06:42', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (94, 94, '/admin/service/list', 92, NULL, 'admin.web.service.list', 'Servis - Hizmetler', 'Services', NULL, NULL, '2024-11-03 13:34:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (95, 95, '/admin/service/add', 92, NULL, 'admin.web.service.add', 'Servis - Hizmetler - Ekle', 'Service - Add', NULL, NULL, '2024-11-03 15:14:53', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(96, 96, NULL, 0, NULL, 'admin.web.comment.listx', 'Web - Yorumlar', 'Web - Comment', NULL, NULL, '2024-11-03 16:27:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(96, 114, '', 0, NULL, 'admin.web.comment.listx', 'Web - Yorumlar', 'Web - Comment', NULL, NULL, '2024-11-03 16:27:22', 1, 1, '2025-01-20 23:08:12', NULL, 1, 0, NULL, NULL),
 (97, 97, '/admin/comment/list', 96, NULL, 'admin.web.comment.list', 'Yorumlar', 'Comments', NULL, NULL, '2024-11-03 16:27:48', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (98, 98, '/admin/comment/add', 96, NULL, 'admin.web.comment.add', 'Yorum - Ekle', 'Comment - Add', NULL, NULL, '2024-11-03 16:28:32', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (99, 99, '/admin/comment/edit/11', 96, NULL, 'admin.web.comment.edit.view', 'Yorum - Güncelle', 'Comment - Edit', NULL, NULL, '2024-11-03 16:29:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(100, 100, NULL, 0, NULL, 'admin.web.team.listx', 'Web - Ekibimiz', 'Web - Our Team', NULL, NULL, '2024-11-03 18:34:56', 1, 1, '2024-11-03 18:43:14', 1, 1, 0, NULL, NULL),
+(100, 120, '', 0, NULL, 'admin.web.team.listx', 'Web - Ekibimiz', 'Web - Our Team', NULL, NULL, '2024-11-03 18:34:56', 1, 1, '2025-01-20 23:08:12', NULL, 1, 0, NULL, NULL),
 (101, 101, '/admin/team/list', 100, NULL, 'admin.web.team.list', 'Ekibimiz', 'Our Team', NULL, NULL, '2024-11-03 18:35:18', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (102, 102, '/admin/team/add', 100, NULL, 'admin.web.team.add', 'Ekibimiz - Ekle', 'Team - Add', NULL, NULL, '2024-11-03 18:41:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (103, 103, '/admin/team/edit/1', 100, NULL, 'admin.web.team.edit.view', 'Ekibimiz - Güncelle', 'Team - Edit', NULL, NULL, '2024-11-03 18:42:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (104, 104, '/admin/service/edit/1', 92, NULL, 'admin.web.service.edit.view', 'Servis - Hizmetler - Güncelle', 'Service - Edit', NULL, NULL, '2024-11-04 18:09:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (105, 47, '/admin/faq/category', 48, NULL, 'admin.web.faq.category.list', 'SSS - Kategori', 'FAQ - Category', NULL, NULL, '2024-11-24 12:34:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
 (106, 106, '/admin/institutional/references', 40, NULL, 'admin.web.institutional.references.list', 'Referanslar', 'References', NULL, NULL, '2024-11-24 17:21:11', 1, 1, '2024-12-08 14:45:23', 1, 1, 0, NULL, NULL),
-(107, 107, '/admin/web/user/cart', 57, NULL, 'admin.web.user.cart.list', 'Sepet Listesi', 'Cart List', NULL, NULL, '2024-11-26 21:22:03', 1, 1, '2024-11-27 00:43:13', 1, 1, 0, NULL, NULL),
-(108, 108, '/admin/web/user/wish', 57, NULL, 'admin.web.user.wish.list', 'İstek Listesi', 'Wish Listesi', NULL, NULL, '2024-11-27 00:42:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(109, 109, '/admin/web/user/order', 57, NULL, 'admin.web.user.order.list', 'Sipariş Listesi', 'Order Listesi', NULL, NULL, '2024-12-10 23:48:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(110, 110, '/admin/web/user/order/product', 57, NULL, 'admin.web.user.order.product.list', 'Sipariş Ürün Listesi', 'Order Product List', NULL, NULL, '2024-12-11 18:16:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(107, 108, '/admin/web/user/cart', 57, NULL, 'admin.web.user.cart.list', 'Sepet Listesi', 'Cart List', NULL, NULL, '2024-11-26 21:22:03', 1, 1, '2024-11-27 00:43:13', 1, 1, 0, NULL, NULL),
+(108, 109, '/admin/web/user/wish', 57, NULL, 'admin.web.user.wish.list', 'İstek Listesi', 'Wish Listesi', NULL, NULL, '2024-11-27 00:42:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(109, 110, '/admin/web/user/order', 57, NULL, 'admin.web.user.order.list', 'Sipariş Listesi', 'Order Listesi', NULL, NULL, '2024-12-10 23:48:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(110, 111, '/admin/web/user/order/product', 57, NULL, 'admin.web.user.order.product.list', 'Sipariş Ürün Listesi', 'Order Product List', NULL, NULL, '2024-12-11 18:16:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(111, 15, '', 0, NULL, 'admin.export', 'Export', 'Export', NULL, NULL, '2024-12-22 15:45:43', 1, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
+(112, 112, '/admin/export/pdf', 111, NULL, 'admin.export.pdf', 'Export - Pdf', 'Export - Pdf', NULL, NULL, '2024-12-22 18:01:20', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(113, 113, '/admin/export/pdf/test', 111, NULL, 'admin.export.pdf.test', 'Export - Pdf - Test', 'Export - Pdf - Test', NULL, NULL, '2024-12-22 18:02:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(114, 7, '', 0, NULL, 'api.route', 'Api', 'Api', NULL, NULL, '2024-12-24 21:07:27', 1, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
+(115, 115, '/api/get', 114, NULL, 'api.get', 'Api Get', 'Api Get', NULL, NULL, '2024-12-24 21:18:46', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(116, 116, '/api/post', 114, NULL, 'api.post', 'Api Post', 'Api Post', NULL, NULL, '2024-12-24 21:20:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(117, 117, '/api/file/upload/view', 114, NULL, 'api.file.upload', 'Api FileUpload', 'Api FileUpload', NULL, NULL, '2024-12-24 21:22:34', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(118, 36, '/admin/setting/log', 1, NULL, 'settings.log', 'Log Ayarları', 'Log Settings', NULL, NULL, '2024-12-25 22:27:55', 1, 1, '2025-01-20 22:30:57', NULL, 1, 0, NULL, NULL),
+(119, 78, '/admin/business/account', 77, NULL, 'admin.web.business.account.list', 'İşletme Hesap Kartı', 'finance_business_account', NULL, NULL, '2025-01-07 20:21:53', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(121, 121, '/admin/safe/account', 77, NULL, 'admin.web.safe.account.list', 'KASA ( 100 )', 'SAFE ( 100 )', NULL, NULL, '2025-01-07 22:13:13', 1, 1, '2025-01-07 22:30:01', 1, 1, 0, NULL, NULL),
+(122, 125, '/admin/current/account/63', 77, NULL, 'admin.web.current.account.find', 'Cari Hesap Extra', 'Current Account Extra', NULL, NULL, '2025-01-12 09:10:38', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(124, 121, '/admin/safe/account/income', 77, NULL, 'admin.web.safe.account.list.income', 'KASA ( 100 ) - Gelir', 'SAFE ( 100 ) - Income', NULL, NULL, '2025-01-20 00:31:51', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(125, 124, '/admin/safe/account/expense', 77, NULL, 'admin.web.safe.account.list.expense', 'KASA ( 100 ) - Gider & Hizmet', 'SAFE ( 100 ) - Expense', NULL, NULL, '2025-01-20 00:32:03', 1, 1, '2025-01-20 00:34:09', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `orders`
+-- Tablo için tablo yapısı `permissions`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE `permissions` (
   `id` int(11) NOT NULL,
-  `date_time` text NOT NULL,
-  `date_timeFull` text NOT NULL,
-  `product_id` text DEFAULT NULL,
-  `product` text DEFAULT NULL,
-  `purchase_amount` text DEFAULT NULL,
-  `purchase_unit_price` text DEFAULT NULL,
-  `total` text DEFAULT NULL,
-  `purchase_amount_net` text DEFAULT NULL,
+  `service` text DEFAULT NULL,
+  `slug` text NOT NULL,
+  `title` text NOT NULL,
+  `description` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_byId` int(11) DEFAULT NULL,
   `isUpdated` int(11) NOT NULL DEFAULT 0,
@@ -777,33 +876,44 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Tablo döküm verisi `orders`
+-- Tablo döküm verisi `permissions`
 --
 
-INSERT INTO `orders` (`id`, `date_time`, `date_timeFull`, `product_id`, `product`, `purchase_amount`, `purchase_unit_price`, `total`, `purchase_amount_net`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(56, '2024-10-22', '22.10.2024 06:47:15', '2', 'APE_TL', '57.794', '52', '3005.29', '57.677', '2024-10-29 17:21:42', 1, 1, '2024-10-29 17:44:57', 1, 1, 0, NULL, NULL),
-(57, '2024-10-22', '22.10.2024 04:15:02', '2', 'APE_TL', '41.6', '55.6', '2312.96', '41.522', '2024-10-29 17:38:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(59, '2024-11-16', '16.11.2024 18:22:50', '2', 'APE_TL', '88.607', '39.5', '3499.98', '88.430', '2024-11-16 19:58:07', 1, 1, '2024-11-16 20:07:15', 1, 1, 0, NULL, NULL),
-(60, '2024-11-16', '16.11.2024 18:20:38', '2', 'APE_TL', '46.563', '40', '1862.52', '46.470', '2024-11-16 20:14:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(61, '2024-11-16', '16.11.2024 22:55:46', '2', 'APE_TL', '89.912', '39.6', '3560.52', '89.732', '2024-11-16 20:31:02', 1, 1, '2024-11-16 20:33:08', 1, 1, 0, NULL, NULL);
+INSERT INTO `permissions` (`id`, `service`, `slug`, `title`, `description`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 'test', 'test', 'view', 'Görüntüleme', '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'test', 'test', 'list', 'Listeleme', '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 'test', 'test', 'search', 'Veri Arama', '2022-11-16 12:38:22', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(4, 'test', 'test', 'search_view', 'Veri Sayfa Arama', '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 'test', 'test', 'add', 'Veri Ekleme', '2024-01-07 02:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(6, 'test', 'test', 'delete', 'Veri Silme', '2024-01-07 02:18:40', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 'test', 'test', 'edit', 'Veri Güncelleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(8, 'test', 'test', 'edit_status', 'Veri Durum Güncelleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(9, 'test', 'test', 'multi_delete', 'Çoklu Veri Silme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(10, 'test', 'test', 'multi_edit', 'Çoklu Veri Güncelleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(11, 'test', 'test', 'multi_edit_status', 'Çoklu Durum Güncelleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(12, 'users', 'users', 'view', 'Görüntüleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(13, 'users', 'users', 'list', 'Listeleme', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(14, 'users', 'users', 'search', 'Veri Arama', '2024-01-07 02:18:53', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(15, 'users', 'users', 'search_view', 'Veri Sayfa Arama', '2024-01-07 02:38:57', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(16, 'users', 'users', 'add', 'Veri Ekleme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 'users', 'users', 'delete', 'Veri Silme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(18, 'users', 'users', 'edit', 'Veri Güncelleme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(19, 'users', 'users', 'edit_status', 'Veri Durum Güncelleme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(20, 'users', 'users', 'multi_delete', 'Çoklu Veri Silme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(21, 'users', 'users', 'multi_edit', 'Çoklu Veri Güncelleme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(22, 'users', 'users', 'multi_edit_status', 'Çoklu Durum Güncelleme', '2024-01-07 02:39:07', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `orders_details`
+-- Tablo için tablo yapısı `permissions_departman`
 --
 
-CREATE TABLE `orders_details` (
+CREATE TABLE `permissions_departman` (
   `id` int(11) NOT NULL,
-  `date_time` text NOT NULL,
-  `date_timeFull` text NOT NULL,
-  `order_id` text DEFAULT NULL,
-  `type` text DEFAULT 'S',
-  `amount` text DEFAULT NULL,
-  `unit_price` text DEFAULT NULL,
-  `total` text DEFAULT NULL,
-  `profit_loss` text DEFAULT NULL,
-  `percent` text NOT NULL,
+  `departman_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 => delete 1 => add',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_byId` int(11) DEFAULT NULL,
   `isUpdated` int(11) NOT NULL DEFAULT 0,
@@ -816,53 +926,133 @@ CREATE TABLE `orders_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Tablo döküm verisi `orders_details`
+-- Tablo döküm verisi `permissions_departman`
 --
 
-INSERT INTO `orders_details` (`id`, `date_time`, `date_timeFull`, `order_id`, `type`, `amount`, `unit_price`, `total`, `profit_loss`, `percent`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(67, '2024-10-28', '28.10.2024 13:36:28', '56', 'S', '1.366', '36.75', '50.20', NULL, '', '2024-10-29 17:23:04', 1, 1, '2024-10-29 17:30:48', 1, 1, 0, NULL, NULL),
-(70, '2024-10-28', '28.10.2024 21:15:28', '56', 'S', '1.351', '37.19', '50.24', NULL, '', '2024-10-29 17:31:19', 1, 1, '2024-10-29 17:31:45', 1, 1, 0, NULL, NULL),
-(71, '2024-10-26', '26.10.2024 17:23:00', '56', 'S', '1.408', '35.5', '49.98', NULL, '', '2024-10-29 17:32:28', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(72, '2024-10-24', '24.10.2024 12:43:28', '56', 'S', '5.115', '39.1', '200.00', NULL, '', '2024-10-29 17:33:27', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(73, '2024-10-23', '23.10.2024 19:25:05', '56', 'S', '0.268', '41', '10.99', NULL, '', '2024-10-29 17:34:28', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(74, '2024-10-23', '23.10.2024 12:35:06', '56', 'S', '0.945', '42.4', '40.07', NULL, '', '2024-10-29 17:36:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(75, '2024-10-29', '29.10.2024 21:10:11', '57', 'S', '41.522', '37.2', '1544.62', NULL, '', '2024-10-29 17:42:14', 1, 1, '2024-10-29 18:42:21', 1, 1, 0, NULL, NULL),
-(76, '2024-10-29', '29.10.2024 21:10:40', '56', 'S', '47.224', '37', '1747.29', NULL, '', '2024-10-29 17:48:04', 1, 1, '2024-10-29 18:25:38', 1, 1, 0, NULL, NULL),
-(84, '2024-10-29', '29.10.2024 21:23:39', '56', 'A', '46.026', '36.8', '1693.76', NULL, '', '2024-10-30 02:48:43', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(85, '2024-10-29', '29.10.2024 21:42:39', '57', 'A', '41.663', '37', '1541.53', NULL, '', '2024-10-30 02:49:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(86, '2024-10-29', '29.10.2024 22:27:07', '56', 'S', '30', '37.3', '1119.00', NULL, '', '2024-10-30 02:51:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(87, '2024-10-29', '29.10.2024 22:28:07', '56', 'S', '16.026', '37', '592.96', NULL, '', '2024-10-30 02:52:04', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(88, '2024-10-29', '29.10.2024 22:29:03', '57', 'S', '30', '37.4', '1122.00', NULL, '', '2024-10-30 02:54:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(89, '2024-10-30', '30.10.2024 02:16:54', '56', 'A', '16.213', '36.5', '591.77', NULL, '', '2024-10-30 02:55:55', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(90, '2024-10-30', '30.10.2024 03:05:47', '56', 'A', '30.513', '36.6', '1116.78', NULL, '', '2024-10-30 02:56:43', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(91, '2024-10-30', '30.10.2024 03:08:08', '57', 'A', '30.594', '36.6', '1119.74', NULL, '', '2024-10-30 03:02:12', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(92, '2024-10-30', '30.10.2024 03:11:21', '56', 'S', '46.632', '37.43', '1745.44', NULL, '', '2024-10-30 03:03:08', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(93, '2024-10-30', '30.10.2024 03:14:46', '56', 'A', '16.393', '36.6', '599.98', NULL, '', '2024-10-30 03:05:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(109, '2024-10-30', '30.10.2024 03:15:51', '56', 'A', '31.116', '36.7', '1141.96', NULL, '', '2024-10-30 20:40:49', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(110, '2024-10-30', '30.10.2024 03:19:55', '57', 'S', '11.488', '37.5', '430.80', NULL, '', '2024-10-30 20:41:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(111, '2024-10-30', '30.10.2024 04:24:42', '57', 'A', '11.684', '36.8', '429.97', NULL, '', '2024-10-30 20:42:06', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(112, '2024-10-30', '30.10.2024 05:16:01', '56', 'S', '47.603', '38.17', '1817.01', NULL, '', '2024-10-30 20:44:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(113, '2024-10-30', '30.10.2024 05:16:01', '57', 'S', '42.005', '38.17', '1603.33', NULL, '', '2024-10-30 20:47:40', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(114, '2024-10-30', '30.10.2024 05:16:18', '56', 'A', '40.540', '37', '1499.98', NULL, '', '2024-10-30 20:48:22', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(115, '2024-10-30', '30.10.2024 14:15:24', '56', 'S', '40.459', '37.4', '1513.17', NULL, '', '2024-10-30 20:49:02', 1, 1, '2024-10-30 21:20:12', 1, 1, 0, NULL, NULL),
-(116, '2024-10-30', '30.10.2024 14:51:58', '56', 'A', '40.595', '37.2', '1510.13', NULL, '', '2024-10-30 20:49:38', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(117, '2024-10-30', '30.10.2024 16:58:45', '56', 'S', '40.514', '37.9', '1535.48', NULL, '', '2024-10-30 20:50:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(118, '2024-10-30', '30.10.2024 16:59:14', '57', 'A', '41.194', '37.2', '1532.42', NULL, '', '2024-10-30 20:51:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(119, '2024-10-30', '30.10.2024 18:37:43', '57', 'S', '41.111', '37.75', '1551.94', NULL, '', '2024-10-30 20:52:37', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(120, '2024-10-30', '30.10.2024 19:18:05', '56', 'A', '41.636', '37.2', '1548.86', NULL, '', '2024-10-30 21:03:28', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(121, '2024-10-30', '30.10.2024 19:32:45', '57', 'A', '51.323', '37.25', '1911.78', NULL, '', '2024-10-30 21:03:57', 1, 1, '2024-10-30 21:12:09', 1, 1, 0, NULL, NULL),
-(123, '2024-10-30', '30.10.2024 20:45:57', '57', 'S', '51.221', '37.75', '1933.59', NULL, '', '2024-10-30 21:13:15', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(124, '2024-10-30', '30.10.2024 21:18:19', '56', 'S', '41.552', '37.7', '1566.51', NULL, '', '2024-10-30 21:13:49', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(125, '2024-10-30', '30.10.2024 23:16:08', '56', 'A', '53.763', '37.2', '1999.98', NULL, '', '2024-10-30 21:15:27', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(126, '2024-10-30', '30.10.2024 23:16:24', '57', 'A', '40.084', '37.25', '1493.13', NULL, '', '2024-10-30 21:15:55', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(127, '2024-10-30', '30.10.2024 23:18:07', '57', 'S', '40.084', '37.7', '1511.17', NULL, '', '2024-10-30 21:16:48', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(128, '2024-10-31', '31.10.2024 00:10:54', '57', 'A', '40.541', '37.2', '1508.13', NULL, '', '2024-10-30 21:17:52', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(129, '2024-10-31', '31.10.2024 00:01:33', '56', 'S', '53.576', '38', '2035.89', NULL, '', '2024-10-30 21:19:44', 1, 1, '2024-10-30 21:36:24', 1, 0, 0, NULL, NULL),
-(130, '2024-10-31', '31.10.2024 00:21:49', '57', 'S', '40.46', '37.8', '1529.39', NULL, '', '2024-10-30 21:24:28', 1, 1, '2024-10-30 21:24:48', 1, 0, 0, NULL, NULL),
-(131, '2024-11-16', '16.11.2024 18:40:53', '59', 'S', '88.430', '40', '3537.20', NULL, '', '2024-11-16 20:08:17', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(132, '2024-11-16', 'tarih', '60', 'S', '46.470', '42', '1951.74', NULL, '', '2024-11-16 20:30:07', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(133, '2024-11-16', 'tarih', '61', 'S', '89.732', '40.1', '3598.25', NULL, '', '2024-11-16 20:32:27', 1, 1, '2024-11-16 20:33:27', 1, 0, 0, NULL, NULL),
-(134, '2024-12-13', 'tarih', '61', 'S', '150', '15', '2250.00', NULL, '', '2024-12-14 20:50:42', 1, 0, NULL, NULL, 0, 0, NULL, NULL);
+INSERT INTO `permissions_departman` (`id`, `departman_id`, `permission_id`, `status`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 2, 1, 1, '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 2, 2, 1, '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 2, 3, 1, '2022-11-16 12:38:22', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(4, 2, 4, 1, '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 2, 5, 1, '2024-01-07 04:17:54', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(6, 2, 6, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 2, 7, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(8, 2, 8, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(9, 2, 9, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(10, 2, 10, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(11, 2, 11, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(12, 3, 1, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(13, 3, 2, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(14, 3, 3, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(15, 3, 4, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(16, 3, 5, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 3, 6, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(19, 3, 8, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(20, 3, 9, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(21, 3, 10, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(22, 3, 11, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(23, 3, 12, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(24, 3, 13, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(25, 3, 14, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(26, 3, 15, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(27, 3, 16, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(28, 3, 17, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(29, 3, 18, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(30, 3, 19, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(31, 2, 12, 1, '2024-01-08 05:32:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `permissions_role`
+--
+
+CREATE TABLE `permissions_role` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0 => delete 1 => add',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `permissions_role`
+--
+
+INSERT INTO `permissions_role` (`id`, `role_id`, `permission_id`, `status`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 2, 1, 1, '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 2, 2, 1, '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 2, 3, 1, '2022-11-16 12:38:22', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(4, 2, 4, 1, '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 2, 5, 1, '2024-01-07 04:17:54', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(6, 2, 6, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 2, 7, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(8, 2, 8, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(9, 2, 9, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(10, 2, 10, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(11, 2, 11, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(12, 3, 1, 0, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(13, 3, 2, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(14, 3, 3, 0, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(15, 3, 4, 0, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(16, 3, 5, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 3, 6, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(19, 3, 8, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(20, 3, 9, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(21, 3, 10, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(22, 3, 11, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(23, 3, 12, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(24, 3, 13, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(25, 3, 14, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(26, 3, 15, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(27, 3, 16, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(28, 3, 17, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(29, 3, 18, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(30, 3, 19, 1, '2024-01-07 04:18:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(31, 2, 12, 1, '2024-01-08 05:32:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `permissions_users`
+--
+
+CREATE TABLE `permissions_users` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '0 => delete 1 => add',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_byId` int(11) DEFAULT NULL,
+  `isUpdated` int(11) NOT NULL DEFAULT 0,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_byId` int(11) DEFAULT NULL,
+  `isActive` int(11) NOT NULL DEFAULT 1,
+  `isDeleted` int(11) NOT NULL DEFAULT 0,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_byId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `permissions_users`
+--
+
+INSERT INTO `permissions_users` (`id`, `user_id`, `permission_id`, `status`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
+(1, 1, 1, 1, '2022-11-16 12:34:01', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 1, 6, 0, '2022-11-16 12:37:15', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 1, 7, 1, '2022-11-16 12:38:22', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(4, 1, 4, 0, '2022-11-16 13:44:31', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 1, 8, 0, '2024-12-29 02:09:02', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(6, 2, 9, 1, '2024-12-29 02:09:23', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 1, 10, 1, '2024-12-29 02:09:23', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1299,216 +1489,36 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id`, `name`, `surname`, `email`, `value`, `img_url`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(1, 'name edit', 'Surname', 'test@test.com', '1', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 4, 1, '2023-11-07 01:51:00', 1, 1, 0, '2024-01-17 08:23:40', 10),
-(2, 'Name', 'Surname', 'test@test.com', '2', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 4, 1, '2024-08-24 23:01:35', 1, 1, 0, NULL, NULL),
-(3, 'Name', 'Surname', 'test@test.com', '3', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 4, 0, NULL, NULL, 1, 1, NULL, NULL),
-(4, 'Name', 'Surname', 'test@test.com', '4', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 4, 0, NULL, NULL, 1, 0, NULL, NULL),
-(6, 'Name', 'Surname', 'test@test.com', '6', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(7, 'Name', 'Surname', 'test@test.com', '7', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(8, 'Name', 'Surname', 'test@test.com', '8', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(10, 'name güncelleme', 'surname güncelleme', 'test@test.com', '10', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 1, '2023-12-15 08:58:58', 5, 1, 0, NULL, NULL),
-(11, 'Name', 'Surname', 'test@test.com', '11', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(12, 'Name', 'Surname', 'test@test.com', '12', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(13, 'Name', 'Surname', 'test@test.com', '13', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(14, 'Name', 'Surname', 'test@test.com', '14', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(15, 'Name', 'Surname', 'test@test.com', '15', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(16, 'Name', 'Surname', 'test@test.com', '16', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(17, 'Name', 'Surname', 'test@test.com', '17', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(18, 'Name', 'Surname', 'test@test.com', '18', '/assets/img/user/default.jpg', '2023-11-03 11:58:25', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(19, 'Name', 'Surname', 'test@test.com', '19', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(20, 'Name', 'Surname', 'test@test.com', '20', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(21, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(22, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(23, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(24, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(25, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(26, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(27, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(28, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(29, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(30, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(31, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(32, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(33, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2024-08-24 23:01:29', 1, 1, 1, '2023-12-21 10:37:31', 10),
-(34, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2023-12-21 10:37:31', 5, 0, 1, '2023-12-15 14:56:01', 10),
-(35, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2024-08-26 23:45:09', 1, 1, 1, '2023-12-15 03:09:13', 10),
-(92, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(93, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(94, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(95, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(96, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(97, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(98, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(99, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(100, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(101, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(102, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(103, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(104, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(105, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(106, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(107, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(108, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(109, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(110, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(111, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(112, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(113, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(114, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(115, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(116, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(117, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(118, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(119, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(120, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(121, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(122, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(123, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(124, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(125, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(126, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(127, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(128, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(129, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(130, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(131, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(132, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(133, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(134, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(135, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(136, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(137, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(138, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(139, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(140, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(141, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(142, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(143, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(144, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(145, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(146, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(147, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(148, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(149, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(150, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(151, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(152, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(153, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(154, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(155, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(156, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(157, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(158, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(159, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(160, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(161, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(162, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(163, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(164, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(165, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(167, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(168, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(169, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(170, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(171, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(172, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(173, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(174, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(175, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(176, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(177, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(178, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(179, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(180, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(181, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(182, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(183, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(184, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(185, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(186, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(187, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(188, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(189, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(190, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(191, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2024-09-10 22:55:30', NULL, 0, 0, NULL, NULL),
-(192, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2024-09-10 22:55:30', NULL, 0, 0, NULL, NULL),
-(193, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 1, '2024-09-10 22:55:30', NULL, 0, 0, NULL, NULL),
-(200, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(201, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(202, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(203, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(204, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(205, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(206, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(207, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(208, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(209, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(210, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(211, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(212, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(213, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(214, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(215, 'Name', 'Surname', 'test@test.com', '24', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(216, 'Name', 'Surname', 'test@test.com', '25', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(217, 'Name', 'Surname', 'test@test.com', '26', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(218, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(219, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(220, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(221, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(222, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(223, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(224, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(225, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(226, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(227, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(228, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(229, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(230, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 1, '2024-09-15 17:24:00', 1, 0, 0, NULL, NULL),
-(231, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 0, 1, '2024-10-05 15:46:45', 1, 1, 0, NULL, NULL),
-(248, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(249, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(250, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(251, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(252, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(253, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(254, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(255, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(256, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(257, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(258, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(259, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(260, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(261, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(262, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(263, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(264, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(265, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(266, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(267, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(268, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(269, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(270, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(271, 'name güncelleme', 'surname güncelleme', 'test@test.com', '34', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(272, 'Name', 'Surname', 'test@test.com', '33', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(273, 'Name', 'Surname', 'test@test.com', '32', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(274, 'Name', 'Surname', 'test@test.com', '31', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(275, 'Name', 'Surname', 'test@test.com', '30', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(276, 'Name', 'Surname', 'test@test.com', '29', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(277, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(278, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(279, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(280, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(281, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
-(282, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(283, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(284, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(285, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(295, 'adp', 'surname 295', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:37:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(297, 'adp güncelle', 'surname 297', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:42:24', 1, 1, '2024-10-22 19:02:01', 1, 1, 0, NULL, NULL),
-(309, 'ad', 'soyad', 'email@densad.xom', '44', '/assets/img/user/default.jpg', '2024-10-22 19:25:00', 1, 1, '2024-10-22 21:34:56', 1, 1, 0, NULL, NULL),
-(314, 'deneme', 'soy', 'ema@dee.com', '23', '/assets/img/user/default.jpg', '2024-10-22 22:33:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(315, 'denemex x', 'soyx', 'email.com@denme', '2', '/assets/img/user/default.jpg', '2024-10-22 22:33:41', 1, 1, '2024-10-22 22:51:15', 1, 1, 0, NULL, NULL),
-(316, 'deneme', 'soy', 'email@de.com', '14', '/assets/img/user/default.jpg', '2024-10-29 16:01:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(1, 'deneme', 'soy', 'email@de.com', '14', '/assets/img/user/default.jpg', '2024-10-29 16:01:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(2, 'denemex x', 'soyx', 'email.com@denme', '2', '/assets/img/user/default.jpg', '2024-10-22 22:33:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(3, 'deneme', 'soy', 'ema@dee.com', '23', '/assets/img/user/default.jpg', '2024-10-22 22:33:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(4, 'ad', 'soyad', 'email@densad.xom', '44', '/assets/img/user/default.jpg', '2024-10-22 19:25:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(5, 'adp güncelle', 'surname 297', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:42:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(6, 'adp', 'surname 295', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:37:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(7, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(8, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(9, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(10, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(11, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
+(12, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(13, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(14, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(15, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(16, 'Name', 'Surname', 'test@test.com', '28', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(17, 'Name', 'Surname', 'test@test.com', '27', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(18, 'ebuenes', 'yıldırım', 'end@dfds.com', '223', '/assets/img/user/default.jpg', '2024-10-05 15:46:58', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(19, 'ebuenesx', 'yıldırım', 'end@dfds.com', '34', '/assets/img/user/default.jpg', '2024-09-29 12:27:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(20, 'Deneme', 'Son', 'end@dfds.com', '11', '/assets/img/user/default.jpg', '2024-09-11 01:53:23', 1, 0, NULL, NULL, 0, 0, NULL, NULL),
+(21, 'Name', 'Surname', 'test@test.com', '23', '/assets/img/user/default.jpg', '2024-09-10 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(22, 'Name', 'Surname', 'test@test.com', '22', '/assets/img/user/default.jpg', '2024-09-09 01:53:23', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(23, 'Name', 'Surname', 'test@test.com', '21', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(24, 'adp', 'surname güncellemep', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2023-11-03 11:58:26', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(25, 'adp', 'surname 295', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:37:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(26, 'adp güncelle', 'surname 297', 'test@test.comp', '351', '/assets/img/user/default.jpg', '2024-10-22 17:42:24', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(27, 'ad', 'soyad', 'email@densad.xom', '44', '/assets/img/user/default.jpg', '2024-10-22 19:25:00', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(28, 'deneme', 'soy', 'ema@dee.com', '23', '/assets/img/user/default.jpg', '2024-10-22 22:33:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(29, 'denemex x', 'soyx', 'email.com@denme', '2', '/assets/img/user/default.jpg', '2024-10-22 22:33:41', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(30, 'deneme', 'soy', 'email@de.com', '14', '/assets/img/user/default.jpg', '2024-10-29 16:01:29', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1619,13 +1629,11 @@ CREATE TABLE `web_user_cart` (
 --
 
 INSERT INTO `web_user_cart` (`id`, `user_id`, `product_uid`, `product_quantity`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(116, 1, 1732231736, 1, '2024-12-11 21:45:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(117, 1, 1732231557, 1, '2024-12-15 19:28:03', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(118, 1, 1732231214, 1, '2024-12-15 19:28:05', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(119, 1, 1732228488, 1, '2024-12-15 19:28:08', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(120, 1, 1732231594, 1, '2024-12-15 19:28:13', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(121, 1, 1732231523, 1, '2024-12-15 19:28:34', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(122, 1, 1732231673, 1, '2024-12-15 19:37:09', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+(178, 1, 1732231330, 1, '2024-12-22 10:35:03', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(182, 1, 1732231281, 2, '2024-12-22 11:03:06', 1, 1, '2024-12-29 16:48:39', NULL, 1, 0, NULL, NULL),
+(183, 1, 1732231557, 2, '2024-12-29 16:43:31', NULL, 1, '2024-12-29 16:48:38', NULL, 1, 0, NULL, NULL),
+(184, 1, 1732231058, 1, '2025-01-09 20:40:09', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
+(185, 1, 1732231058, 1, '2025-01-09 20:40:19', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1662,18 +1670,7 @@ INSERT INTO `web_user_order` (`id`, `uid`, `title`, `user_id`, `product_uid`, `p
 (117, 1733872683, 'yildirimdev', 1, 1732231736, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (118, 1733872683, 'yildirimdev', 1, 1732231557, 1, '2024-12-10 23:18:50', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
 (119, 1733873124, 'enes yildirimdev', 1, 1732228310, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(120, 1733873124, 'enes yildirimdev', 1, 1732228488, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(121, 1733873124, 'enes yildirimdev', 1, 1732231673, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(122, 1733873124, 'enes yildirimdev', 1, 1732231736, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(123, 1733873124, 'enes yildirimdev', 1, 1732231557, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(124, 1733941106, 'adana kebab', 1, 1732230476, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(125, 1733941106, 'adana kebab', 1, 1732230369, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(126, 1733941106, 'adana kebab', 1, 1732229985, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(127, 1733941106, 'adana kebab', 1, 1732229874, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(128, 1733941106, 'adana kebab', 1, 1732231557, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(129, 1733941106, 'adana kebab', 1, 1732228310, 1, '2024-12-11 18:18:36', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(130, 1733946534, 'deneme', 1, 1732231281, 10, '2024-12-11 19:49:03', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(131, 1733946656, 'test', 1, 1732231281, 18, '2024-12-11 19:51:06', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
+(120, 1733873124, 'enes yildirimdev', 1, 1732228488, 1, '2024-12-10 23:25:42', NULL, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1702,13 +1699,9 @@ CREATE TABLE `web_user_wish` (
 --
 
 INSERT INTO `web_user_wish` (`id`, `user_id`, `product_uid`, `product_quantity`, `created_at`, `created_byId`, `isUpdated`, `updated_at`, `updated_byId`, `isActive`, `isDeleted`, `deleted_at`, `deleted_byId`) VALUES
-(88, 1, 1732231736, 1, '2024-12-11 21:45:04', NULL, 0, NULL, NULL, 1, 0, NULL, NULL),
-(89, 1, 1732231523, 1, '2024-12-15 19:36:59', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(90, 1, 1732228310, 1, '2024-12-15 19:37:09', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(91, 1, 1732228310, 1, '2024-12-15 19:37:10', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(92, 1, 1732231058, 1, '2024-12-15 19:37:13', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(93, 1, 1732231594, 1, '2024-12-15 19:37:19', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
-(94, 1, 1732231281, 1, '2024-12-15 19:37:21', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
+(103, 1, 1732231673, 1, '2025-01-05 23:56:06', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(104, 1, 1732228310, 1, '2025-01-05 23:56:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL),
+(105, 1, 1732228310, 1, '2025-01-05 23:56:07', 1, 0, NULL, NULL, 1, 0, NULL, NULL);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -1757,12 +1750,6 @@ ALTER TABLE `contact_message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `current_account`
---
-ALTER TABLE `current_account`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Tablo için indeksler `departmanlist`
 --
 ALTER TABLE `departmanlist`
@@ -1778,6 +1765,24 @@ ALTER TABLE `faq`
 -- Tablo için indeksler `faq_categories`
 --
 ALTER TABLE `faq_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `finance_business_account`
+--
+ALTER TABLE `finance_business_account`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `finance_current_account`
+--
+ALTER TABLE `finance_current_account`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `finance_safe_account`
+--
+ALTER TABLE `finance_safe_account`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1799,6 +1804,12 @@ ALTER TABLE `institutional_references`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Tablo için indeksler `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `meetings`
 --
 ALTER TABLE `meetings`
@@ -1811,15 +1822,27 @@ ALTER TABLE `multimenu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `orders`
+-- Tablo için indeksler `permissions`
 --
-ALTER TABLE `orders`
+ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `orders_details`
+-- Tablo için indeksler `permissions_departman`
 --
-ALTER TABLE `orders_details`
+ALTER TABLE `permissions_departman`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `permissions_role`
+--
+ALTER TABLE `permissions_role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `permissions_users`
+--
+ALTER TABLE `permissions_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1950,25 +1973,19 @@ ALTER TABLE `comments`
 -- Tablo için AUTO_INCREMENT değeri `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `company_categories`
 --
 ALTER TABLE `company_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `contact_message`
 --
 ALTER TABLE `contact_message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- Tablo için AUTO_INCREMENT değeri `current_account`
---
-ALTER TABLE `current_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `departmanlist`
@@ -1989,6 +2006,24 @@ ALTER TABLE `faq_categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `finance_business_account`
+--
+ALTER TABLE `finance_business_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `finance_current_account`
+--
+ALTER TABLE `finance_current_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `finance_safe_account`
+--
+ALTER TABLE `finance_safe_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `homesettings`
 --
 ALTER TABLE `homesettings`
@@ -2007,28 +2042,46 @@ ALTER TABLE `institutional_references`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `multimenu`
 --
 ALTER TABLE `multimenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
--- Tablo için AUTO_INCREMENT değeri `orders`
+-- Tablo için AUTO_INCREMENT değeri `permissions`
 --
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+ALTER TABLE `permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- Tablo için AUTO_INCREMENT değeri `orders_details`
+-- Tablo için AUTO_INCREMENT değeri `permissions_departman`
 --
-ALTER TABLE `orders_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+ALTER TABLE `permissions_departman`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `permissions_role`
+--
+ALTER TABLE `permissions_role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `permissions_users`
+--
+ALTER TABLE `permissions_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `products`
@@ -2052,7 +2105,7 @@ ALTER TABLE `product_comment`
 -- Tablo için AUTO_INCREMENT değeri `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `sabit`
@@ -2094,7 +2147,7 @@ ALTER TABLE `teams`
 -- Tablo için AUTO_INCREMENT değeri `test`
 --
 ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
@@ -2112,19 +2165,19 @@ ALTER TABLE `web_users`
 -- Tablo için AUTO_INCREMENT değeri `web_user_cart`
 --
 ALTER TABLE `web_user_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `web_user_order`
 --
 ALTER TABLE `web_user_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `web_user_wish`
 --
 ALTER TABLE `web_user_wish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
