@@ -14658,7 +14658,7 @@ class Admin extends Controller
         
     //************* Finans - Kasa Hesap  ***************** */
 
-    //! Finans - İşletme Hesap
+    //! Finans - Kasa Hesap
     public function SafeAccount($site_lang="tr")
     {
         \Illuminate\Support\Facades\App::setLocale($site_lang); //! Çoklu Dil
@@ -14882,9 +14882,9 @@ class Admin extends Controller
         }  
         catch (\Throwable $th) {  throw $th; }
 
-    } //! Finans - İşletme Hesap Son
+    } //! Finans - Kasa Hesap Son
 
-    //! Finans - İşletme Hesap - Arama Post
+    //! Finans - Kasa Hesap - Arama Post
     public function SafeAccountSearchPost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -14932,9 +14932,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Arama Post Son
+    } //! Finans - Kasa Hesap - Arama Post Son
 
-    //! Finans - İşletme Hesap - Veri Ekleme Post
+    //! Finans - Kasa Hesap - Veri Ekleme Post
     public function SafeAccountAddPost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -14978,9 +14978,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Ekleme Post Son
+    } //! Finans - Kasa Hesap - Veri Ekleme Post Son
 
-    //! Finans - İşletme Hesap - Veri Silme Post
+    //! Finans - Kasa Hesap - Veri Silme Post
     public function SafeAccountDeletePost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15028,9 +15028,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Silme Post Son
+    } //! Finans - Kasa Hesap - Veri Silme Post Son
 
-    //! Finans - İşletme Hesap - Veri Çoklu Silme Post
+    //! Finans - Kasa Hesap - Veri Çoklu Silme Post
     public function SafeAccountDeletePostMulti(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15061,9 +15061,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Çoklu Silme Post Son
+    } //! Finans - Kasa Hesap - Veri Çoklu Silme Post Son
 
-    //! Finans - İşletme Hesap - Veri Güncelleme Post
+    //! Finans - Kasa Hesap- Veri Güncelleme Post
     public function SafeAccountEditPost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15127,9 +15127,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Güncelleme Post Son
+    } //! Finans - Kasa Hesap - Veri Güncelleme Post Son
 
-    //! Finans - İşletme Hesap - Veri Dosya Güncelleme Post
+    //! Finans - Kasa Hesap - Veri Dosya Güncelleme Post
     public function SafeAccountEditFilePost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15184,9 +15184,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Güncelleme Post Son
+    } //! Finans - Kasa Hesap - Veri Güncelleme Post Son
 
-    //! Finans - İşletme Hesap - Veri Durum Güncelleme Post
+    //! Finans - Kasa Hesap - Veri Durum Güncelleme Post
     public function SafeAccountEditActive(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15240,9 +15240,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap - Veri Durum Güncelleme Post Son
+    } //! Finans - Kasa Hesap - Veri Durum Güncelleme Post Son
 
-    //! Finans - İşletme Hesap - Çoklu Veri Durum Güncelle - Post
+    //! Finans - Kasa Hesap - Çoklu Veri Durum Güncelle - Post
     public function SafeAccountEditMultiActive(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15279,9 +15279,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap- Çoklu Veri Durum Güncelle - Post Son
+    } //! Finans - Kasa Hesap - Çoklu Veri Durum Güncelle - Post Son
 
-    //! Finans - İşletme Hesap  -Clone - Post
+    //! Finans - Kasa Hesap  -Clone - Post
     public function SafeAccountClonePost(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15358,9 +15358,9 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap  - Clone - Post Son
+    } //! Finans - Kasa Hesap - Clone - Post Son
 
-    //! Finans - İşletme Hesap  - Çoklu Clone - Post
+    //! Finans - Kasa Hesap  - Çoklu Clone - Post
     public function SafeAccountClonePostMulti(Request $request)
     {
         $siteLang= $request->siteLang; //! Çoklu Dil
@@ -15443,7 +15443,7 @@ class Admin extends Controller
             return response()->json($response);
         }
 
-    } //! Finans - İşletme Hesap  - Çoklu Clone - Post Son
+    } //! Finans - Kasa Hesap  - Çoklu Clone - Post Son
 
             
     //************* Finans - Kasa Hesap - Tür  ***************** */
