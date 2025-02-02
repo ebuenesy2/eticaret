@@ -7,7 +7,6 @@
 <!-- Tanım -->
 <?php $homeUrl = '/admin'; ?>
 <?php $listTitle = $DB_Find_Title; ?>
-<?php $listUrl = "/admin/setting/menu";  ?>
 
 <!-- Yıldırımdev Table Css -->
 <link href="{{asset('/assets/admin/yildirimdev')}}/css/yildirimdev_table.css" rel="stylesheet" type="text/css" />

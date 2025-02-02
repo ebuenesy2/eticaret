@@ -14678,14 +14678,15 @@ class Admin extends Controller
                 $infoData[] = array( "page" => 1, "rowcount" => 10, "orderBy" => $table."."."id", "order" => "desc" ); //! Bilgiler
                 $groupData = []; //! GroupData
                 
-                  //! Select
+                //! Select
                 $selectData = [];
                 $selectData[] = array( "table" => $table, "parametre" => "*", "name" => null, );
                 $selectData[] = array( "table" => 'finance_current_account', "parametre" => "title", "name" => "finance_current_account_title", );
                 
                 $selectDataRaw = [];  //! Select - Raw
 
-                $joinData = [];  //! Join
+                //! Join
+                $joinData = [];
                 $joinData[] = array( "type" => "LEFT", "table" => "finance_current_account" , "value" => "id", "refTable" => $table, "refValue" => "current_id", ); //! Join Veri Ekleme
                 
                 //! Arama
